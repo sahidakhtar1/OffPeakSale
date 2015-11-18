@@ -275,34 +275,8 @@ public class SlidingMenuActivity extends BaseActivity implements
 		} else {
 			isFeaturedStore = false;
 		}
-		// for (int i = 0; i < navMenuTitles.length; i++) {
-		// if (i == 0) {
-		// navDrawerItems.add(new NavDrawerItem("Home", navMenuIcons
-		// .getResourceId(i, -1), i, false));
-		// } else if (isFeaturedStore && i == 3) {
-		// navDrawerItems.add(new NavDrawerItem(navMenuTitles[i],
-		// navMenuIcons.getResourceId(i, -1), i, true));
-		// } else if (i == 2) {
-		// navDrawerItems.add(new NavDrawerItem(navMenuTitles[i],
-		// navMenuIcons.getResourceId(i, -1), i, true));
-		// } else if (i == 3) {
-		//
-		// } else if (i == 7) {
-		// navDrawerItems.add(new NavDrawerItem(navMenuTitles[i],
-		// navMenuIcons.getResourceId(i, -1), i, true));
-		// } else if (i == 8) {
-		//
-		// navDrawerItems.add(new NavDrawerItem("About "
-		// + retailer.getRetailerName(), navMenuIcons
-		// .getResourceId(i, -1), i, true));
-		// } else {
-		// navDrawerItems.add(new NavDrawerItem(navMenuTitles[i],
-		// navMenuIcons.getResourceId(i, -1), i, false));
-		// }
-		//
-		// }
 
-		if (retailer.menuList != null) {
+		/*if (retailer.menuList != null) {
 			for (MenuItem menuItem : retailer.menuList) {
 				if (menuItem.origName.equalsIgnoreCase("index")) {
 					NavDrawerItem home = new NavDrawerItem(
@@ -334,7 +308,8 @@ public class SlidingMenuActivity extends BaseActivity implements
 					navDrawerItems.add(feedback);
 				} else if (menuItem.origName.equalsIgnoreCase("lookbook")) {
 					NavDrawerItem voucher = new NavDrawerItem(
-							menuItem.displayName, R.drawable.ic_lookbook, 5, false);
+							menuItem.displayName, R.drawable.ic_lookbook, 5,
+							false);
 					voucher.itemType = DrawerItemType.LOOKBOOK;
 					navDrawerItems.add(voucher);
 				} else if (menuItem.origName.equalsIgnoreCase("contact")) {
@@ -346,30 +321,45 @@ public class SlidingMenuActivity extends BaseActivity implements
 
 				} else if (menuItem.origName.equalsIgnoreCase("calendar")) {
 					NavDrawerItem voucher = new NavDrawerItem(
-							menuItem.displayName, R.drawable.ic_calendar, 5, false);
+							menuItem.displayName, R.drawable.ic_calendar, 5,
+							false);
 					voucher.itemType = DrawerItemType.CALENDER;
 					navDrawerItems.add(voucher);
 				}
 			}
-		}
+		}*/
 
-		
-		NavDrawerItem voucher = new NavDrawerItem("Voucher",
+		NavDrawerItem home = new NavDrawerItem("Resturants Nearby",
+				R.drawable.home, 0, false);
+		home.itemType = DrawerItemType.HOME;
+		navDrawerItems.add(home);
+
+		NavDrawerItem eshop = new NavDrawerItem("Hot Picks", R.drawable.eshop,
+				1, true);
+		eshop.itemType = DrawerItemType.ESHOP;
+		navDrawerItems.add(eshop);
+
+		NavDrawerItem voucher = new NavDrawerItem("Notification",
 				R.drawable.voucher, 5, false);
 		voucher.itemType = DrawerItemType.VOUCHER;
 		navDrawerItems.add(voucher);
-		
-		NavDrawerItem history = new NavDrawerItem("My Orders",
+
+		NavDrawerItem history = new NavDrawerItem("Order History",
 				R.drawable.shop_cart_black, 5, false);
 		history.itemType = DrawerItemType.ORDER_HISTORY;
 		navDrawerItems.add(history);
-		
+
 		NavDrawerItem my_profile = new NavDrawerItem("Profile",
 				R.drawable.my_profile, 7, true);
 		my_profile.itemType = DrawerItemType.PROFILE;
 		navDrawerItems.add(my_profile);
 
-		NavDrawerItem about_us = new NavDrawerItem("About Us"
+		NavDrawerItem tnc = new NavDrawerItem("Terms & Conditions"
+		/* + retailer.getRetailerName() */, R.drawable.about_us, 8, true);
+		tnc.itemType = DrawerItemType.TERMSNCONDITION;
+		navDrawerItems.add(tnc);
+
+		NavDrawerItem about_us = new NavDrawerItem("Online Help"
 		/* + retailer.getRetailerName() */, R.drawable.about_us, 8, true);
 		about_us.itemType = DrawerItemType.ABOUTUS;
 		navDrawerItems.add(about_us);
@@ -629,19 +619,19 @@ public class SlidingMenuActivity extends BaseActivity implements
 				eshop_category_list.setAdapter(featuredStoreAdapter);
 				featuredStoreAdapter.notifyDataSetChanged();
 				selectedList = SelectedList.FEATUREDSTORE;
-			} else if (navItem.itemType == DrawerItemType.PROFILE) {
-				viewFlipper.showNext();
-				populateCurrencies();
-				eshop_category_list.setAdapter(curencyListAdapter);
-				curencyListAdapter.notifyDataSetChanged();
-				selectedList = SelectedList.CURRENCY;
-			} else if (navItem.itemType == DrawerItemType.ABOUTUS) {
+			}/*
+			 * else if (navItem.itemType == DrawerItemType.PROFILE) {
+			 * viewFlipper.showNext(); populateCurrencies();
+			 * eshop_category_list.setAdapter(curencyListAdapter);
+			 * curencyListAdapter.notifyDataSetChanged(); selectedList =
+			 * SelectedList.CURRENCY; }
+			 *else if (navItem.itemType == DrawerItemType.ABOUTUS) {
 				viewFlipper.showNext();
 				// populateCurrencies();
 				eshop_category_list.setAdapter(aboutUsAdapter);
 				aboutUsAdapter.notifyDataSetChanged();
 				selectedList = SelectedList.ABOUTUS;
-			} else {
+			}*/ else {
 
 				NavDrawerItem item = navDrawerItems.get(position);
 				displayView(item.itemType, null);
@@ -846,7 +836,6 @@ public class SlidingMenuActivity extends BaseActivity implements
 			orderHistoryFragment = new OrderHistoryFragment();
 			fragment = orderHistoryFragment;
 			break;
-
 
 		default:
 			break;
