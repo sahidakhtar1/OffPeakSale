@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/rlFilter"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/secondary_header_height"
+        android:background="@android:color/white" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center" >
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/filter" />
+
+            <TextView
+                android:id="@+id/tvFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:lines="1"
+                android:text="Sort By"
+                android:textSize="@dimen/textsize" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_eshop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@null"
+        android:dividerHeight="@dimen/item_gap" >
+    </ListView>
+    <TextView 
+        android:id="@+id/tvNoSearchFound"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="No search found"
+        android:layout_margin="100dp"
+        android:gravity="center"
+        android:textSize="@dimen/textsize"
+        />
+</LinearLayout>

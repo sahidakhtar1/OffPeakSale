@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottom_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/llDeliveryOption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="@dimen/left_right_margin"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical" >
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/rdHomeDelivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/black_btn_radio_holo_light"
+                android:checked="true"
+                android:text="@string/text_home_deliver"
+                android:textSize="@dimen/cart_bottom_textsize" />
+
+            <RadioButton
+                android:id="@+id/rdStoreCollection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:button="@drawable/black_btn_radio_holo_light"
+                android:text="@string/text_store_collection"
+                android:textSize="@dimen/cart_bottom_textsize" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llDeleveryDate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" >
+
+        <include layout="@layout/cart_bottom_options" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llDeleveryTime"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" >
+
+        <include layout="@layout/cart_bottom_options" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llCollectionAddress"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" >
+
+        <include layout="@layout/cart_bottom_options" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llEarnedrewads"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/triangle_size"
+        android:layout_marginTop="8dp" >
+
+        <include layout="@layout/cart_bottom_values" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llRewards"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" >
+
+        <include layout="@layout/cart_bottom_options" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llDiscount"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/triangle_size"
+        android:layout_marginTop="8dp" >
+
+        <include layout="@layout/cart_bottom_values" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llShipping"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/triangle_size"
+        android:layout_marginTop="8dp" >
+
+        <include layout="@layout/cart_bottom_values" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llGrandTotal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="gone" >
+
+        <include layout="@layout/cart_bottom_values" />
+    </LinearLayout>
+
+</LinearLayout>

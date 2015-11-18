@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:gravity="center"
+        android:text="@string/profile_update"
+        android:textSize="@dimen/textsize"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvInfo1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="@string/profile_update_txt"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textsize" />
+
+    <TextView
+         android:id="@+id/tvThankYou"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:gravity="center"
+        android:text="@string/thank_you"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textsize"
+        android:textStyle="bold" />
+
+    <TextView
+         android:id="@+id/tvInfo2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="3dp"
+        android:gravity="center"
+        android:text="@string/note"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textsize" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="15dp"
+         >
+
+        <Button
+            android:id="@+id/btn_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_height"
+            android:text="@string/profile"
+            android:textStyle="bold"
+            android:textSize="@dimen/textsize" />
+    </RelativeLayout>
+
+</LinearLayout>

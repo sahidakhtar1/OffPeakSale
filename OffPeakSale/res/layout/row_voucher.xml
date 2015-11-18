@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/voucher_height" >
+
+    <RelativeLayout
+        android:id="@+id/rlRow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/voucher_height"
+        android:paddingLeft="@dimen/left_right_margin"
+        android:paddingRight="@dimen/left_right_margin"
+        android:paddingTop="@dimen/item_gap" >
+
+        <RelativeLayout
+            android:id="@+id/rlVideoview"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/voucher_height"
+            android:background="@drawable/boarder_around"
+            android:visibility="visible" >
+
+            <VideoView
+                android:id="@+id/videoView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/voucher_height"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_margin="0dp"
+                android:padding="0dp" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_voucher"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/voucher_height"
+            android:background="@drawable/boarder_around"
+            android:scaleType="fitXY"
+            android:src="@drawable/image_placeholder" />
+
+        <WebView
+            android:id="@+id/gifWebview"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/voucher_height"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/boarder_around"
+            android:clickable="false"
+            android:clipToPadding="false"
+            android:padding="0dp" />
+
+        <ImageButton
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="12dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/close" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/repos/paragonandroid/!svn/ver/45/trunk/ParagonApp/res/layout-small
+END
+category_list_layout.xml
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repos/paragonandroid/!svn/ver/11/trunk/ParagonApp/res/layout-small/category_list_layout.xml
+END
+image_grid.xml
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repos/paragonandroid/!svn/ver/11/trunk/ParagonApp/res/layout-small/image_grid.xml
+END
+rating_screen.xml
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/repos/paragonandroid/!svn/ver/45/trunk/ParagonApp/res/layout-small/rating_screen.xml
+END
+rating_bar.xml
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repos/paragonandroid/!svn/ver/23/trunk/ParagonApp/res/layout-small/rating_bar.xml
+END
+product_detail_list_cell.xml
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/repos/paragonandroid/!svn/ver/11/trunk/ParagonApp/res/layout-small/product_detail_list_cell.xml
+END

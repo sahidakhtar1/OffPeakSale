@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:paddingBottom="20dp" >
+
+    <RelativeLayout
+        android:id="@+id/btnClose"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/delete" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imgTimeIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/info" />
+
+    <LinearLayout
+        android:id="@+id/llConpunEntery"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/imgTimeIcon"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingRight="5dp" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tvDeliveryTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Earliest date of delivery"
+                android:textSize="@dimen/textsize"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/tvEstimatedDelivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="45 points"
+                android:textSize="@dimen/textsize" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/lineTop"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/llConpunEntery"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:id="@+id/llDeliveryDate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lineTop"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/tvSelectDeliveryTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prefered Delivery Date"
+                android:textSize="@dimen/rewards_textsize"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <!--
+                 <EditText
+                android:id="@+id/etDay"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edt_height"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:drawableRight="@drawable/updown"
+                android:editable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="center_vertical"
+                android:imeOptions="actionNext"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:singleLine="true" />
+            -->
+
+            <EditText
+                android:id="@+id/etDay"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edt_height"
+                android:layout_weight="1"
+                android:background="@drawable/background_round_corner"
+                android:drawableRight="@drawable/updown"
+                android:editable="false"
+                android:ems="10"
+                android:focusableInTouchMode="false"
+                android:imeOptions="actionNext"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray" />
+
+            <!--
+                 <EditText
+                android:id="@+id/etMon"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edt_height"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1.5"
+                android:clickable="false"
+                android:drawableRight="@drawable/updown"
+                android:editable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="center_vertical" />
+            -->
+
+            <EditText
+                android:id="@+id/etMon"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edt_height"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1.5"
+                android:background="@drawable/background_round_corner"
+                android:drawableRight="@drawable/updown"
+                android:editable="false"
+                android:ems="10"
+                android:focusableInTouchMode="false"
+                android:imeOptions="actionNext"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray" />
+
+            <!--
+                 <EditText
+                android:id="@+id/etYear"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edt_height"
+                android:layout_weight="1.2"
+                android:clickable="false"
+                android:drawableRight="@drawable/updown"
+                android:editable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="center_vertical" />
+            -->
+
+            <EditText
+                android:id="@+id/etYear"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edt_height"
+                android:layout_weight="1.2"
+                android:background="@drawable/background_round_corner"
+                android:drawableRight="@drawable/updown"
+                android:editable="false"
+                android:ems="10"
+                android:focusableInTouchMode="false"
+                android:imeOptions="actionNext"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llDeliveryTime"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llDeliveryDate"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/tvSelectDeliveryTimeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delivery Time Interval"
+                android:textSize="@dimen/rewards_textsize"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etTimeSlot"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/edt_height"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_round_corner"
+            android:drawableRight="@drawable/updown"
+            android:editable="false"
+            android:ems="10"
+            android:focusableInTouchMode="false"
+            android:imeOptions="actionNext"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@android:color/darker_gray" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/llStoreAddress"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llDeliveryTime"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:visibility="gone"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/tvSelectColectionAddrrssTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Collection Address"
+                android:textSize="@dimen/rewards_textsize"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etCollectionAddress"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/edt_height"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_round_corner"
+            android:drawableRight="@drawable/updown"
+            android:editable="false"
+            android:ems="10"
+            android:focusableInTouchMode="false"
+            android:imeOptions="actionNext"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@android:color/darker_gray" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnDone"
+        android:layout_width="100dp"
+        android:layout_height="@dimen/button_height"
+        android:layout_below="@+id/llStoreAddress"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:text="Done"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

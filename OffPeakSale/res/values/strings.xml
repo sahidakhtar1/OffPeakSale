@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- <string name="map_key">AIzaSyD5EOEkts1TkSD56LAAnvbU6hfBl0M1tYg</string> -->
+    <string name="map_key">AIzaSyD4MwcyOuotA-8_GIXKIeHHlqCKAYLiT4E</string>
+    <string name="app_name">Coco Allure</string>
+    <string name="action_settings">Settings</string>
+    <string name="lorem_ipsum">Lorem Ipsum</string>
+    <string name="grand_total">Total</string>
+    <string name="shipping_charge">Shipping</string>
+    <string name="shipping_charge_palceholder">Shipping charges may apply</string>
+    <string name="home">HOME</string>
+    <string name="eshop">E-SHOP</string>
+    <string name="loyalty">LOYALTY</string>
+    <string name="feedback">FEEDBACK</string>
+    <string name="vouchers">VOUCHERS</string>
+    <string name="image_shop">Image Shop</string>
+    <string name="locate_us">Locate Us</string>
+    <string name="first_name">First Name*</string>
+    <string name="last_name">Last Name*</string>
+    <string name="gender">Gender*</string>
+    <string name="date_of_birth">Date of Birth*</string>
+    <string name="insertImage">Insert Image (Optional)</string>
+    <string name="mobile_number">Mobile Number*</string>
+    <string name="email_address">Email Address*</string>
+    <string name="address">Shipping Address*</string>
+    <string name="city">City*</string>
+    <string name="state">State*</string>
+    <string name="country">Country*</string>
+    <string name="zip">Postal Code*</string>
+    <string name="feedback_hint">Your feedback is valuable to us.</string>
+    <string name="like">Like</string>
+    <string name="dislike">Dislike</string>
+    <string name="select_gender">Select your gender</string>
+    <string name="save">Save</string>
+    <string name="register">Register</string>
+    <string name="continue_shopping">Back To Shop</string>
+    <string name="email_enquiry">Email Order</string>
+    <string name="check_out">Checkout</string>
+    <string name="cod">Cash on Delivery</string>
+    <string name="detail_image">Detail Image</string>
+    <string name="product_details">Product Details</string>
+    <string name="product_name">Product Name: </string>
+    <string name="quantity">Quantity: </string>
+    <string name="how_it_works">How It Works</string>
+    <string name="buy">Buy</string>
+    <string name="agree">I Agree</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="single_enquiry">Email Order</string>
+    <string name="sold_out">Sold Out</string>
+    <string name="multiple_enquiry">Add To Order List</string>
+    <string name="submit">Submit</string>
+    <string name="rate_item">Rate Item</string>
+    <string name="update">Update</string>
+    <string name="placeholder_price">$20</string>
+    <string name="order_confirmation">Order Confirmation</string>
+    <string name="close">Close</string>
+    <string name="one">1</string>
+    <string name="reservation">Reservation</string>
+    <string name="gift">Gift</string>
+    <string name="refer_a_friend">Refer Customer &amp; Win Gift</string>
+    <string name="friend_name">Customer\'s Name</string>
+    <string name="comment_hint">Comments (200 characters)</string>
+    <string name="name_hint">Name</string>
+    <string name="email_hint">Email Address</string>
+    <string name="friend_email">Customer\'s Email</string>
+    <string name="friend_mobile">Customer\'s Mobile Number</string>
+    <string name="refer">Refer</string>
+    <string name="profile_update_txt">Please fill in your Personal Details on the Profile Page.</string>
+    <string name="profile_update">Profile Update</string>
+    <string name="thank_you">Thank You!</string>
+    <string name="note">Note: You are only required to input your Credit Card Detail if you are making a purchase.</string>
+    <string name="profile">Profile</string>
+    <string name="terms_and_condition">Terms and Conditions</string>
+    <string name="merchant_admin">Merchant Admin</string>
+    <string name="password">Password</string>
+    <string name="password_star">Password</string>
+    <string name="cnf_password_star">Confirm Password</string>
+    <string name="enter">Enter</string>
+    <string name="save_and_close">Exit</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="open_app">Open App</string>
+    <string name="reset">Reset</string>
+    <string name="qty">Qty</string>
+    <string name="search">Search</string>
+    <string name="msg_default_status">Place a barcode inside the viewfinder rectangle to scan it. </string>
+    
+    <string name="text_home_deliver">Delivery</string>
+    <string name="text_store_collection">Collection</string>
+
+    <string-array name="gender_values">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string name="terms_of_use">By proceeding I agree to</string>
+    <string name="tunr_off_pn">Enable push notification</string>
+    <string name="terms_of_use_hyperlink">Terms of Use</string>
+    <string name="redeem"><u>Redeem</u></string>
+    <string name="available_points">Available Credit points</string>
+    <string name="no_reward_cod">Cash on delivery no reward points</string>
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>Home</item>
+        <item>E-Shop</item>
+        <item>Featured Store</item>
+        <item>Loyalty</item>
+        <item>Feedback</item>
+        <item>Vouchers</item>
+        <item>Contact Us</item>
+        <item>Profile</item>
+        <item>About Us</item>
+        <!-- <item>Terms of Use</item>
+        <item>Currency</item> -->
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/home</item>
+        <item>@drawable/eshop</item>
+        <item>@drawable/featured_store</item>
+        <item>@drawable/loyalty</item>
+        <item>@drawable/feedback</item>
+        <item>@drawable/voucher</item>
+        <item>@drawable/locate_us</item>
+        <item>@drawable/my_profile</item>
+        <item>@drawable/about_us</item>
+        <!-- <item>@drawable/termsofuse</item>
+        <item>@drawable/ic_currency</item> -->
+    </array>
+
+</resources>

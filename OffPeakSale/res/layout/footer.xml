@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootFooter"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/footer_height"
+    android:layout_alignParentBottom="true"
+    android:background="@color/footer_bg"
+    android:baselineAligned="false"
+    android:gravity="bottom"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:id="@+id/relHome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/buttonHome"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="homePressed"
+            android:textSize="@dimen/footer_textsize"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/home" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/home"
+                android:textSize="@dimen/footer_textsize"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/viewLineHome"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/footer_selected"
+            android:layout_alignBottom="@+id/buttonHome"
+            android:layout_marginRight="3dp"
+            android:background="@android:color/holo_blue_dark"
+            android:visibility="visible" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/footer_line"
+            android:layout_alignBottom="@+id/buttonHome"
+            android:background="@android:color/holo_blue_dark"
+            android:visibility="invisible" />
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:layout_alignRight="@+id/buttonHome"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/devider"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relEShop"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <Button
+            android:id="@+id/buttonEShop"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="eShopPressed"
+            android:textSize="@dimen/footer_textsize"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/cart" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/eshop"
+                android:textSize="@dimen/footer_textsize"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/viewLineEShop"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/footer_selected"
+            android:layout_alignBottom="@+id/buttonEShop"
+            android:layout_marginRight="3dp"
+            android:background="@android:color/holo_blue_dark"
+            android:visibility="visible" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/footer_line"
+            android:layout_alignBottom="@+id/buttonEShop"
+            android:background="@android:color/holo_blue_dark"
+            android:visibility="invisible" />
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:layout_alignRight="@+id/buttonEShop"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/devider"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relLoyalty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <Button
+            android:id="@+id/buttonLoyalty"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="loyaltyPressed"
+            android:textSize="@dimen/footer_textsize"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/loyalty" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/loyalty"
+                android:textSize="@dimen/footer_textsize"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/viewLineLoyalty"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/footer_selected"
+            android:layout_alignBottom="@+id/buttonLoyalty"
+            android:layout_marginRight="3dp"
+            android:background="@android:color/holo_blue_dark"
+            android:visibility="visible" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/footer_line"
+            android:layout_alignBottom="@+id/buttonLoyalty"
+            android:background="@android:color/holo_blue_dark"
+            android:visibility="invisible" />
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:layout_alignRight="@+id/buttonLoyalty"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/devider"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relFeedback"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <Button
+            android:id="@+id/buttonFeedback"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="feedbackPressed"
+            android:textSize="@dimen/footer_textsize"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/feedback" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingRight="2dp"
+                android:text="@string/feedback"
+                android:textSize="@dimen/footer_textsize"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/viewLineFeedback"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/footer_selected"
+            android:layout_alignBottom="@+id/buttonFeedback"
+            android:layout_marginRight="3dp"
+            android:background="@android:color/holo_blue_dark"
+            android:visibility="visible" />
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:layout_alignRight="@+id/buttonFeedback"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/devider"
+            android:visibility="visible" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/footer_line"
+            android:layout_alignBottom="@+id/buttonFeedback"
+            android:background="@android:color/holo_blue_dark"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relVouchers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <Button
+            android:id="@+id/buttonVouchers"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="vouchersPressed"
+            android:textSize="@dimen/footer_textsize"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/voucher" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/vouchers"
+                android:textSize="@dimen/footer_textsize"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/viewLineVouchers"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/footer_selected"
+            android:layout_alignBottom="@+id/buttonVouchers"
+            android:background="@android:color/holo_blue_dark"
+            android:visibility="visible" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/footer_line"
+            android:layout_alignBottom="@+id/buttonVouchers"
+            android:background="@android:color/holo_blue_dark"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+</LinearLayout>

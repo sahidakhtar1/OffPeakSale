@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white" >
+
+    <LinearLayout
+        android:id="@+id/llConpunEntery"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingBottom="5dp"
+        android:paddingLeft="45dp"
+        android:paddingRight="45dp"
+        android:paddingTop="10dp" >
+
+        <EditText
+            android:id="@+id/edtCoupon"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_round_corner"
+            android:ems="10"
+            android:hint="Enter Code"
+            android:imeOptions="actionNext"
+            android:padding="8dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@android:color/darker_gray" />
+
+        <Button
+            android:id="@+id/buttonApply"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Apply"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/lineTop"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/llConpunEntery"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:id="@+id/imageContainer"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/llConpunEntery"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp" >
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/success"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvDiscountInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageContainer"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="6dp"
+        android:text="@string/product_name"
+        android:textSize="@dimen/textsize" />
+
+    <RelativeLayout
+        android:id="@+id/relClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDiscountInfo"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:paddingBottom="10dp" >
+
+        <Button
+            android:id="@+id/buttonClose"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/close"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

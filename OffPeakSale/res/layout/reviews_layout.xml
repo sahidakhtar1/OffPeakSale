@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/left_right_margin"
+    android:paddingRight="@dimen/left_right_margin" >
+
+    <com.appsauthority.appwiz.utils.ResponsiveScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/relTestimonial"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="12dp" >
+
+                <View
+                    android:id="@+id/list_left3"
+                    android:layout_width="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:visibility="gone" />
+
+                <View
+                    android:id="@+id/list_bot3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true" />
+
+                <TextView
+                    android:id="@+id/textView_testimonial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="Add Reviews"
+                    android:textSize="@dimen/textsize"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <include layout="@layout/review_form_layout" />
+
+            <RelativeLayout
+                android:id="@+id/relReadReview"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="12dp" >
+
+                <View
+                    android:id="@+id/vwReadReaviewUnderline"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true" />
+
+                <TextView
+                    android:id="@+id/tvReadReviews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="Read Reviews"
+                    android:textSize="@dimen/textsize"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_testimonial_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:visibility="visible" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="66dp" />
+        </LinearLayout>
+    </com.appsauthority.appwiz.utils.ResponsiveScrollView>
+
+</LinearLayout>

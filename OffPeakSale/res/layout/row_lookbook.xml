@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/iv_lookbook"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/product_detail_height"
+        android:layout_marginBottom="0dp"
+        android:contentDescription="@string/image_shop"
+        android:scaleType="fitXY"
+        android:src="@drawable/image_placeholder" />
+
+    <LinearLayout
+        android:id="@+id/llTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_lookbook"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="@dimen/left_right_margin"
+        android:layout_marginRight="@dimen/left_right_margin"
+        android:layout_marginTop="5dp" >
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:textSize="16sp" >
+        </TextView>
+
+        <LinearLayout
+            android:id="@+id/llLikeView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/tv_likeCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="0"
+                android:textSize="12sp" >
+            </TextView>
+
+            <ImageView
+                android:id="@+id/imgHeart"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_heart" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llTitle"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="@dimen/left_right_margin"
+        android:layout_marginRight="@dimen/left_right_margin"
+        android:maxLines="3"
+        android:textSize="13sp" >
+    </TextView>
+
+</RelativeLayout>

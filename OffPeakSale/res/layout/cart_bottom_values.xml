@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/left_right_margin"
+    android:layout_marginRight="@dimen/left_right_margin"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|left" >
+
+                <TextView
+                    android:id="@+id/tvOptionLbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/cart_botton_items_height"
+                    android:gravity="left|bottom"
+                    android:lines="1"
+                    android:text="gznf"
+                    android:textSize="@dimen/cart_bottom_textsize" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|right" >
+
+                <TextView
+                    android:id="@+id/tvOptionValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/cart_botton_items_height"
+                    android:gravity="right|bottom"
+                    android:lines="1"
+                    android:text="@string/grand_total"
+                    android:textSize="@dimen/cart_bottom_textsize" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

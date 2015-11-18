@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/transparent"
+    android:padding="12dp" >
+
+    <RelativeLayout
+        android:id="@+id/voucherRL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/iv_voucher"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/voucher_height"
+            android:layout_alignParentLeft="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/image_placeholder" />
+
+        <WebView
+            android:id="@+id/gifWebview"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/voucher_height"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="0dp"
+            android:background="@android:color/black"
+            android:clickable="false"
+            android:clipToPadding="false"
+            android:padding="0dp" />
+
+        <RelativeLayout
+            android:id="@+id/fmVideoView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/voucher_height"
+            android:background="@android:color/white"
+            android:visibility="invisible" >
+
+            <VideoView
+                android:id="@+id/videoView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_voucher"
+            android:layout_margin="0dp"
+            android:background="@color/black"
+            android:gravity="center"
+            android:padding="5dp" >
+
+            <Button
+                android:id="@+id/buttonDismiss"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/button_height"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:onClick="dismissPressed"
+                android:text="@string/dismiss"
+                android:textSize="@dimen/textsize"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

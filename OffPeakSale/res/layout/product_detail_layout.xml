@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.appsauthority.appwiz.utils.ResponsiveScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/rlBannerlayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp" >
+
+                <!--
+                      <com.appsauthority.appwiz.utils.HorizontalPager
+                    android:id="@+id/horizontal_pager"
+                    android:layout_width="fill_parent"
+                    andr oid:layout_height="@dimen/product_detail_height" >
+                -->
+
+                <ImageView
+                    android:id="@+id/iv_eshop_detail_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/product_detail_height"
+                    android:contentDescription="@string/detail_image"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/image_placeholder"
+                    android:visibility="gone" />
+
+                <!--
+                         <include
+                        android:id="@+id/secondPage"
+                        layout="@layout/home_banner_layout" />
+                -->
+                <!-- </com.appsauthority.appwiz.utils.HorizontalPager> -->
+
+
+                <!--
+                     <include
+                    android:id="@+id/pageIndicatorView"
+                    layout="@layout/page_indicator_view_layout" />
+                -->
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/left_right_margin"
+                android:paddingRight="@dimen/left_right_margin" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/tv_eshop_detail_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lorem_ipsum"
+                        android:textSize="@dimen/textsize"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tv_eshop_detail_short_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="0dp"
+                        android:paddingTop="10dp"
+                        android:text="@string/lorem_ipsum"
+                        android:textSize="@dimen/textsize" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvRewardsPoints"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="0 Reward Points"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/cart_menu_textsize" />
+
+                <LinearLayout
+                    android:id="@+id/ratingLL"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:gravity="center_vertical" >
+
+                        <include layout="@layout/rating_bar" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:orientation="horizontal" />
+
+                    <Button
+                        android:id="@+id/btnSubmit"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_weight="1"
+                        android:onClick="submitPressed"
+                        android:text="@string/rate_item"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llFirstOption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="0dp"
+                    android:paddingTop="2dp"
+                    android:visibility="gone" >
+
+                    <include layout="@layout/menu_layout" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llSecondOptionOption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="6dp"
+                    android:paddingTop="0dp"
+                    android:visibility="gone" >
+
+                    <include layout="@layout/menu_layout" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
+                    android:paddingTop="2dp" >
+
+                    <RelativeLayout
+                        android:id="@+id/relProductDet"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="6dp" >
+
+                        <View
+                            android:id="@+id/list_left1"
+                            android:layout_width="8dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentLeft="true"
+                            android:visibility="gone" />
+
+                        <View
+                            android:id="@+id/list_bot1"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true" />
+
+                        <TextView
+                            android:id="@+id/eshop_product_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="8dp"
+                            android:text="@string/product_details"
+                            android:textSize="@dimen/textsize"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_product_detail_txt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/lorem_ipsum"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="66dp" />
+        </LinearLayout>
+    </com.appsauthority.appwiz.utils.ResponsiveScrollView>
+
+</LinearLayout>

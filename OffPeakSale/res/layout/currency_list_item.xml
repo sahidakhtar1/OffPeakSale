@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/menu_item_height" >
+
+    <ImageView
+        android:id="@+id/iconback"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:contentDescription=""
+        android:src="@drawable/eshop_back" />
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:contentDescription=""
+        android:src="@drawable/home"
+        android:layout_centerVertical="true" />
+
+    <TextView
+        android:id="@+id/tvFilterName"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/menu_item_height"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/imgTick"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="50dp"
+        android:paddingRight="40dp"
+        android:text="filter option"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/menu_text_size" />
+
+    <ImageView
+        android:id="@+id/imgTick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/tick"
+        android:paddingRight="10dp" >
+    </ImageView>
+
+    <View
+        android:id="@+id/devider"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/black" >
+    </View>
+
+</RelativeLayout>

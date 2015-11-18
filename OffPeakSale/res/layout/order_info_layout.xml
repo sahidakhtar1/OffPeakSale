@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottom_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/llOrderNumber"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/order_info_values" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llOrderStaus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/order_info_values" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llOrderDate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/order_info_values" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llOrderTotal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/order_info_values" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llRewardsRedeemed"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/order_info_values" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llRewardsEarned"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/order_info_values" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llDiscount"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/order_info_values" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llShippingFee"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/order_info_values" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llDeliveryDate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/order_info_values" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llAddress"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/order_info_values" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/llInstruction"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/order_info_values" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="3dp"
+        android:background="@color/triangle_underline_color" />
+
+</LinearLayout>

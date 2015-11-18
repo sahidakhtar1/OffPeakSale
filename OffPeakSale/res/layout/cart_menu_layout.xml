@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_weight=".5" >
+
+        <TextView
+            android:id="@+id/tv_optionLable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="0dp"
+            android:text="Red color product"
+            android:textSize="@dimen/cart_menu_textsize" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tv_optionLable"
+        android:layout_weight=".5" >
+
+        <RelativeLayout
+            android:id="@+id/relValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/list_right1"
+                android:layout_width="@dimen/triangle_size"
+                android:layout_height="@dimen/triangle_size"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/triangle_icon" />
+
+            <View
+                android:id="@+id/list_underline"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/triangle_underline_color" />
+
+            <TextView
+                android:id="@+id/tv_optonsValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="7dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="3dp"
+                android:layout_toLeftOf="@+id/list_right1"
+                android:text="XXL"
+                android:textSize="@dimen/cart_menu_textsize" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>
