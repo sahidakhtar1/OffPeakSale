@@ -32,8 +32,8 @@ import com.google.gson.Gson;
 
 public class SplashscreenActivity extends BaseActivity {
 
-	private ImageView imageViewSplashScreen;
-	private TextView textViewOperator;
+//	private ImageView imageViewSplashScreen;
+//	private TextView textViewOperator;
 	private SharedPreferences spref;
 
 	private Retailer retailer;
@@ -47,16 +47,16 @@ public class SplashscreenActivity extends BaseActivity {
 		
 		setContentView(R.layout.activity_splashscreen);
 
-		textViewOperator = (TextView) findViewById(R.id.textViewOperator);
+		//textViewOperator = (TextView) findViewById(R.id.textViewOperator);
 
-		imageViewSplashScreen = (ImageView) findViewById(R.id.imageViewSplashScreen);
+		//imageViewSplashScreen = (ImageView) findViewById(R.id.imageViewSplashScreen);
 
 		spref = PreferenceManager.getDefaultSharedPreferences(this);
 		Helper.getSharedHelper().currency_code = spref.getString(
 				Constants.KEY_USER_CURRECY, "");
 		Helper.getSharedHelper().setCurrencySymbol();
 
-		if (spref.contains(Constants.SPLASH_IMG)) {
+		/*if (spref.contains(Constants.SPLASH_IMG)) {
 			imageCacheloader.displayImage(
 					spref.getString(Constants.SPLASH_IMG, ""),
 					R.drawable.image_placeholder, imageViewSplashScreen);
@@ -64,7 +64,7 @@ public class SplashscreenActivity extends BaseActivity {
 
 		if (spref.contains(Constants.POWERED_BY)) {
 			textViewOperator.setText(spref.getString(Constants.POWERED_BY, ""));
-		}
+		}*/
 		// Voucher voucher = new Voucher();
 		// voucher.setMsg("http://appwizlive.com/uploads/retailer/1/loyalty/Azzura_Erdinger_Loyalty.jpg");
 		// voucher.setType("Image");
@@ -226,9 +226,9 @@ public class SplashscreenActivity extends BaseActivity {
 				// Helper.getSharedHelper().currency_code =
 				// retailer.defaultCurrency;
 				// Helper.getSharedHelper().getCurrencySymbol();
-				textViewOperator.setText(retailer.getPoweredBy());
-				imageCacheloader.displayImage(retailer.getSplashImage(),
-						R.drawable.image_placeholder, imageViewSplashScreen);
+				//textViewOperator.setText(retailer.getPoweredBy());
+//				imageCacheloader.displayImage(retailer.getSplashImage(),
+//						R.drawable.image_placeholder, imageViewSplashScreen);
 
 				spref.edit()
 						.putString(Constants.SPLASH_IMG,
