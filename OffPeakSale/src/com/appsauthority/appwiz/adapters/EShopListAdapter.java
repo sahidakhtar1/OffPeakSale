@@ -94,13 +94,13 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 				selectedCurrencyCode
 						+ Helper.getSharedHelper()
 								.conertfloatToSTring(newPrice));
-		if (Helper.getSharedHelper().enableRating.equals("1")) {
-			holder.getProductRatingBar().setRating(
-					Float.parseFloat(object.getProductRating()));
-			holder.getProductRatingBar().setVisibility(View.VISIBLE);
-		} else {
-			holder.getProductRatingBar().setVisibility(View.GONE);
-		}
+//		if (Helper.getSharedHelper().enableRating.equals("1")) {
+//			holder.getProductRatingBar().setRating(
+//					Float.parseFloat(object.getProductRating()));
+//			holder.getProductRatingBar().setVisibility(View.VISIBLE);
+//		} else {
+//			holder.getProductRatingBar().setVisibility(View.GONE);
+//		}
 
 		holder.getOldPrice().setPaintFlags(
 				holder.getOldPrice().getPaintFlags()
@@ -133,6 +133,8 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 			holder.getNewPrice().setTypeface(Helper.getSharedHelper().boldFont);
 			holder.getTvQtyIndicator().setTypeface(Helper.getSharedHelper().normalFont);
 			holder.getTvSaleIndicator().setTypeface(Helper.getSharedHelper().normalFont);
+			holder.getTvDistance().setTypeface(Helper.getSharedHelper().boldFont);
+			holder.getTvAddress().setTypeface(Helper.getSharedHelper().normalFont);
 		} catch (Exception e) {
 
 		}
@@ -152,7 +154,7 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 			}
 		}
 		if (object.onSale != null && object.onSale.equalsIgnoreCase("1")) {
-			holder.getTvSaleIndicator().setVisibility(View.VISIBLE);
+			holder.getTvSaleIndicator().setVisibility(View.GONE);
 		}else{
 			holder.getTvSaleIndicator().setVisibility(View.GONE);
 		}

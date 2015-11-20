@@ -60,7 +60,7 @@
             android:layout_marginBottom="0dp"
             android:layout_marginLeft="@dimen/left_right_margin"
             android:layout_marginRight="@dimen/left_right_margin"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:paddingBottom="0dp"
             android:paddingTop="2dp" >
 
@@ -77,14 +77,27 @@
 
             <TextView
                 android:id="@+id/tv_eshop_short_desc"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:layout_marginBottom="0dp"
                 android:layout_marginTop="7dp"
                 android:maxLines="2"
                 android:text="@string/lorem_ipsum"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
+            
+            <TextView
+                android:id="@+id/tvDistance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="5dp"
+                android:maxLines="1"
+                android:text="2.1KM"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -138,7 +151,16 @@
                 android:layout_marginRight="0dp"
                 android:gravity="right|center_vertical" >
 
-                <include layout="@layout/rating_bar" />
+                <TextView
+                    android:id="@+id/tvAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3 Temasek Avenue"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp"
+                     />
+
+                <!-- <include layout="@layout/rating_bar" /> -->
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>

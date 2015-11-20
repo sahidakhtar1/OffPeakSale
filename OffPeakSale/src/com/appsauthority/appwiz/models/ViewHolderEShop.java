@@ -22,6 +22,8 @@ public class ViewHolderEShop {
 	private Button btn_delete = null;
 	private TextView tvQtyIndicator = null;
 	private TextView tvSaleIndicator = null;
+	private TextView tvDistance = null;
+	private TextView tvAddress = null;
 
 	public Button getBtn_delete() {
 		if (null == btn_delete) {
@@ -106,6 +108,20 @@ public class ViewHolderEShop {
 
 	public void setTvSaleIndicator(TextView tvSaleIndicator) {
 		this.tvSaleIndicator = tvSaleIndicator;
+	}
+
+	public TextView getTvDistance() {
+		if (tvDistance == null) {
+			tvDistance = (TextView) row.findViewById(R.id.tvDistance);
+		}
+		return tvDistance;
+	}
+
+	public TextView getTvAddress() {
+		if (tvAddress == null) {
+			tvAddress = (TextView) row.findViewById(R.id.tvAddress);
+		}
+		return tvAddress;
 	}
 
 }
