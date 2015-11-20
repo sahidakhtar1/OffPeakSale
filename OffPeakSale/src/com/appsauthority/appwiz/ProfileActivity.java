@@ -77,14 +77,8 @@ public class ProfileActivity extends BaseActivity implements
 	private TextView textViewHeader;
 	private ImageView imageViewOverflow;
 
-	private ArrayList<Country> countryList = new ArrayList<Country>();
-	private ArrayList<String> countryNameList = new ArrayList<String>();
-
-	private Spinner spinnerGender;
-	private EditText editTextFirstName, editTextLastName, editTextMobileNumber,
-			editTextEmail, editTextAddress, editTextCity, editTextState,
-			editTextZip;
-	private Button buttonSave, btn_buy, buttonCountries;
+	private EditText editTextFirstName, editTextMobileNumber, editTextEmail;
+	private Button buttonSave;
 	private SimpleDateFormat sdf;
 
 	private Context context;
@@ -92,21 +86,20 @@ public class ProfileActivity extends BaseActivity implements
 	private PaypalTokenRequest payPalTokenRequest;
 	private Intent intent;
 	private Retailer retailer;
-	private ArrayAdapter<String> adapter;
-	private ArrayList<String> countrySearchList = new ArrayList<String>();
 	Boolean isProceedtoCheckout;
 	private SharedPreferences spref;
 	LinearLayout veTermsOfUse;
 	Switch pnSwitch;
-	TextView tvRedeemlbl, tvRedeem, tvNoRewardsForCOD;
+
+	// TextView tvRedeemlbl, tvRedeem, tvNoRewardsForCOD;
 
 	TextView tvCashCreditValue, tvTotalRewardsValue, tvResultMsg;
 	EditText etRewards;
 
-	LinearLayout llDevider, llBottonView;
+	LinearLayout llBottonView;
 
 	TextView tvDOB;
-	LinearLayout llRedeem;
+	// LinearLayout llRedeem;
 
 	Boolean isCOD;
 
@@ -169,8 +162,6 @@ public class ProfileActivity extends BaseActivity implements
 				llBottonView.setVisibility(View.VISIBLE);
 				tvBackToLogin.setVisibility(View.VISIBLE);
 				buttonSave.setText(getResources().getString(R.string.register));
-				btn_buy.setVisibility(View.GONE);
-				tvNoRewardsForCOD.setVisibility(View.GONE);
 			}
 		});
 
@@ -256,8 +247,9 @@ public class ProfileActivity extends BaseActivity implements
 					Toast.makeText(ProfileActivity.this, errorMsg,
 							Toast.LENGTH_LONG).show();
 				} else {
-//					showLoginForm();
-					ForgotPasswordHandler forgotPWDHandler = new ForgotPasswordHandler(emailid, ProfileActivity.this);
+					// showLoginForm();
+					ForgotPasswordHandler forgotPWDHandler = new ForgotPasswordHandler(
+							emailid, ProfileActivity.this);
 					forgotPWDHandler.getPassword();
 				}
 			}
@@ -277,9 +269,7 @@ public class ProfileActivity extends BaseActivity implements
 		etEmailForgotPwd.setVisibility(View.GONE);
 		btnForgotPwd.setVisibility(View.GONE);
 		tvBackToLogin.setVisibility(View.GONE);
-		btn_buy.setVisibility(View.GONE);
 		veTermsOfUse.setVisibility(View.GONE);
-		tvNoRewardsForCOD.setVisibility(View.GONE);
 
 	}
 
@@ -293,15 +283,10 @@ public class ProfileActivity extends BaseActivity implements
 				llBottonView.setVisibility(View.VISIBLE);
 				llPassword.setVisibility(View.GONE);
 				tvBackToLogin.setVisibility(View.GONE);
-				llRedeem.setVisibility(View.VISIBLE);
 				editTextEmail.setEnabled(false);
 				buttonSave.setText(getResources().getString(R.string.save));
-				btn_buy.setVisibility(View.VISIBLE);
 				veTermsOfUse.setVisibility(View.VISIBLE);
-				if (isCOD) {
-					btn_buy.setText("Send Order");
-					tvNoRewardsForCOD.setVisibility(View.VISIBLE);
-				}
+
 				if (Utils.isProfileAvailable(context)) {
 					setUpFields();
 				}
@@ -317,7 +302,6 @@ public class ProfileActivity extends BaseActivity implements
 			//
 			showLoginForm();
 			editTextEmail.setEnabled(true);
-			llRedeem.setVisibility(View.GONE);
 
 		}
 	}
@@ -340,75 +324,35 @@ public class ProfileActivity extends BaseActivity implements
 		llPassword = (LinearLayout) findViewById(R.id.llPassword);
 
 		spref = PreferenceManager.getDefaultSharedPreferences(activity);
-//		spref.edit().putBoolean(Constants.KEY_IS_USER_LOGGED_IN, false)
-//				.commit();
+		// spref.edit().putBoolean(Constants.KEY_IS_USER_LOGGED_IN, false)
+		// .commit();
 		textViewHeader = (TextView) findViewById(R.id.textViewHeader);
 		imageViewOverflow = (ImageView) findViewById(R.id.imageViewOverflow);
-		spinnerGender = (Spinner) findViewById(R.id.sp_gender);
 		buttonSave = (Button) findViewById(R.id.btn_save);
-		btn_buy = (Button) findViewById(R.id.btn_buy);
 		editTextFirstName = (EditText) findViewById(R.id.edt_fname);
-		editTextLastName = (EditText) findViewById(R.id.edt_lname);
 		editTextMobileNumber = (EditText) findViewById(R.id.edt_mobile_number);
 		editTextEmail = (EditText) findViewById(R.id.edt_email);
-		editTextAddress = (EditText) findViewById(R.id.edt_address);
-		editTextCity = (EditText) findViewById(R.id.edt_city);
-		editTextState = (EditText) findViewById(R.id.edt_state);
-		editTextZip = (EditText) findViewById(R.id.edt_zip);
 		sdf = new SimpleDateFormat("dd MMM yyyy");
 		TextView hyperlink = (TextView) findViewById(R.id.hyperlink);
 		veTermsOfUse = (LinearLayout) findViewById(R.id.veTermsOfUse);
+		
+//		RelativeLayout rlPn = (RelativeLayout) findViewById(R.id.rlPn);
+//		rlPn.setVisibility(View.GONE);
 		pnSwitch = (Switch) findViewById(R.id.pnSwitch);
-		tvRedeemlbl = (TextView) findViewById(R.id.tvRedeemlbl);
-		llRedeem = (LinearLayout) findViewById(R.id.llRedeem);
-		tvRedeem = (TextView) llRedeem.findViewById(R.id.tv_optonsValue);
-		tvNoRewardsForCOD = (TextView) findViewById(R.id.tvNoRewardsForCOD);
-		if (Helper.getSharedHelper().reatiler.enableRewards
-				.equalsIgnoreCase("1")) {
-
-		} else {
-			llRedeem.setVisibility(View.GONE);
-		}
-		RelativeLayout relValue = (RelativeLayout) llRedeem
-				.findViewById(R.id.relValue);
+		
+		// tvRedeemlbl = (TextView) findViewById(R.id.tvRedeemlbl);
+		// tvRedeem = (TextView) llRedeem.findViewById(R.id.tv_optonsValue);
+		// if (Helper.getSharedHelper().reatiler.enableRewards
+		// .equalsIgnoreCase("1")) {
+		//
+		// } else {
+		// llRedeem.setVisibility(View.GONE);
+		// }
+		// RelativeLayout relValue = (RelativeLayout) llRedeem
+		// .findViewById(R.id.relValue);
 		llBottonView = (LinearLayout) findViewById(R.id.llBottonView);
-		llDevider = (LinearLayout) findViewById(R.id.llDevider);
-		llDevider.setVisibility(View.VISIBLE);
 
-		tvRedeem.setText(Helper.getSharedHelper().rewardPoints);
-
-		buttonCountries = (Button) findViewById(R.id.sp_country);
-		buttonCountries.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				countryPressed(arg0);
-			}
-		});
-		tvDOB = (TextView) findViewById(R.id.tv_date);
-		tvDOB.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-				Calendar c = Calendar.getInstance();
-				if (tvDOB.getText().toString().length() > 0) {
-					try {
-						c.setTime(sdf.parse(tvDOB.getText().toString()));
-					} catch (ParseException e) {
-
-						e.printStackTrace();
-					}
-				}
-
-				DatePickerDialog dialog = new DatePickerDialog(context,
-						dateListener, c.get(Calendar.YEAR), c
-								.get(Calendar.MONTH), c
-								.get(Calendar.DAY_OF_MONTH));
-				dialog.show();
-			}
-		});
+		// tvRedeem.setText(Helper.getSharedHelper().rewardPoints);
 
 		Boolean isOff = spref.getBoolean(Constants.KEY_PN, false);
 		pnSwitch.setChecked(!isOff);
@@ -458,28 +402,14 @@ public class ProfileActivity extends BaseActivity implements
 
 			}
 		});
-		relValue.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				// showRewardPopUp();
-			}
-		});
 
 		try {
 			llBottonView.setBackgroundDrawable(Helper.getSharedHelper()
 					.getGradientDrawableNoRad(retailer.getHeaderColor()));
 			// llDevider.setBackgroundDrawable(Helper.getSharedHelper()
-			// .getGradientDrawable(retailer.getRetailerTextColor()));
-			llDevider.setBackgroundColor(Color.parseColor("#"
-					+ retailer.getRetailerTextColor()));
+			// .getGradientDrawable(retailer.getRetailerTextColor()))
 
 			editTextFirstName
-					.setBackgroundDrawable(getGradientDrawableEditText(retailer
-							.getHeaderColor()));
-
-			editTextLastName
 					.setBackgroundDrawable(getGradientDrawableEditText(retailer
 							.getHeaderColor()));
 
@@ -491,32 +421,9 @@ public class ProfileActivity extends BaseActivity implements
 					.setBackgroundDrawable(getGradientDrawableEditText(retailer
 							.getHeaderColor()));
 
-			editTextAddress
-					.setBackgroundDrawable(getGradientDrawableEditText(retailer
-							.getHeaderColor()));
-
-			editTextCity
-					.setBackgroundDrawable(getGradientDrawableEditText(retailer
-							.getHeaderColor()));
-
-			editTextState
-					.setBackgroundDrawable(getGradientDrawableEditText(retailer
-							.getHeaderColor()));
-
-			editTextZip
-					.setBackgroundDrawable(getGradientDrawableEditText(retailer
-							.getHeaderColor()));
-
 			tvDOB.setBackgroundDrawable(getGradientDrawableEditText(retailer
 					.getHeaderColor()));
 
-			buttonCountries
-					.setBackgroundDrawable(getGradientDrawableEditText(retailer
-							.getHeaderColor()));
-
-			spinnerGender
-					.setBackgroundDrawable(getGradientDrawableEditText(retailer
-							.getHeaderColor()));
 			int colorOn = Color.parseColor("#" + retailer.getHeaderColor());
 			int colorOff = 0xFF666666;
 			int colorDisabled = 0xFF333333;
@@ -550,28 +457,18 @@ public class ProfileActivity extends BaseActivity implements
 			buttonSave.setBackgroundDrawable(getGradientDrawable(retailer
 					.getHeaderColor()));
 
-			btn_buy.setTextColor(Color.parseColor("#"
-					+ retailer.getRetailerTextColor()));
-			btn_buy.setBackgroundDrawable(getGradientDrawable(retailer
-					.getHeaderColor()));
 		} catch (Exception e) {
 		}
 
-		btn_buy.setVisibility(View.GONE);
 		veTermsOfUse.setVisibility(View.GONE);
 		intent = getIntent();
 		try {
 			isCOD = intent.getBooleanExtra("isCod", false);
 			if (intent.getStringExtra("FROM").equalsIgnoreCase("ESHOP")) {
 				product = (Product) intent.getSerializableExtra("product");
-				btn_buy.setVisibility(View.VISIBLE);
 				veTermsOfUse.setVisibility(View.VISIBLE);
-				if (isCOD) {
-					btn_buy.setText("Send Order");
-					tvNoRewardsForCOD.setVisibility(View.VISIBLE);
-				}
+
 			} else {
-				btn_buy.setVisibility(View.GONE);
 				veTermsOfUse.setVisibility(View.GONE);
 			}
 		} catch (Exception e) {
@@ -584,94 +481,7 @@ public class ProfileActivity extends BaseActivity implements
 		// setSpinnerAdapter();
 
 		initializeLoginRegisterView();
-		new AsyncGetCountries().execute();
 
-	}
-
-	public void countryPressed(View v) {
-		final Dialog dialog = new Dialog(context);
-		dialog.setContentView(R.layout.dialog_countries);
-		dialog.setTitle("Countries");
-
-		final EditText editTextSearch = (EditText) dialog
-				.findViewById(R.id.editTextSearch);
-
-		final ListView listViewCountries = (ListView) dialog
-				.findViewById(R.id.listViewCountries);
-
-		adapter = new ArrayAdapter<String>(getApplicationContext(),
-				R.layout.list_row_text, android.R.id.text1, countryNameList);
-
-		listViewCountries.setAdapter(adapter);
-
-		listViewCountries.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> adapter, View view,
-					int position, long arg) {
-
-				if (countrySearchList.size() > 0) {
-					buttonCountries.setText(countrySearchList.get(position));
-				} else {
-					buttonCountries.setText(countryNameList.get(position));
-				}
-				String countryId = getCountryCode(buttonCountries.getText()
-						.toString());
-				if (countryId.length() > 0) {
-					ShippingChargeDataHandler scdh = new ShippingChargeDataHandler(
-							countryId, null);
-					scdh.getShippingCharge();
-				}
-				dialog.dismiss();
-			}
-
-		});
-
-		editTextSearch.addTextChangedListener(new TextWatcher() {
-
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
-
-				countrySearchList.clear();
-				for (int i = 0; i < countryNameList.size(); i++) {
-					if (countryNameList.get(i).toLowerCase(Locale.ENGLISH)
-							.contains(s)) {
-						countrySearchList.add(countryNameList.get(i));
-
-					}
-				}
-
-				runOnUiThread(new Runnable() {
-
-					@Override
-					public void run() {
-
-						ArrayAdapter<String> adapterSearch = new ArrayAdapter<String>(
-								getApplicationContext(),
-								R.layout.list_row_text, android.R.id.text1,
-								countrySearchList);
-						adapter.notifyDataSetChanged();
-						listViewCountries.setAdapter(adapterSearch);
-
-					}
-				});
-
-			}
-
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-
-			}
-
-			@Override
-			public void afterTextChanged(Editable s) {
-
-			}
-		});
-
-		dialog.show();
 	}
 
 	DatePickerDialog.OnDateSetListener dateListener = new DatePickerDialog.OnDateSetListener() {
@@ -711,7 +521,6 @@ public class ProfileActivity extends BaseActivity implements
 			}
 		};
 		// adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinnerGender.setAdapter(adapter1);
 	}
 
 	void setFont() {
@@ -719,24 +528,17 @@ public class ProfileActivity extends BaseActivity implements
 			textViewHeader.setTypeface(Helper.getSharedHelper().boldFont);
 
 			buttonSave.setTypeface(Helper.getSharedHelper().boldFont);
-			btn_buy.setTypeface(Helper.getSharedHelper().boldFont);
 
 			editTextFirstName.setTypeface(Helper.getSharedHelper().normalFont);
-			editTextLastName.setTypeface(Helper.getSharedHelper().normalFont);
-			editTextAddress.setTypeface(Helper.getSharedHelper().normalFont);
-			editTextCity.setTypeface(Helper.getSharedHelper().normalFont);
 			editTextEmail.setTypeface(Helper.getSharedHelper().normalFont);
 			editTextMobileNumber
 					.setTypeface(Helper.getSharedHelper().normalFont);
-			editTextState.setTypeface(Helper.getSharedHelper().normalFont);
-			buttonCountries.setTypeface(Helper.getSharedHelper().normalFont);
-			editTextZip.setTypeface(Helper.getSharedHelper().normalFont);
 
 			tvDOB.setTypeface(Helper.getSharedHelper().normalFont);
 
-			tvRedeemlbl.setTypeface(Helper.getSharedHelper().normalFont);
-			tvRedeem.setTypeface(Helper.getSharedHelper().normalFont);
-			tvNoRewardsForCOD.setTypeface(Helper.getSharedHelper().normalFont);
+			// tvRedeemlbl.setTypeface(Helper.getSharedHelper().normalFont);
+			// tvRedeem.setTypeface(Helper.getSharedHelper().normalFont);
+			// tvNoRewardsForCOD.setTypeface(Helper.getSharedHelper().normalFont);
 
 		} catch (Exception e) {
 
@@ -766,18 +568,9 @@ public class ProfileActivity extends BaseActivity implements
 		}
 		try {
 			editTextFirstName.setText(profile.getFirstName());
-			editTextLastName.setText(profile.getLastName());
-			editTextAddress.setText(profile.getAddress());
-			editTextCity.setText(profile.getCity());
 			editTextEmail.setText(profile.getEmail());
 			editTextMobileNumber.setText(profile.getMobileNo() + "");
-			editTextState.setText(profile.getState());
-			buttonCountries.setText(profile.getCountry());
-			editTextZip.setText(profile.getZip() + "");
 
-			tvDOB.setText(profile.getDob());
-
-			spinnerGender.setSelection(profile.getGender().startsWith("M") ? 0 : 1);
 		} catch (Exception e) {
 
 		}
@@ -817,36 +610,6 @@ public class ProfileActivity extends BaseActivity implements
 		}
 	}
 
-	private void populateCountries() {
-
-		for (int i = 0; i < countryList.size(); i++) {
-			countryNameList.add(countryList.get(i).getCountryName());
-		}
-
-	}
-
-	private String getCountryCode(String name) {
-		String countryCode = "";
-		for (Country country : countryList) {
-			if (country.getCountryName().equalsIgnoreCase(name)) {
-				countryCode = country.getCountryCode();
-				break;
-			}
-		}
-		return countryCode;
-	}
-
-	private String getCountryName(String code) {
-		String countryName = "";
-		for (Country country : countryList) {
-			if (country.getCountryCode().equalsIgnoreCase(code)) {
-				countryName = country.getCountryName();
-				break;
-			}
-		}
-		return countryName;
-	}
-
 	private boolean checkFields() {
 		boolean status = true;
 
@@ -856,11 +619,6 @@ public class ProfileActivity extends BaseActivity implements
 					.show();
 			status = false;
 			tv = editTextFirstName;
-		} else if (editTextLastName.getText().toString().trim().length() == 0) {
-			Toast.makeText(context, "Enter your last name", Toast.LENGTH_SHORT)
-					.show();
-			status = false;
-			tv = editTextLastName;
 		} else if (tvDOB.getText().toString().trim().length() == 0) {
 			Toast.makeText(context, "Enter your date of birth",
 					Toast.LENGTH_SHORT).show();
@@ -877,27 +635,6 @@ public class ProfileActivity extends BaseActivity implements
 					.show();
 			status = false;
 			tv = editTextEmail;
-		} else if (editTextAddress.getText().toString().trim().length() == 0) {
-			Toast.makeText(context, "Enter your address", Toast.LENGTH_SHORT)
-					.show();
-			status = false;
-			tv = editTextAddress;
-		} else if (editTextCity.getText().toString().trim().length() == 0) {
-			Toast.makeText(context, "Enter your city", Toast.LENGTH_SHORT)
-					.show();
-			status = false;
-			tv = editTextCity;
-		} else if (buttonCountries.getText().length() == 0) {
-
-			Toast.makeText(context, "Select your country", Toast.LENGTH_SHORT)
-					.show();
-			status = false;
-		} else if (editTextZip.getText().toString().trim().length() == 0) {
-
-			Toast.makeText(context, "Enter your zip", Toast.LENGTH_SHORT)
-					.show();
-			status = false;
-			tv = editTextZip;
 		} else {
 			Boolean isLoggedIn = spref.getBoolean(
 					Constants.KEY_IS_USER_LOGGED_IN, false);
@@ -928,99 +665,6 @@ public class ProfileActivity extends BaseActivity implements
 		return status;
 	}
 
-	Boolean parseConries(String json) {
-		Boolean status = false;
-		JSONArray jsonArray;
-		try {
-			jsonArray = new JSONArray(json);
-			countryList.clear();
-			for (int i = 0; i < jsonArray.length(); i++) {
-				JSONObject country = (JSONObject) jsonArray.get(i);
-				Country cat = new Country();
-				cat.setCountryCode(country.getString("countryCode"));
-				cat.setCountryName(country.getString("countryName"));
-				countryList.add(cat);
-			}
-			status = true;
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			status = false;
-		}
-
-		// sqliteHelper.openDataBase();
-		// for (int i = 0; i < countryList.size(); i++) {
-		// sqliteHelper.insertOrReplaceCountry(countryList
-		// .get(i));
-		// }
-		// sqliteHelper.close();
-
-		return status;
-	}
-
-	private class AsyncGetCountries extends AsyncTask<Void, Void, Boolean> {
-
-		@Override
-		protected void onPreExecute() {
-			String json = spref.getString(Constants.KEY_GET_COUNTRY_INFO, "");
-			if (!json.equalsIgnoreCase("")) {
-				Boolean stats = parseConries(json);
-				if (stats) {
-					populateCountries();
-				}
-			} else {
-				showLoadingDialog();
-			}
-
-		}
-
-		@Override
-		protected Boolean doInBackground(Void... arg0) {
-
-			if (Utils.hasNetworkConnection(context)) {
-
-				Boolean status = false;
-				try {
-					ServiceHandler jsonParser = new ServiceHandler();
-					String json = jsonParser.makeServiceCall(
-							Constants.URL_GET_COUNTRIES, ServiceHandler.GET);
-					if (json != null) {
-
-						spref.edit()
-								.putString(Constants.KEY_GET_COUNTRY_INFO, json)
-								.commit();
-						status = parseConries(json);
-					} else {
-						status = false;
-					}
-				} catch (Exception e) {
-					return false;
-				}
-				return status;
-			} else {
-
-				// try {
-				// sqliteHelper.openDataBase();
-				// countryList = sqliteHelper.getCountries();
-				// sqliteHelper.close();
-				// } catch (Exception e) {
-				// }
-
-				return false;
-			}
-
-		}
-
-		@Override
-		protected void onPostExecute(Boolean result) {
-
-			populateCountries();
-
-			dismissLoadingDialog();
-
-		}
-	}
-
 	private class AsyncWorker extends AsyncTask<Void, Void, Boolean> {
 
 		@SuppressWarnings("deprecation")
@@ -1040,31 +684,15 @@ public class ProfileActivity extends BaseActivity implements
 					Calendar cal = Calendar.getInstance();
 					// sqliteHelper.openDataBase();
 
-					String countryCode = getCountryCode(buttonCountries
-							.getText().toString());
-					// sqliteHelper
-					// .getCountryCode(buttonCountries.getText()
-					// .toString());
-					// //sqliteHelper.close();
-
 					obj.put("retailerId", Constants.RETAILER_ID);
 					obj.put("fname", editTextFirstName.getText().toString());
-					obj.put("lname", editTextLastName.getText().toString());
-					obj.put("gender",
-							(spinnerGender.getSelectedItemPosition() == 0) ? "M"
-									: "F");
+
 					obj.put("age", new Date().getYear() - dateOfBirth.getYear());
 					obj.put("dob", tvDOB.getText().toString());
 					obj.put("mobile_num", editTextMobileNumber.getText()
 							.toString());
 					obj.put("email", editTextEmail.getText().toString());
-					obj.put("address", editTextAddress.getText().toString());
-					obj.put("city", editTextCity.getText().toString());
-					obj.put("state", editTextState.getText().toString());
 
-					obj.put("country", countryCode);
-					obj.put("zip",
-							Integer.parseInt(editTextZip.getText().toString()));
 					obj.put("lat", Constants.LAT);
 					obj.put("long", Constants.LNG);
 					obj.put("device_token", Constants.REG_ID);
@@ -1115,42 +743,28 @@ public class ProfileActivity extends BaseActivity implements
 				}
 
 				Profile profile = new Profile();
-				profile.setAddress(editTextAddress.getText().toString());
 				// profile.setAge(new Date().getYear() - dateOfBirth.getYear());
-				profile.setCity(editTextCity.getText().toString());
-				profile.setCountry(buttonCountries.getText().toString());
 				profile.setDeviceToken(Constants.REG_ID);
 				profile.setDob(tvDOB.getText().toString().trim());
 				profile.setEmail(editTextEmail.getText().toString());
 				profile.setFirstName(editTextFirstName.getText().toString());
-				profile.setLastName(editTextLastName.getText().toString());
-				profile.setGender(spinnerGender.getSelectedItem().toString());
 				profile.setLat(Constants.LAT);
 				profile.setLng(Constants.LNG);
 				profile.setMobileNo(Long.parseLong(editTextMobileNumber
 						.getText().toString()));
-				profile.setState(editTextState.getText().toString());
 				profile.setTime(new Date().getTime());
-				profile.setZip(Long.parseLong(editTextZip.getText().toString()));
 
 				Gson gson = new Gson();
 				String json = gson.toJson(profile);
 				spref.edit().putString(Constants.KEY_PROFILE_INFO, json)
 						.commit();
 
-				// sqliteHelper.openDataBase();
-				// sqliteHelper.insertOrReplaceProfile(profile);
-				// sqliteHelper.close();
-
 				spref.edit().putString(Constants.KEY_EMAIL, profile.getEmail())
 						.commit();
 				spref.edit()
 						.putBoolean(Constants.KEY_PN, !pnSwitch.isChecked())
 						.commit();
-				String countryCode = getCountryCode(buttonCountries.getText()
-						.toString());
-				spref.edit().putString(Constants.KEY_COUNTRY_ID, countryCode)
-						.commit();
+
 				spref.edit().putBoolean(Constants.KEY_IS_USER_LOGGED_IN, true)
 						.commit();
 				Utils.setProfile(context, true);
@@ -1267,7 +881,9 @@ public class ProfileActivity extends BaseActivity implements
 								JSONObject giftWrapJson = new JSONObject();
 								giftWrapJson.put("gift_to", p.getGiftTo());
 								giftWrapJson.put("msg", p.getGiftMsg());
-								giftWrapJson.put("price", Helper.getSharedHelper().reatiler.gift_price);
+								giftWrapJson
+										.put("price",
+												Helper.getSharedHelper().reatiler.gift_price);
 								json.put("giftwrap", giftWrapJson);
 							}
 
@@ -1746,7 +1362,7 @@ public class ProfileActivity extends BaseActivity implements
 	@Override
 	public void userProfileFetched(String rewardsPoints) {
 		// TODO Auto-generated method stub
-		tvRedeem.setText(Helper.getSharedHelper().rewardPoints);
+		// tvRedeem.setText(Helper.getSharedHelper().rewardPoints);
 	}
 
 	@Override
@@ -1766,11 +1382,7 @@ public class ProfileActivity extends BaseActivity implements
 	public void loggedIn(Boolean isSucess, String msg, Profile userProfile) {
 		// TODO Auto-generated method stub
 		if (isSucess) {
-			String countryName = getCountryName(userProfile.getCountry());
-			spref.edit()
-					.putString(Constants.KEY_COUNTRY_ID,
-							userProfile.getCountry()).commit();
-			userProfile.setCountry(countryName);
+
 			Gson gson = new Gson();
 			String json = gson.toJson(userProfile);
 			spref.edit().putString(Constants.KEY_PROFILE_INFO, json).commit();

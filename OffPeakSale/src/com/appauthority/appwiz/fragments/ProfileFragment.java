@@ -79,21 +79,13 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 	private TextView textViewHeader;
 	private ImageView imageViewOverflow;
 
-	private ArrayList<Country> countryList = new ArrayList<Country>();
-	private ArrayList<String> countryNameList = new ArrayList<String>();
-
-	private Spinner spinnerGender;
-	private EditText editTextFirstName, editTextLastName, editTextMobileNumber,
-			editTextEmail, editTextAddress, editTextCity, editTextState,
-			editTextZip;
-	private Button buttonSave, btn_buy, buttonCountries;
+	private EditText editTextFirstName, editTextMobileNumber, editTextEmail;
+	private Button buttonSave;
 	private SimpleDateFormat sdf;
 
 	private Context context;
-	// private Intent intent;
 	private Retailer retailer;
 	private ArrayAdapter<String> adapter;
-	private ArrayList<String> countrySearchList = new ArrayList<String>();
 	Boolean isProceedtoCheckout;
 	private SharedPreferences spref;
 	LinearLayout veTermsOfUse;
@@ -101,11 +93,11 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 
 	private ProgressDialog progressDialog;
 
-	TextView tvRedeemlbl, tvRedeem, tvPNlbl;
+//	TextView tvRedeemlbl, tvRedeem;
+	TextView  tvPNlbl;
 	LinearLayout llBottonView, llDevider;
 
-	TextView tvDOB;
-	LinearLayout llRedeem;
+//	LinearLayout llRedeem;
 
 	// Login
 	LinearLayout llLoginForm, llForm, llPassword;
@@ -262,13 +254,14 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 							.show();
 				} else {
 					// showLoginForm();
-					ForgotPasswordHandler forgotPWDHandler = new ForgotPasswordHandler(emailid, ProfileFragment.this);
+					ForgotPasswordHandler forgotPWDHandler = new ForgotPasswordHandler(
+							emailid, ProfileFragment.this);
 					forgotPWDHandler.getPassword();
 				}
 			}
 		});
-		Boolean isLoggedIn = spref.getBoolean(
-				Constants.KEY_IS_USER_LOGGED_IN, false);
+		Boolean isLoggedIn = spref.getBoolean(Constants.KEY_IS_USER_LOGGED_IN,
+				false);
 		loggedin(isLoggedIn);
 
 	}
@@ -292,7 +285,7 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 			llBottonView.setVisibility(View.VISIBLE);
 			llPassword.setVisibility(View.GONE);
 			tvBackToLogin.setVisibility(View.GONE);
-			llRedeem.setVisibility(View.VISIBLE);
+//			llRedeem.setVisibility(View.VISIBLE);
 			editTextEmail.setEnabled(false);
 			buttonSave.setText(getActivity().getResources().getString(
 					R.string.save));
@@ -304,7 +297,7 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 		} else {
 			showLoginForm();
 			editTextEmail.setEnabled(true);
-			llRedeem.setVisibility(View.GONE);
+//			llRedeem.setVisibility(View.GONE);
 
 		}
 	}
@@ -329,74 +322,32 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 		llForm = (LinearLayout) view.findViewById(R.id.llForm);
 		llPassword = (LinearLayout) view.findViewById(R.id.llPassword);
 
-		spinnerGender = (Spinner) view.findViewById(R.id.sp_gender);
 		buttonSave = (Button) view.findViewById(R.id.btn_save);
-		btn_buy = (Button) view.findViewById(R.id.btn_buy);
-		btn_buy.setVisibility(View.GONE);
 		editTextFirstName = (EditText) view.findViewById(R.id.edt_fname);
-		editTextLastName = (EditText) view.findViewById(R.id.edt_lname);
 		editTextMobileNumber = (EditText) view
 				.findViewById(R.id.edt_mobile_number);
 		editTextEmail = (EditText) view.findViewById(R.id.edt_email);
-		editTextAddress = (EditText) view.findViewById(R.id.edt_address);
-		editTextCity = (EditText) view.findViewById(R.id.edt_city);
-		editTextState = (EditText) view.findViewById(R.id.edt_state);
-		editTextZip = (EditText) view.findViewById(R.id.edt_zip);
 		sdf = new SimpleDateFormat("dd MMM yyyy");
 		TextView hyperlink = (TextView) view.findViewById(R.id.hyperlink);
 		tvPNlbl = (TextView) view.findViewById(R.id.tvPNlbl);
 		veTermsOfUse = (LinearLayout) view.findViewById(R.id.veTermsOfUse);
-		tvRedeemlbl = (TextView) view.findViewById(R.id.tvRedeemlbl);
-		llRedeem = (LinearLayout) view.findViewById(R.id.llRedeem);
-		tvRedeem = (TextView) llRedeem.findViewById(R.id.tv_optonsValue);
+//		tvRedeemlbl = (TextView) view.findViewById(R.id.tvRedeemlbl);
+//		tvRedeem = (TextView) llRedeem.findViewById(R.id.tv_optonsValue);
 		if (Helper.getSharedHelper().reatiler.enableRewards
 				.equalsIgnoreCase("1")) {
 
 		} else {
-			llRedeem.setVisibility(View.GONE);
+//			llRedeem.setVisibility(View.GONE);
 		}
 
-		buttonCountries = (Button) view.findViewById(R.id.sp_country);
-		buttonCountries.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				countryPressed(arg0);
-			}
-		});
-		tvDOB = (TextView) view.findViewById(R.id.tv_date);
-		tvDOB.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-				Calendar c = Calendar.getInstance();
-				if (tvDOB.getText().toString().length() > 0) {
-					try {
-						c.setTime(sdf.parse(tvDOB.getText().toString()));
-					} catch (ParseException e) {
-
-						e.printStackTrace();
-					}
-				}
-
-				DatePickerDialog dialog = new DatePickerDialog(context,
-						dateListener, c.get(Calendar.YEAR), c
-								.get(Calendar.MONTH), c
-								.get(Calendar.DAY_OF_MONTH));
-				dialog.show();
-			}
-		});
-
-		ImageView list_right1 = (ImageView) llRedeem
-				.findViewById(R.id.list_right1);
-		View list_underline = (View) llRedeem.findViewById(R.id.list_underline);
-		list_right1.setVisibility(View.INVISIBLE);
-		list_underline.setVisibility(View.GONE);
+//		ImageView list_right1 = (ImageView) llRedeem
+//				.findViewById(R.id.list_right1);
+//		View list_underline = (View) llRedeem.findViewById(R.id.list_underline);
+//		list_right1.setVisibility(View.INVISIBLE);
+//		list_underline.setVisibility(View.GONE);
 
 		llBottonView = (LinearLayout) view.findViewById(R.id.llBottonView);
-		tvRedeem.setText(Helper.getSharedHelper().rewardPoints);
+//		tvRedeem.setText(Helper.getSharedHelper().rewardPoints);
 		// String redeemText =
 		// getResources().getString(R.string.available_points);
 		// String rewardPointTxt = redeemText + "   "
@@ -465,34 +416,10 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 			editTextFirstName.setBackgroundDrawable(Helper.getSharedHelper()
 					.getGradientDrawableEditText(retailer.getHeaderColor()));
 
-			editTextLastName.setBackgroundDrawable(Helper.getSharedHelper()
-					.getGradientDrawableEditText(retailer.getHeaderColor()));
-
 			editTextMobileNumber.setBackgroundDrawable(Helper.getSharedHelper()
 					.getGradientDrawableEditText(retailer.getHeaderColor()));
 
 			editTextEmail.setBackgroundDrawable(Helper.getSharedHelper()
-					.getGradientDrawableEditText(retailer.getHeaderColor()));
-
-			editTextAddress.setBackgroundDrawable(Helper.getSharedHelper()
-					.getGradientDrawableEditText(retailer.getHeaderColor()));
-
-			editTextCity.setBackgroundDrawable(Helper.getSharedHelper()
-					.getGradientDrawableEditText(retailer.getHeaderColor()));
-
-			editTextState.setBackgroundDrawable(Helper.getSharedHelper()
-					.getGradientDrawableEditText(retailer.getHeaderColor()));
-
-			editTextZip.setBackgroundDrawable(Helper.getSharedHelper()
-					.getGradientDrawableEditText(retailer.getHeaderColor()));
-
-			tvDOB.setBackgroundDrawable(Helper.getSharedHelper()
-					.getGradientDrawableEditText(retailer.getHeaderColor()));
-
-			buttonCountries.setBackgroundDrawable(Helper.getSharedHelper()
-					.getGradientDrawableEditText(retailer.getHeaderColor()));
-
-			spinnerGender.setBackgroundDrawable(Helper.getSharedHelper()
 					.getGradientDrawableEditText(retailer.getHeaderColor()));
 
 			int colorOn = Color.parseColor("#" + retailer.getHeaderColor());
@@ -533,7 +460,6 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 		} catch (Exception e) {
 		}
 
-		btn_buy.setVisibility(View.GONE);
 		veTermsOfUse.setVisibility(View.GONE);
 		// intent = getIntent();
 
@@ -541,7 +467,6 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 		// setSpinnerAdapter();
 
 		initializeLoginRegisterView();
-		new AsyncGetCountries().execute();
 	}
 
 	public void countryPressed(View v) {
@@ -555,122 +480,11 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 		final ListView listViewCountries = (ListView) dialog
 				.findViewById(R.id.listViewCountries);
 
-		adapter = new ArrayAdapter<String>(activity.getApplicationContext(),
-				R.layout.list_row_text, android.R.id.text1, countryNameList);
-
-		listViewCountries.setAdapter(adapter);
-
-		listViewCountries.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> adapter, View view,
-					int position, long arg) {
-
-				if (countrySearchList.size() > 0) {
-					buttonCountries.setText(countrySearchList.get(position));
-				} else {
-					buttonCountries.setText(countryNameList.get(position));
-				}
-				String countryId = getCountryCode(buttonCountries.getText()
-						.toString());
-				if (countryId.length() > 0) {
-					ShippingChargeDataHandler scdh = new ShippingChargeDataHandler(
-							countryId, null);
-					scdh.getShippingCharge();
-				}
-				dialog.dismiss();
-			}
-
-		});
-
-		editTextSearch.addTextChangedListener(new TextWatcher() {
-
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
-
-				countrySearchList.clear();
-				for (int i = 0; i < countryNameList.size(); i++) {
-					if (countryNameList.get(i).toLowerCase(Locale.ENGLISH)
-							.contains(s)) {
-						countrySearchList.add(countryNameList.get(i));
-
-					}
-				}
-
-				activity.runOnUiThread(new Runnable() {
-
-					@Override
-					public void run() {
-
-						ArrayAdapter<String> adapterSearch = new ArrayAdapter<String>(
-								activity.getApplicationContext(),
-								R.layout.list_row_text, android.R.id.text1,
-								countrySearchList);
-						adapter.notifyDataSetChanged();
-						listViewCountries.setAdapter(adapterSearch);
-
-					}
-				});
-
-			}
-
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-
-			}
-
-			@Override
-			public void afterTextChanged(Editable s) {
-
-			}
-		});
-
-		dialog.show();
 	}
 
-	DatePickerDialog.OnDateSetListener dateListener = new DatePickerDialog.OnDateSetListener() {
+	
 
-		@Override
-		public void onDateSet(DatePicker view, int yr, int monthOfYear,
-				int dayOfMonth) {
-
-			Calendar calendar = Calendar.getInstance();
-			calendar.set(yr, monthOfYear, dayOfMonth);
-
-			String dateString = sdf.format(calendar.getTime());
-
-			tvDOB.setText(dateString);
-		}
-
-	};
-
-	void setSpinnerAdapter() {
-		ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(activity,
-				android.R.layout.simple_list_item_1, R.array.gender_values) {
-			public View getView(int position, View convertView,
-					android.view.ViewGroup parent) {
-
-				TextView v = (TextView) super.getView(position, convertView,
-						parent);
-				v.setTypeface(Helper.getSharedHelper().normalFont);
-				return v;
-			}
-
-			public View getDropDownView(int position, View convertView,
-					android.view.ViewGroup parent) {
-				TextView v = (TextView) super.getView(position, convertView,
-						parent);
-				v.setTypeface(Helper.getSharedHelper().normalFont);
-
-				return v;
-			}
-		};
-		// adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinnerGender.setAdapter(adapter1);
-	}
-
+	
 	void setFont() {
 		try {
 			textViewHeader.setTypeface(Helper.getSharedHelper().boldFont);
@@ -679,20 +493,14 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 			// btn_buy.setTypeface(Helper.getSharedHelper().boldFont);
 
 			editTextFirstName.setTypeface(Helper.getSharedHelper().normalFont);
-			editTextLastName.setTypeface(Helper.getSharedHelper().normalFont);
-			editTextAddress.setTypeface(Helper.getSharedHelper().normalFont);
-			editTextCity.setTypeface(Helper.getSharedHelper().normalFont);
+
 			editTextEmail.setTypeface(Helper.getSharedHelper().normalFont);
 			editTextMobileNumber
 					.setTypeface(Helper.getSharedHelper().normalFont);
-			editTextState.setTypeface(Helper.getSharedHelper().normalFont);
-			buttonCountries.setTypeface(Helper.getSharedHelper().normalFont);
-			editTextZip.setTypeface(Helper.getSharedHelper().normalFont);
 
-			tvDOB.setTypeface(Helper.getSharedHelper().normalFont);
 
-			tvRedeemlbl.setTypeface(Helper.getSharedHelper().normalFont);
-			tvRedeem.setTypeface(Helper.getSharedHelper().normalFont);
+//			tvRedeemlbl.setTypeface(Helper.getSharedHelper().normalFont);
+//			tvRedeem.setTypeface(Helper.getSharedHelper().normalFont);
 			tvPNlbl.setTypeface(Helper.getSharedHelper().normalFont);
 		} catch (Exception e) {
 
@@ -719,18 +527,9 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 		}
 		try {
 			editTextFirstName.setText(profile.getFirstName());
-			editTextLastName.setText(profile.getLastName());
-			editTextAddress.setText(profile.getAddress());
-			editTextCity.setText(profile.getCity());
 			editTextEmail.setText(profile.getEmail());
 			editTextMobileNumber.setText(profile.getMobileNo() + "");
-			editTextState.setText(profile.getState());
-			buttonCountries.setText(profile.getCountry());
-			editTextZip.setText(profile.getZip() + "");
 
-			tvDOB.setText(profile.getDob());
-
-			spinnerGender.setSelection(profile.getGender().startsWith("M") ? 0 : 1);
 		} catch (Exception e) {
 
 		}
@@ -772,35 +571,9 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 		}
 	}
 
-	private void populateCountries() {
+	
 
-		for (int i = 0; i < countryList.size(); i++) {
-			countryNameList.add(countryList.get(i).getCountryName());
-		}
-
-	}
-
-	private String getCountryCode(String name) {
-		String countryCode = "";
-		for (Country country : countryList) {
-			if (country.getCountryName().equalsIgnoreCase(name)) {
-				countryCode = country.getCountryCode();
-				break;
-			}
-		}
-		return countryCode;
-	}
-
-	private String getCountryName(String code) {
-		String countryName = "";
-		for (Country country : countryList) {
-			if (country.getCountryCode().equalsIgnoreCase(code)) {
-				countryName = country.getCountryName();
-				break;
-			}
-		}
-		return countryName;
-	}
+	
 
 	private boolean checkFields() {
 		boolean status = true;
@@ -811,16 +584,7 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 					.show();
 			status = false;
 			tv = editTextFirstName;
-		} else if (editTextLastName.getText().toString().trim().length() == 0) {
-			Toast.makeText(context, "Enter your last name", Toast.LENGTH_SHORT)
-					.show();
-			status = false;
-			tv = editTextLastName;
-		} else if (tvDOB.getText().toString().trim().length() == 0) {
-			Toast.makeText(context, "Enter your date of birth",
-					Toast.LENGTH_SHORT).show();
-			status = false;
-		} else if (editTextMobileNumber.getText().toString().trim().length() == 0) {
+		}  else if (editTextMobileNumber.getText().toString().trim().length() == 0) {
 			Toast.makeText(context, "Enter your mobile number",
 					Toast.LENGTH_SHORT).show();
 			status = false;
@@ -832,28 +596,7 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 					.show();
 			status = false;
 			tv = editTextEmail;
-		} else if (editTextAddress.getText().toString().trim().length() == 0) {
-			Toast.makeText(context, "Enter your address", Toast.LENGTH_SHORT)
-					.show();
-			status = false;
-			tv = editTextAddress;
-		} else if (editTextCity.getText().toString().trim().length() == 0) {
-			Toast.makeText(context, "Enter your city", Toast.LENGTH_SHORT)
-					.show();
-			status = false;
-			tv = editTextCity;
-		} else if (buttonCountries.getText().length() == 0) {
-
-			Toast.makeText(context, "Select your country", Toast.LENGTH_SHORT)
-					.show();
-			status = false;
-		} else if (editTextZip.getText().toString().trim().length() == 0) {
-
-			Toast.makeText(context, "Enter your zip", Toast.LENGTH_SHORT)
-					.show();
-			status = false;
-			tv = editTextZip;
-		} else {
+		}  else {
 			Boolean isLoggedIn = spref.getBoolean(
 					Constants.KEY_IS_USER_LOGGED_IN, false);
 			if (!isLoggedIn) {
@@ -883,98 +626,9 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 		return status;
 	}
 
-	Boolean parseConries(String json) {
-		Boolean status = false;
-		JSONArray jsonArray;
-		try {
-			jsonArray = new JSONArray(json);
-			countryList.clear();
-			for (int i = 0; i < jsonArray.length(); i++) {
-				JSONObject country = (JSONObject) jsonArray.get(i);
-				Country cat = new Country();
-				cat.setCountryCode(country.getString("countryCode"));
-				cat.setCountryName(country.getString("countryName"));
-				countryList.add(cat);
-			}
-			status = true;
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			status = false;
-		}
+	
 
-		// sqliteHelper.openDataBase();
-		// for (int i = 0; i < countryList.size(); i++) {
-		// sqliteHelper.insertOrReplaceCountry(countryList
-		// .get(i));
-		// }
-		// sqliteHelper.close();
-
-		return status;
-	}
-
-	private class AsyncGetCountries extends AsyncTask<Void, Void, Boolean> {
-
-		@Override
-		protected void onPreExecute() {
-			String json = spref.getString(Constants.KEY_GET_COUNTRY_INFO, "");
-			if (!json.equalsIgnoreCase("")) {
-				Boolean stats = parseConries(json);
-				if (stats) {
-					populateCountries();
-				}
-			} else {
-				showLoadingDialog();
-			}
-
-		}
-
-		@Override
-		protected Boolean doInBackground(Void... arg0) {
-
-			if (Utils.hasNetworkConnection(context)) {
-
-				Boolean status = false;
-				try {
-					ServiceHandler jsonParser = new ServiceHandler();
-					String json = jsonParser.makeServiceCall(
-							Constants.URL_GET_COUNTRIES, ServiceHandler.GET);
-					if (json != null) {
-
-						spref.edit()
-								.putString(Constants.KEY_GET_COUNTRY_INFO, json)
-								.commit();
-						status = parseConries(json);
-					} else {
-						status = false;
-					}
-				} catch (Exception e) {
-					return false;
-				}
-				return status;
-			} else {
-
-				// try {
-				// sqliteHelper.openDataBase();
-				// countryList = sqliteHelper.getCountries();
-				// sqliteHelper.close();
-				// } catch (Exception e) {
-				// }
-
-				return false;
-			}
-
-		}
-
-		@Override
-		protected void onPostExecute(Boolean result) {
-
-			populateCountries();
-
-			dismissLoadingDialog();
-
-		}
-	}
+	
 
 	private class AsyncWorker extends AsyncTask<Void, Void, Boolean> {
 
@@ -987,44 +641,24 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 				Boolean status = false;
 				try {
 
-					Date dateOfBirth = new Date();
-					if (tvDOB.getText().length() > 0) {
-						dateOfBirth = sdf.parse(tvDOB.getText().toString());
-					}
+					
 
-					Calendar cal = Calendar.getInstance();
 					// sqliteHelper.openDataBase();
 
-					String countryCode = getCountryCode(buttonCountries
-							.getText().toString());
-					// sqliteHelper
-					// .getCountryCode(buttonCountries.getText()
-					// .toString());
-					// //sqliteHelper.close();
+					
 
 					obj.put("retailerId", Constants.RETAILER_ID);
 					obj.put("fname", editTextFirstName.getText().toString());
-					obj.put("lname", editTextLastName.getText().toString());
-					obj.put("gender",
-							(spinnerGender.getSelectedItemPosition() == 0) ? "M"
-									: "F");
-					obj.put("age", new Date().getYear() - dateOfBirth.getYear());
-					obj.put("dob", tvDOB.getText().toString());
+
 					obj.put("mobile_num", editTextMobileNumber.getText()
 							.toString());
 					obj.put("email", editTextEmail.getText().toString());
-					obj.put("address", editTextAddress.getText().toString());
-					obj.put("city", editTextCity.getText().toString());
-					obj.put("state", editTextState.getText().toString());
 
-					obj.put("country", countryCode);
-					obj.put("zip",
-							Integer.parseInt(editTextZip.getText().toString()));
+
 					obj.put("lat", Constants.LAT);
 					obj.put("long", Constants.LNG);
 					obj.put("device_token", Constants.REG_ID);
 					obj.put("device", 2);
-					obj.put("latestTime", cal.getTimeInMillis());
 					Boolean isLoggedIn = spref.getBoolean(
 							Constants.KEY_IS_USER_LOGGED_IN, false);
 					if (!isLoggedIn) {
@@ -1071,34 +705,18 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 					Toast.makeText(context, "Profile successfully saved",
 							Toast.LENGTH_LONG).show();
 				}
-				Date dateOfBirth = new Date();
-				if (tvDOB.getText().length() > 0) {
-
-					try {
-						dateOfBirth = sdf.parse(tvDOB.getText().toString());
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-				}
+				
 
 				Profile profile = new Profile();
-				profile.setAddress(editTextAddress.getText().toString());
 				// profile.setAge(new Date().getYear() - dateOfBirth.getYear());
-				profile.setCity(editTextCity.getText().toString());
-				profile.setCountry(buttonCountries.getText().toString());
 				profile.setDeviceToken(Constants.REG_ID);
-				profile.setDob(tvDOB.getText().toString().trim());
 				profile.setEmail(editTextEmail.getText().toString());
 				profile.setFirstName(editTextFirstName.getText().toString());
-				profile.setLastName(editTextLastName.getText().toString());
-				profile.setGender(spinnerGender.getSelectedItem().toString());
 				profile.setLat(Constants.LAT);
 				profile.setLng(Constants.LNG);
 				profile.setMobileNo(Long.parseLong(editTextMobileNumber
 						.getText().toString()));
-				profile.setState(editTextState.getText().toString());
 				profile.setTime(new Date().getTime());
-				profile.setZip(Long.parseLong(editTextZip.getText().toString()));
 
 				Gson gson = new Gson();
 				String json = gson.toJson(profile);
@@ -1113,10 +731,6 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 						.commit();
 				spref.edit()
 						.putBoolean(Constants.KEY_PN, !pnSwitch.isChecked())
-						.commit();
-				String countryCode = getCountryCode(buttonCountries.getText()
-						.toString());
-				spref.edit().putString(Constants.KEY_COUNTRY_ID, countryCode)
 						.commit();
 				Utils.setProfile(context, true);
 
@@ -1223,18 +837,16 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 	@Override
 	public void userProfileFetched(String rewardsPoints) {
 		// TODO Auto-generated method stub
-		tvRedeem.setText(Helper.getSharedHelper().rewardPoints);
+//		tvRedeem.setText(Helper.getSharedHelper().rewardPoints);
 	}
 
 	@Override
 	public void loggedIn(Boolean isSucess, String msg, Profile userProfile) {
 		// TODO Auto-generated method stub
 		if (isSucess) {
-			String countryName = getCountryName(userProfile.getCountry());
 			spref.edit()
 					.putString(Constants.KEY_COUNTRY_ID,
 							userProfile.getCountry()).commit();
-			userProfile.setCountry(countryName);
 			Gson gson = new Gson();
 			String json = gson.toJson(userProfile);
 			spref.edit().putString(Constants.KEY_PROFILE_INFO, json).commit();
