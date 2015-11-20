@@ -3,3 +3,8 @@
 
 
 
+OffPeakSale/bin/**
+OffPeakSale/gen/**
+OffPeakSale/bin/classes/com/appauthority/appwiz/fragments/BranchLocationFragment.class
+
+OffPeakSale/gen/com/offpeaksale/restaurants/R.java
