@@ -248,7 +248,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 			// showEShop(0);
 			// }
 			else {
-				displayView(DrawerItemType.HOME, null);
+				displayView(DrawerItemType.ESHOP, null);
 				textViewHeader.setText(retailer.getRetailerName());
 			}
 		}
@@ -313,12 +313,12 @@ public class SlidingMenuActivity extends BaseActivity implements
 		 * DrawerItemType.CALENDER; navDrawerItems.add(voucher); } } }
 		 */
 
-		NavDrawerItem home = new NavDrawerItem("Resturants Nearby",
-				R.drawable.home, 0, false);
-		home.itemType = DrawerItemType.HOME;
-		navDrawerItems.add(home);
+//		NavDrawerItem home = new NavDrawerItem("Resturants Nearby",
+//				R.drawable.home, 0, false);
+//		home.itemType = DrawerItemType.ESHOP;
+//		navDrawerItems.add(home);
 
-		NavDrawerItem eshop = new NavDrawerItem("Hot Picks", R.drawable.eshop,
+		NavDrawerItem eshop = new NavDrawerItem("Resturants Nearby", R.drawable.eshop,
 				1, false);
 		eshop.itemType = DrawerItemType.ESHOP;
 		navDrawerItems.add(eshop);
@@ -457,7 +457,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 							InputMethodManager.RESULT_UNCHANGED_SHOWN);
 				} else {
 					etSearch.setVisibility(View.VISIBLE);
-					imageScan.setVisibility(View.VISIBLE);
+					imageScan.setVisibility(View.GONE);
 					textViewHeader.setVisibility(View.GONE);
 					imageViewOverflow.setVisibility(View.INVISIBLE);
 					InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -590,18 +590,19 @@ public class SlidingMenuActivity extends BaseActivity implements
 				long id) {
 			// display view for selected nav drawer item
 			NavDrawerItem navItem = navDrawerItems.get(position);
-			if (navItem.itemType == DrawerItemType.ESHOP) {
-				viewFlipper.showNext();
-				eshop_Category.clear();
-				CategoryObject back = new CategoryObject();
-				back.category_name = "Back";
-				back.id = "";
-				eshop_Category.add(back);
-				eshop_category_list.setAdapter(eShopCategoryAdapter);
-				eShopCategoryAdapter.notifyDataSetChanged();
-				selectedList = SelectedList.ESHOP;
-				new AsyncGetCategories().execute();
-			} else if (navItem.itemType == DrawerItemType.FEATUREDSTORE) {
+//			if (navItem.itemType == DrawerItemType.ESHOP) {
+//				viewFlipper.showNext();
+//				eshop_Category.clear();
+//				CategoryObject back = new CategoryObject();
+//				back.category_name = "Back";
+//				back.id = "";
+//				eshop_Category.add(back);
+//				eshop_category_list.setAdapter(eShopCategoryAdapter);
+//				eShopCategoryAdapter.notifyDataSetChanged();
+//				selectedList = SelectedList.ESHOP;
+//				new AsyncGetCategories().execute();
+//			} else
+				if (navItem.itemType == DrawerItemType.FEATUREDSTORE) {
 				viewFlipper.showNext();
 				populateFeaturedStores();
 				eshop_category_list.setAdapter(featuredStoreAdapter);
@@ -722,7 +723,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 
 	void showEShop(int categoryIndex) {
 		if (Helper.getSharedHelper().enableShoppingCart.equals("1")) {
-			cartView.setVisibility(View.VISIBLE);
+			cartView.setVisibility(View.GONE);
 			txtCartTotal.setText(Helper.getSharedHelper().getCartTotal());
 		} else {
 			cartView.setVisibility(View.GONE);
@@ -1326,8 +1327,8 @@ public class SlidingMenuActivity extends BaseActivity implements
 				}
 
 			}
-			if (selectedMenuIndex != DrawerItemType.HOME) {
-				displayView(DrawerItemType.HOME, null);
+			if (selectedMenuIndex != DrawerItemType.ESHOP) {
+				displayView(DrawerItemType.ESHOP, null);
 				textViewHeader.setText(retailer.getRetailerName());
 				return true;
 			}

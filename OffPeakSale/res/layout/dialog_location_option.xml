@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="0dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:id="@+id/llLocation"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/llCurrentLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/left_right_margin"
+                android:layout_marginRight="@dimen/left_right_margin"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/etCurrentLocation"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/darker_gray"
+                    android:enabled="false"
+                    android:gravity="left"
+                    android:padding="10dp"
+                    android:singleLine="true" />
+
+                <RadioButton
+                    android:id="@+id/rdCurrentLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/black_btn_radio_holo_light"
+                    android:checked="true"
+                    android:text=""
+                    android:textSize="@dimen/textsize" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llTargetLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/left_right_margin"
+                android:layout_marginRight="@dimen/left_right_margin"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal" >
+
+                <AutoCompleteTextView
+                    android:id="@+id/etTargetLocation"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/darker_gray"
+                    android:gravity="left"
+                    android:padding="10dp"
+                    android:singleLine="true" />
+
+                <RadioButton
+                    android:id="@+id/rdTargetLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/black_btn_radio_holo_light"
+                    android:checked="false"
+                    android:text=""
+                    android:textSize="@dimen/textsize" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llButtonContainer"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/llLocation"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btnFilter"
+                android:layout_width="100dp"
+                android:layout_height="@dimen/button_height"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Search"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

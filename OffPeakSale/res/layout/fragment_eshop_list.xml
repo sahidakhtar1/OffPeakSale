@@ -33,6 +33,30 @@
         </LinearLayout>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/rlLocationOption"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/secondary_header_height"
+        android:background="@color/footer_bg" >
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/left_right_margin"
+            android:src="@drawable/ic_arrow_right" />
+
+        <TextView
+            android:id="@+id/tvTotalDeals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:lines="1"
+            android:text="Off Peak Sale Nearby 14"
+            android:textSize="@dimen/textsize" />
+    </RelativeLayout>
+
     <ListView
         android:id="@+id/lv_eshop"
         android:layout_width="match_parent"
@@ -42,13 +66,14 @@
         android:divider="@null"
         android:dividerHeight="@dimen/item_gap" >
     </ListView>
-    <TextView 
+
+    <TextView
         android:id="@+id/tvNoSearchFound"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="No search found"
         android:layout_margin="100dp"
         android:gravity="center"
-        android:textSize="@dimen/textsize"
-        />
+        android:text="No search found"
+        android:textSize="@dimen/textsize" />
+
 </LinearLayout>

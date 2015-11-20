@@ -30,10 +30,15 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -48,8 +53,8 @@ import com.appsauthority.appwiz.utils.Constants;
 import com.appsauthority.appwiz.utils.HTTPHandler;
 import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.Utils;
-import com.offpeaksale.restaurants.R;
 import com.google.gson.Gson;
+import com.offpeaksale.restaurants.R;
 
 public class EShopListFragment extends Fragment {
 
@@ -69,12 +74,18 @@ public class EShopListFragment extends Fragment {
 	List<String> listFilterKey;
 	int selectedIndex = 0, filterIndex = 0;
 	public String searchedKeyWord;
+	RelativeLayout rlLocationOption;
+
+	EditText etCurrentLocation;
+	AutoCompleteTextView etTargetLocation;
+
+	RadioButton rdCurrentLocation, rdTargetLocation;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		listFilterKey = new ArrayList<String>();
-		
+
 		listFilterKey.add("rate");
 		listFilterKey.add("new");
 		listFilterKey.add("low");
@@ -93,7 +104,8 @@ public class EShopListFragment extends Fragment {
 			view = inflater.inflate(R.layout.fragment_eshop_list, container,
 					false);
 			listview = (ListView) view.findViewById(R.id.lv_eshop);
-			tvNoSearchFound = (TextView) view.findViewById(R.id.tvNoSearchFound);
+			tvNoSearchFound = (TextView) view
+					.findViewById(R.id.tvNoSearchFound);
 			tvNoSearchFound.setVisibility(View.GONE);
 
 		}
@@ -134,6 +146,8 @@ public class EShopListFragment extends Fragment {
 		tvFilter.setTypeface(Helper.getSharedHelper().normalFont);
 		RelativeLayout rlFilter = (RelativeLayout) view
 				.findViewById(R.id.rlFilter);
+		rlLocationOption = (RelativeLayout) view
+				.findViewById(R.id.rlLocationOption);
 		rlFilter.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -142,8 +156,18 @@ public class EShopListFragment extends Fragment {
 				showFilterDialog();
 			}
 		});
+
+		rlLocationOption.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				showLoctionDialog();
+			}
+		});
+
 		filterOptions = new ArrayList<String>();
-		
+
 		filterOptions.add("Popularity");
 		filterOptions.add("Latest");
 		filterOptions.add("Lowest Price");
@@ -255,18 +279,97 @@ public class EShopListFragment extends Fragment {
 
 	}
 
+	void showLoctionDialog() {
+
+		try {
+			DisplayMetrics metrics = getResources().getDisplayMetrics();
+			int width = metrics.widthPixels;
+
+			final Dialog dialog = new Dialog(context);
+			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			dialog.setCancelable(true);
+			dialog.setContentView(R.layout.dialog_location_option);
+
+			dialog.getWindow().setLayout(LayoutParams.WRAP_CONTENT,
+					LayoutParams.WRAP_CONTENT);
+
+			Button btnFilter = (Button) dialog.findViewById(R.id.btnFilter);
+
+			btnFilter.setBackgroundDrawable(Helper.getSharedHelper()
+					.getGradientDrawable(retailer.getHeaderColor()));
+
+			btnFilter.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					filterIndex = selectedIndex;
+					new AsyncAllProducts().execute();
+					dialog.dismiss();
+				}
+			});
+
+			rdCurrentLocation = (RadioButton) dialog
+					.findViewById(R.id.rdCurrentLocation);
+			rdTargetLocation = (RadioButton) dialog
+					.findViewById(R.id.rdTargetLocation);
+			etCurrentLocation = (EditText) dialog
+					.findViewById(R.id.etCurrentLocation);
+			etTargetLocation = (AutoCompleteTextView) dialog
+					.findViewById(R.id.etTargetLocation);
+
+			rdCurrentLocation.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					rdCurrentLocation.setChecked(true);
+					rdTargetLocation.setChecked(false);
+				}
+			});
+
+			rdTargetLocation.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					rdCurrentLocation.setChecked(false);
+					rdTargetLocation.setChecked(true);
+				}
+			});
+
+			etCurrentLocation.setBackgroundDrawable(Helper.getSharedHelper()
+					.getGradientDrawableEditText(retailer.getHeaderColor()));
+			etTargetLocation.setBackgroundDrawable(Helper.getSharedHelper()
+					.getGradientDrawableEditText(retailer.getHeaderColor()));
+
+			Helper.getSharedHelper().filterIndex = filterIndex;
+			btnFilter.setTextColor(Color.parseColor("#"
+					+ retailer.getRetailerTextColor()));
+
+			dialog.show();
+		} catch (Exception e) {
+		}
+
+	}
+
 	private final class AsyncAllProducts extends AsyncTask<Void, Void, Boolean> {
 
 		@Override
 		protected void onPreExecute() {
 			showLoadingDialog();
 			String eshopConatent = null;
+			if (category == null) {
+				category = new CategoryObject();
+				category.id = "279";
+				category.category_name = "OffPeakSale";
+			}
 			if (category != null) {
 				eshopConatent = spref.getString(category.id, "");
 			}
 
-			if (searchedKeyWord == null && filterIndex == 0 
-					&& eshopConatent!= null
+			if (searchedKeyWord == null && filterIndex == 0
+					&& eshopConatent != null
 					&& !eshopConatent.equalsIgnoreCase("")) {
 				try {
 					JSONObject jsonObject = new JSONObject(eshopConatent);
@@ -298,10 +401,10 @@ public class EShopListFragment extends Fragment {
 					if (category != null) {
 						param.put(Constants.PARAM_CATEGORY_ID, category.id);
 					}
-//					if (filterIndex > 0) {
-						param.put(Constants.PARAM_FILTER_ID,
-								listFilterKey.get(filterIndex));
-//					}
+					// if (filterIndex > 0) {
+					param.put(Constants.PARAM_FILTER_ID,
+							listFilterKey.get(filterIndex));
+					// }
 					if (searchedKeyWord != null) {
 						param.put(Constants.PARAM_KEYWORD_ID, searchedKeyWord);
 					}
@@ -340,7 +443,7 @@ public class EShopListFragment extends Fragment {
 			if (productList.size() == 0 && searchedKeyWord != null) {
 				tvNoSearchFound.setVisibility(View.VISIBLE);
 				listview.setVisibility(View.GONE);
-				
+
 			}
 			dismissLoadingDialog();
 		}
