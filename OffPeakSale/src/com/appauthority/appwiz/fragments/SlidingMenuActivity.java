@@ -376,20 +376,24 @@ public class SlidingMenuActivity extends BaseActivity implements
 			btnSearch.setBackgroundResource(R.drawable.search);
 		}
 
-		textViewHeader.setTextColor(Color.parseColor("#"
-				+ retailer.getRetailerTextColor()));
-		textViewHeader.setTypeface(Helper.getSharedHelper().boldFont);
-		txtCartTotal.setTextColor(Color.parseColor("#"
-				+ retailer.getRetailerTextColor()));
-		txtCartTotal.setTypeface(Helper.getSharedHelper().normalFont);
-		etSearch.setTextColor(Color.parseColor("#"
-				+ retailer.getRetailerTextColor()));
-		etSearch.setTypeface(Helper.getSharedHelper().normalFont);
-		NavDrawerItem item = navDrawerItems.get(0);
-		// item.setTitle(Helper.getSharedHelper().reatiler.getRetailerName());
-		adapter.notifyDataSetChanged();
-		if (selectedMenuIndex == DrawerItemType.HOME) {
-			textViewHeader.setText(retailer.getRetailerName());
+		try {
+			textViewHeader.setTextColor(Color.parseColor("#"+ retailer.getRetailerTextColor()));
+			textViewHeader.setTypeface(Helper.getSharedHelper().boldFont);
+			txtCartTotal.setTextColor(Color.parseColor("#"
+					+ retailer.getRetailerTextColor()));
+			txtCartTotal.setTypeface(Helper.getSharedHelper().normalFont);
+			etSearch.setTextColor(Color.parseColor("#"
+					+ retailer.getRetailerTextColor()));
+			etSearch.setTypeface(Helper.getSharedHelper().normalFont);
+			NavDrawerItem item = navDrawerItems.get(0);
+			// item.setTitle(Helper.getSharedHelper().reatiler.getRetailerName());
+			adapter.notifyDataSetChanged();
+			if (selectedMenuIndex == DrawerItemType.HOME) {
+				textViewHeader.setText(retailer.getRetailerName());
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}

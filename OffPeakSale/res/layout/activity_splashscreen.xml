@@ -2,15 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_bg"
+    android:background="@android:color/white"
     android:orientation="vertical" >
 
-<!--     <ImageView
+    <ImageView
         android:id="@+id/imageViewSplashScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/image_placeholder" />
+        android:src="@drawable/splash_bg" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -36,16 +36,14 @@
             android:padding="6dp"
             android:textColor="#000084"
             android:textSize="@dimen/footer_textsize" />
-    </LinearLayout> -->
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleInverse"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-         />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" />
 
 </RelativeLayout>
