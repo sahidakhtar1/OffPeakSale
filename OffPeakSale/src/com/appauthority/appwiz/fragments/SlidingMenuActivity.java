@@ -163,7 +163,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 		featuredStores = new ArrayList<FeaturedStore>();
 		currencies = new ArrayList<String>();
 		aboutUsList = new ArrayList<String>();
-		populateAboutUs();
+		// populateAboutUs();
 		aboutUsAdapter = new AboutUsListAdapter(getApplicationContext(),
 				R.layout.about_us_list_item, aboutUsList);
 
@@ -276,58 +276,42 @@ public class SlidingMenuActivity extends BaseActivity implements
 			isFeaturedStore = false;
 		}
 
-		/*if (retailer.menuList != null) {
-			for (MenuItem menuItem : retailer.menuList) {
-				if (menuItem.origName.equalsIgnoreCase("index")) {
-					NavDrawerItem home = new NavDrawerItem(
-							menuItem.displayName, R.drawable.home, 0, false);
-					home.itemType = DrawerItemType.HOME;
-					navDrawerItems.add(home);
-				} else if (menuItem.origName.equalsIgnoreCase("eshop")) {
-					NavDrawerItem eshop = new NavDrawerItem(
-							menuItem.displayName, R.drawable.eshop, 1, true);
-					eshop.itemType = DrawerItemType.ESHOP;
-					navDrawerItems.add(eshop);
-					if (isFeaturedStore) {
-						NavDrawerItem featuredStore = new NavDrawerItem(
-								"Featured Store", R.drawable.featured_store, 2,
-								true);
-						featuredStore.itemType = DrawerItemType.FEATUREDSTORE;
-						navDrawerItems.add(featuredStore);
-					}
-				} else if (menuItem.origName.equalsIgnoreCase("loyalty")) {
-					NavDrawerItem loyalty = new NavDrawerItem(
-							menuItem.displayName, R.drawable.loyalty, 3, false);
-					loyalty.itemType = DrawerItemType.LAYALITY;
-					navDrawerItems.add(loyalty);
-
-				} else if (menuItem.origName.equalsIgnoreCase("feedback")) {
-					NavDrawerItem feedback = new NavDrawerItem(
-							menuItem.displayName, R.drawable.feedback, 4, false);
-					feedback.itemType = DrawerItemType.FEEDBACK;
-					navDrawerItems.add(feedback);
-				} else if (menuItem.origName.equalsIgnoreCase("lookbook")) {
-					NavDrawerItem voucher = new NavDrawerItem(
-							menuItem.displayName, R.drawable.ic_lookbook, 5,
-							false);
-					voucher.itemType = DrawerItemType.LOOKBOOK;
-					navDrawerItems.add(voucher);
-				} else if (menuItem.origName.equalsIgnoreCase("contact")) {
-					NavDrawerItem locate_us = new NavDrawerItem(
-							menuItem.displayName, R.drawable.locate_us, 6,
-							false);
-					locate_us.itemType = DrawerItemType.CONTACTUS;
-					navDrawerItems.add(locate_us);
-
-				} else if (menuItem.origName.equalsIgnoreCase("calendar")) {
-					NavDrawerItem voucher = new NavDrawerItem(
-							menuItem.displayName, R.drawable.ic_calendar, 5,
-							false);
-					voucher.itemType = DrawerItemType.CALENDER;
-					navDrawerItems.add(voucher);
-				}
-			}
-		}*/
+		/*
+		 * if (retailer.menuList != null) { for (MenuItem menuItem :
+		 * retailer.menuList) { if (menuItem.origName.equalsIgnoreCase("index"))
+		 * { NavDrawerItem home = new NavDrawerItem( menuItem.displayName,
+		 * R.drawable.home, 0, false); home.itemType = DrawerItemType.HOME;
+		 * navDrawerItems.add(home); } else if
+		 * (menuItem.origName.equalsIgnoreCase("eshop")) { NavDrawerItem eshop =
+		 * new NavDrawerItem( menuItem.displayName, R.drawable.eshop, 1, true);
+		 * eshop.itemType = DrawerItemType.ESHOP; navDrawerItems.add(eshop); if
+		 * (isFeaturedStore) { NavDrawerItem featuredStore = new NavDrawerItem(
+		 * "Featured Store", R.drawable.featured_store, 2, true);
+		 * featuredStore.itemType = DrawerItemType.FEATUREDSTORE;
+		 * navDrawerItems.add(featuredStore); } } else if
+		 * (menuItem.origName.equalsIgnoreCase("loyalty")) { NavDrawerItem
+		 * loyalty = new NavDrawerItem( menuItem.displayName,
+		 * R.drawable.loyalty, 3, false); loyalty.itemType =
+		 * DrawerItemType.LAYALITY; navDrawerItems.add(loyalty);
+		 * 
+		 * } else if (menuItem.origName.equalsIgnoreCase("feedback")) {
+		 * NavDrawerItem feedback = new NavDrawerItem( menuItem.displayName,
+		 * R.drawable.feedback, 4, false); feedback.itemType =
+		 * DrawerItemType.FEEDBACK; navDrawerItems.add(feedback); } else if
+		 * (menuItem.origName.equalsIgnoreCase("lookbook")) { NavDrawerItem
+		 * voucher = new NavDrawerItem( menuItem.displayName,
+		 * R.drawable.ic_lookbook, 5, false); voucher.itemType =
+		 * DrawerItemType.LOOKBOOK; navDrawerItems.add(voucher); } else if
+		 * (menuItem.origName.equalsIgnoreCase("contact")) { NavDrawerItem
+		 * locate_us = new NavDrawerItem( menuItem.displayName,
+		 * R.drawable.locate_us, 6, false); locate_us.itemType =
+		 * DrawerItemType.CONTACTUS; navDrawerItems.add(locate_us);
+		 * 
+		 * } else if (menuItem.origName.equalsIgnoreCase("calendar")) {
+		 * NavDrawerItem voucher = new NavDrawerItem( menuItem.displayName,
+		 * R.drawable.ic_calendar, 5, false); voucher.itemType =
+		 * DrawerItemType.CALENDER; navDrawerItems.add(voucher); } } }
+		 */
 
 		NavDrawerItem home = new NavDrawerItem("Resturants Nearby",
 				R.drawable.home, 0, false);
@@ -335,7 +319,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 		navDrawerItems.add(home);
 
 		NavDrawerItem eshop = new NavDrawerItem("Hot Picks", R.drawable.eshop,
-				1, true);
+				1, false);
 		eshop.itemType = DrawerItemType.ESHOP;
 		navDrawerItems.add(eshop);
 
@@ -355,12 +339,12 @@ public class SlidingMenuActivity extends BaseActivity implements
 		navDrawerItems.add(my_profile);
 
 		NavDrawerItem tnc = new NavDrawerItem("Terms & Conditions"
-		/* + retailer.getRetailerName() */, R.drawable.about_us, 8, true);
+		/* + retailer.getRetailerName() */, R.drawable.about_us, 8, false);
 		tnc.itemType = DrawerItemType.TERMSNCONDITION;
 		navDrawerItems.add(tnc);
 
 		NavDrawerItem about_us = new NavDrawerItem("Online Help"
-		/* + retailer.getRetailerName() */, R.drawable.about_us, 8, true);
+		/* + retailer.getRetailerName() */, R.drawable.about_us, 8, false);
 		about_us.itemType = DrawerItemType.ABOUTUS;
 		navDrawerItems.add(about_us);
 
@@ -619,19 +603,21 @@ public class SlidingMenuActivity extends BaseActivity implements
 				eshop_category_list.setAdapter(featuredStoreAdapter);
 				featuredStoreAdapter.notifyDataSetChanged();
 				selectedList = SelectedList.FEATUREDSTORE;
-			}/*
-			 * else if (navItem.itemType == DrawerItemType.PROFILE) {
-			 * viewFlipper.showNext(); populateCurrencies();
-			 * eshop_category_list.setAdapter(curencyListAdapter);
-			 * curencyListAdapter.notifyDataSetChanged(); selectedList =
-			 * SelectedList.CURRENCY; }
-			 *else if (navItem.itemType == DrawerItemType.ABOUTUS) {
+			} else if (navItem.itemType == DrawerItemType.PROFILE) {
 				viewFlipper.showNext();
-				// populateCurrencies();
-				eshop_category_list.setAdapter(aboutUsAdapter);
-				aboutUsAdapter.notifyDataSetChanged();
-				selectedList = SelectedList.ABOUTUS;
-			}*/ else {
+				populateCurrencies();
+				eshop_category_list.setAdapter(curencyListAdapter);
+				curencyListAdapter.notifyDataSetChanged();
+				selectedList = SelectedList.CURRENCY;
+			} 
+//			else if (navItem.itemType == DrawerItemType.ABOUTUS) {
+//				viewFlipper.showNext();
+//				// populateCurrencies();
+//				eshop_category_list.setAdapter(aboutUsAdapter);
+//				aboutUsAdapter.notifyDataSetChanged();
+//				selectedList = SelectedList.ABOUTUS;
+//			} 
+			else {
 
 				NavDrawerItem item = navDrawerItems.get(position);
 				displayView(item.itemType, null);
