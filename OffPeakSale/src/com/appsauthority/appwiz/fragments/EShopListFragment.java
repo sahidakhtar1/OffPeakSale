@@ -5,19 +5,28 @@ package com.appsauthority.appwiz.fragments;
  * Proprietary and confidential
  * Written by Kevin Irish Antonio <irish.antonio@yahoo.com>, February 2014
  */
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Criteria;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,6 +56,8 @@ import com.appauthority.appwiz.fragments.HomeFragment;
 import com.appsauthority.appwiz.EShopDetailActivity;
 import com.appsauthority.appwiz.adapters.EShopListAdapter;
 import com.appsauthority.appwiz.adapters.FilterListAdapter;
+import com.appsauthority.appwiz.custom.MyLocation;
+import com.appsauthority.appwiz.custom.MyLocation.LocationResult;
 import com.appsauthority.appwiz.models.CategoryObject;
 import com.appsauthority.appwiz.models.Product;
 import com.appsauthority.appwiz.models.ProductResponse;
@@ -89,6 +100,12 @@ public class EShopListFragment extends Fragment {
 	int width;
 	int selectedTabIndex = 0;
 
+	MyLocation myLocation;
+	LocationResult result;
+	private double lat, lng;
+	String curreentAddess;
+	String targetedAddress;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -111,17 +128,21 @@ public class EShopListFragment extends Fragment {
 		} else {
 			view = inflater.inflate(R.layout.fragment_eshop_list, container,
 					false);
-			llTabContainer = (LinearLayout) view
-					.findViewById(R.id.llTabContainer);
-			horizontalScrollView = (HorizontalScrollView) view
-					.findViewById(R.id.horizontalScrollView);
-			listview = (ListView) view.findViewById(R.id.lv_eshop);
-			tvNoSearchFound = (TextView) view
-					.findViewById(R.id.tvNoSearchFound);
-			tvNoSearchFound.setVisibility(View.GONE);
-
+			initailizeView(view);
 		}
+		myLocation = new MyLocation();
+		checkforLocation();
+		getAddressFromCoordinate(12.01, 77.0);
+		return view;
+	}
 
+	void initailizeView(View view) {
+		llTabContainer = (LinearLayout) view.findViewById(R.id.llTabContainer);
+		horizontalScrollView = (HorizontalScrollView) view
+				.findViewById(R.id.horizontalScrollView);
+		listview = (ListView) view.findViewById(R.id.lv_eshop);
+		tvNoSearchFound = (TextView) view.findViewById(R.id.tvNoSearchFound);
+		tvNoSearchFound.setVisibility(View.GONE);
 		try {
 			Bundle bundle = getArguments();
 			if (bundle.containsKey("ID")) {
@@ -202,8 +223,6 @@ public class EShopListFragment extends Fragment {
 
 			}
 		}, 500);
-
-		return view;
 	}
 
 	public void refreshList() {
@@ -344,6 +363,7 @@ public class EShopListFragment extends Fragment {
 					.findViewById(R.id.etCurrentLocation);
 			etTargetLocation = (AutoCompleteTextView) dialog
 					.findViewById(R.id.etTargetLocation);
+			etCurrentLocation.setText(curreentAddess);
 
 			rdCurrentLocation.setOnClickListener(new OnClickListener() {
 
@@ -654,5 +674,101 @@ public class EShopListFragment extends Fragment {
 
 		horizontalScrollView.smoothScrollTo(width * selectedTabIndex, 0);
 
+	}
+
+	void checkforLocation() {
+		LocationResult locationResult = new LocationResult() {
+			@Override
+			public void gotLocation(Location location) {
+
+				if (location != null) {
+
+					lat = location.getLatitude();
+					lng = location.getLongitude();
+
+					Constants.LAT = lat;
+					Constants.LNG = lng;
+					getAddressFromCoordinate(lat, lng);
+					myLocation.cancelTimer();
+				} else {
+
+					Criteria criteria = new Criteria();
+					LocationManager locMan = (LocationManager) getActivity()
+							.getSystemService(Context.LOCATION_SERVICE);
+					String curLoc = locMan.getBestProvider(criteria, true);
+					location = locMan.getLastKnownLocation(curLoc);
+					if (location != null) {
+
+						lat = location.getLatitude();
+						lng = location.getLongitude();
+
+						Constants.LAT = lat;
+						Constants.LNG = lng;
+						getAddressFromCoordinate(lat, lng);
+						myLocation.cancelTimer();
+
+					}
+
+				}
+			}
+		};
+		if (myLocation.getLocation(getActivity().getApplicationContext(),
+				locationResult)) {
+
+		} else {
+			AlertDialog.Builder builder = new AlertDialog.Builder(context);
+			builder.setTitle("Information")
+					.setMessage("Enable location services")
+					.setCancelable(true)
+					.setNegativeButton("Cancel",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
+									dialog.cancel();
+									showLoctionDialog();
+								}
+							})
+					.setPositiveButton("Enable",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
+									try {
+										Intent gpsOptionsIntent = new Intent(
+												android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+										startActivity(gpsOptionsIntent);
+									} catch (Exception e) {
+										// e.printStackTrace();
+									}
+
+								}
+							});
+			builder.show();
+		}
+
+	}
+
+	void getAddressFromCoordinate(double latitude, double longitude) {
+		Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+
+		List<Address> addresses;
+		try {
+			addresses = geocoder.getFromLocation(latitude, longitude,
+					1);
+			if (addresses.size()>0) {
+				Address address = addresses.get(0);
+				
+				curreentAddess = address.getAddressLine(0);
+//				String city = address.getLocality();
+//				String state = address.getAdminArea();
+//				String zip = address.getPostalCode();
+//				String country = address.getCountryName();
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
 	}
 }
