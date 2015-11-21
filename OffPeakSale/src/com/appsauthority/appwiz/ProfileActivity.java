@@ -2,6 +2,7 @@ package com.appsauthority.appwiz;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -9,37 +10,6 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.StateListDrawable;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.text.SpannableString;
-import android.util.DisplayMetrics;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.Window;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
-import android.widget.RelativeLayout;
-import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.appauthority.appwiz.fragments.SlidingMenuActivity;
 import com.appauthority.appwiz.interfaces.ForgotPWDCaller;
@@ -56,8 +26,47 @@ import com.appsauthority.appwiz.utils.Constants;
 import com.appsauthority.appwiz.utils.HTTPHandler;
 import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.Utils;
+import com.facebook.Request;
+import com.facebook.Response;
+import com.facebook.Session;
+import com.facebook.SessionState;
+import com.facebook.UiLifecycleHelper;
+import com.facebook.model.GraphUser;
+import com.facebook.widget.LoginButton;
 import com.google.gson.Gson;
 import com.offpeaksale.restaurants.R;
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.StateListDrawable;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.text.SpannableString;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.RelativeLayout;
+import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class ProfileActivity extends BaseActivity implements
 		ShippingChargeCaller, UserProfileCaller, RedeemRewadsCaller,
@@ -104,6 +113,8 @@ public class ProfileActivity extends BaseActivity implements
 	TextView tvLogin, tvForgotPwd, tvRegister, tvBackToLogin;
 
 	Button btnForgotPwd, btnLogin;
+	private UiLifecycleHelper uiHelper;
+    private static final String TAG = "ProfileActivity";
 
 	void initializeLoginRegisterView() {
 		llLogin = (LinearLayout) llLoginForm.findViewById(R.id.llLogin);
@@ -295,6 +306,54 @@ public class ProfileActivity extends BaseActivity implements
 		}
 	}
 
+	// Called when session changes
+    private Session.StatusCallback callback = new Session.StatusCallback() {
+        @Override
+        public void call(Session session, SessionState state,
+                Exception exception) {
+            onSessionStateChange(session, state, exception);
+        }
+    };
+     
+    // When session is changed, this method is called from callback method
+    private void onSessionStateChange(Session session, SessionState state,
+            Exception exception) {
+        // When Session is successfully opened (User logged-in)
+    	Log.e("Session: ", ""+state.isOpened());
+    	  
+        if (state.isOpened()) {
+            Log.i(TAG, "Logged in...");
+            // make request to the /me API to get Graph user
+            Request request = Request.newMeRequest(session, new Request.GraphUserCallback() {
+                // callback after Graph API response with user
+                // object
+                @Override
+                public void onCompleted(GraphUser user, Response response) {
+                    if (user != null) {
+                    	Log.e("User Name: ", user.getName());
+                    	Log.e("User Gender: ", user.getProperty("gender").toString());
+                    	Log.e("User Email: ", user.asMap().get("email").toString());
+                        
+                    }
+                }
+            });
+            Bundle parameters = new Bundle();
+            parameters.putString("fields", "id,name,email,gender, birthday");
+            request.setParameters(parameters);
+            request.executeAsync();
+        } else if (state.isClosed()) {
+            Log.i(TAG, "Logged out...");
+        }
+    }
+     
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        uiHelper.onActivityResult(requestCode, resultCode, data);
+        Log.i(TAG, "OnActivityResult...");
+    }
+    
+    
 	@SuppressWarnings("deprecation")
 	@SuppressLint("SimpleDateFormat")
 	@Override
@@ -305,6 +364,12 @@ public class ProfileActivity extends BaseActivity implements
 		activity = this;
 		context = this;
 
+		// To maintain FB Login session
+        uiHelper = new UiLifecycleHelper(this, callback);
+        uiHelper.onCreate(savedInstanceState);
+        LoginButton facebookLoginButton = (LoginButton)findViewById(R.id.facebookauthButton);
+        facebookLoginButton.setReadPermissions(Arrays.asList("public_profile, email, user_birthday, user_friends"));
+        
 		retailer = Helper.getSharedHelper().reatiler;
 
 		tvBackToLogin = (TextView) findViewById(R.id.tvBackToLogin);
@@ -1224,11 +1289,26 @@ public class ProfileActivity extends BaseActivity implements
 		jsonstr = jsonstr + "]";
 		return jsonstr;
 	}
-
+	@Override
+    public void onPause() {
+        super.onPause();
+        uiHelper.onPause();
+    }
+	@Override
+    public void onDestroy() {
+        super.onDestroy();
+        uiHelper.onDestroy();
+    }
+	 @Override
+	    public void onSaveInstanceState(Bundle outState) {
+	        super.onSaveInstanceState(outState);
+	        uiHelper.onSaveInstanceState(outState);
+	    }
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		uiHelper.onResume();
 		String emailId = spref.getString(Constants.KEY_EMAIL, "");
 		if (!emailId.equalsIgnoreCase("")) {
 			new UserProfileDataHandler(emailId, this);

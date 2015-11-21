@@ -130,5 +130,5 @@
         <!-- <item>@drawable/termsofuse</item>
         <item>@drawable/ic_currency</item> -->
     </array>
-
+<string name="facebook_app_id">689408087861911</string>
 </resources>
