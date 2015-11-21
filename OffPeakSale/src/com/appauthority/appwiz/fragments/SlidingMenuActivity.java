@@ -47,6 +47,7 @@ import com.appauthority.appwiz.interfaces.ProductDetailCaller;
 import com.appauthority.appwiz.interfaces.UserProfileCaller;
 import com.appsauthority.appwiz.EShopDetailActivity;
 import com.appsauthority.appwiz.ProductDetailHandler;
+import com.appsauthority.appwiz.ProfileActivity;
 import com.appsauthority.appwiz.ShoppingCartActivity;
 import com.appsauthority.appwiz.UserProfileDataHandler;
 import com.appsauthority.appwiz.VoucherDisplayActivity;
@@ -802,7 +803,9 @@ public class SlidingMenuActivity extends BaseActivity implements
 			fragment = new VouchersFragment();
 			break;
 		case PROFILE:
-			fragment = new ProfileFragment();
+			//fragment = new ProfileFragment();
+			Intent in=new Intent(SlidingMenuActivity.this,ProfileActivity.class);
+			startActivity(in);
 			break;
 		case ABOUTUS:
 			webFragment = new WebFragment();
