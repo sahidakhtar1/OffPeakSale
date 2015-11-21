@@ -38,7 +38,6 @@ import com.appsauthority.appwiz.models.RetailerStores;
 import com.appsauthority.appwiz.utils.Constants;
 import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.SQLiteHelper;
-import com.offpeaksale.restaurants.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
@@ -51,6 +50,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.offpeaksale.restaurants.R;
 
 public class BranchLocationActivity extends FragmentActivity implements
 		OnInfoWindowClickListener {

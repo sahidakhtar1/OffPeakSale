@@ -25,9 +25,9 @@ import com.appsauthority.appwiz.SplashscreenActivity;
 import com.appsauthority.appwiz.VoucherDisplayActivity;
 import com.appsauthority.appwiz.models.Voucher;
 import com.appsauthority.appwiz.models.VoucherList;
-import com.offpeaksale.restaurants.R;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.gson.Gson;
+import com.offpeaksale.restaurants.R;
 
 public class GCMIntentService extends IntentService {
 

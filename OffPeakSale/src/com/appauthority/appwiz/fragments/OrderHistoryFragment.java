@@ -29,7 +29,6 @@ import com.appauthority.appwiz.interfaces.OrderHistoryCaller;
 import com.appsauthority.appwiz.OrderDetailActivity;
 import com.appsauthority.appwiz.OrderHistoryDataHandler;
 import com.appsauthority.appwiz.ProfileActivity;
-import com.appsauthority.appwiz.ShoppingCartActivity;
 import com.appsauthority.appwiz.adapters.OrderHistoryAdapter;
 import com.appsauthority.appwiz.models.OrderHistoryResponseObject;
 import com.appsauthority.appwiz.models.OrderObject;

@@ -66,12 +66,12 @@ import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.HorizontalListView;
 import com.appsauthority.appwiz.utils.ImageCacheLoader;
 import com.appsauthority.appwiz.utils.Utils;
-import com.offpeaksale.restaurants.R;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.OnInitializedListener;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.gson.Gson;
+import com.offpeaksale.restaurants.R;
 
 public class HomeFragment extends Fragment implements OnInitializedListener {
 

@@ -39,8 +39,8 @@ import com.appsauthority.appwiz.utils.HTTPHandler;
 import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.SQLiteHelper;
 import com.appsauthority.appwiz.utils.Utils;
-import com.offpeaksale.restaurants.R;
 import com.google.gson.Gson;
+import com.offpeaksale.restaurants.R;
 
 public class EShopFragmentActivity extends FragmentActivity {
 

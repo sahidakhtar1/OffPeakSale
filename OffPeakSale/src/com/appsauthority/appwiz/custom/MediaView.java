@@ -39,13 +39,13 @@ import com.appsauthority.appwiz.ImageZoomActivity;
 import com.appsauthority.appwiz.models.MediaObject;
 import com.appsauthority.appwiz.utils.ImageCacheLoader;
 import com.appsauthority.appwiz.utils.Utils;
-import com.offpeaksale.restaurants.R;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.OnInitializedListener;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.offpeaksale.restaurants.R;
 
 public class MediaView extends LinearLayout implements OnInitializedListener {
 

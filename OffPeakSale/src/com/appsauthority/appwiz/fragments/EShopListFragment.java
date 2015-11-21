@@ -20,6 +20,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -32,10 +33,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -81,6 +82,12 @@ public class EShopListFragment extends Fragment {
 
 	RadioButton rdCurrentLocation, rdTargetLocation;
 
+	LinearLayout llTabContainer;
+
+	HorizontalScrollView horizontalScrollView;
+	int width;
+	int selectedTabIndex = 0;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -103,6 +110,7 @@ public class EShopListFragment extends Fragment {
 		} else {
 			view = inflater.inflate(R.layout.fragment_eshop_list, container,
 					false);
+			llTabContainer = (LinearLayout) view.findViewById(R.id.llTabContainer);
 			listview = (ListView) view.findViewById(R.id.lv_eshop);
 			tvNoSearchFound = (TextView) view
 					.findViewById(R.id.tvNoSearchFound);
@@ -176,6 +184,21 @@ public class EShopListFragment extends Fragment {
 		if (searchedKeyWord != null) {
 			rlFilter.setVisibility(View.GONE);
 		}
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				getActivity().runOnUiThread(new Runnable() {
+					public void run() {
+						initializeTab();
+
+					}
+				});
+
+			}
+		}, 500);
+		
 		return view;
 	}
 
@@ -570,5 +593,60 @@ public class EShopListFragment extends Fragment {
 			Log.e("",
 					"Could not dismiss progress dialog because the activity that called it is no longer active");
 		}
+	}
+
+	void initializeTab() {
+
+		List<String> tabs = new ArrayList<String>();
+		tabs.add("Morning");
+		tabs.add("Afternoon");
+		tabs.add("Night");
+		tabs.add("Midnight");
+
+		llTabContainer.removeAllViews();
+		DisplayMetrics displaymetrics = new DisplayMetrics();
+		getActivity().getWindowManager().getDefaultDisplay()
+				.getMetrics(displaymetrics);
+		width = displaymetrics.widthPixels;
+		if (tabs.size() >= 2) {
+			width = (int) (width / 2.5);
+			// width = (int) (width - width*.25);
+		} else {
+			width = (int) (width / 2);
+		}
+
+		LayoutInflater inflater = (LayoutInflater) getActivity()
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		for (int i = 0; i < tabs.size(); i++) {
+			View vwReview = inflater.inflate(R.layout.product_detail_tab_item,
+					null);
+			RelativeLayout tabView = (RelativeLayout) vwReview
+					.findViewById(R.id.item);
+			TextView tvTabName = (TextView) tabView
+					.findViewById(R.id.tvItemName);
+			View underLineView = (View) tabView
+					.findViewById(R.id.vwTabUnderline);
+			tvTabName.getLayoutParams().width = width;
+			tvTabName.setText(tabs.get(i));
+			if (i == selectedTabIndex) {
+				underLineView.setBackgroundColor(Color.parseColor("#F2"
+						+ Helper.getSharedHelper().reatiler.getHeaderColor()));
+			} else {
+				underLineView.setBackgroundColor(Color.TRANSPARENT);
+			}
+			llTabContainer.addView(tabView);
+			tabView.setTag(i);
+			tabView.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					int tag = (Integer) v.getTag();
+					selectedTabIndex = tag;
+					initializeTab();
+				}
+			});
+		}
+
 	}
 }

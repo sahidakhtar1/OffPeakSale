@@ -8,58 +8,32 @@ package com.appauthority.appwiz.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.app.Dialog;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.text.method.HideReturnsTransformationMethod;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appauthority.appwiz.interfaces.LookBookAdapterCaller;
 import com.appauthority.appwiz.interfaces.LookBookCaller;
-import com.appsauthority.appwiz.EShopDetailActivity;
 import com.appsauthority.appwiz.LookBookDataHandler;
 import com.appsauthority.appwiz.LookBookLikeDataHandler;
-import com.appsauthority.appwiz.adapters.EShopListAdapter;
-import com.appsauthority.appwiz.adapters.FilterListAdapter;
 import com.appsauthority.appwiz.adapters.LookbookListAdapter;
-import com.appsauthority.appwiz.models.CategoryObject;
 import com.appsauthority.appwiz.models.LookBookInfoResponse;
 import com.appsauthority.appwiz.models.LookBookObject;
-import com.appsauthority.appwiz.models.Product;
-import com.appsauthority.appwiz.models.ProductResponse;
 import com.appsauthority.appwiz.models.Retailer;
-import com.appsauthority.appwiz.utils.Constants;
-import com.appsauthority.appwiz.utils.HTTPHandler;
 import com.appsauthority.appwiz.utils.Helper;
-import com.appsauthority.appwiz.utils.Utils;
 import com.offpeaksale.restaurants.R;
-import com.google.android.gms.internal.ad;
-import com.google.gson.Gson;
 
 public class LookBookFragment extends Fragment implements LookBookCaller, LookBookAdapterCaller{
 

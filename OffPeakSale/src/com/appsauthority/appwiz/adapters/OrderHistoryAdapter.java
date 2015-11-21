@@ -10,21 +10,12 @@ import java.util.List;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.appauthority.appwiz.interfaces.LookBookAdapterCaller;
-import com.appauthority.appwiz.interfaces.OrderHistoryCaller;
-import com.appsauthority.appwiz.models.LookBookObject;
 import com.appsauthority.appwiz.models.OrderObject;
-import com.appsauthority.appwiz.models.ViewHolderLookbook;
 import com.appsauthority.appwiz.models.ViewHolderOrderHistory;
 import com.appsauthority.appwiz.utils.Helper;
-import com.appsauthority.appwiz.utils.ImageCacheLoader;
 import com.offpeaksale.restaurants.R;
 
 public class OrderHistoryAdapter extends ArrayAdapter<OrderObject> {

@@ -28,12 +28,12 @@ import com.appsauthority.appwiz.models.VoucherList;
 import com.appsauthority.appwiz.utils.Constants;
 import com.appsauthority.appwiz.utils.HTTPHandler;
 import com.appsauthority.appwiz.utils.Helper;
-import com.offpeaksale.restaurants.R;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.gson.Gson;
+import com.offpeaksale.restaurants.R;
 
 public class VoucherActivity extends BaseActivity implements
 		VoucherDeleteCaller {

@@ -86,13 +86,12 @@ import com.appsauthority.appwiz.utils.HTTPHandler;
 import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.HorizontalPager;
 import com.appsauthority.appwiz.utils.Utils;
-import com.appsauthority.appwiz.utils.Constants.DrawerItemType;
-import com.offpeaksale.restaurants.R;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.OnInitializedListener;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.offpeaksale.restaurants.R;
 
 public class EShopDetailActivity extends BaseActivity implements
 		OnInitializedListener, OnItemClickListener, ReviewProductCaller {

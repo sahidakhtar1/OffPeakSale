@@ -8,7 +8,6 @@ package com.appsauthority.appwiz.adapters;
 import java.util.List;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,7 +22,6 @@ import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
 import com.appauthority.appwiz.interfaces.VoucherDeleteCaller;
-import com.appsauthority.appwiz.SplashscreenActivity;
 import com.appsauthority.appwiz.models.ViewHolderVoucher;
 import com.appsauthority.appwiz.models.Voucher;
 import com.appsauthority.appwiz.utils.ImageCacheLoader;

@@ -60,7 +60,6 @@ import com.appsauthority.appwiz.fragments.EShopListFragment;
 import com.appsauthority.appwiz.models.CategoryObject;
 import com.appsauthority.appwiz.models.CategoryResponseObject;
 import com.appsauthority.appwiz.models.FeaturedStore;
-import com.appsauthority.appwiz.models.MenuItem;
 import com.appsauthority.appwiz.models.NavDrawerItem;
 import com.appsauthority.appwiz.models.Product;
 import com.appsauthority.appwiz.models.ProductResponse;

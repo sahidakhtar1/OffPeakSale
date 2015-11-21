@@ -2,11 +2,9 @@ package com.appsauthority.appwiz;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,16 +23,12 @@ import android.graphics.drawable.StateListDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.text.Editable;
 import android.text.SpannableString;
-import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -42,14 +36,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appauthority.appwiz.fragments.ProfileFragment;
 import com.appauthority.appwiz.fragments.SlidingMenuActivity;
 import com.appauthority.appwiz.interfaces.ForgotPWDCaller;
 import com.appauthority.appwiz.interfaces.RedeemRewadsCaller;
@@ -57,7 +48,6 @@ import com.appauthority.appwiz.interfaces.ShippingChargeCaller;
 import com.appauthority.appwiz.interfaces.UserLoginCaller;
 import com.appauthority.appwiz.interfaces.UserProfileCaller;
 import com.appsauthority.appwiz.custom.BaseActivity;
-import com.appsauthority.appwiz.models.Country;
 import com.appsauthority.appwiz.models.PaypalTokenRequest;
 import com.appsauthority.appwiz.models.Product;
 import com.appsauthority.appwiz.models.Profile;
@@ -65,10 +55,9 @@ import com.appsauthority.appwiz.models.Retailer;
 import com.appsauthority.appwiz.utils.Constants;
 import com.appsauthority.appwiz.utils.HTTPHandler;
 import com.appsauthority.appwiz.utils.Helper;
-import com.appsauthority.appwiz.utils.ServiceHandler;
 import com.appsauthority.appwiz.utils.Utils;
-import com.offpeaksale.restaurants.R;
 import com.google.gson.Gson;
+import com.offpeaksale.restaurants.R;
 
 public class ProfileActivity extends BaseActivity implements
 		ShippingChargeCaller, UserProfileCaller, RedeemRewadsCaller,

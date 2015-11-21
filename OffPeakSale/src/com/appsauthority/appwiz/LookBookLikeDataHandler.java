@@ -3,20 +3,11 @@ package com.appsauthority.appwiz;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 
 import com.appauthority.appwiz.interfaces.LookBookCaller;
-import com.appauthority.appwiz.interfaces.ShippingChargeCaller;
-import com.appsauthority.appwiz.models.LookBookInfoResponse;
-import com.appsauthority.appwiz.models.RetailerInfoResponse;
 import com.appsauthority.appwiz.utils.Constants;
 import com.appsauthority.appwiz.utils.HTTPHandler;
-import com.appsauthority.appwiz.utils.Helper;
-import com.google.android.gms.internal.ca;
-import com.google.gson.Gson;
 
 public class LookBookLikeDataHandler {
 	LookBookCaller caller;

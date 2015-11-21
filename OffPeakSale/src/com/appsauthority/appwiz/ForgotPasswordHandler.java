@@ -6,7 +6,6 @@ import org.json.JSONObject;
 import android.os.AsyncTask;
 
 import com.appauthority.appwiz.interfaces.ForgotPWDCaller;
-import com.appauthority.appwiz.interfaces.UserLoginCaller;
 import com.appsauthority.appwiz.utils.Constants;
 import com.appsauthority.appwiz.utils.HTTPHandler;
 

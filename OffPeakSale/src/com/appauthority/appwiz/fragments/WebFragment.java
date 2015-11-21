@@ -1,8 +1,5 @@
 package com.appauthority.appwiz.fragments;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import android.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;

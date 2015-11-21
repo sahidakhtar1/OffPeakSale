@@ -50,11 +50,11 @@ import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.ImageCacheLoader;
 import com.appsauthority.appwiz.utils.SQLiteHelper;
 import com.appsauthority.appwiz.utils.Utils;
-import com.offpeaksale.restaurants.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.offpeaksale.restaurants.R;
 
 public class BaseActivity extends YouTubeBaseActivity {
 
