@@ -82,6 +82,45 @@
                         android:textSize="@dimen/textsize" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical" 
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:id="@+id/relStrike"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/tv_eshop_old_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="4dp"
+                            android:text="@string/placeholder_price"
+                            android:textColor="@android:color/black"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/ivStrike"
+                            android:layout_width="wrap_content"
+                            android:layout_height="1dp"
+                            android:layout_centerInParent="true"
+                            android:background="@android:color/white" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_eshop_new_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/placeholder_price"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
                 <TextView
                     android:id="@+id/tvRewardsPoints"
                     android:layout_width="wrap_content"

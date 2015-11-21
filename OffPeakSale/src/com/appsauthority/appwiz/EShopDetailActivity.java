@@ -16,6 +16,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -26,6 +27,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.Html;
 import android.text.SpannableString;
@@ -74,9 +76,11 @@ import android.widget.VideoView;
 import android.widget.ViewFlipper;
 
 import com.appauthority.appwiz.fragments.SlidingMenuActivity;
+import com.appauthority.appwiz.interfaces.PayPalCaller;
 import com.appauthority.appwiz.interfaces.ReviewProductCaller;
 import com.appsauthority.appwiz.custom.BannerLayout;
 import com.appsauthority.appwiz.custom.BaseActivity;
+import com.appsauthority.appwiz.models.PayPalModelObject;
 import com.appsauthority.appwiz.models.Product;
 import com.appsauthority.appwiz.models.ProductOption;
 import com.appsauthority.appwiz.models.Retailer;
@@ -94,7 +98,8 @@ import com.google.android.youtube.player.YouTubePlayerView;
 import com.offpeaksale.restaurants.R;
 
 public class EShopDetailActivity extends BaseActivity implements
-		OnInitializedListener, OnItemClickListener, ReviewProductCaller {
+		OnInitializedListener, OnItemClickListener, ReviewProductCaller,
+		PayPalCaller {
 
 	private enum SHARINGTYPE {
 		EMAIL, FACEBOOK, INSTAGRAM, WECHAT, WHATSAPP
@@ -181,6 +186,8 @@ public class EShopDetailActivity extends BaseActivity implements
 
 	Product addedProduct;
 
+	private SharedPreferences spref;
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -192,6 +199,7 @@ public class EShopDetailActivity extends BaseActivity implements
 		activity = this;
 
 		retailer = Helper.getSharedHelper().reatiler;
+		spref = PreferenceManager.getDefaultSharedPreferences(activity);
 
 		// mPager = (HorizontalPager) findViewById(R.id.horizontal_pager);
 		// mPager.setOnScreenSwitchListener(onScreenSwitchListener);
@@ -420,7 +428,7 @@ public class EShopDetailActivity extends BaseActivity implements
 		}
 		if (Helper.getSharedHelper().enableRating.equals("1")) {
 
-			ratingLL.setVisibility(View.VISIBLE);
+			ratingLL.setVisibility(View.GONE);
 		} else {
 			ratingLL.setVisibility(View.GONE);
 		}
@@ -432,7 +440,7 @@ public class EShopDetailActivity extends BaseActivity implements
 				+ retailer.getRetailerTextColor()));
 
 		if (Helper.getSharedHelper().enableShoppingCart.equals("1")) {
-			cartView.setVisibility(View.VISIBLE);
+			cartView.setVisibility(View.GONE);
 			buttonBuy.setText("Add To Cart");
 			if (product.availQty != null) {
 				if (Integer.parseInt(product.availQty) <= 0) {
@@ -476,6 +484,7 @@ public class EShopDetailActivity extends BaseActivity implements
 		}
 		if (Helper.getSharedHelper().reatiler.enableRewards
 				.equalsIgnoreCase("1")) {
+			tvRewardsPoints.setVisibility(View.GONE);
 			SpannableString spanableText = new SpannableString(rewardPoints
 					+ " Credit Points");
 			spanableText.setSpan(new StyleSpan(Typeface.BOLD), 0,
@@ -1458,55 +1467,38 @@ public class EShopDetailActivity extends BaseActivity implements
 	public void buyPressed(View v) {
 		String errorMsg = null;
 		List<ProductOption> productOption = product.getProduct_options();
-		if (productOption != null) {
-			if (productOption.size() > 0) {
-				ProductOption option = productOption.get(0);
-				if (product.getSelectedOption1() == null) {
-					errorMsg = "Please select " + option.optionLabel;
-				}
-
-			}
-			if (productOption.size() > 1) {
-				ProductOption option = productOption.get(1);
-				if (product.getSelectedOption2() == null) {
-					errorMsg = "Please select " + option.optionLabel;
-				}
-			}
-		}
-
-		if (errorMsg != null) {
-			Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show();
-			return;
-		}
+		// if (productOption != null) {
+		// if (productOption.size() > 0) {
+		// ProductOption option = productOption.get(0);
+		// if (product.getSelectedOption1() == null) {
+		// errorMsg = "Please select " + option.optionLabel;
+		// }
+		//
+		// }
+		// if (productOption.size() > 1) {
+		// ProductOption option = productOption.get(1);
+		// if (product.getSelectedOption2() == null) {
+		// errorMsg = "Please select " + option.optionLabel;
+		// }
+		// }
+		// }
+		//
+		// if (errorMsg != null) {
+		// Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show();
+		// return;
+		// }
 
 		if (editTextQty.getText().toString().length() != 0
 				&& !editTextQty.getText().toString().equalsIgnoreCase("0")) {
-			if (Helper.getSharedHelper().enableShoppingCart.equals("1")) {
-				String qty = product.getQty();
-				product.setQty(editTextQty.getText().toString());
-				Boolean status = Helper.getSharedHelper().addPoductToCart(
-						product);
-				if (status) {
-
-					animateItemToCart();
-				} else {
-					product.setQty(qty);
-					Toast.makeText(context, "Maximum 9 quantity allowed.",
-							Toast.LENGTH_LONG).show();
-				}
-
+			Boolean isLoggedIn = spref.getBoolean(
+					Constants.KEY_IS_USER_LOGGED_IN, false);
+			if (!isLoggedIn) {
+				Intent in = new Intent(EShopDetailActivity.this,
+						ProfileActivity.class);
+				startActivityForResult(in, Constants.LOGIN_SUCCESS);
+				;
 			} else {
-				if (Utils.hasNetworkConnection(context)) {
-					product.setQty(editTextQty.getText().toString());
-					Intent intent = new Intent(this, ProfileActivity.class);
-					intent.putExtra("FROM", "ESHOP");
-					intent.putExtra("product", product);
-					startActivity(intent);
-				} else {
-					Toast.makeText(context,
-							"You need internet connection to buy a product.",
-							Toast.LENGTH_LONG).show();
-				}
+				requestPayPalToken();
 			}
 
 		} else {
@@ -2111,8 +2103,11 @@ public class EShopDetailActivity extends BaseActivity implements
 			RelativeLayout btnClose = (RelativeLayout) dialog
 					.findViewById(R.id.btnClose);
 			TextView tvMessage;
-			final EditText etMessage = (EditText) dialog.findViewById(R.id.etMessage);
-			final RadioGroup radioGroup = (RadioGroup) dialog.findViewById(R.id.radioGroup);;
+			final EditText etMessage = (EditText) dialog
+					.findViewById(R.id.etMessage);
+			final RadioGroup radioGroup = (RadioGroup) dialog
+					.findViewById(R.id.radioGroup);
+			;
 			RadioButton rdHim, rdHer;
 
 			Button btnWrapIt = (Button) dialog.findViewById(R.id.btnWrapIt);
@@ -2151,19 +2146,19 @@ public class EShopDetailActivity extends BaseActivity implements
 				}
 			});
 			btnWrapIt.setOnClickListener(new OnClickListener() {
-				
+
 				@Override
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
 					addedProduct.setIsOptedGiftWrap(true);
 					addedProduct.setGiftMsg(etMessage.getText().toString());
-					if (radioGroup.getCheckedRadioButtonId() ==  R.id.rdHim) {
+					if (radioGroup.getCheckedRadioButtonId() == R.id.rdHim) {
 						addedProduct.setGiftTo("Male");
-					}else{
+					} else {
 						addedProduct.setGiftTo("Female");
 					}
 					dialog.dismiss();
-					
+
 				}
 			});
 
@@ -2205,7 +2200,37 @@ public class EShopDetailActivity extends BaseActivity implements
 
 			}
 			break;
+		case Constants.LOGIN_SUCCESS: {
+			Boolean isLoggedIn = spref.getBoolean(
+					Constants.KEY_IS_USER_LOGGED_IN, false);
+			if (isLoggedIn) {
+				requestPayPalToken();
+			}
+		}
+			break;
 		default:
 		}
+	}
+
+	void requestPayPalToken() {
+
+		String emailId = spref.getString(Constants.KEY_EMAIL, "");
+		PayPalDataHandler payPalDataHandler = new PayPalDataHandler(this,
+				product.getId(), emailId, tvQty.getText().toString());
+		payPalDataHandler.getpayPalData();
+		showLoadingDialog();
+	}
+
+	@Override
+	public void payPalDataDownloaded(PayPalModelObject payPalObj) {
+		// TODO Auto-generated method stub
+		dismissLoadingDialog();
+	}
+
+	@Override
+	public void payPalDataFailed(String errorMsg) {
+		// TODO Auto-generated method stub
+		dismissLoadingDialog();
+		Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show();
 	}
 }

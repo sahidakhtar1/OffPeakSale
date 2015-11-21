@@ -6,6 +6,8 @@ public class Constants {
 
 	public static String RETAILER_ID = "MerchantA1";
 	public static String SENDER_ID = "610819397652";
+	
+	final public static int LOGIN_SUCCESS = 1001;
 
 	// --- Global Var --- //
 
