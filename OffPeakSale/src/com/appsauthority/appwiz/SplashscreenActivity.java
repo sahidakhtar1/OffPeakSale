@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -52,6 +53,7 @@ public class SplashscreenActivity extends BaseActivity {
 		imageViewSplashScreen = (ImageView) findViewById(R.id.imageViewSplashScreen);
 
 		spref = PreferenceManager.getDefaultSharedPreferences(this);
+		
 		Helper.getSharedHelper().currency_code = spref.getString(
 				Constants.KEY_USER_CURRECY, "");
 		Helper.getSharedHelper().setCurrencySymbol();
@@ -248,12 +250,21 @@ public class SplashscreenActivity extends BaseActivity {
 						boldFontPath);
 				Helper.getSharedHelper().boldFont = boldFont;
 
-				Intent intent = new Intent(getApplicationContext(),
-						SlidingMenuActivity.class);
-				if (pid != null) {
-					intent.putExtra("pid", pid);
+				if(spref.getBoolean("ProductTour", false)==true)
+				{
+					Intent intent = new Intent(getApplicationContext(),
+							SlidingMenuActivity.class);
+					if (pid != null) {
+						intent.putExtra("pid", pid);
+					}
+					startActivity(intent);
+				}else
+				{
+					Intent intent = new Intent(getApplicationContext(),
+							ProductTourActivity.class);
+					startActivity(intent);
 				}
-				startActivity(intent);
+				
 				finish();
 				Log.i("TIMMINGS", "SPLASH FINISHED");
 
