@@ -74,6 +74,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+         <activity android:name="com.appsauthority.appwiz.ProductTourActivity"
+             android:noHistory="true" />
         <activity android:name="com.appauthority.appwiz.fragments.SlidingMenuActivity" />
         <activity android:name="com.appsauthority.appwiz.BranchLocationActivity" />
         <activity android:name="com.appsauthority.appwiz.ProfileActivity" />
