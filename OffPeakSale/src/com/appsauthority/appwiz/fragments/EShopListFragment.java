@@ -43,6 +43,7 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.appauthority.appwiz.fragments.HomeFragment;
 import com.appsauthority.appwiz.EShopDetailActivity;
 import com.appsauthority.appwiz.adapters.EShopListAdapter;
 import com.appsauthority.appwiz.adapters.FilterListAdapter;
@@ -110,7 +111,10 @@ public class EShopListFragment extends Fragment {
 		} else {
 			view = inflater.inflate(R.layout.fragment_eshop_list, container,
 					false);
-			llTabContainer = (LinearLayout) view.findViewById(R.id.llTabContainer);
+			llTabContainer = (LinearLayout) view
+					.findViewById(R.id.llTabContainer);
+			horizontalScrollView = (HorizontalScrollView) view
+					.findViewById(R.id.horizontalScrollView);
 			listview = (ListView) view.findViewById(R.id.lv_eshop);
 			tvNoSearchFound = (TextView) view
 					.findViewById(R.id.tvNoSearchFound);
@@ -198,7 +202,7 @@ public class EShopListFragment extends Fragment {
 
 			}
 		}, 500);
-		
+
 		return view;
 	}
 
@@ -607,12 +611,12 @@ public class EShopListFragment extends Fragment {
 		DisplayMetrics displaymetrics = new DisplayMetrics();
 		getActivity().getWindowManager().getDefaultDisplay()
 				.getMetrics(displaymetrics);
-		width = displaymetrics.widthPixels;
+		int screewidth = displaymetrics.widthPixels;
 		if (tabs.size() >= 2) {
-			width = (int) (width / 2.5);
+			width = (int) (screewidth / 2.5);
 			// width = (int) (width - width*.25);
 		} else {
-			width = (int) (width / 2);
+			width = (int) (screewidth / 2);
 		}
 
 		LayoutInflater inflater = (LayoutInflater) getActivity()
@@ -647,6 +651,8 @@ public class EShopListFragment extends Fragment {
 				}
 			});
 		}
+
+		horizontalScrollView.smoothScrollTo(width * selectedTabIndex, 0);
 
 	}
 }
