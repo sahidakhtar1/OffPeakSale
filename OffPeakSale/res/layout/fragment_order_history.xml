@@ -5,6 +5,46 @@
     android:background="@android:color/white"
     android:orientation="vertical" >
 
+    <RelativeLayout
+        android:id="@+id/vwLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="150dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="100dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Login"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llTabs"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:background="@color/footer_bg" >
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/secondary_header_height"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:id="@+id/llTabContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
     <ListView
         android:id="@+id/lv_order_history"
         android:layout_width="match_parent"

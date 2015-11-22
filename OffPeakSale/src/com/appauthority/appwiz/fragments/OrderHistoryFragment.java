@@ -13,16 +13,24 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appauthority.appwiz.interfaces.OrderHistoryCaller;
@@ -49,6 +57,13 @@ public class OrderHistoryFragment extends Fragment implements
 	Retailer retailer;
 	private SharedPreferences spref;
 
+	HorizontalScrollView horizontalScrollView;
+	int width;
+	int selectedTabIndex = 0;
+	LinearLayout llTabContainer;
+	Button btnLogin;
+	RelativeLayout vwLogin;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -66,12 +81,16 @@ public class OrderHistoryFragment extends Fragment implements
 					false);
 			listview = (ListView) view.findViewById(R.id.lv_order_history);
 			orderHistoryList = new ArrayList<OrderObject>();
-			adapter = new OrderHistoryAdapter(context, R.layout.row_order_history,
-					orderHistoryList);
+			adapter = new OrderHistoryAdapter(context,
+					R.layout.row_order_history, orderHistoryList);
 			listview.setAdapter(adapter);
 
 		}
-
+		vwLogin = (RelativeLayout) view.findViewById(R.id.vwLogin);
+		btnLogin = (Button) view.findViewById(R.id.btnLogin);
+		llTabContainer = (LinearLayout) view.findViewById(R.id.llTabContainer);
+		horizontalScrollView = (HorizontalScrollView) view
+				.findViewById(R.id.horizontalScrollView);
 		listview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -81,26 +100,109 @@ public class OrderHistoryFragment extends Fragment implements
 				Intent intent = new Intent(context, OrderDetailActivity.class);
 				intent.putExtra("orderObj", order);
 				startActivity(intent);
-				
+
 			}
 		});
 
 		// showLoadingDialog();
+		Boolean isloggedIn = spref.getBoolean(Constants.KEY_IS_USER_LOGGED_IN,
+				false);
+		if (!isloggedIn) {
+			showLoginView();
+			vwLogin.setVisibility(View.VISIBLE);
+
+		} else {
+			vwLogin.setVisibility(View.GONE);
+		}
+		btnLogin.setTextColor(Color.parseColor("#"
+				+ retailer.getRetailerTextColor()));
+		btnLogin.setBackgroundDrawable(Helper.getSharedHelper()
+				.getGradientDrawable(retailer.getHeaderColor()));
+		initializeTab();
+		btnLogin.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				showLoginView();
+			}
+		});
 		return view;
 	}
 
 	public void refreshList() {
-		Boolean isloggedIn = spref.getBoolean(Constants.KEY_IS_USER_LOGGED_IN,false);
+		Boolean isloggedIn = spref.getBoolean(Constants.KEY_IS_USER_LOGGED_IN,
+				false);
 		if (isloggedIn) {
 			OrderHistoryDataHandler lookbookDatahandler = new OrderHistoryDataHandler(
 					this, this.getActivity());
 			lookbookDatahandler.getLookBookData();
-		}else{
-			Intent intent = new Intent(getActivity(), ProfileActivity.class);
-			intent.putExtra("FROM", "CARTLOGIN");
-			startActivity(intent);
+			vwLogin.setVisibility(View.GONE);
+		} else {
+			vwLogin.setVisibility(View.VISIBLE);
 		}
-		
+
+	}
+
+	void showLoginView() {
+		Intent intent = new Intent(getActivity(), ProfileActivity.class);
+		intent.putExtra("FROM", "CARTLOGIN");
+		startActivity(intent);
+	}
+
+	void initializeTab() {
+
+		List<String> tabs = new ArrayList<String>();
+		tabs.add("Active");
+		tabs.add("Used");
+
+		llTabContainer.removeAllViews();
+		DisplayMetrics displaymetrics = new DisplayMetrics();
+		getActivity().getWindowManager().getDefaultDisplay()
+				.getMetrics(displaymetrics);
+		int screewidth = displaymetrics.widthPixels;
+		if (tabs.size() > 2) {
+			width = (int) (screewidth / 2.5);
+			// width = (int) (width - width*.25);
+		} else {
+			width = (int) (screewidth / 2);
+		}
+
+		LayoutInflater inflater = (LayoutInflater) getActivity()
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		for (int i = 0; i < tabs.size(); i++) {
+			View vwReview = inflater.inflate(R.layout.product_detail_tab_item,
+					null);
+			RelativeLayout tabView = (RelativeLayout) vwReview
+					.findViewById(R.id.item);
+			TextView tvTabName = (TextView) tabView
+					.findViewById(R.id.tvItemName);
+			View underLineView = (View) tabView
+					.findViewById(R.id.vwTabUnderline);
+			tvTabName.getLayoutParams().width = width;
+			tvTabName.setText(tabs.get(i));
+			if (i == selectedTabIndex) {
+				underLineView.setBackgroundColor(Color.parseColor("#F2"
+						+ Helper.getSharedHelper().reatiler.getHeaderColor()));
+			} else {
+				underLineView.setBackgroundColor(Color.TRANSPARENT);
+			}
+			llTabContainer.addView(tabView);
+			tabView.setTag(i);
+			tabView.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					int tag = (Integer) v.getTag();
+					selectedTabIndex = tag;
+					initializeTab();
+				}
+			});
+		}
+
+		horizontalScrollView.smoothScrollTo(width * selectedTabIndex, 0);
+
 	}
 
 	@Override
@@ -139,13 +241,15 @@ public class OrderHistoryFragment extends Fragment implements
 	public void orderHistoryDownloaded(
 			OrderHistoryResponseObject orderHistoryresponseObj) {
 		// TODO Auto-generated method stub
-		if (orderHistoryresponseObj != null && orderHistoryresponseObj.orders != null) {
+		if (orderHistoryresponseObj != null
+				&& orderHistoryresponseObj.orders != null) {
 			adapter.clear();
 			orderHistoryList.clear();
 			adapter.addAll(orderHistoryresponseObj.orders);
 			adapter.notifyDataSetChanged();
-		}else{
-			Toast.makeText(getActivity(), "No record found", Toast.LENGTH_LONG).show();
+		} else {
+			Toast.makeText(getActivity(), "No record found", Toast.LENGTH_LONG)
+					.show();
 		}
 	}
 

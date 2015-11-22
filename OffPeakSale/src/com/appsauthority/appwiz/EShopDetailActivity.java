@@ -188,8 +188,8 @@ public class EShopDetailActivity extends BaseActivity implements
 
 	private SharedPreferences spref;
 
-	TextView tvOldPrice,tvNewPrice,tvDistance,tvAddress;
-	
+	TextView tvOldPrice, tvNewPrice, tvDistance, tvAddress;
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -862,9 +862,7 @@ public class EShopDetailActivity extends BaseActivity implements
 
 	}
 
-
-	
-	void updateItemPrice(){
+	void updateItemPrice() {
 		float conversionValue = 0.0f;
 		try {
 			conversionValue = Float
@@ -880,25 +878,22 @@ public class EShopDetailActivity extends BaseActivity implements
 			conversionValue = 1.0f;
 			selectedCurrencyCode = Helper.getSharedHelper().reatiler.defaultCurrency;
 		}
-		if (product.getOldPrice() != null ) {
+		if (product.getOldPrice() != null) {
 			float oldProce = Float.parseFloat(product.getOldPrice());
 			oldProce = oldProce * conversionValue;
-			tvOldPrice.setText(
-					selectedCurrencyCode
-							+ Helper.getSharedHelper()
-									.conertfloatToSTring(oldProce));
+			tvOldPrice.setText(selectedCurrencyCode
+					+ Helper.getSharedHelper().conertfloatToSTring(oldProce));
 			tvOldPrice.setVisibility(View.VISIBLE);
-		}else{
+		} else {
 			tvOldPrice.setVisibility(View.GONE);
 		}
-		
+
 		newPrice = newPrice * conversionValue;
-		
-		tvNewPrice.setText(
-				selectedCurrencyCode
-						+ Helper.getSharedHelper()
-								.conertfloatToSTring(newPrice));
+
+		tvNewPrice.setText(selectedCurrencyCode
+				+ Helper.getSharedHelper().conertfloatToSTring(newPrice));
 	}
+
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			// your code
@@ -1271,7 +1266,7 @@ public class EShopDetailActivity extends BaseActivity implements
 	void setFont() {
 		try {
 			tvDistance.setTextColor(Color.parseColor("#"
-				+ retailer.getHeaderColor()));
+					+ retailer.getHeaderColor()));
 			tvAddress.setTypeface(Helper.getSharedHelper().normalFont);
 			tvDistance.setTypeface(Helper.getSharedHelper().boldFont);
 			tvNewPrice.setTypeface(Helper.getSharedHelper().boldFont);
@@ -1545,8 +1540,8 @@ public class EShopDetailActivity extends BaseActivity implements
 			if (!isLoggedIn) {
 				Intent in = new Intent(EShopDetailActivity.this,
 						ProfileActivity.class);
+				in.putExtra("FROM", "CARTLOGIN");
 				startActivityForResult(in, Constants.LOGIN_SUCCESS);
-				;
 			} else {
 				requestPayPalToken();
 			}
