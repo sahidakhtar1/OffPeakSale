@@ -110,11 +110,11 @@ public class ProfileActivity extends BaseActivity implements
 	LinearLayout llLogin, llForgotPwd;
 	EditText etLoginEmailId, etLoginPWD, etEmailForgotPwd;
 
-	TextView tvLogin, tvForgotPwd, tvRegister, tvBackToLogin;
+	TextView tvLogin, tvForgotPwd, tvRegister, tvBackToLogin, tvShowLogin;
 
 	Button btnForgotPwd, btnLogin;
 	private UiLifecycleHelper uiHelper;
-    private static final String TAG = "ProfileActivity";
+	private static final String TAG = "ProfileActivity";
 
 	void initializeLoginRegisterView() {
 		llLogin = (LinearLayout) llLoginForm.findViewById(R.id.llLogin);
@@ -130,6 +130,7 @@ public class ProfileActivity extends BaseActivity implements
 		etLoginPWD = (EditText) llLoginForm.findViewById(R.id.etLoginPWD);
 
 		tvForgotPwd = (TextView) llLoginForm.findViewById(R.id.tvForgotPwd);
+		tvShowLogin = (TextView) llLoginForm.findViewById(R.id.tvShowLogin);
 		etEmailForgotPwd = (EditText) llLoginForm
 				.findViewById(R.id.etEmailForgotPwd);
 
@@ -148,6 +149,23 @@ public class ProfileActivity extends BaseActivity implements
 				etEmailForgotPwd.setVisibility(View.VISIBLE);
 				btnForgotPwd.setVisibility(View.VISIBLE);
 				tvBackToLogin.setVisibility(View.VISIBLE);
+				tvForgotPwd.setVisibility(View.GONE);
+				tvShowLogin.setVisibility(View.VISIBLE);
+			}
+		});
+		tvShowLogin.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				showLoginForm();
+//				llLogin.setVisibility(View.GONE);
+//				llForgotPwd.setVisibility(View.VISIBLE);
+//				etEmailForgotPwd.setVisibility(View.VISIBLE);
+//				btnForgotPwd.setVisibility(View.VISIBLE);
+//				tvBackToLogin.setVisibility(View.VISIBLE);
+//				tvForgotPwd.setVisibility(View.VISIBLE);
+//				tvShowLogin.setVisibility(View.GONE);
 			}
 		});
 
@@ -199,6 +217,8 @@ public class ProfileActivity extends BaseActivity implements
 		tvCreatePwd.setTypeface(Helper.getSharedHelper().normalFont);
 		tvLogin.setTypeface(Helper.getSharedHelper().normalFont);
 		tvRegister.setTypeface(Helper.getSharedHelper().normalFont);
+		tvForgotPwd.setTypeface(Helper.getSharedHelper().normalFont);
+		tvShowLogin.setTypeface(Helper.getSharedHelper().normalFont);
 
 		edtPwd.setTypeface(Helper.getSharedHelper().normalFont);
 		edtCnfPwd.setTypeface(Helper.getSharedHelper().normalFont);
@@ -270,6 +290,8 @@ public class ProfileActivity extends BaseActivity implements
 		btnForgotPwd.setVisibility(View.GONE);
 		tvBackToLogin.setVisibility(View.GONE);
 		veTermsOfUse.setVisibility(View.GONE);
+		tvForgotPwd.setVisibility(View.VISIBLE);
+		tvShowLogin.setVisibility(View.GONE);
 
 	}
 
@@ -307,53 +329,56 @@ public class ProfileActivity extends BaseActivity implements
 	}
 
 	// Called when session changes
-    private Session.StatusCallback callback = new Session.StatusCallback() {
-        @Override
-        public void call(Session session, SessionState state,
-                Exception exception) {
-            onSessionStateChange(session, state, exception);
-        }
-    };
-     
-    // When session is changed, this method is called from callback method
-    private void onSessionStateChange(Session session, SessionState state,
-            Exception exception) {
-        // When Session is successfully opened (User logged-in)
-    	Log.e("Session: ", ""+state.isOpened());
-    	  
-        if (state.isOpened()) {
-            Log.i(TAG, "Logged in...");
-            // make request to the /me API to get Graph user
-            Request request = Request.newMeRequest(session, new Request.GraphUserCallback() {
-                // callback after Graph API response with user
-                // object
-                @Override
-                public void onCompleted(GraphUser user, Response response) {
-                    if (user != null) {
-                    	Log.e("User Name: ", user.getName());
-                    	Log.e("User Gender: ", user.getProperty("gender").toString());
-                    	Log.e("User Email: ", user.asMap().get("email").toString());
-                        
-                    }
-                }
-            });
-            Bundle parameters = new Bundle();
-            parameters.putString("fields", "id,name,email,gender, birthday");
-            request.setParameters(parameters);
-            request.executeAsync();
-        } else if (state.isClosed()) {
-            Log.i(TAG, "Logged out...");
-        }
-    }
-     
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        uiHelper.onActivityResult(requestCode, resultCode, data);
-        Log.i(TAG, "OnActivityResult...");
-    }
-    
-    
+	private Session.StatusCallback callback = new Session.StatusCallback() {
+		@Override
+		public void call(Session session, SessionState state,
+				Exception exception) {
+			onSessionStateChange(session, state, exception);
+		}
+	};
+
+	// When session is changed, this method is called from callback method
+	private void onSessionStateChange(Session session, SessionState state,
+			Exception exception) {
+		// When Session is successfully opened (User logged-in)
+		Log.e("Session: ", "" + state.isOpened());
+
+		if (state.isOpened()) {
+			Log.i(TAG, "Logged in...");
+			// make request to the /me API to get Graph user
+			Request request = Request.newMeRequest(session,
+					new Request.GraphUserCallback() {
+						// callback after Graph API response with user
+						// object
+						@Override
+						public void onCompleted(GraphUser user,
+								Response response) {
+							if (user != null) {
+								Log.e("User Name: ", user.getName());
+								Log.e("User Gender: ",
+										user.getProperty("gender").toString());
+								Log.e("User Email: ", user.asMap().get("email")
+										.toString());
+
+							}
+						}
+					});
+			Bundle parameters = new Bundle();
+			parameters.putString("fields", "id,name,email,gender, birthday");
+			request.setParameters(parameters);
+			request.executeAsync();
+		} else if (state.isClosed()) {
+			Log.i(TAG, "Logged out...");
+		}
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		uiHelper.onActivityResult(requestCode, resultCode, data);
+		Log.i(TAG, "OnActivityResult...");
+	}
+
 	@SuppressWarnings("deprecation")
 	@SuppressLint("SimpleDateFormat")
 	@Override
@@ -365,11 +390,12 @@ public class ProfileActivity extends BaseActivity implements
 		context = this;
 
 		// To maintain FB Login session
-        uiHelper = new UiLifecycleHelper(this, callback);
-        uiHelper.onCreate(savedInstanceState);
-        LoginButton facebookLoginButton = (LoginButton)findViewById(R.id.facebookauthButton);
-        facebookLoginButton.setReadPermissions(Arrays.asList("public_profile, email, user_birthday, user_friends"));
-        
+		uiHelper = new UiLifecycleHelper(this, callback);
+		uiHelper.onCreate(savedInstanceState);
+		LoginButton facebookLoginButton = (LoginButton) findViewById(R.id.facebookauthButton);
+		facebookLoginButton.setReadPermissions(Arrays
+				.asList("public_profile, email, user_birthday, user_friends"));
+
 		retailer = Helper.getSharedHelper().reatiler;
 
 		tvBackToLogin = (TextView) findViewById(R.id.tvBackToLogin);
@@ -389,11 +415,11 @@ public class ProfileActivity extends BaseActivity implements
 		sdf = new SimpleDateFormat("dd MMM yyyy");
 		TextView hyperlink = (TextView) findViewById(R.id.hyperlink);
 		veTermsOfUse = (LinearLayout) findViewById(R.id.veTermsOfUse);
-		
-//		RelativeLayout rlPn = (RelativeLayout) findViewById(R.id.rlPn);
-//		rlPn.setVisibility(View.GONE);
+
+		// RelativeLayout rlPn = (RelativeLayout) findViewById(R.id.rlPn);
+		// rlPn.setVisibility(View.GONE);
 		pnSwitch = (Switch) findViewById(R.id.pnSwitch);
-		
+
 		// tvRedeemlbl = (TextView) findViewById(R.id.tvRedeemlbl);
 		// tvRedeem = (TextView) llRedeem.findViewById(R.id.tv_optonsValue);
 		// if (Helper.getSharedHelper().reatiler.enableRewards
@@ -1289,21 +1315,25 @@ public class ProfileActivity extends BaseActivity implements
 		jsonstr = jsonstr + "]";
 		return jsonstr;
 	}
+
 	@Override
-    public void onPause() {
-        super.onPause();
-        uiHelper.onPause();
-    }
+	public void onPause() {
+		super.onPause();
+		uiHelper.onPause();
+	}
+
 	@Override
-    public void onDestroy() {
-        super.onDestroy();
-        uiHelper.onDestroy();
-    }
-	 @Override
-	    public void onSaveInstanceState(Bundle outState) {
-	        super.onSaveInstanceState(outState);
-	        uiHelper.onSaveInstanceState(outState);
-	    }
+	public void onDestroy() {
+		super.onDestroy();
+		uiHelper.onDestroy();
+	}
+
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		uiHelper.onSaveInstanceState(outState);
+	}
+
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
