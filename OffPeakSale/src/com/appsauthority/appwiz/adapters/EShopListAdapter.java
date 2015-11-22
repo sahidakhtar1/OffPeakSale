@@ -146,15 +146,17 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 		int height = imageView.getHeight();
 		
 		if (object.availQty != null) {
-			if (Integer.parseInt(object.availQty)<=0) {
-				holder.getTvQtyIndicator().setText("Sold Out");
-				holder.getTvQtyIndicator().setVisibility(View.VISIBLE);
-			}else if(Integer.parseInt(object.availQty)>5){
-				holder.getTvQtyIndicator().setVisibility(View.GONE);
-			}else{
-				holder.getTvQtyIndicator().setText(object.availQty+" Left");
-				holder.getTvQtyIndicator().setVisibility(View.VISIBLE);
-			}
+			holder.getTvQtyIndicator().setText(object.availQty+" sold");
+			holder.getTvQtyIndicator().setVisibility(View.VISIBLE);
+//			if (Integer.parseInt(object.availQty)<0) {
+//				holder.getTvQtyIndicator().setText("Sold Out");
+//				holder.getTvQtyIndicator().setVisibility(View.VISIBLE);
+//			}else if(Integer.parseInt(object.availQty)>5){
+//				holder.getTvQtyIndicator().setVisibility(View.GONE);
+//			}else{
+//				holder.getTvQtyIndicator().setText(object.availQty+" sold");
+//				holder.getTvQtyIndicator().setVisibility(View.VISIBLE);
+//			}
 		}
 		if (object.onSale != null && object.onSale.equalsIgnoreCase("1")) {
 			holder.getTvSaleIndicator().setVisibility(View.GONE);

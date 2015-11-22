@@ -25,14 +25,14 @@
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:background="@color/footer_bg"
+            android:background="@color/black_translucent"
             android:gravity="center"
             android:paddingBottom="2dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingTop="2dp"
             android:text="Sold Out"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="14sp" />
 
         <TextView
@@ -154,13 +154,14 @@
 
                 <ImageView
                     android:layout_width="16dp"
-                    android:layout_height="16dp" 
-                    android:src="@drawable/locate_us"/>
+                    android:layout_height="16dp"
+                    android:src="@drawable/locate_us" />
 
                 <TextView
                     android:id="@+id/tvAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="3 Temasek Avenue"
                     android:textColor="@android:color/black"
                     android:textSize="13sp" />
