@@ -1,9 +1,5 @@
 package com.appsauthority.appwiz;
 
-import com.offpeaksale.restaurants.R;
-import com.viewpagerindicator.CirclePageIndicator;
-import com.viewpagerindicator.PageIndicator;
-
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
@@ -13,6 +9,9 @@ import android.support.v4.view.ViewPager;
 import android.view.Window;
 
 import com.appsauthority.appwiz.adapters.ProductTourFragmentAdapter;
+import com.offpeaksale.restaurants.R;
+import com.viewpagerindicator.CirclePageIndicator;
+import com.viewpagerindicator.PageIndicator;
 
 public class ProductTourActivity extends FragmentActivity{
 

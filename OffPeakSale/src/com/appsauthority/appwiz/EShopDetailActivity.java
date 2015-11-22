@@ -188,6 +188,8 @@ public class EShopDetailActivity extends BaseActivity implements
 
 	private SharedPreferences spref;
 
+	TextView tvOldPrice,tvNewPrice,tvDistance,tvAddress;
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -334,6 +336,10 @@ public class EShopDetailActivity extends BaseActivity implements
 			}
 		});
 
+		tvOldPrice = (TextView) findViewById(R.id.tv_eshop_old_price);
+		tvNewPrice = (TextView) findViewById(R.id.tv_eshop_new_price);
+		tvDistance = (TextView) findViewById(R.id.tvDistance);
+		tvAddress = (TextView) findViewById(R.id.tvAddress);
 		tvFirstOptinLbl = (TextView) llFirstOption
 				.findViewById(R.id.tv_optionLable);
 		tvSeconoptionLbl = (TextView) llSecondOption
@@ -852,9 +858,47 @@ public class EShopDetailActivity extends BaseActivity implements
 			btnSearch.setBackgroundResource(R.drawable.search);
 			btnLeftShare.setBackgroundResource(R.drawable.share);
 		}
+		updateItemPrice();
 
 	}
 
+
+	
+	void updateItemPrice(){
+		float conversionValue = 0.0f;
+		try {
+			conversionValue = Float
+					.parseFloat(Helper.getSharedHelper().currency_conversion_map
+							.get(Helper.getSharedHelper().currency_code));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		float newPrice = Float.parseFloat(product.getNewPrice());
+		String selectedCurrencyCode = Helper.getSharedHelper().currency_code;
+		if (conversionValue == 0) {
+			conversionValue = 1.0f;
+			selectedCurrencyCode = Helper.getSharedHelper().reatiler.defaultCurrency;
+		}
+		if (product.getOldPrice() != null ) {
+			float oldProce = Float.parseFloat(product.getOldPrice());
+			oldProce = oldProce * conversionValue;
+			tvOldPrice.setText(
+					selectedCurrencyCode
+							+ Helper.getSharedHelper()
+									.conertfloatToSTring(oldProce));
+			tvOldPrice.setVisibility(View.VISIBLE);
+		}else{
+			tvOldPrice.setVisibility(View.GONE);
+		}
+		
+		newPrice = newPrice * conversionValue;
+		
+		tvNewPrice.setText(
+				selectedCurrencyCode
+						+ Helper.getSharedHelper()
+								.conertfloatToSTring(newPrice));
+	}
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			// your code
@@ -1226,6 +1270,12 @@ public class EShopDetailActivity extends BaseActivity implements
 
 	void setFont() {
 		try {
+			tvDistance.setTextColor(Color.parseColor("#"
+				+ retailer.getHeaderColor()));
+			tvAddress.setTypeface(Helper.getSharedHelper().normalFont);
+			tvDistance.setTypeface(Helper.getSharedHelper().boldFont);
+			tvNewPrice.setTypeface(Helper.getSharedHelper().boldFont);
+			tvOldPrice.setTypeface(Helper.getSharedHelper().normalFont);
 			textViewHeader.setTypeface(Helper.getSharedHelper().boldFont);
 			txtCartTotal.setTypeface(Helper.getSharedHelper().normalFont);
 			btnSubmit.setTypeface(Helper.getSharedHelper().boldFont);

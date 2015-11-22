@@ -8,6 +8,7 @@ package com.appsauthority.appwiz.adapters;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -135,6 +136,8 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 			holder.getTvSaleIndicator().setTypeface(Helper.getSharedHelper().normalFont);
 			holder.getTvDistance().setTypeface(Helper.getSharedHelper().boldFont);
 			holder.getTvAddress().setTypeface(Helper.getSharedHelper().normalFont);
+			holder.getTvDistance().setTextColor(Color.parseColor("#"
+					+ Helper.getSharedHelper().reatiler.getHeaderColor()));
 		} catch (Exception e) {
 
 		}

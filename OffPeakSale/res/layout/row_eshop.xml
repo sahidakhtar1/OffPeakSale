@@ -79,21 +79,21 @@
                 android:id="@+id/tv_eshop_short_desc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginBottom="0dp"
                 android:layout_marginTop="7dp"
+                android:layout_weight="1"
                 android:maxLines="2"
                 android:text="@string/lorem_ipsum"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
-            
+
             <TextView
                 android:id="@+id/tvDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
-                android:layout_marginTop="7dp"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="7dp"
                 android:maxLines="1"
                 android:text="2.1KM"
                 android:textColor="@android:color/black"
@@ -149,7 +149,13 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginBottom="0dp"
                 android:layout_marginRight="0dp"
-                android:gravity="right|center_vertical" >
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp" 
+                    android:src="@drawable/locate_us"/>
 
                 <TextView
                     android:id="@+id/tvAddress"
@@ -157,8 +163,7 @@
                     android:layout_height="wrap_content"
                     android:text="3 Temasek Avenue"
                     android:textColor="@android:color/black"
-                    android:textSize="13sp"
-                     />
+                    android:textSize="13sp" />
 
                 <!-- <include layout="@layout/rating_bar" /> -->
             </LinearLayout>

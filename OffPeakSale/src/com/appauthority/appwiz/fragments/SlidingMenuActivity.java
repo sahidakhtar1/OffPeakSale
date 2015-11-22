@@ -318,12 +318,12 @@ public class SlidingMenuActivity extends BaseActivity implements
 //		home.itemType = DrawerItemType.ESHOP;
 //		navDrawerItems.add(home);
 
-		NavDrawerItem eshop = new NavDrawerItem("Resturants Nearby", R.drawable.eshop,
+		NavDrawerItem eshop = new NavDrawerItem("Resturants Nearby", R.drawable.locate_us,
 				1, false);
 		eshop.itemType = DrawerItemType.ESHOP;
 		navDrawerItems.add(eshop);
 
-		NavDrawerItem voucher = new NavDrawerItem("Notification",
+		NavDrawerItem voucher = new NavDrawerItem("Voucher",
 				R.drawable.voucher, 5, false);
 		voucher.itemType = DrawerItemType.VOUCHER;
 		navDrawerItems.add(voucher);
@@ -339,7 +339,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 		navDrawerItems.add(my_profile);
 
 		NavDrawerItem tnc = new NavDrawerItem("Terms & Conditions"
-		/* + retailer.getRetailerName() */, R.drawable.about_us, 8, false);
+		/* + retailer.getRetailerName() */, R.drawable.termsofuse, 8, false);
 		tnc.itemType = DrawerItemType.TERMSNCONDITION;
 		navDrawerItems.add(tnc);
 
