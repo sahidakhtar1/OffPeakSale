@@ -176,7 +176,8 @@ public class EShopDetailActivity extends BaseActivity implements
 	View underLineReview, underlineProductDetail, underlineHowItWorks;
 
 	ViewFlipper viewFlipper;
-	LinearLayout vwChildReviews, vwChildProductDetails, vwChildHowItWorks,llMapView;
+	LinearLayout vwChildReviews, vwChildProductDetails, vwChildHowItWorks,
+			llMapView;
 	RelativeLayout rlBannerlayout;
 
 	ImageView imgAnimationImage;
@@ -224,8 +225,9 @@ public class EShopDetailActivity extends BaseActivity implements
 		vwChildProductDetails.setTag(1);
 		vwChildHowItWorks.setTag(2);
 		llMapView = (LinearLayout) findViewById(R.id.llMapView);
-		
-		MapLayout mapLayout = new MapLayout(activity, activity,Helper.getSharedHelper().stores);
+
+		MapLayout mapLayout = new MapLayout(activity, activity,
+				Helper.getSharedHelper().stores);
 		llMapView.addView(mapLayout);
 
 		edt_comments = (EditText) findViewById(R.id.edt_comments);
@@ -419,27 +421,26 @@ public class EShopDetailActivity extends BaseActivity implements
 		productRatingBar.setStepSize(1.0f);
 		buyLL = (LinearLayout) findViewById(R.id.buyLL);
 		enquiryLL = (LinearLayout) findViewById(R.id.enquiryLL);
-//		if (Helper.getSharedHelper().disablePayment.equals("1")) {
-//			// buyLL.setVisibility(View.GONE);
-//			// enquiryLL.setVisibility(View.VISIBLE);
-//			buyLL.setVisibility(View.VISIBLE);
-//			enquiryLL.setVisibility(View.GONE);
-//			buttonBuy
-//					.setText(getResources().getString(R.string.single_enquiry));
-//		} else {
-//			if (product.availQty != null) {
-//				if (Integer.parseInt(product.availQty) <= 0) {
-//					buttonBuy.setText(getResources().getString(
-//							R.string.sold_out));
-//					buttonBuy.setEnabled(false);
-//				}
-//			}
-//			buyLL.setVisibility(View.VISIBLE);
-//			enquiryLL.setVisibility(View.GONE);
-//		}
-		
-		buttonBuy.setText(getResources().getString(
-				R.string.buy));
+		// if (Helper.getSharedHelper().disablePayment.equals("1")) {
+		// // buyLL.setVisibility(View.GONE);
+		// // enquiryLL.setVisibility(View.VISIBLE);
+		// buyLL.setVisibility(View.VISIBLE);
+		// enquiryLL.setVisibility(View.GONE);
+		// buttonBuy
+		// .setText(getResources().getString(R.string.single_enquiry));
+		// } else {
+		// if (product.availQty != null) {
+		// if (Integer.parseInt(product.availQty) <= 0) {
+		// buttonBuy.setText(getResources().getString(
+		// R.string.sold_out));
+		// buttonBuy.setEnabled(false);
+		// }
+		// }
+		// buyLL.setVisibility(View.VISIBLE);
+		// enquiryLL.setVisibility(View.GONE);
+		// }
+
+		buttonBuy.setText(getResources().getString(R.string.buy));
 		if (Helper.getSharedHelper().enableRating.equals("1")) {
 
 			ratingLL.setVisibility(View.GONE);
@@ -456,20 +457,20 @@ public class EShopDetailActivity extends BaseActivity implements
 		if (Helper.getSharedHelper().enableShoppingCart.equals("1")) {
 			cartView.setVisibility(View.GONE);
 			buttonBuy.setText("Buy");
-//			if (product.availQty != null) {
-//				if (Integer.parseInt(product.availQty) <= 0) {
-//					buttonBuy.setText(getResources().getString(
-//							R.string.sold_out));
-//					buttonBuy.setEnabled(false);
-//				}
-//			}
+			// if (product.availQty != null) {
+			// if (Integer.parseInt(product.availQty) <= 0) {
+			// buttonBuy.setText(getResources().getString(
+			// R.string.sold_out));
+			// buttonBuy.setEnabled(false);
+			// }
+			// }
 			btnEnquiry.setText(R.string.multiple_enquiry);
 			buttonBuy.setTextSize(14);
 			txtCartTotal.setText(Helper.getSharedHelper().getCartTotal());
 			btnLeftShare.setVisibility(View.VISIBLE);
 			btnShare.setVisibility(View.GONE);
 		} else if (Helper.getSharedHelper().enableCreditCode.equals("1")) {
-			tvEnterCode.setVisibility(View.VISIBLE);
+
 			cartView.setVisibility(View.GONE);
 			buttonBuy.setText("Buy");
 			btnLeftShare.setVisibility(View.VISIBLE);
@@ -482,6 +483,8 @@ public class EShopDetailActivity extends BaseActivity implements
 			btnLeftShare.setVisibility(View.GONE);
 			btnEnquiry.setText(R.string.single_enquiry);
 		}
+		tvEnterCode.setVisibility(View.VISIBLE);
+		btnSearch.setVisibility(View.GONE);
 
 		tvQty = (TextView) findViewById(R.id.tvQty);
 		tvQty.setTextColor(Color.parseColor("#" + retailer.getHeaderColor()));
@@ -902,10 +905,9 @@ public class EShopDetailActivity extends BaseActivity implements
 		tvNewPrice.setText(Helper.getSharedHelper().getCurrencySymbol(
 				selectedCurrencyCode)
 				+ Helper.getSharedHelper().conertfloatToSTring(newPrice));
-		
-		tvOldPrice.setPaintFlags(
-				tvOldPrice.getPaintFlags()
-						| Paint.STRIKE_THRU_TEXT_FLAG);
+
+		tvOldPrice.setPaintFlags(tvOldPrice.getPaintFlags()
+				| Paint.STRIKE_THRU_TEXT_FLAG);
 	}
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -1741,6 +1743,7 @@ public class EShopDetailActivity extends BaseActivity implements
 			try {
 				param.put(Constants.PARAM_RETAILER_ID, Constants.RETAILER_ID);
 				param.put("creditCode", edtCoupon.getText().toString());
+				param.put(Constants.PARAM_PRODUCTID_FOR_TOKEN, product.getId());
 				JSONObject jsonObject = HTTPHandler.defaultHandler().doPost(
 						Constants.URL_APPLY_COUPON, param);
 

@@ -2,10 +2,12 @@ package com.appsauthority.appwiz;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,6 +20,7 @@ import com.appauthority.appwiz.interfaces.ShippingChargeCaller;
 import com.appauthority.appwiz.interfaces.UserLoginCaller;
 import com.appauthority.appwiz.interfaces.UserProfileCaller;
 import com.appsauthority.appwiz.custom.BaseActivity;
+import com.appsauthority.appwiz.models.Country;
 import com.appsauthority.appwiz.models.PaypalTokenRequest;
 import com.appsauthority.appwiz.models.Product;
 import com.appsauthority.appwiz.models.Profile;
@@ -25,6 +28,7 @@ import com.appsauthority.appwiz.models.Retailer;
 import com.appsauthority.appwiz.utils.Constants;
 import com.appsauthority.appwiz.utils.HTTPHandler;
 import com.appsauthority.appwiz.utils.Helper;
+import com.appsauthority.appwiz.utils.ServiceHandler;
 import com.appsauthority.appwiz.utils.Utils;
 import com.facebook.Request;
 import com.facebook.Response;
@@ -49,19 +53,24 @@ import android.graphics.drawable.StateListDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Editable;
 import android.text.SpannableString;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
@@ -75,8 +84,13 @@ public class ProfileActivity extends BaseActivity implements
 	private TextView textViewHeader;
 	private ImageView imageViewOverflow;
 
+	private ArrayList<Country> countryList = new ArrayList<Country>();
+	private ArrayList<String> countryNameList = new ArrayList<String>();
+	private ArrayAdapter<String> adapter;
+	private ArrayList<String> countrySearchList = new ArrayList<String>();
+
 	private EditText editTextFirstName, editTextMobileNumber, editTextEmail;
-	private Button buttonSave;
+	private Button buttonSave, buttonCountries;
 	private SimpleDateFormat sdf;
 
 	private Context context;
@@ -159,13 +173,13 @@ public class ProfileActivity extends BaseActivity implements
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				showLoginForm();
-//				llLogin.setVisibility(View.GONE);
-//				llForgotPwd.setVisibility(View.VISIBLE);
-//				etEmailForgotPwd.setVisibility(View.VISIBLE);
-//				btnForgotPwd.setVisibility(View.VISIBLE);
-//				tvBackToLogin.setVisibility(View.VISIBLE);
-//				tvForgotPwd.setVisibility(View.VISIBLE);
-//				tvShowLogin.setVisibility(View.GONE);
+				// llLogin.setVisibility(View.GONE);
+				// llForgotPwd.setVisibility(View.VISIBLE);
+				// etEmailForgotPwd.setVisibility(View.VISIBLE);
+				// btnForgotPwd.setVisibility(View.VISIBLE);
+				// tvBackToLogin.setVisibility(View.VISIBLE);
+				// tvForgotPwd.setVisibility(View.VISIBLE);
+				// tvShowLogin.setVisibility(View.GONE);
 			}
 		});
 
@@ -203,6 +217,9 @@ public class ProfileActivity extends BaseActivity implements
 				.getGradientDrawableEditText(retailer.getHeaderColor()));
 		etEmailForgotPwd.setBackgroundDrawable(Helper.getSharedHelper()
 				.getGradientDrawableEditText(retailer.getHeaderColor()));
+		buttonCountries
+				.setBackgroundDrawable(getGradientDrawableEditText(retailer
+						.getHeaderColor()));
 
 		btnLogin.setTextColor(Color.parseColor("#"
 				+ retailer.getRetailerTextColor()));
@@ -415,6 +432,15 @@ public class ProfileActivity extends BaseActivity implements
 		sdf = new SimpleDateFormat("dd MMM yyyy");
 		TextView hyperlink = (TextView) findViewById(R.id.hyperlink);
 		veTermsOfUse = (LinearLayout) findViewById(R.id.veTermsOfUse);
+		buttonCountries = (Button) findViewById(R.id.sp_country);
+		buttonCountries.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				countryPressed(arg0);
+			}
+		});
 
 		// RelativeLayout rlPn = (RelativeLayout) findViewById(R.id.rlPn);
 		// rlPn.setVisibility(View.GONE);
@@ -561,6 +587,7 @@ public class ProfileActivity extends BaseActivity implements
 		// setSpinnerAdapter();
 
 		initializeLoginRegisterView();
+		new AsyncGetCountries().execute();
 
 	}
 
@@ -615,6 +642,7 @@ public class ProfileActivity extends BaseActivity implements
 					.setTypeface(Helper.getSharedHelper().normalFont);
 
 			tvDOB.setTypeface(Helper.getSharedHelper().normalFont);
+			buttonCountries.setTypeface(Helper.getSharedHelper().normalFont);
 
 			// tvRedeemlbl.setTypeface(Helper.getSharedHelper().normalFont);
 			// tvRedeem.setTypeface(Helper.getSharedHelper().normalFont);
@@ -650,6 +678,7 @@ public class ProfileActivity extends BaseActivity implements
 			editTextFirstName.setText(profile.getFirstName());
 			editTextEmail.setText(profile.getEmail());
 			editTextMobileNumber.setText(profile.getMobileNo() + "");
+			buttonCountries.setText(profile.getCountry());
 
 		} catch (Exception e) {
 
@@ -763,6 +792,8 @@ public class ProfileActivity extends BaseActivity implements
 
 					Calendar cal = Calendar.getInstance();
 					// sqliteHelper.openDataBase();
+					String countryCode = getCountryCode(buttonCountries
+							.getText().toString());
 
 					obj.put("retailerId", Constants.RETAILER_ID);
 					obj.put("fname", editTextFirstName.getText().toString());
@@ -772,6 +803,7 @@ public class ProfileActivity extends BaseActivity implements
 					obj.put("mobile_num", editTextMobileNumber.getText()
 							.toString());
 					obj.put("email", editTextEmail.getText().toString());
+					obj.put("country", countryCode);
 
 					obj.put("lat", Constants.LAT);
 					obj.put("long", Constants.LNG);
@@ -828,6 +860,7 @@ public class ProfileActivity extends BaseActivity implements
 				profile.setDob(tvDOB.getText().toString().trim());
 				profile.setEmail(editTextEmail.getText().toString());
 				profile.setFirstName(editTextFirstName.getText().toString());
+				profile.setCountry(buttonCountries.getText().toString());
 				profile.setLat(Constants.LAT);
 				profile.setLng(Constants.LNG);
 				profile.setMobileNo(Long.parseLong(editTextMobileNumber
@@ -843,6 +876,10 @@ public class ProfileActivity extends BaseActivity implements
 						.commit();
 				spref.edit()
 						.putBoolean(Constants.KEY_PN, !pnSwitch.isChecked())
+						.commit();
+				String countryCode = getCountryCode(buttonCountries.getText()
+						.toString());
+				spref.edit().putString(Constants.KEY_COUNTRY_ID, countryCode)
 						.commit();
 
 				spref.edit().putBoolean(Constants.KEY_IS_USER_LOGGED_IN, true)
@@ -1503,5 +1540,214 @@ public class ProfileActivity extends BaseActivity implements
 			showLoginForm();
 		}
 		Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+	}
+
+	private void populateCountries() {
+
+		for (int i = 0; i < countryList.size(); i++) {
+			countryNameList.add(countryList.get(i).getCountryName());
+		}
+
+	}
+
+	private String getCountryCode(String name) {
+		String countryCode = "";
+		for (Country country : countryList) {
+			if (country.getCountryName().equalsIgnoreCase(name)) {
+				countryCode = country.getCountryCode();
+				break;
+			}
+		}
+		return countryCode;
+	}
+
+	private String getCountryName(String code) {
+		String countryName = "";
+		for (Country country : countryList) {
+			if (country.getCountryCode().equalsIgnoreCase(code)) {
+				countryName = country.getCountryName();
+				break;
+			}
+		}
+		return countryName;
+	}
+
+	Boolean parseConries(String json) {
+		Boolean status = false;
+		JSONArray jsonArray;
+		try {
+			jsonArray = new JSONArray(json);
+			countryList.clear();
+			for (int i = 0; i < jsonArray.length(); i++) {
+				JSONObject country = (JSONObject) jsonArray.get(i);
+				Country cat = new Country();
+				cat.setCountryCode(country.getString("countryCode"));
+				cat.setCountryName(country.getString("countryName"));
+				countryList.add(cat);
+			}
+			status = true;
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			status = false;
+		}
+
+		// sqliteHelper.openDataBase();
+		// for (int i = 0; i < countryList.size(); i++) {
+		// sqliteHelper.insertOrReplaceCountry(countryList
+		// .get(i));
+		// }
+		// sqliteHelper.close();
+
+		return status;
+	}
+
+	private class AsyncGetCountries extends AsyncTask<Void, Void, Boolean> {
+
+		@Override
+		protected void onPreExecute() {
+			String json = spref.getString(Constants.KEY_GET_COUNTRY_INFO, "");
+			if (!json.equalsIgnoreCase("")) {
+				Boolean stats = parseConries(json);
+				if (stats) {
+					populateCountries();
+				}
+			} else {
+				showLoadingDialog();
+			}
+
+		}
+
+		@Override
+		protected Boolean doInBackground(Void... arg0) {
+
+			if (Utils.hasNetworkConnection(context)) {
+
+				Boolean status = false;
+				try {
+					ServiceHandler jsonParser = new ServiceHandler();
+					String json = jsonParser.makeServiceCall(
+							Constants.URL_GET_COUNTRIES, ServiceHandler.GET);
+					if (json != null) {
+
+						spref.edit()
+								.putString(Constants.KEY_GET_COUNTRY_INFO, json)
+								.commit();
+						status = parseConries(json);
+					} else {
+						status = false;
+					}
+				} catch (Exception e) {
+					return false;
+				}
+				return status;
+			} else {
+
+				// try {
+				// sqliteHelper.openDataBase();
+				// countryList = sqliteHelper.getCountries();
+				// sqliteHelper.close();
+				// } catch (Exception e) {
+				// }
+
+				return false;
+			}
+
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+
+			populateCountries();
+
+			dismissLoadingDialog();
+
+		}
+	}
+
+	public void countryPressed(View v) {
+		final Dialog dialog = new Dialog(context);
+		dialog.setContentView(R.layout.dialog_countries);
+		dialog.setTitle("Countries");
+
+		final EditText editTextSearch = (EditText) dialog
+				.findViewById(R.id.editTextSearch);
+
+		final ListView listViewCountries = (ListView) dialog
+				.findViewById(R.id.listViewCountries);
+
+		adapter = new ArrayAdapter<String>(getApplicationContext(),
+				R.layout.list_row_text, android.R.id.text1, countryNameList);
+
+		listViewCountries.setAdapter(adapter);
+
+		listViewCountries.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> adapter, View view,
+					int position, long arg) {
+
+				if (countrySearchList.size() > 0) {
+					buttonCountries.setText(countrySearchList.get(position));
+				} else {
+					buttonCountries.setText(countryNameList.get(position));
+				}
+				String countryId = getCountryCode(buttonCountries.getText()
+						.toString());
+				if (countryId.length() > 0) {
+					ShippingChargeDataHandler scdh = new ShippingChargeDataHandler(
+							countryId, null);
+					scdh.getShippingCharge();
+				}
+				dialog.dismiss();
+			}
+
+		});
+
+		editTextSearch.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+
+				countrySearchList.clear();
+				for (int i = 0; i < countryNameList.size(); i++) {
+					if (countryNameList.get(i).toLowerCase(Locale.ENGLISH)
+							.contains(s)) {
+						countrySearchList.add(countryNameList.get(i));
+
+					}
+				}
+
+				runOnUiThread(new Runnable() {
+
+					@Override
+					public void run() {
+
+						ArrayAdapter<String> adapterSearch = new ArrayAdapter<String>(
+								getApplicationContext(),
+								R.layout.list_row_text, android.R.id.text1,
+								countrySearchList);
+						adapter.notifyDataSetChanged();
+						listViewCountries.setAdapter(adapterSearch);
+
+					}
+				});
+
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+
+			}
+		});
+
+		dialog.show();
 	}
 }
