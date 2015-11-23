@@ -313,13 +313,13 @@ public class SlidingMenuActivity extends BaseActivity implements
 		 * DrawerItemType.CALENDER; navDrawerItems.add(voucher); } } }
 		 */
 
-//		NavDrawerItem home = new NavDrawerItem("Resturants Nearby",
-//				R.drawable.home, 0, false);
-//		home.itemType = DrawerItemType.ESHOP;
-//		navDrawerItems.add(home);
+		// NavDrawerItem home = new NavDrawerItem("Resturants Nearby",
+		// R.drawable.home, 0, false);
+		// home.itemType = DrawerItemType.ESHOP;
+		// navDrawerItems.add(home);
 
-		NavDrawerItem eshop = new NavDrawerItem("Resturants Nearby", R.drawable.locate_us,
-				1, false);
+		NavDrawerItem eshop = new NavDrawerItem("Resturants Nearby",
+				R.drawable.locate_us, 1, false);
 		eshop.itemType = DrawerItemType.ESHOP;
 		navDrawerItems.add(eshop);
 
@@ -328,12 +328,12 @@ public class SlidingMenuActivity extends BaseActivity implements
 		voucher.itemType = DrawerItemType.VOUCHER;
 		navDrawerItems.add(voucher);
 
-		NavDrawerItem history = new NavDrawerItem("Order History",
+		NavDrawerItem history = new NavDrawerItem("My Order",
 				R.drawable.shop_cart_black, 5, false);
 		history.itemType = DrawerItemType.ORDER_HISTORY;
 		navDrawerItems.add(history);
 
-		NavDrawerItem my_profile = new NavDrawerItem("Profile",
+		NavDrawerItem my_profile = new NavDrawerItem("My Profile",
 				R.drawable.my_profile, 7, true);
 		my_profile.itemType = DrawerItemType.PROFILE;
 		navDrawerItems.add(my_profile);
@@ -343,7 +343,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 		tnc.itemType = DrawerItemType.TERMSNCONDITION;
 		navDrawerItems.add(tnc);
 
-		NavDrawerItem about_us = new NavDrawerItem("Online Help"
+		NavDrawerItem about_us = new NavDrawerItem("Contact"
 		/* + retailer.getRetailerName() */, R.drawable.about_us, 8, false);
 		about_us.itemType = DrawerItemType.ABOUTUS;
 		navDrawerItems.add(about_us);
@@ -377,7 +377,8 @@ public class SlidingMenuActivity extends BaseActivity implements
 		}
 
 		try {
-			textViewHeader.setTextColor(Color.parseColor("#"+ retailer.getRetailerTextColor()));
+			textViewHeader.setTextColor(Color.parseColor("#"
+					+ retailer.getRetailerTextColor()));
 			textViewHeader.setTypeface(Helper.getSharedHelper().boldFont);
 			txtCartTotal.setTextColor(Color.parseColor("#"
 					+ retailer.getRetailerTextColor()));
@@ -590,38 +591,39 @@ public class SlidingMenuActivity extends BaseActivity implements
 				long id) {
 			// display view for selected nav drawer item
 			NavDrawerItem navItem = navDrawerItems.get(position);
-//			if (navItem.itemType == DrawerItemType.ESHOP) {
-//				viewFlipper.showNext();
-//				eshop_Category.clear();
-//				CategoryObject back = new CategoryObject();
-//				back.category_name = "Back";
-//				back.id = "";
-//				eshop_Category.add(back);
-//				eshop_category_list.setAdapter(eShopCategoryAdapter);
-//				eShopCategoryAdapter.notifyDataSetChanged();
-//				selectedList = SelectedList.ESHOP;
-//				new AsyncGetCategories().execute();
-//			} else
-				if (navItem.itemType == DrawerItemType.FEATUREDSTORE) {
+			// if (navItem.itemType == DrawerItemType.ESHOP) {
+			// viewFlipper.showNext();
+			// eshop_Category.clear();
+			// CategoryObject back = new CategoryObject();
+			// back.category_name = "Back";
+			// back.id = "";
+			// eshop_Category.add(back);
+			// eshop_category_list.setAdapter(eShopCategoryAdapter);
+			// eShopCategoryAdapter.notifyDataSetChanged();
+			// selectedList = SelectedList.ESHOP;
+			// new AsyncGetCategories().execute();
+			// } else
+			if (navItem.itemType == DrawerItemType.FEATUREDSTORE) {
 				viewFlipper.showNext();
 				populateFeaturedStores();
 				eshop_category_list.setAdapter(featuredStoreAdapter);
 				featuredStoreAdapter.notifyDataSetChanged();
 				selectedList = SelectedList.FEATUREDSTORE;
-			} else if (navItem.itemType == DrawerItemType.PROFILE) {
-				viewFlipper.showNext();
-				populateCurrencies();
-				eshop_category_list.setAdapter(curencyListAdapter);
-				curencyListAdapter.notifyDataSetChanged();
-				selectedList = SelectedList.CURRENCY;
-			} 
-//			else if (navItem.itemType == DrawerItemType.ABOUTUS) {
-//				viewFlipper.showNext();
-//				// populateCurrencies();
-//				eshop_category_list.setAdapter(aboutUsAdapter);
-//				aboutUsAdapter.notifyDataSetChanged();
-//				selectedList = SelectedList.ABOUTUS;
-//			} 
+			}
+			// else if (navItem.itemType == DrawerItemType.PROFILE) {
+			// viewFlipper.showNext();
+			// populateCurrencies();
+			// eshop_category_list.setAdapter(curencyListAdapter);
+			// curencyListAdapter.notifyDataSetChanged();
+			// selectedList = SelectedList.CURRENCY;
+			// }
+			// else if (navItem.itemType == DrawerItemType.ABOUTUS) {
+			// viewFlipper.showNext();
+			// // populateCurrencies();
+			// eshop_category_list.setAdapter(aboutUsAdapter);
+			// aboutUsAdapter.notifyDataSetChanged();
+			// selectedList = SelectedList.ABOUTUS;
+			// }
 			else {
 
 				NavDrawerItem item = navDrawerItems.get(position);
@@ -803,8 +805,9 @@ public class SlidingMenuActivity extends BaseActivity implements
 			fragment = new VouchersFragment();
 			break;
 		case PROFILE:
-			//fragment = new ProfileFragment();
-			Intent in=new Intent(SlidingMenuActivity.this,ProfileActivity.class);
+			// fragment = new ProfileFragment();
+			Intent in = new Intent(SlidingMenuActivity.this,
+					ProfileActivity.class);
 			startActivity(in);
 			break;
 		case ABOUTUS:

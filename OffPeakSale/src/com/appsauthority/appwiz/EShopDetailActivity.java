@@ -20,6 +20,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -414,24 +415,27 @@ public class EShopDetailActivity extends BaseActivity implements
 		productRatingBar.setStepSize(1.0f);
 		buyLL = (LinearLayout) findViewById(R.id.buyLL);
 		enquiryLL = (LinearLayout) findViewById(R.id.enquiryLL);
-		if (Helper.getSharedHelper().disablePayment.equals("1")) {
-			// buyLL.setVisibility(View.GONE);
-			// enquiryLL.setVisibility(View.VISIBLE);
-			buyLL.setVisibility(View.VISIBLE);
-			enquiryLL.setVisibility(View.GONE);
-			buttonBuy
-					.setText(getResources().getString(R.string.single_enquiry));
-		} else {
-			if (product.availQty != null) {
-				if (Integer.parseInt(product.availQty) <= 0) {
-					buttonBuy.setText(getResources().getString(
-							R.string.sold_out));
-					buttonBuy.setEnabled(false);
-				}
-			}
-			buyLL.setVisibility(View.VISIBLE);
-			enquiryLL.setVisibility(View.GONE);
-		}
+//		if (Helper.getSharedHelper().disablePayment.equals("1")) {
+//			// buyLL.setVisibility(View.GONE);
+//			// enquiryLL.setVisibility(View.VISIBLE);
+//			buyLL.setVisibility(View.VISIBLE);
+//			enquiryLL.setVisibility(View.GONE);
+//			buttonBuy
+//					.setText(getResources().getString(R.string.single_enquiry));
+//		} else {
+//			if (product.availQty != null) {
+//				if (Integer.parseInt(product.availQty) <= 0) {
+//					buttonBuy.setText(getResources().getString(
+//							R.string.sold_out));
+//					buttonBuy.setEnabled(false);
+//				}
+//			}
+//			buyLL.setVisibility(View.VISIBLE);
+//			enquiryLL.setVisibility(View.GONE);
+//		}
+		
+		buttonBuy.setText(getResources().getString(
+				R.string.buy));
 		if (Helper.getSharedHelper().enableRating.equals("1")) {
 
 			ratingLL.setVisibility(View.GONE);
@@ -447,14 +451,14 @@ public class EShopDetailActivity extends BaseActivity implements
 
 		if (Helper.getSharedHelper().enableShoppingCart.equals("1")) {
 			cartView.setVisibility(View.GONE);
-			buttonBuy.setText("Add To Cart");
-			if (product.availQty != null) {
-				if (Integer.parseInt(product.availQty) <= 0) {
-					buttonBuy.setText(getResources().getString(
-							R.string.sold_out));
-					buttonBuy.setEnabled(false);
-				}
-			}
+			buttonBuy.setText("Buy");
+//			if (product.availQty != null) {
+//				if (Integer.parseInt(product.availQty) <= 0) {
+//					buttonBuy.setText(getResources().getString(
+//							R.string.sold_out));
+//					buttonBuy.setEnabled(false);
+//				}
+//			}
 			btnEnquiry.setText(R.string.multiple_enquiry);
 			buttonBuy.setTextSize(14);
 			txtCartTotal.setText(Helper.getSharedHelper().getCartTotal());
@@ -881,7 +885,8 @@ public class EShopDetailActivity extends BaseActivity implements
 		if (product.getOldPrice() != null) {
 			float oldProce = Float.parseFloat(product.getOldPrice());
 			oldProce = oldProce * conversionValue;
-			tvOldPrice.setText(selectedCurrencyCode
+			tvOldPrice.setText(Helper.getSharedHelper().getCurrencySymbol(
+					selectedCurrencyCode)
 					+ Helper.getSharedHelper().conertfloatToSTring(oldProce));
 			tvOldPrice.setVisibility(View.VISIBLE);
 		} else {
@@ -890,8 +895,13 @@ public class EShopDetailActivity extends BaseActivity implements
 
 		newPrice = newPrice * conversionValue;
 
-		tvNewPrice.setText(selectedCurrencyCode
+		tvNewPrice.setText(Helper.getSharedHelper().getCurrencySymbol(
+				selectedCurrencyCode)
 				+ Helper.getSharedHelper().conertfloatToSTring(newPrice));
+		
+		tvOldPrice.setPaintFlags(
+				tvOldPrice.getPaintFlags()
+						| Paint.STRIKE_THRU_TEXT_FLAG);
 	}
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -972,7 +982,7 @@ public class EShopDetailActivity extends BaseActivity implements
 				.findViewById(R.id.vwTabUnderline);
 
 		tvReview.setText("Reviews");
-		tvProductDetail.setText("Product Details");
+		tvProductDetail.setText("Resturant Details");
 		tvHowItWorks.setText("How It Works");
 		underLineReview.setBackgroundColor(Color.TRANSPARENT);
 
@@ -1200,13 +1210,13 @@ public class EShopDetailActivity extends BaseActivity implements
 	void updatePrice() {
 		String selectedCurrencyCode = Helper.getSharedHelper().currency_code;
 		float conversionValue = 0.0f;
-		try {
-			conversionValue = Float
-					.parseFloat(Helper.getSharedHelper().currency_conversion_map
-							.get(Helper.getSharedHelper().currency_code));
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		// try {
+		// conversionValue = Float
+		// .parseFloat(Helper.getSharedHelper().currency_conversion_map
+		// .get(Helper.getSharedHelper().currency_code));
+		// } catch (Exception e) {
+		// // TODO: handle exception
+		// }
 
 		if (conversionValue == 0.0f) {
 			conversionValue = 1.0f;

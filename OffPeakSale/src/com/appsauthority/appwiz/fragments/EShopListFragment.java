@@ -98,7 +98,7 @@ public class EShopListFragment extends Fragment {
 
 	HorizontalScrollView horizontalScrollView;
 	int width;
-	int selectedTabIndex = 0;
+	int selectedTabIndex = 1;
 
 	MyLocation myLocation;
 	LocationResult result;
@@ -623,8 +623,9 @@ public class EShopListFragment extends Fragment {
 
 		List<String> tabs = new ArrayList<String>();
 		tabs.add("Morning");
-		tabs.add("Afternoon");
-		tabs.add("Night");
+//		tabs.add("Afternoon");
+//		tabs.add("Night");
+//		tabs.add("Night");
 		tabs.add("Midnight");
 
 		llTabContainer.removeAllViews();
@@ -632,7 +633,7 @@ public class EShopListFragment extends Fragment {
 		getActivity().getWindowManager().getDefaultDisplay()
 				.getMetrics(displaymetrics);
 		int screewidth = displaymetrics.widthPixels;
-		if (tabs.size() >= 2) {
+		if (tabs.size() > 2) {
 			width = (int) (screewidth / 2.5);
 			// width = (int) (width - width*.25);
 		} else {
@@ -672,7 +673,34 @@ public class EShopListFragment extends Fragment {
 			});
 		}
 
-		horizontalScrollView.smoothScrollTo(width * selectedTabIndex, 0);
+		if (selectedTabIndex == 1) {
+			final int xOffset = (screewidth/2-width);
+			horizontalScrollView.smoothScrollTo(xOffset, 0);
+			
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					getActivity().runOnUiThread(new Runnable() {
+						public void run() {
+							
+							horizontalScrollView.smoothScrollTo(xOffset, 0);
+
+						}
+					});
+
+				}
+			}, 500);
+		}else if(selectedTabIndex < tabs.size()-1){
+			final int xOffset = (screewidth/2-width);
+			int scrollToX = width * (selectedTabIndex-1)+xOffset;
+			horizontalScrollView.smoothScrollTo(scrollToX, 0);
+		}
+		else {
+			
+			horizontalScrollView.smoothScrollTo(width * selectedTabIndex, 0);
+		}
 
 	}
 
@@ -752,25 +780,24 @@ public class EShopListFragment extends Fragment {
 
 		List<Address> addresses;
 		try {
-			addresses = geocoder.getFromLocation(latitude, longitude,
-					1);
-			if (addresses.size()>0) {
+			addresses = geocoder.getFromLocation(latitude, longitude, 1);
+			if (addresses.size() > 0) {
 				Address address = addresses.get(0);
-				
+
 				curreentAddess = address.getAddressLine(0);
-//				String city = address.getLocality();
-//				String state = address.getAdminArea();
-//				String zip = address.getPostalCode();
-//				String country = address.getCountryName();
+				// String city = address.getLocality();
+				// String state = address.getAdminArea();
+				// String zip = address.getPostalCode();
+				// String country = address.getCountryName();
 			}
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		
 	}
+
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
