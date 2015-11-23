@@ -162,11 +162,10 @@
                         android:id="@+id/tvAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="3 Temasek Avenue"
                         android:layout_marginLeft="5dp"
+                        android:text="3 Temasek Avenue"
                         android:textColor="@android:color/black"
                         android:textSize="13sp" />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -231,6 +230,13 @@
                     android:visibility="gone" >
 
                     <include layout="@layout/menu_layout" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llMapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:visibility="visible" >
                 </LinearLayout>
 
                 <LinearLayout

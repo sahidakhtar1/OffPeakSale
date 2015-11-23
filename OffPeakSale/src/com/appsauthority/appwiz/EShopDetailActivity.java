@@ -176,7 +176,7 @@ public class EShopDetailActivity extends BaseActivity implements
 	View underLineReview, underlineProductDetail, underlineHowItWorks;
 
 	ViewFlipper viewFlipper;
-	LinearLayout vwChildReviews, vwChildProductDetails, vwChildHowItWorks;
+	LinearLayout vwChildReviews, vwChildProductDetails, vwChildHowItWorks,llMapView;
 	RelativeLayout rlBannerlayout;
 
 	ImageView imgAnimationImage;
@@ -223,6 +223,10 @@ public class EShopDetailActivity extends BaseActivity implements
 		vwChildReviews.setTag(0);
 		vwChildProductDetails.setTag(1);
 		vwChildHowItWorks.setTag(2);
+		llMapView = (LinearLayout) findViewById(R.id.llMapView);
+		
+		MapLayout mapLayout = new MapLayout(activity, activity,Helper.getSharedHelper().stores);
+		llMapView.addView(mapLayout);
 
 		edt_comments = (EditText) findViewById(R.id.edt_comments);
 		edt_Name = (EditText) findViewById(R.id.edt_Name);

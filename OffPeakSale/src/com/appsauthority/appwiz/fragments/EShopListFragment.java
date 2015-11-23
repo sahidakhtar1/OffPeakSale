@@ -623,9 +623,8 @@ public class EShopListFragment extends Fragment {
 
 		List<String> tabs = new ArrayList<String>();
 		tabs.add("Morning");
-//		tabs.add("Afternoon");
-//		tabs.add("Night");
-//		tabs.add("Night");
+		tabs.add("Afternoon");
+		tabs.add("Night");
 		tabs.add("Midnight");
 
 		llTabContainer.removeAllViews();
@@ -674,9 +673,9 @@ public class EShopListFragment extends Fragment {
 		}
 
 		if (selectedTabIndex == 1) {
-			final int xOffset = (screewidth/2-width);
+			final int xOffset = (screewidth / 2 - width);
 			horizontalScrollView.smoothScrollTo(xOffset, 0);
-			
+
 			new Handler().postDelayed(new Runnable() {
 
 				@Override
@@ -684,7 +683,7 @@ public class EShopListFragment extends Fragment {
 					// TODO Auto-generated method stub
 					getActivity().runOnUiThread(new Runnable() {
 						public void run() {
-							
+
 							horizontalScrollView.smoothScrollTo(xOffset, 0);
 
 						}
@@ -692,13 +691,12 @@ public class EShopListFragment extends Fragment {
 
 				}
 			}, 500);
-		}else if(selectedTabIndex < tabs.size()-1){
-			final int xOffset = (screewidth/2-width);
-			int scrollToX = width * (selectedTabIndex-1)+xOffset;
+		} else if (selectedTabIndex < tabs.size() - 1) {
+			final int xOffset = (screewidth / 2 - width);
+			int scrollToX = width * (selectedTabIndex - 1) + xOffset;
 			horizontalScrollView.smoothScrollTo(scrollToX, 0);
-		}
-		else {
-			
+		} else {
+
 			horizontalScrollView.smoothScrollTo(width * selectedTabIndex, 0);
 		}
 

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- <string name="map_key">AIzaSyD5EOEkts1TkSD56LAAnvbU6hfBl0M1tYg</string> -->
-    <string name="map_key">AIzaSyD4MwcyOuotA-8_GIXKIeHHlqCKAYLiT4E</string>
+    <string name="map_key">AIzaSyC9IK5RL3bvl8TzQBwyJ8ZRbWIEiCmAZbE</string>
     <string name="app_name">OffPeakSale</string>
     <string name="action_settings">Settings</string>
     <string name="lorem_ipsum">Lorem Ipsum</string>
@@ -84,7 +83,6 @@
     <string name="qty">Qty</string>
     <string name="search">Search</string>
     <string name="msg_default_status">Place a barcode inside the viewfinder rectangle to scan it. </string>
-    
     <string name="text_home_deliver">Delivery</string>
     <string name="text_store_collection">Collection</string>
 
@@ -111,8 +109,10 @@
         <item>Contact Us</item>
         <item>Profile</item>
         <item>About Us</item>
-        <!-- <item>Terms of Use</item>
-        <item>Currency</item> -->
+        <!--
+        <item>Terms of Use</item>
+        <item>Currency</item>
+        -->
     </string-array>
 
     <!-- Nav Drawer List Item Icons -->
@@ -127,8 +127,12 @@
         <item>@drawable/locate_us</item>
         <item>@drawable/my_profile</item>
         <item>@drawable/about_us</item>
-        <!-- <item>@drawable/termsofuse</item>
-        <item>@drawable/ic_currency</item> -->
+        <!--
+        <item>@drawable/termsofuse</item>
+        <item>@drawable/ic_currency</item>
+        -->
     </array>
-<string name="facebook_app_id">689408087861911</string>
+
+    <string name="facebook_app_id">689408087861911</string>
+
 </resources>
