@@ -6,10 +6,18 @@ package com.appsauthority.appwiz.fragments;
  * Written by Kevin Irish Antonio <irish.antonio@yahoo.com>, February 2014
  */
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.http.NameValuePair;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -51,6 +59,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.appauthority.appwiz.fragments.HomeFragment;
 import com.appsauthority.appwiz.EShopDetailActivity;
@@ -67,7 +76,14 @@ import com.appsauthority.appwiz.utils.HTTPHandler;
 import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.Utils;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.offpeaksale.restaurants.R;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 public class EShopListFragment extends Fragment {
 
@@ -106,6 +122,14 @@ public class EShopListFragment extends Fragment {
 	String curreentAddess;
 	String targetedAddress;
 
+	private static final String LOG_TAG = "Google Places Autocomplete";
+    private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
+    private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
+    private static final String OUT_JSON = "/json";
+    private static final String API_KEY ="AIzaSyDAIb7josxX55yT-aam9XpCnbPgKWjwIjs";
+    JSONArray placePredsJsonArray;
+    String mLattitude,mLongitude;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -363,6 +387,24 @@ public class EShopListFragment extends Fragment {
 					.findViewById(R.id.etCurrentLocation);
 			etTargetLocation = (AutoCompleteTextView) dialog
 					.findViewById(R.id.etTargetLocation);
+			etTargetLocation.setAdapter(new GooglePlacesAutocompleteAdapter(getActivity(), R.layout.place_autocomplete_list_item));
+			etTargetLocation.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+					String str = (String) parent.getItemAtPosition(position);
+					try {
+						String place_id=placePredsJsonArray.getJSONObject(position).getString("place_id");
+						//Toast.makeText(getActivity(), str+" : "+place_id, Toast.LENGTH_SHORT).show();
+						new GeocodeAsnc().execute(place_id);
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					
+				}
+			});
 			etCurrentLocation.setText(curreentAddess);
 
 			rdCurrentLocation.setOnClickListener(new OnClickListener() {
@@ -400,6 +442,120 @@ public class EShopListFragment extends Fragment {
 
 	}
 
+	class GooglePlacesAutocompleteAdapter extends ArrayAdapter<String> implements Filterable {
+		private ArrayList<String> resultList;
+
+		public GooglePlacesAutocompleteAdapter(Context context, int textViewResourceId) {
+			super(context, textViewResourceId);
+		}
+
+		@Override
+		public int getCount() {
+			return resultList.size();
+		}
+
+		@Override
+		public String getItem(int index) {
+			return resultList.get(index);
+		}
+
+		@Override
+		public Filter getFilter() {
+			Filter filter = new Filter() {
+				@Override
+				protected FilterResults performFiltering(CharSequence constraint) {
+					FilterResults filterResults = new FilterResults();
+					if (constraint != null) {
+						// Retrieve the autocomplete results.
+						resultList =autocomplete(constraint.toString());
+
+						// Assign the data to the FilterResults
+						filterResults.values = resultList;
+						filterResults.count = resultList.size();
+					}
+					return filterResults;
+				}
+
+				@Override
+				protected void publishResults(CharSequence constraint, FilterResults results) {
+					if (results != null && results.count > 0) {
+						notifyDataSetChanged();
+					} else {
+						notifyDataSetInvalidated();
+					}
+				}
+			};
+			return filter;
+		}
+	}
+	
+	public class GeocodeAsnc extends AsyncTask<String, Void, String>
+	{
+
+		@Override
+		protected String doInBackground(String... params) {
+			
+			String url="https://maps.googleapis.com/maps/api/place/details/json?placeid="+params[0]+"&key="+API_KEY;
+			HTTPHandler handler=HTTPHandler.defaultHandler();
+			List<NameValuePair> params1 = null; 
+			JSONObject jsonObj = handler.doGet(url, params1);
+			try {
+				JSONObject routeObject = jsonObj.getJSONObject("result");
+
+				mLattitude=routeObject.getJSONObject("geometry").getJSONObject("location").getString("lat");
+				mLongitude=routeObject.getJSONObject("geometry").getJSONObject("location").getString("lng");
+					
+				System.out.println("Lattitude : "+mLattitude);
+				System.out.println("Longitude : "+mLongitude);
+					
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+		}
+		
+		
+	}
+	
+	
+	public  ArrayList<String> autocomplete(String input) {
+		ArrayList<String> resultList = null;
+		
+		try {
+			StringBuilder sb = new StringBuilder(PLACES_API_BASE + TYPE_AUTOCOMPLETE + OUT_JSON);
+			sb.append("?key=" + API_KEY);
+			sb.append("&components=country:in");
+			sb.append("&input=" + URLEncoder.encode(input, "utf8"));
+			
+		HTTPHandler handler=HTTPHandler.defaultHandler();
+			// Create a JSON object hierarchy from the results
+		List<NameValuePair> params = null; 
+			JSONObject jsonObj = handler.doGet(sb.toString(), params);
+			placePredsJsonArray = jsonObj.getJSONArray("predictions");
+
+			// Extract the Place descriptions from the results
+			resultList = new ArrayList<String>(placePredsJsonArray.length());
+			for (int i = 0; i < placePredsJsonArray.length(); i++) {
+				System.out.println(placePredsJsonArray.getJSONObject(i).getString("description"));
+				System.out.println("============================================================");
+				resultList.add(placePredsJsonArray.getJSONObject(i).getString("description"));
+			}
+		} catch (JSONException e) {
+			Log.e(LOG_TAG, "Cannot process JSON results", e);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return resultList;
+	}
 	private final class AsyncAllProducts extends AsyncTask<Void, Void, Boolean> {
 
 		@Override
