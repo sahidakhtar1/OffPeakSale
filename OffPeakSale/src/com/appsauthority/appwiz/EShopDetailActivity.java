@@ -1253,6 +1253,7 @@ public class EShopDetailActivity extends BaseActivity implements
 			}
 
 			float newPrice = (float) val;
+			newPrice = Helper.getSharedHelper().totalPriceAfterDiscount(newPrice);
 			newPrice = newPrice * conversionValue;
 			if (Helper.getSharedHelper().isDecialFromat) {
 				textViewNewPrice.setText(Helper.getSharedHelper()
@@ -2309,7 +2310,7 @@ public class EShopDetailActivity extends BaseActivity implements
 		}
 		float unitPrice = Float.parseFloat(product.getNewPrice());
 		float totalPrice = unitPrice * Integer.parseInt(editTextQty.getText().toString());
-		bundle.putString("grandTotal", Float.toString(totalPrice));
+		bundle.putString("grandTotal", Float.toString(Helper.getSharedHelper().totalPriceAfterDiscount(totalPrice)));
 
 		Intent i = new Intent(context, PaypalActivity.class);
 		i.putExtras(bundle);

@@ -1,5 +1,6 @@
 package com.appsauthority.appwiz.utils;
 
+import java.nio.channels.FileLock;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -361,6 +362,25 @@ public class Helper {
 		return total;
 
 	}
+public float totalPriceAfterDiscount(float totalPrice){
+	float discount;
+	if (Helper.getSharedHelper().discountType
+			.equalsIgnoreCase(Constants.KEY_DEFAULT_DISCOUNT_TYPE)) {
+
+		discount = totalPrice
+				* Float.parseFloat(sharedHelper.discountPercent) / 100;
+		;
+	} else {
+
+		discount = Float
+				.parseFloat(Helper.getSharedHelper().discountPercent);
+	}
+	float netPrice = totalPrice-discount;
+	if (netPrice <0) {
+		netPrice = 0;
+	}
+	return netPrice;
+}
 
 	public String conertfloatToSTring(float value) {
 		String convertedValue = "0";

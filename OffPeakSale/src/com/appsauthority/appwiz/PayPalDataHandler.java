@@ -72,6 +72,14 @@ public class PayPalDataHandler {
 				productJson.put(Constants.PARAM_QUANTITY, qty);
 				jObj.put(productJson);
 				json.put("products", jObj);
+				
+				json.put("discount",
+						Helper.getSharedHelper().discountPercent);
+				json.put("discountType",
+						Helper.getSharedHelper().discountType);
+				json.put("discountCode",
+						Helper.getSharedHelper().creditCode);
+				
 				String checkOut_url;
 				if (Helper.getSharedHelper().reatiler.enablePay
 						.equalsIgnoreCase("1")) {
