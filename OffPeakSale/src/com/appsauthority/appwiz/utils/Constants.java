@@ -90,12 +90,14 @@ public class Constants {
 
 	// public static String HOST = "http://appwizlive.com";
 	// public static String HOST = "http://inceptionlive.com";
-	public static String HOST = "http://smartcommerce.asia";
+//	public static String HOST = "http://smartcommerce.asia";
 	// public static String HOST = "http://www.digimall.asia";
 	// public static String HOST = "http://119.81.207.36";
 
 	// public static String HOST = "http://www.diyecommerce.net";
 	// public static String HOST = "http://appwiz.cloudapp.net";
+	
+	public static String HOST = "http://119.81.207.44";
 
 	public static String URL_GET_PRODUCTS = HOST + "/getProducts.php";
 	public static String URL_GET_CATEGORIES = HOST + "/getCategories.php";

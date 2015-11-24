@@ -13,16 +13,16 @@ public class RetailerStores implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@SerializedName("storeAddress")
+	@SerializedName("outletAddr")
 	String storeAddress;
 
-	@SerializedName("storeContact")
+	@SerializedName("outletContact")
 	String storeContact;
 
-	@SerializedName("latitude")
+	@SerializedName("outletLat")
 	String latitude;
 
-	@SerializedName("longitude")
+	@SerializedName("outletLong")
 	String longitude;
 
 	public RetailerStores() {

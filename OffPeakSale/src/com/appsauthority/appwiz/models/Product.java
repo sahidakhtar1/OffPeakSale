@@ -9,6 +9,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
+import android.os.storage.StorageManager;
+
+import com.appauthority.appwiz.fragments.BranchLocationFragment;
 import com.google.gson.annotations.SerializedName;
 
 public class Product implements Serializable {
@@ -67,6 +70,9 @@ public class Product implements Serializable {
 	
 	@SerializedName("prodOptions")
 	public String prodOptions;
+	
+	@SerializedName("outlets")
+	public List<RetailerStores> outlets;
 	
 	
 

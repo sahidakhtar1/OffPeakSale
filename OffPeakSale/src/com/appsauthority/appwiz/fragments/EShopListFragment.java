@@ -601,12 +601,12 @@ public class EShopListFragment extends Fragment {
 				try {
 					param.put(Constants.PARAM_RETAILER_ID,
 							Constants.RETAILER_ID);
-					if (category != null) {
-						param.put(Constants.PARAM_CATEGORY_ID, category.id);
-					}
+//					if (category != null) {
+//						param.put(Constants.PARAM_CATEGORY_ID, category.id);
+//					}
 					// if (filterIndex > 0) {
-					param.put(Constants.PARAM_FILTER_ID,
-							listFilterKey.get(filterIndex));
+//					param.put(Constants.PARAM_FILTER_ID,
+//							listFilterKey.get(filterIndex));
 					// }
 					if (searchedKeyWord != null) {
 						param.put(Constants.PARAM_KEYWORD_ID, searchedKeyWord);
