@@ -531,7 +531,7 @@ public class EShopListFragment extends Fragment {
 		try {
 			StringBuilder sb = new StringBuilder(PLACES_API_BASE + TYPE_AUTOCOMPLETE + OUT_JSON);
 			sb.append("?key=" + API_KEY);
-			sb.append("&components=country:in");
+//			sb.append("&components=country:in");
 			sb.append("&input=" + URLEncoder.encode(input, "utf8"));
 			
 		HTTPHandler handler=HTTPHandler.defaultHandler();

@@ -227,7 +227,7 @@ public class EShopDetailActivity extends BaseActivity implements
 		llMapView = (LinearLayout) findViewById(R.id.llMapView);
 
 		MapLayout mapLayout = new MapLayout(activity, activity,
-				Helper.getSharedHelper().stores);
+				product.outlets);
 		llMapView.addView(mapLayout);
 
 		edt_comments = (EditText) findViewById(R.id.edt_comments);
