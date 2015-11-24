@@ -121,6 +121,7 @@ public class EShopListFragment extends Fragment {
 	private double lat, lng;
 	String curreentAddess;
 	String targetedAddress;
+	int selectedSearchOption = 0;
 
 	private static final String LOG_TAG = "Google Places Autocomplete";
     private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
@@ -134,6 +135,8 @@ public class EShopListFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		listFilterKey = new ArrayList<String>();
+		mLattitude = "";
+		mLongitude = "";
 
 		listFilterKey.add("rate");
 		listFilterKey.add("new");
@@ -392,7 +395,7 @@ public class EShopListFragment extends Fragment {
 
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-					String str = (String) parent.getItemAtPosition(position);
+					targetedAddress = (String) parent.getItemAtPosition(position);
 					try {
 						String place_id=placePredsJsonArray.getJSONObject(position).getString("place_id");
 						//Toast.makeText(getActivity(), str+" : "+place_id, Toast.LENGTH_SHORT).show();
@@ -406,6 +409,7 @@ public class EShopListFragment extends Fragment {
 				}
 			});
 			etCurrentLocation.setText(curreentAddess);
+			etTargetLocation.setText(targetedAddress);
 
 			rdCurrentLocation.setOnClickListener(new OnClickListener() {
 
@@ -414,6 +418,7 @@ public class EShopListFragment extends Fragment {
 					// TODO Auto-generated method stub
 					rdCurrentLocation.setChecked(true);
 					rdTargetLocation.setChecked(false);
+					selectedSearchOption = 0;
 				}
 			});
 
@@ -424,6 +429,7 @@ public class EShopListFragment extends Fragment {
 					// TODO Auto-generated method stub
 					rdCurrentLocation.setChecked(false);
 					rdTargetLocation.setChecked(true);
+					selectedSearchOption = 1;
 				}
 			});
 
@@ -601,6 +607,14 @@ public class EShopListFragment extends Fragment {
 				try {
 					param.put(Constants.PARAM_RETAILER_ID,
 							Constants.RETAILER_ID);
+					if (selectedSearchOption == 1) {
+						param.put(Constants.PARAM_LAT, Constants.LAT);
+						param.put(Constants.PARAM_LONG, Constants.LNG);
+					}else{
+						param.put(Constants.PARAM_LAT, mLattitude);
+						param.put(Constants.PARAM_LONG, mLongitude);
+					}
+					
 //					if (category != null) {
 //						param.put(Constants.PARAM_CATEGORY_ID, category.id);
 //					}

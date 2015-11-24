@@ -72,6 +72,9 @@ public class Product implements Serializable {
 	@SerializedName("outlets")
 	public ArrayList<RetailerStores> outlets;
 	
+	@SerializedName("offpeak_discount")
+	public String offpeakDiscount;
+	
 	
 
 	Boolean isOptedGiftWrap ;
