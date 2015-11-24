@@ -38,6 +38,7 @@ public class PaypalActivity extends BaseActivity {
 	String token;
 	String transactionId;
 	private String placeOrderUrl;
+	private String grandTotal;
 
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override
@@ -55,6 +56,7 @@ public class PaypalActivity extends BaseActivity {
 		cancelUrl = bundleArgs.getString("cancelUrl");
 
 		String paypalMode = bundleArgs.getString("paypalMode");
+		grandTotal = bundleArgs.getString("grandTotal");
 		String urlSTring;
 		String url ;
 		if (Helper.getSharedHelper().reatiler.enableVerit.equalsIgnoreCase("1")) {
@@ -227,19 +229,22 @@ public class PaypalActivity extends BaseActivity {
 				total = total- Float.parseFloat(Helper.getSharedHelper().redeemPoints);
 				amount = Float.toString(total);
 			}
-
+			String selectedCurrencyCode = Helper.getSharedHelper().currency_code;
+			if (selectedCurrencyCode == null || selectedCurrencyCode.length() == 0) {
+				selectedCurrencyCode = Helper.getSharedHelper().reatiler.defaultCurrency;
+			}
 			String paymetTitle = "Payment success\nEmail confirmation sent\n\n";
-			String grandTotal = "Grand Total: "
-					+ Helper.getSharedHelper().currency_symbol + " " + amount
+			String grandTotalMSG = "Grand Total: "
+					+ Helper.getSharedHelper().currency_symbol + " " + grandTotal
 					+ "\n\n";
 			String earnedRewards = "";
-			if (Helper.getSharedHelper().reatiler.enableRewards
-					.equalsIgnoreCase("1")) {
-				earnedRewards = "Credit Points Earned: "
-						+ Helper.getSharedHelper().rewardPountsEarned + "\n\n";
-			} else {
-
-			}
+//			if (Helper.getSharedHelper().reatiler.enableRewards
+//					.equalsIgnoreCase("1")) {
+//				earnedRewards = "Credit Points Earned: "
+//						+ Helper.getSharedHelper().rewardPountsEarned + "\n\n";
+//			} else {
+//
+//			}
 			String id = transactionId;
 			if (id == null && token != null) {
 				id = token;
@@ -256,7 +261,7 @@ public class PaypalActivity extends BaseActivity {
 			}
 			String msg = "Dear Customer,\nYour purchase is sucessful.\nYou will receive E-Mail confirmation shortly.";
 
-			String toasttext = paymetTitle + grandTotal + earnedRewards
+			String toasttext = paymetTitle + grandTotalMSG + earnedRewards
 					+ orderNo;// + msg;
 			Toast.makeText(context, toasttext, Toast.LENGTH_LONG).show();
 

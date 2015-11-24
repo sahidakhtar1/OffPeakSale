@@ -2278,7 +2278,7 @@ public class EShopDetailActivity extends BaseActivity implements
 
 		String emailId = spref.getString(Constants.KEY_EMAIL, "");
 		PayPalDataHandler payPalDataHandler = new PayPalDataHandler(this,
-				product.getId(), emailId, tvQty.getText().toString());
+				product.getId(), emailId, editTextQty.getText().toString());
 		payPalDataHandler.getpayPalData();
 		showLoadingDialog();
 	}
@@ -2287,7 +2287,35 @@ public class EShopDetailActivity extends BaseActivity implements
 	public void payPalDataDownloaded(PayPalModelObject payPalObj) {
 		// TODO Auto-generated method stub
 		dismissLoadingDialog();
+		Bundle bundle = new Bundle();
+
+		bundle.putSerializable("product", product);
+		if (Helper.getSharedHelper().reatiler.enablePay
+				.equalsIgnoreCase("1")) {
+			bundle.putString("token",
+					payPalObj.token);
+		} else {
+			bundle.putString("redirectUrl",
+					payPalObj.redirectUrl);
+		}
+
+		bundle.putString("sucessUrl",
+				payPalObj.sucessUrl);
+		bundle.putString("cancelUrl",
+				payPalObj.cancelUrl);
+		if (payPalObj.paypalMode != null) {
+			bundle.putString("paypalMode",
+					payPalObj.paypalMode);
+		}
+		float unitPrice = Float.parseFloat(product.getNewPrice());
+		float totalPrice = unitPrice * Integer.parseInt(editTextQty.getText().toString());
+		bundle.putString("grandTotal", Float.toString(totalPrice));
+
+		Intent i = new Intent(context, PaypalActivity.class);
+		i.putExtras(bundle);
+		startActivity(i);
 	}
+	
 
 	@Override
 	public void payPalDataFailed(String errorMsg) {

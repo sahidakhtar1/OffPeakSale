@@ -728,10 +728,6 @@ public class ProfileActivity extends BaseActivity implements
 					.show();
 			status = false;
 			tv = editTextFirstName;
-		} else if (tvDOB.getText().toString().trim().length() == 0) {
-			Toast.makeText(context, "Enter your date of birth",
-					Toast.LENGTH_SHORT).show();
-			status = false;
 		} else if (editTextMobileNumber.getText().toString().trim().length() == 0) {
 			Toast.makeText(context, "Enter your mobile number",
 					Toast.LENGTH_SHORT).show();
@@ -785,11 +781,6 @@ public class ProfileActivity extends BaseActivity implements
 				Boolean status = false;
 				try {
 
-					Date dateOfBirth = new Date();
-					if (tvDOB.getText().length() > 0) {
-						dateOfBirth = sdf.parse(tvDOB.getText().toString());
-					}
-
 					Calendar cal = Calendar.getInstance();
 					// sqliteHelper.openDataBase();
 					String countryCode = getCountryCode(buttonCountries
@@ -798,8 +789,6 @@ public class ProfileActivity extends BaseActivity implements
 					obj.put("retailerId", Constants.RETAILER_ID);
 					obj.put("fname", editTextFirstName.getText().toString());
 
-					obj.put("age", new Date().getYear() - dateOfBirth.getYear());
-					obj.put("dob", tvDOB.getText().toString());
 					obj.put("mobile_num", editTextMobileNumber.getText()
 							.toString());
 					obj.put("email", editTextEmail.getText().toString());
@@ -844,20 +833,10 @@ public class ProfileActivity extends BaseActivity implements
 		protected void onPostExecute(Boolean result) {
 
 			if (result) {
-				Date dateOfBirth = new Date();
-				if (tvDOB.getText().length() > 0) {
-
-					try {
-						dateOfBirth = sdf.parse(tvDOB.getText().toString());
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-				}
 
 				Profile profile = new Profile();
 				// profile.setAge(new Date().getYear() - dateOfBirth.getYear());
 				profile.setDeviceToken(Constants.REG_ID);
-				profile.setDob(tvDOB.getText().toString().trim());
 				profile.setEmail(editTextEmail.getText().toString());
 				profile.setFirstName(editTextFirstName.getText().toString());
 				profile.setCountry(buttonCountries.getText().toString());
@@ -1694,11 +1673,12 @@ public class ProfileActivity extends BaseActivity implements
 				}
 				String countryId = getCountryCode(buttonCountries.getText()
 						.toString());
-				if (countryId.length() > 0) {
-					ShippingChargeDataHandler scdh = new ShippingChargeDataHandler(
-							countryId, null);
-					scdh.getShippingCharge();
-				}
+				// if (countryId.length() > 0) {
+				// ShippingChargeDataHandler scdh = new
+				// ShippingChargeDataHandler(
+				// countryId, null);
+				// scdh.getShippingCharge();
+				// }
 				dialog.dismiss();
 			}
 

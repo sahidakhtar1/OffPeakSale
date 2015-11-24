@@ -61,10 +61,17 @@ public class PayPalDataHandler {
 			JSONObject json = new JSONObject();
 			try {
 
-				json.put(Constants.PARAM_QUANTITY, qty);
+//				json.put(Constants.PARAM_QUANTITY, qty);
 				json.put(Constants.PARAM_EMAIL, emailId);
-				json.put(Constants.PARAM_PRODUCTID_FOR_TOKEN, resturantId);
+//				json.put(Constants.PARAM_PRODUCTID_FOR_TOKEN, resturantId);
 				json.put(Constants.PARAM_RETAILER_ID, Constants.RETAILER_ID);
+				JSONArray jObj = new JSONArray();
+				JSONObject productJson = new JSONObject();
+				productJson.put(Constants.PARAM_PRODUCTID_FOR_TOKEN,
+						resturantId);
+				productJson.put(Constants.PARAM_QUANTITY, qty);
+				jObj.put(productJson);
+				json.put("products", jObj);
 				String checkOut_url;
 				if (Helper.getSharedHelper().reatiler.enablePay
 						.equalsIgnoreCase("1")) {

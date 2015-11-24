@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PayPalModelObject implements Serializable{
+public class PayPalModelObject implements Serializable {
 
 	@SerializedName("token")
 	public String token;
@@ -16,4 +16,5 @@ public class PayPalModelObject implements Serializable{
 	public String cancelUrl;
 	@SerializedName("paypalMode")
 	public String paypalMode;
+
 }
