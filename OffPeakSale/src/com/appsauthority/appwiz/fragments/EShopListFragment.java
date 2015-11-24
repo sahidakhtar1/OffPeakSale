@@ -208,6 +208,8 @@ public class EShopListFragment extends Fragment {
 				.findViewById(R.id.rlFilter);
 		rlLocationOption = (RelativeLayout) view
 				.findViewById(R.id.rlLocationOption);
+		TextView tvTotalDeals=(TextView)view.findViewById(R.id.tvTotalDeals);
+		tvTotalDeals.setTextColor(Color.parseColor("#"+ retailer.getHeaderColor()));
 		rlFilter.setOnClickListener(new OnClickListener() {
 
 			@Override
