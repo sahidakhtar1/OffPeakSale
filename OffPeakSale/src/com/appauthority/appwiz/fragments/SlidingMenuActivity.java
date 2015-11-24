@@ -630,7 +630,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 				displayView(item.itemType, null);
 				if (position == 0) {
 					textViewHeader.setText(retailer.getRetailerName());
-				} else {
+				} else if(item.itemType != DrawerItemType.PROFILE){
 					textViewHeader.setText(item.getTitle());
 				}
 			}
@@ -659,7 +659,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 			} else if (selectedList == SelectedList.CURRENCY) {
 				if (position == 1) {
 					displayView(DrawerItemType.PROFILE, "Profile");
-					textViewHeader.setText("Profile");
+//					textViewHeader.setText("Profile");
 				} else if (position == 2) {
 
 					isCurrencyExpanded = !isCurrencyExpanded;
@@ -809,6 +809,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 			Intent in = new Intent(SlidingMenuActivity.this,
 					ProfileActivity.class);
 			startActivity(in);
+			mDrawerLayout.closeDrawer(viewFlipper);
 			break;
 		case ABOUTUS:
 			webFragment = new WebFragment();

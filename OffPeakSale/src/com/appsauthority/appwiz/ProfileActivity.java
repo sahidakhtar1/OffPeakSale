@@ -110,7 +110,6 @@ public class ProfileActivity extends BaseActivity implements
 
 	LinearLayout llBottonView;
 
-	TextView tvDOB;
 	// LinearLayout llRedeem;
 
 	Boolean isCOD;
@@ -314,9 +313,17 @@ public class ProfileActivity extends BaseActivity implements
 
 	void loggedin(Boolean status) {
 		if (status) {
-			if (!intent.getStringExtra("FROM").equalsIgnoreCase("ESHOP")) {
-				finish();
-			} else {
+			try {
+				if (!intent.getStringExtra("FROM").equalsIgnoreCase("ESHOP")) {
+					finish();
+					return;
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+//			if (!intent.getStringExtra("FROM").equalsIgnoreCase("ESHOP")) {
+//				finish();
+//			} else {
 				llForm.setVisibility(View.VISIBLE);
 				llLoginForm.setVisibility(View.GONE);
 				llBottonView.setVisibility(View.VISIBLE);
@@ -324,11 +331,11 @@ public class ProfileActivity extends BaseActivity implements
 				tvBackToLogin.setVisibility(View.GONE);
 				editTextEmail.setEnabled(false);
 				buttonSave.setText(getResources().getString(R.string.save));
-				veTermsOfUse.setVisibility(View.VISIBLE);
+				veTermsOfUse.setVisibility(View.GONE);
 
 				if (Utils.isProfileAvailable(context)) {
 					setUpFields();
-				}
+//				}
 			}
 		} else {
 			// llForm.setVisibility(View.GONE);
@@ -527,9 +534,6 @@ public class ProfileActivity extends BaseActivity implements
 					.setBackgroundDrawable(getGradientDrawableEditText(retailer
 							.getHeaderColor()));
 
-			tvDOB.setBackgroundDrawable(getGradientDrawableEditText(retailer
-					.getHeaderColor()));
-
 			int colorOn = Color.parseColor("#" + retailer.getHeaderColor());
 			int colorOff = 0xFF666666;
 			int colorDisabled = 0xFF333333;
@@ -572,7 +576,7 @@ public class ProfileActivity extends BaseActivity implements
 			isCOD = intent.getBooleanExtra("isCod", false);
 			if (intent.getStringExtra("FROM").equalsIgnoreCase("ESHOP")) {
 				product = (Product) intent.getSerializableExtra("product");
-				veTermsOfUse.setVisibility(View.VISIBLE);
+				veTermsOfUse.setVisibility(View.GONE);
 
 			} else {
 				veTermsOfUse.setVisibility(View.GONE);
@@ -602,7 +606,6 @@ public class ProfileActivity extends BaseActivity implements
 
 			String dateString = sdf.format(calendar.getTime());
 
-			tvDOB.setText(dateString);
 		}
 	};
 
@@ -641,7 +644,6 @@ public class ProfileActivity extends BaseActivity implements
 			editTextMobileNumber
 					.setTypeface(Helper.getSharedHelper().normalFont);
 
-			tvDOB.setTypeface(Helper.getSharedHelper().normalFont);
 			buttonCountries.setTypeface(Helper.getSharedHelper().normalFont);
 
 			// tvRedeemlbl.setTypeface(Helper.getSharedHelper().normalFont);
