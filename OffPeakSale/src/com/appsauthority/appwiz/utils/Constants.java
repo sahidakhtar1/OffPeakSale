@@ -48,8 +48,8 @@ public class Constants {
 	public static String PARAM_FILTER_ID = "sortBy";
 	public static String PARAM_KEYWORD_ID = "keyword";
 	public static String PARAM_EMAIL = "email";
-	public static String PARAM_LAT = "lat";
-	public static String PARAM_LONG = "long";
+	public static String PARAM_LAT = "consumer_lat";
+	public static String PARAM_LONG = "consumer_long";
 	public static String PARAM_DEVICE_TOKEN = "device_token";
 	public static String PARAM_DEVICE = "device";
 	public static String PARAM_PRODUCTID_FOR_TOKEN = "productId";

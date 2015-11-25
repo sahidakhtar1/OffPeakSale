@@ -145,6 +145,9 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 					Color.parseColor("#"
 							+ Helper.getSharedHelper().reatiler
 									.getHeaderColor()));
+			holder.getTvDiscount().setTypeface(
+					Helper.getSharedHelper().normalFont);
+			holder.getTvDiscount().setText(object.offpeakDiscount+" OFF ");
 		} catch (Exception e) {
 
 		}
