@@ -1,6 +1,5 @@
 package com.appsauthority.appwiz.utils;
 
-import java.nio.channels.FileLock;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
+import android.location.Location;
 
 import com.appsauthority.appwiz.models.CategoryObject;
 import com.appsauthority.appwiz.models.EarliestSchedule;
@@ -178,6 +178,22 @@ public class Helper {
 
 	public void deleteVoucher(Voucher v) {
 
+	}
+	
+	public String getDistanceBetween(double startLat,double startLng,double endLat,double endLng) {
+		String distaceStr = "-";
+		Location locationA = new Location("point A");     
+		locationA.setLatitude(startLat); 
+		locationA.setLongitude(startLng);
+		Location locationB = new Location("point B");
+		locationB.setLatitude(endLat); 
+		locationB.setLongitude(endLng);
+		float distance = locationA.distanceTo(locationB) ;
+		DecimalFormat df;
+		df = new DecimalFormat("0");
+		df.setMaximumFractionDigits(2);
+		distaceStr = df.format(distance);
+		return distaceStr;
 	}
 
 	public String getRegularFontPath(String fontname) {

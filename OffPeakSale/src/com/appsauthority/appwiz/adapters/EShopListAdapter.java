@@ -17,7 +17,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
 import com.appsauthority.appwiz.models.Product;
+import com.appsauthority.appwiz.models.RetailerStores;
 import com.appsauthority.appwiz.models.ViewHolderEShop;
+import com.appsauthority.appwiz.utils.Constants;
 import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.ImageCacheLoader;
 import com.offpeaksale.restaurants.R;
@@ -147,7 +149,7 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 									.getHeaderColor()));
 			holder.getTvDiscount().setTypeface(
 					Helper.getSharedHelper().normalFont);
-			holder.getTvDiscount().setText(object.offpeakDiscount+" OFF ");
+			holder.getTvDiscount().setText(object.offpeakDiscount + " OFF ");
 		} catch (Exception e) {
 
 		}
@@ -172,6 +174,18 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 			holder.getTvSaleIndicator().setVisibility(View.GONE);
 		} else {
 			holder.getTvSaleIndicator().setVisibility(View.GONE);
+		}
+		try {
+			if (object.distance == null) {
+				RetailerStores store = object.outlets.get(0);
+				object.distance = Helper.getSharedHelper().getDistanceBetween(
+						Constants.LAT, Constants.LAT,
+						Double.parseDouble(store.getLatitude()),
+						Double.parseDouble(store.getLongitude()));
+			}
+			holder.getTvDistance().setText(object.distance+"KM");
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 
 		return convertView;

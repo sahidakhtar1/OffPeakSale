@@ -75,6 +75,8 @@ public class Product implements Serializable {
 	@SerializedName("offpeak_discount")
 	public String offpeakDiscount;
 	
+	public String distance;
+	
 	
 
 	Boolean isOptedGiftWrap ;

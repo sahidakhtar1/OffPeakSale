@@ -85,6 +85,7 @@ import com.appsauthority.appwiz.models.PayPalModelObject;
 import com.appsauthority.appwiz.models.Product;
 import com.appsauthority.appwiz.models.ProductOption;
 import com.appsauthority.appwiz.models.Retailer;
+import com.appsauthority.appwiz.models.RetailerStores;
 import com.appsauthority.appwiz.utils.BezierTranslationAnimation;
 import com.appsauthority.appwiz.utils.Constants;
 import com.appsauthority.appwiz.utils.HTTPHandler;
@@ -908,6 +909,14 @@ public class EShopDetailActivity extends BaseActivity implements
 
 		tvOldPrice.setPaintFlags(tvOldPrice.getPaintFlags()
 				| Paint.STRIKE_THRU_TEXT_FLAG);
+		if (product.distance == null) {
+			RetailerStores store = product.outlets.get(0);
+			product.distance = Helper.getSharedHelper().getDistanceBetween(
+					Constants.LAT, Constants.LAT,
+					Double.parseDouble(store.getLatitude()),
+					Double.parseDouble(store.getLongitude()));
+		}
+		tvDistance.setText(product.distance+"KM");
 	}
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
