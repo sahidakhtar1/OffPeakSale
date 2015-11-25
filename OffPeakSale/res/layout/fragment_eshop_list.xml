@@ -68,7 +68,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/left_right_margin"
-            android:src="@drawable/ic_arrow_right" />
+            android:src="@drawable/ic_down_arrow" />
 
         <TextView
             android:id="@+id/tvTotalDeals"
