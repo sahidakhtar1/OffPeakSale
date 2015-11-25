@@ -21,7 +21,7 @@ public class ProductResponse implements Serializable {
 	String errorCode;
 
 	@SerializedName("data")
-	List<Product> data;
+	public List<CategoryResponseObject> data;
 
 	private ProductResponse() {
 		super();
@@ -36,12 +36,6 @@ public class ProductResponse implements Serializable {
 		this.errorCode = errorCode;
 	}
 
-	public List<Product> getData() {
-		return data;
-	}
-
-	public void setData(List<Product> data) {
-		this.data = data;
-	}
+	
 
 }

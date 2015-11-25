@@ -37,7 +37,6 @@ import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.appsauthority.appwiz.EShopFragmentActivity;
 import com.appsauthority.appwiz.FeedbackActivity;
 import com.appsauthority.appwiz.LoyaltyActivity;
 import com.appsauthority.appwiz.ProfileActivity;
@@ -394,9 +393,9 @@ public class BaseActivity extends YouTubeBaseActivity {
 	}
 
 	public void eShopPressed(View v) {
-		Intent intent = new Intent(this, EShopFragmentActivity.class);
-		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		startActivity(intent);
+//		Intent intent = new Intent(this, EShopFragmentActivity.class);
+//		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//		startActivity(intent);
 	}
 
 	public void loyaltyPressed(View v) {

@@ -68,6 +68,7 @@ import com.appsauthority.appwiz.adapters.FilterListAdapter;
 import com.appsauthority.appwiz.custom.MyLocation;
 import com.appsauthority.appwiz.custom.MyLocation.LocationResult;
 import com.appsauthority.appwiz.models.CategoryObject;
+import com.appsauthority.appwiz.models.CategoryResponseObject;
 import com.appsauthority.appwiz.models.Product;
 import com.appsauthority.appwiz.models.ProductResponse;
 import com.appsauthority.appwiz.models.Retailer;
@@ -78,6 +79,7 @@ import com.appsauthority.appwiz.utils.Utils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.offpeaksale.restaurants.R;
+
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -93,6 +95,7 @@ public class EShopListFragment extends Fragment {
 	private TextView tvNoSearchFound;
 	private EShopListAdapter adapter;
 	public List<Product> productList = new ArrayList<Product>();
+	public List<CategoryResponseObject> categoryList = new ArrayList<CategoryResponseObject>();
 	private Context context;
 	Retailer retailer;
 	List<String> filterOptions;
@@ -124,13 +127,13 @@ public class EShopListFragment extends Fragment {
 	int selectedSearchOption = 0;
 
 	private static final String LOG_TAG = "Google Places Autocomplete";
-    private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
-    private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
-    private static final String OUT_JSON = "/json";
-    private static final String API_KEY ="AIzaSyDAIb7josxX55yT-aam9XpCnbPgKWjwIjs";
-    JSONArray placePredsJsonArray;
-    String mLattitude,mLongitude;
-	
+	private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
+	private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
+	private static final String OUT_JSON = "/json";
+	private static final String API_KEY = "AIzaSyDAIb7josxX55yT-aam9XpCnbPgKWjwIjs";
+	JSONArray placePredsJsonArray;
+	String mLattitude, mLongitude;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -208,8 +211,9 @@ public class EShopListFragment extends Fragment {
 				.findViewById(R.id.rlFilter);
 		rlLocationOption = (RelativeLayout) view
 				.findViewById(R.id.rlLocationOption);
-		TextView tvTotalDeals=(TextView)view.findViewById(R.id.tvTotalDeals);
-		tvTotalDeals.setTextColor(Color.parseColor("#"+ retailer.getHeaderColor()));
+		TextView tvTotalDeals = (TextView) view.findViewById(R.id.tvTotalDeals);
+		tvTotalDeals.setTextColor(Color.parseColor("#"
+				+ retailer.getHeaderColor()));
 		rlFilter.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -392,22 +396,26 @@ public class EShopListFragment extends Fragment {
 					.findViewById(R.id.etCurrentLocation);
 			etTargetLocation = (AutoCompleteTextView) dialog
 					.findViewById(R.id.etTargetLocation);
-			etTargetLocation.setAdapter(new GooglePlacesAutocompleteAdapter(getActivity(), R.layout.place_autocomplete_list_item));
+			etTargetLocation.setAdapter(new GooglePlacesAutocompleteAdapter(
+					getActivity(), R.layout.place_autocomplete_list_item));
 			etTargetLocation.setOnItemClickListener(new OnItemClickListener() {
 
 				@Override
-				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-					targetedAddress = (String) parent.getItemAtPosition(position);
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					targetedAddress = (String) parent
+							.getItemAtPosition(position);
 					try {
-						String place_id=placePredsJsonArray.getJSONObject(position).getString("place_id");
-						//Toast.makeText(getActivity(), str+" : "+place_id, Toast.LENGTH_SHORT).show();
+						String place_id = placePredsJsonArray.getJSONObject(
+								position).getString("place_id");
+						// Toast.makeText(getActivity(), str+" : "+place_id,
+						// Toast.LENGTH_SHORT).show();
 						new GeocodeAsnc().execute(place_id);
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
-					
+
 				}
 			});
 			etCurrentLocation.setText(curreentAddess);
@@ -421,6 +429,8 @@ public class EShopListFragment extends Fragment {
 					rdCurrentLocation.setChecked(true);
 					rdTargetLocation.setChecked(false);
 					selectedSearchOption = 0;
+					etTargetLocation.setEnabled(false);
+					checkforLocation();
 				}
 			});
 
@@ -432,8 +442,20 @@ public class EShopListFragment extends Fragment {
 					rdCurrentLocation.setChecked(false);
 					rdTargetLocation.setChecked(true);
 					selectedSearchOption = 1;
+					etTargetLocation.setEnabled(true);
 				}
 			});
+			if (selectedSearchOption == 0) {
+				rdCurrentLocation.setChecked(true);
+				rdTargetLocation.setChecked(false);
+				selectedSearchOption = 0;
+				etTargetLocation.setEnabled(false);
+			}else{
+				rdCurrentLocation.setChecked(false);
+				rdTargetLocation.setChecked(true);
+				selectedSearchOption = 1;
+				etTargetLocation.setEnabled(true);
+			}
 
 			etCurrentLocation.setBackgroundDrawable(Helper.getSharedHelper()
 					.getGradientDrawableEditText(retailer.getHeaderColor()));
@@ -450,10 +472,12 @@ public class EShopListFragment extends Fragment {
 
 	}
 
-	class GooglePlacesAutocompleteAdapter extends ArrayAdapter<String> implements Filterable {
+	class GooglePlacesAutocompleteAdapter extends ArrayAdapter<String>
+			implements Filterable {
 		private ArrayList<String> resultList;
 
-		public GooglePlacesAutocompleteAdapter(Context context, int textViewResourceId) {
+		public GooglePlacesAutocompleteAdapter(Context context,
+				int textViewResourceId) {
 			super(context, textViewResourceId);
 		}
 
@@ -475,7 +499,7 @@ public class EShopListFragment extends Fragment {
 					FilterResults filterResults = new FilterResults();
 					if (constraint != null) {
 						// Retrieve the autocomplete results.
-						resultList =autocomplete(constraint.toString());
+						resultList = autocomplete(constraint.toString());
 
 						// Assign the data to the FilterResults
 						filterResults.values = resultList;
@@ -485,7 +509,8 @@ public class EShopListFragment extends Fragment {
 				}
 
 				@Override
-				protected void publishResults(CharSequence constraint, FilterResults results) {
+				protected void publishResults(CharSequence constraint,
+						FilterResults results) {
 					if (results != null && results.count > 0) {
 						notifyDataSetChanged();
 					} else {
@@ -496,31 +521,33 @@ public class EShopListFragment extends Fragment {
 			return filter;
 		}
 	}
-	
-	public class GeocodeAsnc extends AsyncTask<String, Void, String>
-	{
+
+	public class GeocodeAsnc extends AsyncTask<String, Void, String> {
 
 		@Override
 		protected String doInBackground(String... params) {
-			
-			String url="https://maps.googleapis.com/maps/api/place/details/json?placeid="+params[0]+"&key="+API_KEY;
-			HTTPHandler handler=HTTPHandler.defaultHandler();
-			List<NameValuePair> params1 = null; 
+
+			String url = "https://maps.googleapis.com/maps/api/place/details/json?placeid="
+					+ params[0] + "&key=" + API_KEY;
+			HTTPHandler handler = HTTPHandler.defaultHandler();
+			List<NameValuePair> params1 = null;
 			JSONObject jsonObj = handler.doGet(url, params1);
 			try {
 				JSONObject routeObject = jsonObj.getJSONObject("result");
 
-				mLattitude=routeObject.getJSONObject("geometry").getJSONObject("location").getString("lat");
-				mLongitude=routeObject.getJSONObject("geometry").getJSONObject("location").getString("lng");
-					
-				System.out.println("Lattitude : "+mLattitude);
-				System.out.println("Longitude : "+mLongitude);
-					
+				mLattitude = routeObject.getJSONObject("geometry")
+						.getJSONObject("location").getString("lat");
+				mLongitude = routeObject.getJSONObject("geometry")
+						.getJSONObject("location").getString("lng");
+
+				System.out.println("Lattitude : " + mLattitude);
+				System.out.println("Longitude : " + mLongitude);
+
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			return null;
 		}
 
@@ -528,32 +555,34 @@ public class EShopListFragment extends Fragment {
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
 		}
-		
-		
+
 	}
-	
-	
-	public  ArrayList<String> autocomplete(String input) {
+
+	public ArrayList<String> autocomplete(String input) {
 		ArrayList<String> resultList = null;
-		
+
 		try {
-			StringBuilder sb = new StringBuilder(PLACES_API_BASE + TYPE_AUTOCOMPLETE + OUT_JSON);
+			StringBuilder sb = new StringBuilder(PLACES_API_BASE
+					+ TYPE_AUTOCOMPLETE + OUT_JSON);
 			sb.append("?key=" + API_KEY);
-//			sb.append("&components=country:in");
+			// sb.append("&components=country:in");
 			sb.append("&input=" + URLEncoder.encode(input, "utf8"));
-			
-		HTTPHandler handler=HTTPHandler.defaultHandler();
+
+			HTTPHandler handler = HTTPHandler.defaultHandler();
 			// Create a JSON object hierarchy from the results
-		List<NameValuePair> params = null; 
+			List<NameValuePair> params = null;
 			JSONObject jsonObj = handler.doGet(sb.toString(), params);
 			placePredsJsonArray = jsonObj.getJSONArray("predictions");
 
 			// Extract the Place descriptions from the results
 			resultList = new ArrayList<String>(placePredsJsonArray.length());
 			for (int i = 0; i < placePredsJsonArray.length(); i++) {
-				System.out.println(placePredsJsonArray.getJSONObject(i).getString("description"));
-				System.out.println("============================================================");
-				resultList.add(placePredsJsonArray.getJSONObject(i).getString("description"));
+				System.out.println(placePredsJsonArray.getJSONObject(i)
+						.getString("description"));
+				System.out
+						.println("============================================================");
+				resultList.add(placePredsJsonArray.getJSONObject(i).getString(
+						"description"));
 			}
 		} catch (JSONException e) {
 			Log.e(LOG_TAG, "Cannot process JSON results", e);
@@ -564,6 +593,7 @@ public class EShopListFragment extends Fragment {
 
 		return resultList;
 	}
+
 	private final class AsyncAllProducts extends AsyncTask<Void, Void, Boolean> {
 
 		@Override
@@ -586,9 +616,10 @@ public class EShopListFragment extends Fragment {
 					JSONObject jsonObject = new JSONObject(eshopConatent);
 					Boolean status = parseJSON(jsonObject);
 					if (status) {
-						adapter.clear();
-						adapter.addAll(productList);
-						adapter.notifyDataSetChanged();
+						// adapter.clear();
+						// adapter.addAll(productList);
+						// adapter.notifyDataSetChanged();
+						initializeTab();
 						dismissLoadingDialog();
 					}
 				} catch (JSONException e) {
@@ -612,23 +643,23 @@ public class EShopListFragment extends Fragment {
 					if (selectedSearchOption == 1) {
 						param.put(Constants.PARAM_LAT, Constants.LAT);
 						param.put(Constants.PARAM_LONG, Constants.LNG);
-					}else{
+					} else {
 						param.put(Constants.PARAM_LAT, mLattitude);
 						param.put(Constants.PARAM_LONG, mLongitude);
 					}
-					
-//					if (category != null) {
-//						param.put(Constants.PARAM_CATEGORY_ID, category.id);
-//					}
+
+					// if (category != null) {
+					// param.put(Constants.PARAM_CATEGORY_ID, category.id);
+					// }
 					// if (filterIndex > 0) {
-//					param.put(Constants.PARAM_FILTER_ID,
-//							listFilterKey.get(filterIndex));
+					// param.put(Constants.PARAM_FILTER_ID,
+					// listFilterKey.get(filterIndex));
 					// }
 					if (searchedKeyWord != null) {
 						param.put(Constants.PARAM_KEYWORD_ID, searchedKeyWord);
 					}
 					JSONObject jsonObject = HTTPHandler.defaultHandler()
-							.doPost(Constants.URL_GET_ALL_PRODUCTS, param);
+							.doPost(Constants.URL_GET_PRODUCTS, param);
 
 					if (searchedKeyWord == null && jsonObject != null
 							&& filterIndex == 0) {
@@ -653,17 +684,18 @@ public class EShopListFragment extends Fragment {
 		@Override
 		protected void onPostExecute(Boolean status) {
 			if (status) {
-				adapter.clear();
-				adapter.addAll(productList);
-				adapter.notifyDataSetChanged();
+				// adapter.clear();
+				// adapter.addAll(productList);
+				// adapter.notifyDataSetChanged();
+				initializeTab();
 				tvNoSearchFound.setVisibility(View.GONE);
 				listview.setVisibility(View.VISIBLE);
 			}
-			if (productList.size() == 0 && searchedKeyWord != null) {
-				tvNoSearchFound.setVisibility(View.VISIBLE);
-				listview.setVisibility(View.GONE);
-
-			}
+			// if (productList.size() == 0 && searchedKeyWord != null) {
+			// tvNoSearchFound.setVisibility(View.VISIBLE);
+			// listview.setVisibility(View.GONE);
+			//
+			// }
 			dismissLoadingDialog();
 		}
 	}
@@ -744,26 +776,28 @@ public class EShopListFragment extends Fragment {
 		}
 
 		if (data.getErrorCode() != null && data.getErrorCode().equals("1")) {
+			categoryList = data.data;
 
-			productList = new ArrayList<Product>();
-
-			productList = data.getData();
-
-			for (int index = 0; index < productList.size(); index++) {
-
-				Product product = productList.get(index);
-				if (product.getNewPrice().contains(".")) {
-					Helper.getSharedHelper().isDecialFromat = true;
-					break;
-				} else {
-					// Helper.getSharedHelper().isDecialFromat = false;
-				}
-			}
+			// productList = new ArrayList<Product>();
+			//
+			// productList = data.getData();
+			//
+			// for (int index = 0; index < productList.size(); index++) {
+			//
+			// Product product = productList.get(index);
+			// if (product.getNewPrice().contains(".")) {
+			// Helper.getSharedHelper().isDecialFromat = true;
+			// break;
+			// } else {
+			// // Helper.getSharedHelper().isDecialFromat = false;
+			// }
+			// }
 
 			return true;
 		} else {
 			return false;
 		}
+
 	}
 
 	public void showLoadingDialog() {
@@ -793,18 +827,24 @@ public class EShopListFragment extends Fragment {
 
 	void initializeTab() {
 
-		List<String> tabs = new ArrayList<String>();
-		tabs.add("Morning");
-		tabs.add("Afternoon");
-		tabs.add("Night");
-		tabs.add("Midnight");
+		// List<String> tabs = new ArrayList<String>();
+		// tabs.add("Morning");
+		// tabs.add("Afternoon");
+		// tabs.add("Night");
+		// tabs.add("Midnight");
 
 		llTabContainer.removeAllViews();
+		if (categoryList.size() ==0) {
+			return;
+		}
+		if (categoryList.size()<selectedIndex) {
+			selectedTabIndex = 0;
+		}
 		DisplayMetrics displaymetrics = new DisplayMetrics();
 		getActivity().getWindowManager().getDefaultDisplay()
 				.getMetrics(displaymetrics);
 		int screewidth = displaymetrics.widthPixels;
-		if (tabs.size() > 2) {
+		if (categoryList.size() > 2) {
 			width = (int) (screewidth / 2.5);
 			// width = (int) (width - width*.25);
 		} else {
@@ -813,7 +853,7 @@ public class EShopListFragment extends Fragment {
 
 		LayoutInflater inflater = (LayoutInflater) getActivity()
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		for (int i = 0; i < tabs.size(); i++) {
+		for (int i = 0; i < categoryList.size(); i++) {
 			View vwReview = inflater.inflate(R.layout.product_detail_tab_item,
 					null);
 			RelativeLayout tabView = (RelativeLayout) vwReview
@@ -823,10 +863,12 @@ public class EShopListFragment extends Fragment {
 			View underLineView = (View) tabView
 					.findViewById(R.id.vwTabUnderline);
 			tvTabName.getLayoutParams().width = width;
-			tvTabName.setText(tabs.get(i));
+			CategoryResponseObject category = categoryList.get(i);
+			tvTabName.setText(category.category);
 			if (i == selectedTabIndex) {
 				underLineView.setBackgroundColor(Color.parseColor("#F2"
 						+ Helper.getSharedHelper().reatiler.getHeaderColor()));
+
 			} else {
 				underLineView.setBackgroundColor(Color.TRANSPARENT);
 			}
@@ -863,13 +905,29 @@ public class EShopListFragment extends Fragment {
 
 				}
 			}, 500);
-		} else if (selectedTabIndex < tabs.size() - 1) {
+		} else if (selectedTabIndex < categoryList.size() - 1) {
 			final int xOffset = (screewidth / 2 - width);
 			int scrollToX = width * (selectedTabIndex - 1) + xOffset;
 			horizontalScrollView.smoothScrollTo(scrollToX, 0);
 		} else {
 
 			horizontalScrollView.smoothScrollTo(width * selectedTabIndex, 0);
+		}
+
+		if (categoryList.size()<selectedIndex) {
+			selectedTabIndex = 0;
+		}
+		CategoryResponseObject category = categoryList.get(selectedTabIndex);
+		productList.clear();
+		productList.addAll(category.products);
+		adapter.notifyDataSetChanged();
+		if (productList.size() == 0) {
+			tvNoSearchFound.setVisibility(View.VISIBLE);
+			listview.setVisibility(View.GONE);
+
+		}else{
+			tvNoSearchFound.setVisibility(View.GONE);
+			listview.setVisibility(View.VISIBLE);
 		}
 
 	}

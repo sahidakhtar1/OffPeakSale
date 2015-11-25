@@ -6,9 +6,9 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class CategoryResponseObject implements Serializable {
-	@SerializedName("errorCode")
-	public String errorCode;
+	@SerializedName("category")
+	public String category;
 
-	@SerializedName("data")
-	public List<CategoryObject> data;
+	@SerializedName("products")
+	public List<Product> products;
 }

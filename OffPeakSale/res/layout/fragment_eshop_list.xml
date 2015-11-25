@@ -96,7 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="100dp"
         android:gravity="center"
-        android:text="No search found"
+        android:text="No result found"
         android:textSize="@dimen/textsize" />
 
 </LinearLayout>

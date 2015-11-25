@@ -1008,20 +1008,20 @@ public class SlidingMenuActivity extends BaseActivity implements
 		Gson gson = new Gson();
 		CategoryResponseObject data = gson.fromJson(jsonObject.toString(),
 				CategoryResponseObject.class);
-		if (data.errorCode.equals("1")) {
-			categoryList = data.data;
-			Helper.getSharedHelper().categoryList = categoryList;
-			eshop_Category.clear();
-			CategoryObject back = new CategoryObject();
-			back.category_name = "Back";
-			back.id = "";
-			eshop_Category.add(back);
-			eshop_Category.addAll(data.data);
-			// eShopCategoryAdapter.notifyDataSetChanged();
-			status = true;
-		} else {
-			status = false;
-		}
+//		if (data.errorCode.equals("1")) {
+//			categoryList = data.data;
+//			Helper.getSharedHelper().categoryList = categoryList;
+//			eshop_Category.clear();
+//			CategoryObject back = new CategoryObject();
+//			back.category_name = "Back";
+//			back.id = "";
+//			eshop_Category.add(back);
+//			eshop_Category.addAll(data.data);
+//			// eShopCategoryAdapter.notifyDataSetChanged();
+//			status = true;
+//		} else {
+//			status = false;
+//		}
 		return status;
 	}
 
