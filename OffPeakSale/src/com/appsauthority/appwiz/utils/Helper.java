@@ -179,16 +179,19 @@ public class Helper {
 	public void deleteVoucher(Voucher v) {
 
 	}
-	
-	public String getDistanceBetween(double startLat,double startLng,double endLat,double endLng) {
+
+	public String getDistanceBetween(double startLat, double startLng,
+			double endLat, double endLng) {
 		String distaceStr = "-";
-		Location locationA = new Location("point A");     
-		locationA.setLatitude(startLat); 
+//		startLat = 1.3115829;
+//		startLng = 103.8382705;
+		Location locationA = new Location("point A");
+		locationA.setLatitude(startLat);
 		locationA.setLongitude(startLng);
 		Location locationB = new Location("point B");
-		locationB.setLatitude(endLat); 
+		locationB.setLatitude(endLat);
 		locationB.setLongitude(endLng);
-		float distance = locationA.distanceTo(locationB) ;
+		float distance = locationA.distanceTo(locationB)/1000.0f;
 		DecimalFormat df;
 		df = new DecimalFormat("0");
 		df.setMaximumFractionDigits(2);
@@ -344,7 +347,7 @@ public class Helper {
 		for (Product product : sharedHelper.shoppintCartList) {
 			int qty = Integer.parseInt(product.getQty());
 			float unitprice = Float.parseFloat(product.getNewPrice());
-			
+
 			if (product.getIsOptedGiftWrap()) {
 				unitprice += Float.parseFloat(sharedHelper.reatiler.gift_price);
 			}
@@ -378,25 +381,26 @@ public class Helper {
 		return total;
 
 	}
-public float totalPriceAfterDiscount(float totalPrice){
-	float discount;
-	if (Helper.getSharedHelper().discountType
-			.equalsIgnoreCase(Constants.KEY_DEFAULT_DISCOUNT_TYPE)) {
 
-		discount = totalPrice
-				* Float.parseFloat(sharedHelper.discountPercent) / 100;
-		;
-	} else {
+	public float totalPriceAfterDiscount(float totalPrice) {
+		float discount;
+		if (Helper.getSharedHelper().discountType
+				.equalsIgnoreCase(Constants.KEY_DEFAULT_DISCOUNT_TYPE)) {
 
-		discount = Float
-				.parseFloat(Helper.getSharedHelper().discountPercent);
+			discount = totalPrice
+					* Float.parseFloat(sharedHelper.discountPercent) / 100;
+			;
+		} else {
+
+			discount = Float
+					.parseFloat(Helper.getSharedHelper().discountPercent);
+		}
+		float netPrice = totalPrice - discount;
+		if (netPrice < 0) {
+			netPrice = 0;
+		}
+		return netPrice;
 	}
-	float netPrice = totalPrice-discount;
-	if (netPrice <0) {
-		netPrice = 0;
-	}
-	return netPrice;
-}
 
 	public String conertfloatToSTring(float value) {
 		String convertedValue = "0";
