@@ -162,6 +162,7 @@
         </LinearLayout>
         <ImageView android:layout_width="16dp"
             android:layout_height="16dp"
+            
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_arrow_right"/>
     </LinearLayout>
@@ -169,7 +170,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="5dp"
         android:background="@color/triangle_underline_color" />
 
 </LinearLayout>

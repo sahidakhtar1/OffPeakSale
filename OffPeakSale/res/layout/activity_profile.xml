@@ -145,6 +145,7 @@
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
                             android:paddingLeft="8dp"
+                            android:visibility="gone"
                             android:text="Create Password"
                             android:textSize="18sp" />
 
