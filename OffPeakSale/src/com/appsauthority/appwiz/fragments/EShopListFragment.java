@@ -837,7 +837,7 @@ public class EShopListFragment extends Fragment {
 		if (categoryList.size() ==0) {
 			return;
 		}
-		if (categoryList.size()<selectedIndex) {
+		if (categoryList.size()<=selectedIndex) {
 			selectedTabIndex = 0;
 		}
 		DisplayMetrics displaymetrics = new DisplayMetrics();

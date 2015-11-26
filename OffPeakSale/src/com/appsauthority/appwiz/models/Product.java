@@ -56,30 +56,44 @@ public class Product implements Serializable {
 
 	@SerializedName("reward_points")
 	public String reward_points;
-	
+
 	@SerializedName("availQty")
 	public String availQty;
-	
+
 	@SerializedName("onSale")
 	public String onSale;
-	
+
 	@SerializedName("quantity")
 	public String quantity;
-	
+
 	@SerializedName("prodOptions")
 	public String prodOptions;
-	
+
 	@SerializedName("outlets")
 	public ArrayList<RetailerStores> outlets;
-	
+
 	@SerializedName("offpeak_discount")
 	public String offpeakDiscount;
-	
-	public String distance;
-	
-	
 
-	Boolean isOptedGiftWrap ;
+	@SerializedName("outletDistance")
+	public String distance;
+
+	@SerializedName("outletName")
+	public String outletName;
+
+	@SerializedName("outletAddr")
+	public String storeAddress;
+
+	@SerializedName("outletContact")
+	public String storeContact;
+
+	@SerializedName("outletLat")
+	public String latitude;
+
+	@SerializedName("outletLong")
+	public String longitude;
+
+	Boolean isOptedGiftWrap;
 	String qty;
 	String giftMsg;
 	String giftTo;
@@ -187,7 +201,7 @@ public class Product implements Serializable {
 
 	public String getOldPrice() {
 		if (oldPrice != null && Float.parseFloat(oldPrice) <= 0.0f) {
-			return  null;
+			return null;
 		}
 		return oldPrice;
 	}
@@ -224,8 +238,6 @@ public class Product implements Serializable {
 		this.testimonials = testimonials;
 	}
 
-	
-	
 	public Boolean getIsOptedGiftWrap() {
 		return isOptedGiftWrap;
 	}

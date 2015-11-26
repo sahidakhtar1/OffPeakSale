@@ -25,6 +25,9 @@ public class RetailerStores implements Serializable {
 	@SerializedName("outletLong")
 	String longitude;
 
+	@SerializedName("outletName")
+	public String outletName;
+
 	public RetailerStores() {
 		super();
 	}

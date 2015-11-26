@@ -17,14 +17,8 @@
                 android:id="@+id/rlBannerlayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="0dp" >
-
-                <!--
-                      <com.appsauthority.appwiz.utils.HorizontalPager
-                    android:id="@+id/horizontal_pager"
-                    android:layout_width="fill_parent"
-                    andr oid:layout_height="@dimen/product_detail_height" >
-                -->
+                android:layout_margin="0dp"
+                android:minHeight="200dp" >
 
                 <ImageView
                     android:id="@+id/iv_eshop_detail_image"
@@ -35,19 +29,80 @@
                     android:src="@drawable/image_placeholder"
                     android:visibility="gone" />
 
-                <!--
-                         <include
-                        android:id="@+id/secondPage"
-                        layout="@layout/home_banner_layout" />
-                -->
-                <!-- </com.appsauthority.appwiz.utils.HorizontalPager> -->
+                <TextView
+                    android:id="@+id/tvQtyIndicator"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@color/black_translucent"
+                    android:gravity="center"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="2dp"
+                    android:text="Sold Out"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
 
+                <ToggleButton
+                    android:id="@+id/favToggle"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_toLeftOf="@id/tvQtyIndicator"
+                    android:background="@drawable/heart_toggle_drawable"
+                    android:focusable="false"
+                    android:textOff=""
+                    android:textOn=""
+                    android:visibility="visible" />
 
-                <!--
-                     <include
-                    android:id="@+id/pageIndicatorView"
-                    layout="@layout/page_indicator_view_layout" />
-                -->
+                <LinearLayout
+                    android:id="@+id/llDiscountInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:orientation="vertical" >
+
+                    <RelativeLayout
+                        android:id="@+id/rlCircularView"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginBottom="@dimen/left_right_margin"
+                        android:layout_marginRight="@dimen/left_right_margin"
+                        android:background="@drawable/circular_drawable" >
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:id="@+id/tvDiscountValue"
+                                android:layout_width="50dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxHeight="25dp"
+                                android:text=" 24%"
+                                android:textColor="@android:color/white"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tvDiscountLbl"
+                                android:layout_width="50dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxHeight="25dp"
+                                android:text="OFF "
+                                android:textColor="@android:color/white"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
             </RelativeLayout>
 
             <LinearLayout

@@ -17,6 +17,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.annotations.SerializedName;
 import com.offpeaksale.restaurants.R;
 
 import android.app.Activity;
@@ -39,6 +40,17 @@ public class MapLayout extends RelativeLayout implements
 	private GoogleMap map;
 	private ArrayList<RetailerStores> stores;
 	private LatLngBounds.Builder bld;
+
+	public String outletName;
+
+	public String storeAddress;
+
+	public String storeContact;
+
+	public String latitude;
+
+	public String longitude;
+	public String merchantName;
 
 	public MapLayout(Context context, Activity activity,
 			ArrayList<RetailerStores> stores) {
@@ -69,6 +81,10 @@ public class MapLayout extends RelativeLayout implements
 			bld.include(new LatLng(Constants.LAT, Constants.LNG));
 			map.animateCamera(CameraUpdateFactory.newLatLngBounds(bld.build(),
 					70));
+
+			addMarker(Double.parseDouble(latitude),
+					Double.parseDouble(longitude), merchantName, storeAddress,
+					storeContact, map, false);
 			for (int i = 0; i < stores.size(); i++) {
 				if (stores.get(i).getLatitude().equalsIgnoreCase("")
 						|| stores.get(i).getLongitude().equalsIgnoreCase("")) {
@@ -76,8 +92,8 @@ public class MapLayout extends RelativeLayout implements
 				} else {
 					addMarker(Double.parseDouble(stores.get(i).getLatitude()),
 							Double.parseDouble(stores.get(i).getLongitude()),
-							"OffPeakSale", stores.get(i).getStoreAddress(),
-							stores.get(i).getStoreContact(), map);
+							merchantName, stores.get(i).getStoreAddress(),
+							stores.get(i).getStoreContact(), map, false);
 				}
 
 			}
@@ -188,20 +204,19 @@ public class MapLayout extends RelativeLayout implements
 	}
 
 	private void addMarker(double lat, double lng, String resturantName,
-			String branchName, String contact, GoogleMap map) {
-		map.addMarker(new MarkerOptions()
+			String branchName, String contact, GoogleMap map, Boolean selected) {
+		MarkerOptions markerOption = new MarkerOptions()
 				.position(new LatLng(lat, lng))
 				.title(resturantName + "\r\n\n" + branchName + "\r\n\r\n"
 						+ "Contact")
 				.snippet(contact)
 				.icon(BitmapDescriptorFactory
-						.fromResource(R.drawable.shoplocation)/*
-															 * BitmapDescriptorFactory
-															 * .defaultMarker(
-															 * BitmapDescriptorFactory
-															 * .HUE_RED)
-															 */));
+						.fromResource(R.drawable.shoplocation));
+		//
+		Marker marker = map.addMarker(markerOption);
+		if (selected) {
+			marker.showInfoWindow();
+		}
 
 	}
-
 }

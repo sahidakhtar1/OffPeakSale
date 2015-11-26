@@ -10,11 +10,13 @@ import java.util.List;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.appsauthority.appwiz.models.Product;
 import com.appsauthority.appwiz.models.RetailerStores;
@@ -147,9 +149,15 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 					Color.parseColor("#"
 							+ Helper.getSharedHelper().reatiler
 									.getHeaderColor()));
-			holder.getTvDiscount().setTypeface(
+			holder.getTvDiscountValue().setTypeface(
 					Helper.getSharedHelper().normalFont);
-			holder.getTvDiscount().setText(object.offpeakDiscount + " OFF ");
+			holder.getTvDiscountlbl().setTypeface(
+					Helper.getSharedHelper().normalFont);
+			holder.getTvDiscountValue().setText(object.offpeakDiscount);
+			RelativeLayout rlCircularView = holder.getRlCircularView();
+			GradientDrawable bgShape = (GradientDrawable) rlCircularView
+					.getBackground();
+			bgShape.setColor(Color.parseColor("#" + Helper.getSharedHelper().reatiler.getHeaderColor()));
 		} catch (Exception e) {
 
 		}
@@ -184,6 +192,7 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 						Double.parseDouble(store.getLongitude()));
 			}
 			holder.getTvDistance().setText(object.distance+"KM");
+			holder.getTvAddress().setText(object.outletName);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

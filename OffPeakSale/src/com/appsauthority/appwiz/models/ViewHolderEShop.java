@@ -1,11 +1,15 @@
 package com.appsauthority.appwiz.models;
 
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.appsauthority.appwiz.utils.Helper;
 import com.offpeaksale.restaurants.R;
 
 public class ViewHolderEShop {
@@ -22,7 +26,10 @@ public class ViewHolderEShop {
 	private TextView tvSaleIndicator = null;
 	private TextView tvDistance = null;
 	private TextView tvAddress = null;
-	private TextView tvDiscount = null;
+	private TextView tvDiscountValue = null;
+	private TextView tvDiscountlbl = null;
+	private RelativeLayout rlCircularView;
+	
 
 	public Button getBtn_delete() {
 		if (null == btn_delete) {
@@ -123,15 +130,27 @@ public class ViewHolderEShop {
 		return tvAddress;
 	}
 
-	public TextView getTvDiscount() {
-		if (tvDiscount == null) {
-			tvDiscount = (TextView) row.findViewById(R.id.tvDiscount);
+	public TextView getTvDiscountValue() {
+		
+		if (tvDiscountValue == null) {
+			tvDiscountValue = (TextView) row.findViewById(R.id.tvDiscountValue);
 		}
-		return tvDiscount;
+		return tvDiscountValue;
 	}
 
+	public TextView getTvDiscountlbl() {
+		if (tvDiscountlbl == null) {
+			tvDiscountlbl = (TextView) row.findViewById(R.id.tvDiscountLbl);
+		}
+		return tvDiscountlbl;
+	}
 
-	
+	public RelativeLayout getRlCircularView() {
+		if (rlCircularView == null) {
+			rlCircularView = (RelativeLayout) row.findViewById(R.id.rlCircularView);
+		}
+		return rlCircularView;
+	}
 	
 
 }

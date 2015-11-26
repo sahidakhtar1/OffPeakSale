@@ -22,6 +22,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -73,6 +74,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 import android.widget.VideoView;
 import android.widget.ViewFlipper;
 
@@ -92,6 +94,7 @@ import com.appsauthority.appwiz.utils.HTTPHandler;
 import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.HorizontalPager;
 import com.appsauthority.appwiz.utils.Utils;
+import com.google.android.gms.internal.bn;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.OnInitializedListener;
@@ -191,7 +194,10 @@ public class EShopDetailActivity extends BaseActivity implements
 
 	private SharedPreferences spref;
 
-	TextView tvOldPrice, tvNewPrice, tvDistance, tvAddress;
+	TextView tvOldPrice, tvNewPrice, tvDistance, tvAddress, tvQtyIndicator,
+			tvDiscountValue, tvDiscountlbl;
+	ToggleButton favToggle;
+	LinearLayout llDiscountInfo;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -205,6 +211,15 @@ public class EShopDetailActivity extends BaseActivity implements
 
 		retailer = Helper.getSharedHelper().reatiler;
 		spref = PreferenceManager.getDefaultSharedPreferences(activity);
+		tvQtyIndicator = (TextView) findViewById(R.id.tvQtyIndicator);
+		favToggle = (ToggleButton) findViewById(R.id.favToggle);
+		tvDiscountValue = (TextView) findViewById(R.id.tvDiscountValue);
+		tvDiscountlbl = (TextView) findViewById(R.id.tvDiscountLbl);
+		llDiscountInfo = (LinearLayout) findViewById(R.id.llDiscountInfo);
+
+		tvDiscountValue.setTypeface(Helper.getSharedHelper().normalFont);
+		tvDiscountlbl.setTypeface(Helper.getSharedHelper().normalFont);
+		tvDiscountValue.setText(product.offpeakDiscount);
 
 		// mPager = (HorizontalPager) findViewById(R.id.horizontal_pager);
 		// mPager.setOnScreenSwitchListener(onScreenSwitchListener);
@@ -227,8 +242,13 @@ public class EShopDetailActivity extends BaseActivity implements
 		vwChildHowItWorks.setTag(2);
 		llMapView = (LinearLayout) findViewById(R.id.llMapView);
 
-		MapLayout mapLayout = new MapLayout(activity, activity,
-				product.outlets);
+		MapLayout mapLayout = new MapLayout(activity, activity, product.outlets);
+		mapLayout.merchantName = product.getShortDescription();
+		mapLayout.outletName = product.outletName;
+		mapLayout.storeAddress = product.storeAddress;
+		mapLayout.storeContact = product.storeContact;
+		mapLayout.latitude = product.latitude;
+		mapLayout.longitude = product.longitude;
 		llMapView.addView(mapLayout);
 
 		edt_comments = (EditText) findViewById(R.id.edt_comments);
@@ -850,9 +870,19 @@ public class EShopDetailActivity extends BaseActivity implements
 			imageCacheloader.displayImage(product.getImage(),
 					R.drawable.image_placeholder, imageView);
 		}
-		// imageCacheloader.displayImage(product.getImage(),
-		// R.drawable.image_placeholder, imgAnimationImage);
+		tvQtyIndicator.bringToFront();
+		favToggle.bringToFront();
+		llDiscountInfo.bringToFront();
+		RelativeLayout rlCircularView = (RelativeLayout) findViewById(R.id.rlCircularView);
+		GradientDrawable bgShape = (GradientDrawable) rlCircularView
+				.getBackground();
+		bgShape.setColor(Color.parseColor("#" + retailer.getHeaderColor()));
 
+		if (product.availQty != null) {
+			tvQtyIndicator.setText(product.availQty + " sold");
+			tvQtyIndicator.setVisibility(View.VISIBLE);
+
+		}
 		ImageView imgCart = (ImageView) findViewById(R.id.imgCart);
 		if (Helper.getSharedHelper().reatiler.appIconColor != null
 				&& Helper.getSharedHelper().reatiler.appIconColor
@@ -916,7 +946,8 @@ public class EShopDetailActivity extends BaseActivity implements
 					Double.parseDouble(store.getLatitude()),
 					Double.parseDouble(store.getLongitude()));
 		}
-		tvDistance.setText(product.distance+"KM");
+		tvDistance.setText(product.distance + "KM");
+		tvAddress.setText(product.outletName);
 	}
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -1262,7 +1293,8 @@ public class EShopDetailActivity extends BaseActivity implements
 			}
 
 			float newPrice = (float) val;
-			newPrice = Helper.getSharedHelper().totalPriceAfterDiscount(newPrice);
+			newPrice = Helper.getSharedHelper().totalPriceAfterDiscount(
+					newPrice);
 			newPrice = newPrice * conversionValue;
 			if (Helper.getSharedHelper().isDecialFromat) {
 				textViewNewPrice.setText(Helper.getSharedHelper()
@@ -1696,7 +1728,7 @@ public class EShopDetailActivity extends BaseActivity implements
 			tvDiscountInfo.setVisibility(View.GONE);
 
 			edtCoupon = (EditText) dialog.findViewById(R.id.edtCoupon);
-			// lineTop = (View) dialog.findViewById(R.id.lineTop);
+			lineTop = (View) dialog.findViewById(R.id.lineTop);
 
 			edtCoupon
 					.setBackgroundDrawable(getGradientDrawableEditText(retailer
@@ -1704,6 +1736,8 @@ public class EShopDetailActivity extends BaseActivity implements
 			buttonApply.setBackgroundDrawable(getGradientDrawable(retailer
 					.getHeaderColor()));
 			buttonClose.setBackgroundDrawable(getGradientDrawable(retailer
+					.getHeaderColor()));
+			lineTop.setBackgroundDrawable(getGradientDrawable(retailer
 					.getHeaderColor()));
 
 			buttonApply.setOnClickListener(new OnClickListener() {
@@ -2300,32 +2334,27 @@ public class EShopDetailActivity extends BaseActivity implements
 		Bundle bundle = new Bundle();
 
 		bundle.putSerializable("product", product);
-		if (Helper.getSharedHelper().reatiler.enablePay
-				.equalsIgnoreCase("1")) {
-			bundle.putString("token",
-					payPalObj.token);
+		if (Helper.getSharedHelper().reatiler.enablePay.equalsIgnoreCase("1")) {
+			bundle.putString("token", payPalObj.token);
 		} else {
-			bundle.putString("redirectUrl",
-					payPalObj.redirectUrl);
+			bundle.putString("redirectUrl", payPalObj.redirectUrl);
 		}
 
-		bundle.putString("sucessUrl",
-				payPalObj.sucessUrl);
-		bundle.putString("cancelUrl",
-				payPalObj.cancelUrl);
+		bundle.putString("sucessUrl", payPalObj.sucessUrl);
+		bundle.putString("cancelUrl", payPalObj.cancelUrl);
 		if (payPalObj.paypalMode != null) {
-			bundle.putString("paypalMode",
-					payPalObj.paypalMode);
+			bundle.putString("paypalMode", payPalObj.paypalMode);
 		}
 		float unitPrice = Float.parseFloat(product.getNewPrice());
-		float totalPrice = unitPrice * Integer.parseInt(editTextQty.getText().toString());
-		bundle.putString("grandTotal", Float.toString(Helper.getSharedHelper().totalPriceAfterDiscount(totalPrice)));
+		float totalPrice = unitPrice
+				* Integer.parseInt(editTextQty.getText().toString());
+		bundle.putString("grandTotal", Float.toString(Helper.getSharedHelper()
+				.totalPriceAfterDiscount(totalPrice)));
 
 		Intent i = new Intent(context, PaypalActivity.class);
 		i.putExtras(bundle);
 		startActivity(i);
 	}
-	
 
 	@Override
 	public void payPalDataFailed(String errorMsg) {
