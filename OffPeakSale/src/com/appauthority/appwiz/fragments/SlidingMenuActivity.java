@@ -630,7 +630,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 				displayView(item.itemType, null);
 				if (position == 0) {
 					textViewHeader.setText(retailer.getRetailerName());
-				} else if(item.itemType != DrawerItemType.PROFILE){
+				} else if (item.itemType != DrawerItemType.PROFILE) {
 					textViewHeader.setText(item.getTitle());
 				}
 			}
@@ -659,7 +659,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 			} else if (selectedList == SelectedList.CURRENCY) {
 				if (position == 1) {
 					displayView(DrawerItemType.PROFILE, "Profile");
-//					textViewHeader.setText("Profile");
+					// textViewHeader.setText("Profile");
 				} else if (position == 2) {
 
 					isCurrencyExpanded = !isCurrencyExpanded;
@@ -775,7 +775,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 			mDrawerLayout.closeDrawer(viewFlipper);
 			return;
 		}
-		selectedMenuIndex = itemType;
+
 		Fragment fragment = null;
 		switch (itemType) {
 		case HOME:
@@ -810,7 +810,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 					ProfileActivity.class);
 			startActivity(in);
 			mDrawerLayout.closeDrawer(viewFlipper);
-			break;
+			return;
 		case ABOUTUS:
 			webFragment = new WebFragment();
 			webFragment.url = retailer.aboutUrl;
@@ -837,7 +837,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 		default:
 			break;
 		}
-
+		selectedMenuIndex = itemType;
 		if (fragment != null) {
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
@@ -1008,20 +1008,20 @@ public class SlidingMenuActivity extends BaseActivity implements
 		Gson gson = new Gson();
 		CategoryResponseObject data = gson.fromJson(jsonObject.toString(),
 				CategoryResponseObject.class);
-//		if (data.errorCode.equals("1")) {
-//			categoryList = data.data;
-//			Helper.getSharedHelper().categoryList = categoryList;
-//			eshop_Category.clear();
-//			CategoryObject back = new CategoryObject();
-//			back.category_name = "Back";
-//			back.id = "";
-//			eshop_Category.add(back);
-//			eshop_Category.addAll(data.data);
-//			// eShopCategoryAdapter.notifyDataSetChanged();
-//			status = true;
-//		} else {
-//			status = false;
-//		}
+		// if (data.errorCode.equals("1")) {
+		// categoryList = data.data;
+		// Helper.getSharedHelper().categoryList = categoryList;
+		// eshop_Category.clear();
+		// CategoryObject back = new CategoryObject();
+		// back.category_name = "Back";
+		// back.id = "";
+		// eshop_Category.add(back);
+		// eshop_Category.addAll(data.data);
+		// // eShopCategoryAdapter.notifyDataSetChanged();
+		// status = true;
+		// } else {
+		// status = false;
+		// }
 		return status;
 	}
 

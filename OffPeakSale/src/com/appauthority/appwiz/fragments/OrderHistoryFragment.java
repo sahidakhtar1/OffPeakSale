@@ -171,15 +171,17 @@ public class OrderHistoryFragment extends Fragment implements
 		LayoutInflater inflater = (LayoutInflater) getActivity()
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		for (int i = 0; i < tabs.size(); i++) {
-			View vwReview = inflater.inflate(R.layout.product_detail_tab_item,
+			View vwReview = inflater.inflate(R.layout.order_history_tab_item,
 					null);
 			RelativeLayout tabView = (RelativeLayout) vwReview
 					.findViewById(R.id.item);
 			TextView tvTabName = (TextView) tabView
 					.findViewById(R.id.tvItemName);
+			TextView tvPlaceHolder = (TextView) tabView
+					.findViewById(R.id.tvPlaceHolder);
 			View underLineView = (View) tabView
 					.findViewById(R.id.vwTabUnderline);
-			tvTabName.getLayoutParams().width = width;
+			tvPlaceHolder.getLayoutParams().width = width;
 			tvTabName.setText(tabs.get(i));
 			if (i == selectedTabIndex) {
 				underLineView.setBackgroundColor(Color.parseColor("#F2"

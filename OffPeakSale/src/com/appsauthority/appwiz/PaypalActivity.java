@@ -36,7 +36,7 @@ public class PaypalActivity extends BaseActivity {
 	private String successUrl;
 	private String cancelUrl;
 	String token;
-	String transactionId;
+	String transactionId, paypal_transactionId;
 	private String placeOrderUrl;
 	private String grandTotal;
 
@@ -56,9 +56,8 @@ public class PaypalActivity extends BaseActivity {
 		cancelUrl = bundleArgs.getString("cancelUrl");
 
 		String paypalMode = bundleArgs.getString("paypalMode");
-		grandTotal = bundleArgs.getString("grandTotal");
 		String urlSTring;
-		String url ;
+		String url;
 		if (Helper.getSharedHelper().reatiler.enableVerit.equalsIgnoreCase("1")) {
 			urlSTring = bundleArgs.getString("redirectUrl");
 			url = urlSTring;
@@ -68,11 +67,10 @@ public class PaypalActivity extends BaseActivity {
 			} else {
 				urlSTring = Constants.URL_PAYPAL_LIVE;
 			}
-			url  = urlSTring + token;
+			url = urlSTring + token;
 		}
 		WebView w = (WebView) findViewById(R.id.webView);
 
-		
 		w.getSettings().setJavaScriptEnabled(true);
 		w.loadUrl(url);
 
@@ -81,7 +79,8 @@ public class PaypalActivity extends BaseActivity {
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				boolean shouldOverride = false;
 				Log.i("URL", url);
-				if (url.contains("place_order.php?") || url.contains("veritrans_order.php?")) {
+				if (url.contains("place_order.php?")
+						|| url.contains("veritrans_order.php?")) {
 					placeOrderUrl = url;
 					new AsyncGetMessageSuccess().execute();
 					shouldOverride = true;
@@ -176,6 +175,10 @@ public class PaypalActivity extends BaseActivity {
 							if (obj.get("transactionId") != null) {
 								transactionId = obj.getString("transactionId");
 							}
+							if (obj.get("paypal_transactionId") != null) {
+								paypal_transactionId = obj
+										.getString("paypal_transactionId");
+							}
 						} catch (Exception e) {
 							// TODO: handle exception
 						}
@@ -200,16 +203,18 @@ public class PaypalActivity extends BaseActivity {
 
 			dismissLoadingDialog();
 			String amount = "";
-			if (Helper.getSharedHelper().enableShoppingCart.equals("1") ) {
+			if (Helper.getSharedHelper().enableShoppingCart.equals("1")) {
 				Float shipping = Helper.getSharedHelper().shippingCharge;
 				amount = Helper.getSharedHelper().getCartTotalAmount();
 				float total = Float.parseFloat(amount);
-				if (total >= Helper.getSharedHelper().freeAmount || Helper.getSharedHelper().deliveryOptionSelectedIndex == 1) {
+				if (total >= Helper.getSharedHelper().freeAmount
+						|| Helper.getSharedHelper().deliveryOptionSelectedIndex == 1) {
 
 				} else {
 					total = total + shipping;
 				}
-				total = total- Float.parseFloat(Helper.getSharedHelper().redeemPoints);
+				total = total
+						- Float.parseFloat(Helper.getSharedHelper().redeemPoints);
 				amount = Float.toString(total);
 				Helper.getSharedHelper().shoppintCartList.clear();
 			} else {
@@ -221,47 +226,50 @@ public class PaypalActivity extends BaseActivity {
 						/ 100;
 				total = total - discount;
 				Float shipping = Helper.getSharedHelper().shippingCharge;
-				if (total >= Helper.getSharedHelper().freeAmount && Helper.getSharedHelper().deliveryOptionSelectedIndex == 0) {
+				if (total >= Helper.getSharedHelper().freeAmount
+						&& Helper.getSharedHelper().deliveryOptionSelectedIndex == 0) {
 
 				} else {
 					total = total + shipping;
 				}
-				total = total- Float.parseFloat(Helper.getSharedHelper().redeemPoints);
+				total = total
+						- Float.parseFloat(Helper.getSharedHelper().redeemPoints);
 				amount = Float.toString(total);
 			}
-			String selectedCurrencyCode = Helper.getSharedHelper().currency_code;
-			if (selectedCurrencyCode == null || selectedCurrencyCode.length() == 0) {
-				selectedCurrencyCode = Helper.getSharedHelper().reatiler.defaultCurrency;
-			}
+
 			String paymetTitle = "Payment success\nEmail confirmation sent\n\n";
-			String grandTotalMSG = "Grand Total: "
-					+ Helper.getSharedHelper().currency_symbol + " " + grandTotal
+			String grandTotal = "Grand Total: "
+					+ Helper.getSharedHelper().currency_symbol + " " + amount
 					+ "\n\n";
 			String earnedRewards = "";
-//			if (Helper.getSharedHelper().reatiler.enableRewards
-//					.equalsIgnoreCase("1")) {
-//				earnedRewards = "Credit Points Earned: "
-//						+ Helper.getSharedHelper().rewardPountsEarned + "\n\n";
-//			} else {
-//
-//			}
+			if (Helper.getSharedHelper().reatiler.enableRewards
+					.equalsIgnoreCase("1")) {
+				earnedRewards = "Credit Points Earned: "
+						+ Helper.getSharedHelper().rewardPountsEarned + "\n\n";
+			} else {
+
+			}
 			String id = transactionId;
 			if (id == null && token != null) {
 				id = token;
 			}
-			
+
 			String orderNo = "";
 			if (id != null) {
 				if (Helper.getSharedHelper().reatiler.enableVerit.equals("1")) {
 					orderNo = "Veritrans Id: " + id;
-				}else{
-					orderNo = "Paypal Id: " + id;
+				} else {
+					orderNo = "Paypal Id: " + paypal_transactionId;
 				}
-				
+
+			}
+			String transactionIdMSG = "";
+			if (transactionId != null) {
+				transactionIdMSG = "\nTransaction Id:" + transactionId;
 			}
 			String msg = "Dear Customer,\nYour purchase is sucessful.\nYou will receive E-Mail confirmation shortly.";
 
-			String toasttext = paymetTitle + grandTotalMSG + earnedRewards
+			String toasttext = paymetTitle + grandTotal + earnedRewards+transactionIdMSG
 					+ orderNo;// + msg;
 			Toast.makeText(context, toasttext, Toast.LENGTH_LONG).show();
 

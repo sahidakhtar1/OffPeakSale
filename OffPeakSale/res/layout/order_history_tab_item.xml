@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tvItemName"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:textSize="@dimen/textsize" />
+    <TextView
+        android:id="@+id/tvPlaceHolder"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:textSize="@dimen/textsize" />
+
+    <View
+        android:id="@+id/vwTabUnderline"
+        android:layout_width="100dp"
+        android:layout_height="3dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignLeft="@+id/tvItemName"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/tvItemName" />
+
+</RelativeLayout>

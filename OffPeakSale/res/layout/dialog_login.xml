@@ -18,8 +18,8 @@
             android:src="@drawable/image_placeholder" />
 
         <ImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:src="@drawable/ic_launcher" />
     </RelativeLayout>
@@ -149,7 +149,7 @@
             android:layout_alignParentLeft="true"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="Forgot Password?"
+            android:text="Forgot Password"
             android:textSize="@dimen/textsize" />
 
         <TextView
