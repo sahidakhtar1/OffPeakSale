@@ -183,7 +183,7 @@
                     <RelativeLayout
                         android:id="@+id/rlPn"
                         android:layout_width="fill_parent"
-                        android:layout_height="@dimen/edt_height"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="8dp" >
 
                         <Switch

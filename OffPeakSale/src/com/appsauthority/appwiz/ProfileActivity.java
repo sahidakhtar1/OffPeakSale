@@ -129,6 +129,9 @@ public class ProfileActivity extends BaseActivity implements
 	private UiLifecycleHelper uiHelper;
 	private static final String TAG = "ProfileActivity";
 
+	private boolean isFacebookLogin=false;
+	private String facebookUsername="",facebookUserEmail="";
+	
 	void initializeLoginRegisterView() {
 		llLogin = (LinearLayout) llLoginForm.findViewById(R.id.llLogin);
 		llForgotPwd = (LinearLayout) llLoginForm.findViewById(R.id.llForgotPwd);
@@ -378,12 +381,16 @@ public class ProfileActivity extends BaseActivity implements
 						public void onCompleted(GraphUser user,
 								Response response) {
 							if (user != null) {
+								isFacebookLogin=true;
+								facebookUsername=user.getName();
+								facebookUserEmail=user.asMap().get("email")
+										.toString();
 								Log.e("User Name: ", user.getName());
 								Log.e("User Gender: ",
 										user.getProperty("gender").toString());
 								Log.e("User Email: ", user.asMap().get("email")
 										.toString());
-
+								new AsyncWorker().execute();
 							}
 						}
 					});
@@ -688,7 +695,7 @@ public class ProfileActivity extends BaseActivity implements
 	}
 
 	public void savePressed(View v) {
-
+		isFacebookLogin=false;
 		isProceedtoCheckout = false;
 		saveProfile();
 	}
@@ -784,28 +791,35 @@ public class ProfileActivity extends BaseActivity implements
 				try {
 
 					Calendar cal = Calendar.getInstance();
-					// sqliteHelper.openDataBase();
-					String countryCode = getCountryCode(buttonCountries
-							.getText().toString());
+					if(isFacebookLogin==false)
+					{
+						// sqliteHelper.openDataBase();
+						String countryCode = getCountryCode(buttonCountries.getText().toString());
 
-					obj.put("retailerId", Constants.RETAILER_ID);
-					obj.put("fname", editTextFirstName.getText().toString());
+						obj.put("retailerId", Constants.RETAILER_ID);
+						obj.put("fname", editTextFirstName.getText().toString());
 
-					obj.put("mobile_num", editTextMobileNumber.getText()
-							.toString());
-					obj.put("email", editTextEmail.getText().toString());
-					obj.put("country", countryCode);
+						obj.put("mobile_num", editTextMobileNumber.getText().toString());
+						obj.put("email", editTextEmail.getText().toString());
+						obj.put("country", countryCode);
 
-					obj.put("lat", Constants.LAT);
-					obj.put("long", Constants.LNG);
-					obj.put("device_token", Constants.REG_ID);
-					obj.put("device", 2);
-					obj.put("latestTime", cal.getTimeInMillis());
-					Boolean isLoggedIn = spref.getBoolean(
-							Constants.KEY_IS_USER_LOGGED_IN, false);
-					if (!isLoggedIn) {
-						obj.put("password", edtPwd.getText().toString());
+						obj.put("lat", Constants.LAT);
+						obj.put("long", Constants.LNG);
+						obj.put("device_token", Constants.REG_ID);
+						obj.put("device", 2);
+						obj.put("latestTime", cal.getTimeInMillis());
+						
+						Boolean isLoggedIn = spref.getBoolean(
+								Constants.KEY_IS_USER_LOGGED_IN, false);
+						if (!isLoggedIn) {
+							obj.put("password", edtPwd.getText().toString());
+						}
+					}else
+					{
+						obj.put("fname", facebookUsername);
+						obj.put("email", facebookUserEmail);
 					}
+					
 
 					JSONObject jsonObject = HTTPHandler.defaultHandler()
 							.doPost(Constants.URL_SAVE_CONSUMER_PROFILE, obj);
