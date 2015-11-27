@@ -51,6 +51,8 @@ public class MapLayout extends RelativeLayout implements
 
 	public String longitude;
 	public String merchantName;
+	
+	Marker nearestStoreMarker;
 
 	public MapLayout(Context context, Activity activity,
 			ArrayList<RetailerStores> stores) {
@@ -58,10 +60,10 @@ public class MapLayout extends RelativeLayout implements
 		this.context = context;
 		this.activity = activity;
 		this.stores = stores;
-		init();
+//		init();
 	}
 
-	void init() {
+	public void init() {
 
 		LayoutInflater inflater = LayoutInflater.from(context);
 		View view = inflater.inflate(R.layout.map_view, null, false);
@@ -79,12 +81,11 @@ public class MapLayout extends RelativeLayout implements
 					.icon(BitmapDescriptorFactory
 							.fromResource(R.drawable.user_pin)));
 			bld.include(new LatLng(Constants.LAT, Constants.LNG));
-			map.animateCamera(CameraUpdateFactory.newLatLngBounds(bld.build(),
-					70));
+			
 
 			addMarker(Double.parseDouble(latitude),
 					Double.parseDouble(longitude), merchantName, storeAddress,
-					storeContact, map, false);
+					storeContact, map, true);
 			for (int i = 0; i < stores.size(); i++) {
 				if (stores.get(i).getLatitude().equalsIgnoreCase("")
 						|| stores.get(i).getLongitude().equalsIgnoreCase("")) {
@@ -115,6 +116,8 @@ public class MapLayout extends RelativeLayout implements
 			for (LatLng item : list) {
 				bld.include(item);
 			}
+			map.animateCamera(CameraUpdateFactory.newLatLngBounds(bld.build(),
+					70));
 
 		} catch (Exception e) {
 			// e.printStackTrace();

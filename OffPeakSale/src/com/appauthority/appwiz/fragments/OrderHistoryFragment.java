@@ -38,6 +38,7 @@ import com.appsauthority.appwiz.OrderDetailActivity;
 import com.appsauthority.appwiz.OrderHistoryDataHandler;
 import com.appsauthority.appwiz.ProfileActivity;
 import com.appsauthority.appwiz.adapters.OrderHistoryAdapter;
+import com.appsauthority.appwiz.models.AllOrdersResponseObject;
 import com.appsauthority.appwiz.models.OrderHistoryResponseObject;
 import com.appsauthority.appwiz.models.OrderObject;
 import com.appsauthority.appwiz.models.Retailer;
@@ -63,6 +64,7 @@ public class OrderHistoryFragment extends Fragment implements
 	LinearLayout llTabContainer;
 	Button btnLogin;
 	RelativeLayout vwLogin;
+	AllOrdersResponseObject allOrders;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -244,10 +246,16 @@ public class OrderHistoryFragment extends Fragment implements
 			OrderHistoryResponseObject orderHistoryresponseObj) {
 		// TODO Auto-generated method stub
 		if (orderHistoryresponseObj != null
-				&& orderHistoryresponseObj.orders != null) {
+				&& orderHistoryresponseObj.data != null) {
 			adapter.clear();
 			orderHistoryList.clear();
-			adapter.addAll(orderHistoryresponseObj.orders);
+			allOrders = orderHistoryresponseObj.data;
+			if (selectedTabIndex ==0) {
+				adapter.addAll(allOrders.active);	
+			}else{
+				adapter.addAll(allOrders.used);
+			}
+			
 			adapter.notifyDataSetChanged();
 		} else {
 			Toast.makeText(getActivity(), "No record found", Toast.LENGTH_LONG)

@@ -450,7 +450,7 @@ public class EShopListFragment extends Fragment {
 				rdTargetLocation.setChecked(false);
 				selectedSearchOption = 0;
 				etTargetLocation.setEnabled(false);
-			}else{
+			} else {
 				rdCurrentLocation.setChecked(false);
 				rdTargetLocation.setChecked(true);
 				selectedSearchOption = 1;
@@ -467,6 +467,7 @@ public class EShopListFragment extends Fragment {
 					+ retailer.getRetailerTextColor()));
 
 			dialog.show();
+			myLocation.cancelTimer();
 		} catch (Exception e) {
 		}
 
@@ -640,7 +641,7 @@ public class EShopListFragment extends Fragment {
 				try {
 					param.put(Constants.PARAM_RETAILER_ID,
 							Constants.RETAILER_ID);
-					if (selectedSearchOption == 1) {
+					if (selectedSearchOption == 0) {
 						param.put(Constants.PARAM_LAT, Constants.LAT);
 						param.put(Constants.PARAM_LONG, Constants.LNG);
 						Constants.TARGET_LAT = Constants.LAT;
@@ -838,10 +839,10 @@ public class EShopListFragment extends Fragment {
 		// tabs.add("Midnight");
 
 		llTabContainer.removeAllViews();
-		if (categoryList.size() ==0) {
+		if (categoryList.size() == 0) {
 			return;
 		}
-		if (categoryList.size()<=selectedIndex) {
+		if (categoryList.size() <= selectedIndex) {
 			selectedTabIndex = 0;
 		}
 		DisplayMetrics displaymetrics = new DisplayMetrics();
@@ -918,20 +919,26 @@ public class EShopListFragment extends Fragment {
 			horizontalScrollView.smoothScrollTo(width * selectedTabIndex, 0);
 		}
 
-		if (categoryList.size()<selectedIndex) {
+		if (categoryList.size() < selectedIndex) {
 			selectedTabIndex = 0;
 		}
-		CategoryResponseObject category = categoryList.get(selectedTabIndex);
-		productList.clear();
-		productList.addAll(category.products);
-		adapter.notifyDataSetChanged();
-		if (productList.size() == 0) {
-			tvNoSearchFound.setVisibility(View.VISIBLE);
-			listview.setVisibility(View.GONE);
+		try {
 
-		}else{
-			tvNoSearchFound.setVisibility(View.GONE);
-			listview.setVisibility(View.VISIBLE);
+			CategoryResponseObject category = categoryList
+					.get(selectedTabIndex);
+			productList.clear();
+			productList.addAll(category.products);
+			adapter.notifyDataSetChanged();
+			if (productList.size() == 0) {
+				tvNoSearchFound.setVisibility(View.VISIBLE);
+				listview.setVisibility(View.GONE);
+
+			} else {
+				tvNoSearchFound.setVisibility(View.GONE);
+				listview.setVisibility(View.VISIBLE);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 
 	}

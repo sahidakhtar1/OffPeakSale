@@ -249,6 +249,7 @@ public class EShopDetailActivity extends BaseActivity implements
 		mapLayout.storeContact = product.storeContact;
 		mapLayout.latitude = product.latitude;
 		mapLayout.longitude = product.longitude;
+		mapLayout.init();
 		llMapView.addView(mapLayout);
 
 		edt_comments = (EditText) findViewById(R.id.edt_comments);

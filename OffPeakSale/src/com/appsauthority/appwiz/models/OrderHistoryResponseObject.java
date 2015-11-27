@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
 public class OrderHistoryResponseObject implements Serializable{
 	
 	@SerializedName("data")
-	public List<OrderObject> orders;
+	public AllOrdersResponseObject data;
+	
 
 }
