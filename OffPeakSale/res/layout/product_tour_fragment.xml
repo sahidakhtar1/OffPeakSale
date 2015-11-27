@@ -27,6 +27,7 @@
         android:layout_below="@id/Logo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:textStyle="bold"
         android:text="How it Works? "
         android:textColor="#ffffff"
         android:textSize="25sp" />
@@ -41,20 +42,7 @@
         android:gravity="center"
         android:text="Filter a restaurant as per your desired location and cuisine with your matching time slots for morning, afternoon and night"
         android:textColor="#ffffff"
-        android:textSize="20sp" >
+        android:textSize="18sp" >
     </TextView>
-
-    <Button
-        android:id="@+id/continueToHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/details"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_bg"
-        android:padding="10dp"
-        android:text="Continue to home"
-        android:textColor="#ffffff"
-        android:textSize="15sp" />
 
 </RelativeLayout>
