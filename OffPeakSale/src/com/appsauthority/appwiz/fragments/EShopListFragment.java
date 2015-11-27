@@ -643,9 +643,13 @@ public class EShopListFragment extends Fragment {
 					if (selectedSearchOption == 1) {
 						param.put(Constants.PARAM_LAT, Constants.LAT);
 						param.put(Constants.PARAM_LONG, Constants.LNG);
+						Constants.TARGET_LAT = Constants.LAT;
+						Constants.TARGET_LNG = Constants.LNG;
 					} else {
 						param.put(Constants.PARAM_LAT, mLattitude);
 						param.put(Constants.PARAM_LONG, mLongitude);
+						Constants.TARGET_LAT = Double.parseDouble(mLattitude);
+						Constants.TARGET_LNG = Double.parseDouble(mLongitude);
 					}
 
 					// if (category != null) {

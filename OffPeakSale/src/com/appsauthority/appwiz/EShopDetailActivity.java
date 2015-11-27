@@ -942,7 +942,7 @@ public class EShopDetailActivity extends BaseActivity implements
 		if (product.distance == null) {
 			RetailerStores store = product.outlets.get(0);
 			product.distance = Helper.getSharedHelper().getDistanceBetween(
-					Constants.LAT, Constants.LAT,
+					Constants.TARGET_LAT, Constants.TARGET_LNG,
 					Double.parseDouble(store.getLatitude()),
 					Double.parseDouble(store.getLongitude()));
 		}

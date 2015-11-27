@@ -14,6 +14,8 @@ public class Constants {
 	public static String REG_ID = "";
 	public static double LAT = 0;
 	public static double LNG = 0;
+	public static double TARGET_LAT = 0;
+	public static double TARGET_LNG = 0;
 	public static int BANNER_CHANGE_INTERVAL = 30000;
 
 	public static enum DrawerItemType {

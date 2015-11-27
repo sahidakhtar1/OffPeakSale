@@ -157,7 +157,8 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 			RelativeLayout rlCircularView = holder.getRlCircularView();
 			GradientDrawable bgShape = (GradientDrawable) rlCircularView
 					.getBackground();
-			bgShape.setColor(Color.parseColor("#" + Helper.getSharedHelper().reatiler.getHeaderColor()));
+			bgShape.setColor(Color.parseColor("#"
+					+ Helper.getSharedHelper().reatiler.getHeaderColor()));
 		} catch (Exception e) {
 
 		}
@@ -187,11 +188,11 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 			if (object.distance == null) {
 				RetailerStores store = object.outlets.get(0);
 				object.distance = Helper.getSharedHelper().getDistanceBetween(
-						Constants.LAT, Constants.LAT,
+						Constants.TARGET_LAT, Constants.TARGET_LAT,
 						Double.parseDouble(store.getLatitude()),
 						Double.parseDouble(store.getLongitude()));
 			}
-			holder.getTvDistance().setText(object.distance+"KM");
+			holder.getTvDistance().setText(object.distance + "KM");
 			holder.getTvAddress().setText(object.outletName);
 		} catch (Exception e) {
 			// TODO: handle exception
