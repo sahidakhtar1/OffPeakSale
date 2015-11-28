@@ -78,31 +78,37 @@ public class OrderHistoryAdapter extends ArrayAdapter<OrderObject> {
 		product=object.products;
 		try {
 			holder.getTvOrderIdValue().setText(object.orderId);
-			/*String comp[] = object.orderDate.split(" ");
+			String comp[] = object.orderDate.split(" ");
 
 			String text = "";
 			String date = "";
 			if (comp.length > 0) {
 				date = comp[0];
-			}*/
+			}
 			
 		//	holder.getTvTotalCount().setText(object.products.size()+" items");
 			holder.getTvOrderTotalValue().setText(Helper.getSharedHelper().reatiler.defaultCurrency
 					+ " " + object.orderTotal);
 			if(object.shippingStatus.equals("Expired"))
 			{
-				holder.getTvOrderDate().setText("Expired On: "+object.orderDate);
+				holder.getTvOrderDate().setText("Expired On: "+date);
 			}else if(object.shippingStatus.equals("Redeemed"))
 			{
-				holder.getTvOrderDate().setText("Redeemed On: "+object.orderDate);
+				holder.getTvOrderDate().setText("Redeemed On: "+date);
 			}else
 			{
-				holder.getTvOrderDate().setText("Date of Purchase: "+object.orderDate);
+				holder.getTvOrderDate().setText("Date of Purchase: "+date);
 			}
 			
 			
 			holder.getTvOrderStatusValue().setText(object.shippingStatus);
-			holder.getTvExpiryDate().setText("Expiry Date: "+object.orderExpiryDate);
+			String exp[] = object.orderExpiryDate.split(" ");
+			String expDate = "";
+			if (exp.length > 0) {
+				expDate = exp[0];
+			}
+			
+			holder.getTvExpiryDate().setText("Expiry Date: "+expDate);
 			
 			holder.getTvProductPrice().setText("Price: "+Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+" "+product.get(0).newPrice);
 		} catch (Exception e) {
