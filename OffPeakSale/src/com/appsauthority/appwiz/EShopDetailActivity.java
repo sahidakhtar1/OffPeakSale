@@ -100,7 +100,7 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.OnInitializedListener;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerView;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class EShopDetailActivity extends BaseActivity implements
 		OnInitializedListener, OnItemClickListener, ReviewProductCaller,

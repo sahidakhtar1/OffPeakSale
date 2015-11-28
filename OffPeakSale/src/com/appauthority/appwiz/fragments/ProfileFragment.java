@@ -54,7 +54,7 @@ import com.appsauthority.appwiz.utils.HTTPHandler;
 import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.Utils;
 import com.google.gson.Gson;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class ProfileFragment extends Fragment implements UserProfileCaller,
 		UserLoginCaller, ForgotPWDCaller {

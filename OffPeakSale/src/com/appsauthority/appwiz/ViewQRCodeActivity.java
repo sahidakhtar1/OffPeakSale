@@ -6,7 +6,7 @@ import android.widget.ImageView;
 
 import com.appsauthority.appwiz.custom.BaseActivity;
 import com.appsauthority.appwiz.utils.ImageCacheLoader;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class ViewQRCodeActivity extends BaseActivity {
 	String couponCode;

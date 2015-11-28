@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import com.appsauthority.appwiz.models.MediaObject;
 import com.appsauthority.appwiz.utils.Constants;
 import com.appsauthority.appwiz.utils.HorizontalPager;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class BannerLayout extends LinearLayout {
 

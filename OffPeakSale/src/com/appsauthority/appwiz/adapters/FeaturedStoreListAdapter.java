@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.appsauthority.appwiz.models.FeaturedStore;
 import com.appsauthority.appwiz.utils.Helper;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class FeaturedStoreListAdapter extends BaseAdapter {
 

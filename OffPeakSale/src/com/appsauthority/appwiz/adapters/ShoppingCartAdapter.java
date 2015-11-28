@@ -46,7 +46,7 @@ import com.appsauthority.appwiz.models.Retailer;
 import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.ImageCacheLoader;
 import com.appsauthority.appwiz.utils.UpdateUiFromAdapterListener;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class ShoppingCartAdapter extends ArrayAdapter<Product> implements
 		OnItemClickListener {

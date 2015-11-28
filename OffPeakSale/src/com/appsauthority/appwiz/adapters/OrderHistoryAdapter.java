@@ -17,7 +17,7 @@ import com.appsauthority.appwiz.models.OrderObject;
 import com.appsauthority.appwiz.models.Product;
 import com.appsauthority.appwiz.models.ViewHolderOrderHistory;
 import com.appsauthority.appwiz.utils.Helper;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class OrderHistoryAdapter extends ArrayAdapter<OrderObject> {
 

@@ -26,7 +26,7 @@ import com.appsauthority.appwiz.utils.Constants;
 import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.ServiceHandler;
 import com.appsauthority.appwiz.utils.Utils;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class PaypalActivity extends BaseActivity {
 	private Bundle bundleArgs = null;

@@ -18,7 +18,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.annotations.SerializedName;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 import android.app.Activity;
 import android.content.Context;

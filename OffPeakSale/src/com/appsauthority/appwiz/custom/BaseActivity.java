@@ -53,7 +53,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.youtube.player.YouTubeBaseActivity;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class BaseActivity extends YouTubeBaseActivity {
 

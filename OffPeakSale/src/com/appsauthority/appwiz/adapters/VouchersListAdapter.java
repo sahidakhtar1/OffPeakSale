@@ -25,7 +25,7 @@ import com.appauthority.appwiz.interfaces.VoucherDeleteCaller;
 import com.appsauthority.appwiz.models.ViewHolderVoucher;
 import com.appsauthority.appwiz.models.Voucher;
 import com.appsauthority.appwiz.utils.ImageCacheLoader;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class VouchersListAdapter extends ArrayAdapter<Voucher> {
 

@@ -33,7 +33,7 @@ import com.appsauthority.appwiz.models.LookBookInfoResponse;
 import com.appsauthority.appwiz.models.LookBookObject;
 import com.appsauthority.appwiz.models.Retailer;
 import com.appsauthority.appwiz.utils.Helper;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class LookBookFragment extends Fragment implements LookBookCaller, LookBookAdapterCaller{
 

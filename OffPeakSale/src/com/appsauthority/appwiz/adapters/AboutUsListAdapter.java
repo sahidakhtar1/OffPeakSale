@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.appsauthority.appwiz.utils.Helper;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class AboutUsListAdapter extends ArrayAdapter<String> {
 

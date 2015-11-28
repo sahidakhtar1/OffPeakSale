@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class ViewHolderVoucher {
 	private View row;

@@ -15,7 +15,7 @@ import com.appsauthority.appwiz.models.Product;
 import com.appsauthority.appwiz.models.Retailer;
 import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.ImageCacheLoader;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class BilBoardAdapter extends BaseAdapter {
 

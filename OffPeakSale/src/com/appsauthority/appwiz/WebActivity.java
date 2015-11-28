@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.appsauthority.appwiz.custom.BaseActivity;
 import com.appsauthority.appwiz.models.Retailer;
 import com.appsauthority.appwiz.utils.Helper;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class WebActivity extends BaseActivity {
 	private Bundle bundleArgs = null;

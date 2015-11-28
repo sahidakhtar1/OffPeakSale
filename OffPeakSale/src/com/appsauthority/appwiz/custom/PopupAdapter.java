@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.model.Marker;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class PopupAdapter implements InfoWindowAdapter {
 	LayoutInflater inflater = null;

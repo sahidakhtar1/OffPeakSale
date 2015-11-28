@@ -14,7 +14,7 @@ import android.widget.Button;
 
 import com.appauthority.appwiz.fragments.SlidingMenuActivity;
 import com.appsauthority.appwiz.adapters.ProductTourFragmentAdapter;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 import com.viewpagerindicator.CirclePageIndicator;
 import com.viewpagerindicator.PageIndicator;
 

@@ -40,7 +40,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class BranchLocationFragment extends Fragment implements
 		OnInfoWindowClickListener {

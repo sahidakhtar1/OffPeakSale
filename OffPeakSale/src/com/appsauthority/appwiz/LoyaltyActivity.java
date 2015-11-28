@@ -35,7 +35,7 @@ import com.appsauthority.appwiz.utils.Constants;
 import com.appsauthority.appwiz.utils.HTTPHandler;
 import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.Utils;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class LoyaltyActivity extends BaseActivity {
 

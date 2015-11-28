@@ -8,7 +8,7 @@ import com.appsauthority.appwiz.fragments.ProductTourFragment;
 import com.appsauthority.appwiz.models.TourObject;
 import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.ImageCacheLoader;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 import com.viewpagerindicator.IconPagerAdapter;
 
 public class ProductTourFragmentAdapter extends FragmentPagerAdapter {

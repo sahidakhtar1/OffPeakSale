@@ -38,7 +38,7 @@ import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 import com.google.gson.Gson;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

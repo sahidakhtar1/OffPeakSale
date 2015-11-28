@@ -6,7 +6,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class ViewHolderShoppingCart {
 

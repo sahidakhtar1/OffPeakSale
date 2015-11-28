@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.offpeaksale.restaurants"
+    package="com.offpeaksale.consumer"
     android:versionCode="1"
     android:versionName="1" >
 
@@ -19,7 +19,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <uses-permission android:name="com.offpeaksale.restaurants.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.offpeaksale.consumer.permission.C2D_MESSAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
@@ -32,7 +32,7 @@
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
     <permission
-        android:name="com.offpeaksale.restaurants.permission.C2D_MESSAGE"
+        android:name="com.offpeaksale.consumer.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
     <uses-feature
@@ -59,7 +59,7 @@
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
 
-                <category android:name="com.offpeaksale.restaurants" />
+                <category android:name="com.offpeaksale.consumer" />
             </intent-filter>
         </receiver>
 

@@ -25,7 +25,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class ImageCacheLoader {
 

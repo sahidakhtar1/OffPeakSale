@@ -18,7 +18,7 @@ import com.appsauthority.appwiz.adapters.OrderDetailAdapter;
 import com.appsauthority.appwiz.custom.BaseActivity;
 import com.appsauthority.appwiz.models.OrderObject;
 import com.appsauthority.appwiz.utils.Helper;
-import com.offpeaksale.restaurants.R;
+import com.offpeaksale.consumer.R;
 
 public class OrderDetailActivity extends BaseActivity {
 	OrderObject orderObj;
