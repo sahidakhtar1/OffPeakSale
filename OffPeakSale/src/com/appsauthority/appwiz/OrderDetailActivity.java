@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,15 +27,6 @@ public class OrderDetailActivity extends BaseActivity {
 	TextView textViewHeader, tvQRCode;
 	ListView itemListView;
 	OrderDetailAdapter adapter;
-
-	LinearLayout llOrderNumber, llOrderStaus, llOrderDate, llOrderTotal,
-			llRewardsRedeemed, llRewardsEarned, llDiscount, llShippingFee,
-			llDeliveryDate, llAddress, llInstruction;
-
-	TextView tvOrderNumberValue, tvOrderStausValue, tvOrderdateValue,
-			tvOrderTotalValue, tvRewardRedeemedValue, tvRewardsEarnedValue,
-			tvDiscountValue, tvshippingFeeValue, tvDeliveryDateValue,
-			tvAddressValue,tvInstructionValue;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -108,147 +100,52 @@ public class OrderDetailActivity extends BaseActivity {
 		View view = vi.inflate(R.layout.order_info_layout, null);
 		itemListView.addHeaderView(view, "", false);
 
-		llOrderNumber = (LinearLayout) view.findViewById(R.id.llOrderNumber);
-		llOrderStaus = (LinearLayout) view.findViewById(R.id.llOrderStaus);
-		llOrderDate = (LinearLayout) view.findViewById(R.id.llOrderDate);
-		llOrderTotal = (LinearLayout) view.findViewById(R.id.llOrderTotal);
-		llRewardsRedeemed = (LinearLayout) view
-				.findViewById(R.id.llRewardsRedeemed);
-		llRewardsEarned = (LinearLayout) view
-				.findViewById(R.id.llRewardsEarned);
-		llRewardsEarned.setVisibility(View.GONE);
-		llDiscount = (LinearLayout) view.findViewById(R.id.llDiscount);
-		llShippingFee = (LinearLayout) view.findViewById(R.id.llShippingFee);
-		llDeliveryDate = (LinearLayout) view.findViewById(R.id.llDeliveryDate);
-		llAddress = (LinearLayout) view.findViewById(R.id.llAddress);
-		llInstruction = (LinearLayout) view.findViewById(R.id.llInstruction);
-		
-		TextView tvOrderNumberLbl = (TextView) llOrderNumber
-				.findViewById(R.id.tvOptionLbl);
-		tvOrderNumberValue = (TextView) llOrderNumber
-				.findViewById(R.id.tvOptionValue);
+		TextView tvOrderId = (TextView)view.findViewById(R.id.tvOrderId);
+		TextView	tvOrderStatus = (TextView) view.findViewById(R.id.tvOrderStatus);
+		TextView tvOrderDiscount = (TextView) view.findViewById(R.id.tvOrderDiscount);
+		TextView tvOrderInstruction = (TextView) view.findViewById(R.id.tvOrderInstruction);
+		TextView tvOrderExpiry = (TextView) view.findViewById(R.id.tvOrderExpiry);
 
-		TextView tvOrderStausLbl = (TextView) llOrderStaus
-				.findViewById(R.id.tvOptionLbl);
-		tvOrderStausValue = (TextView) llOrderStaus
-				.findViewById(R.id.tvOptionValue);
-
-		TextView tvOrderDateLbl = (TextView) llOrderDate
-				.findViewById(R.id.tvOptionLbl);
-		tvOrderdateValue = (TextView) llOrderDate
-				.findViewById(R.id.tvOptionValue);
-
-		TextView tvOrderTotalLbl = (TextView) llOrderTotal
-				.findViewById(R.id.tvOptionLbl);
-		tvOrderTotalValue = (TextView) llOrderTotal
-				.findViewById(R.id.tvOptionValue);
-
-		TextView tvRewardsReedeemedLbl = (TextView) llRewardsRedeemed
-				.findViewById(R.id.tvOptionLbl);
-		tvRewardRedeemedValue = (TextView) llRewardsRedeemed
-				.findViewById(R.id.tvOptionValue);
-
-		TextView tvRewardsEarnedLbl = (TextView) llRewardsEarned
-				.findViewById(R.id.tvOptionLbl);
-		tvRewardsEarnedValue = (TextView) llRewardsEarned
-				.findViewById(R.id.tvOptionValue);
-
-		TextView tvDiscountLbl = (TextView) llDiscount
-				.findViewById(R.id.tvOptionLbl);
-		tvDiscountValue = (TextView) llDiscount
-				.findViewById(R.id.tvOptionValue);
-
-		TextView tvShippingFeeLbl = (TextView) llShippingFee
-				.findViewById(R.id.tvOptionLbl);
-		tvshippingFeeValue = (TextView) llShippingFee
-				.findViewById(R.id.tvOptionValue);
-
-		TextView tvDeliveryDateLbl = (TextView) llDeliveryDate
-				.findViewById(R.id.tvOptionLbl);
-		tvDeliveryDateValue = (TextView) llDeliveryDate
-				.findViewById(R.id.tvOptionValue);
-
-		TextView tvAddressLbl = (TextView) llAddress
-				.findViewById(R.id.tvOptionLbl);
-		tvAddressValue = (TextView) llAddress.findViewById(R.id.tvOptionValue);
-		
-		TextView tvInstructionLbl = (TextView) llInstruction
-				.findViewById(R.id.tvOptionLbl);
-		tvInstructionValue = (TextView) llInstruction.findViewById(R.id.tvOptionValue);
-
-		tvOrderNumberLbl.setText("Order id:");
-		tvOrderStausLbl.setText("Order Status:");
-		tvOrderDateLbl.setText("Order date:");
-		tvOrderTotalLbl.setText("Total:");
-		tvRewardsEarnedLbl.setText("Credit Earned:");
-		tvRewardsReedeemedLbl.setText("Credit Redeemed:");
-		tvDiscountLbl.setText("Discount:");
-		tvShippingFeeLbl.setText("Shipping Fee:");
-		tvDeliveryDateLbl.setText("Delivery Date:");
-		tvAddressLbl.setText("Delivery Address:");
-		tvInstructionLbl.setText("Instruction:");
-
-		tvOrderNumberValue.setText(orderObj.orderId);
-		tvOrderStausValue.setText(orderObj.shippingStatus);
-		tvOrderdateValue.setText(orderObj.orderDate);
-		tvOrderTotalValue.setText(Helper.getSharedHelper().currency_code
-				+ orderObj.orderTotal);
-		// tvRewardsEarnedValue.setText(orderObj.);
-		tvRewardRedeemedValue.setText(orderObj.reward_redeemed);
-		tvDiscountValue.setText(orderObj.discountAmt);
-		tvshippingFeeValue.setText(Helper.getSharedHelper().currency_code
-				+ orderObj.shippingAmt);
-		if (orderObj.deliverydate != null) {
-			tvDeliveryDateValue.setText(orderObj.deliverydate);
-		} else {
-			tvDeliveryDateValue.setText(orderObj.collectiondate);
-		}
-
-		if (orderObj.deliveryaddress != null) {
-			tvAddressValue.setText(orderObj.deliveryaddress);
-		} else {
-			tvAddressValue.setText(orderObj.collectionaddress);
-		}
-		
-		if (orderObj.orderInstr != null) {
-			tvInstructionValue.setText(orderObj.orderInstr);
-			llInstruction.setVisibility(View.VISIBLE);
-		} else {
-			llInstruction.setVisibility(View.GONE);
-		}
-		
 
 		try {
-			tvOrderNumberLbl.setTypeface(Helper.getSharedHelper().normalFont);
-			tvOrderStausLbl.setTypeface(Helper.getSharedHelper().normalFont);
-			tvOrderDateLbl.setTypeface(Helper.getSharedHelper().normalFont);
-			tvOrderTotalLbl.setTypeface(Helper.getSharedHelper().normalFont);
-			tvRewardsReedeemedLbl
-					.setTypeface(Helper.getSharedHelper().normalFont);
-			tvRewardsEarnedLbl.setTypeface(Helper.getSharedHelper().normalFont);
-			tvDiscountLbl.setTypeface(Helper.getSharedHelper().normalFont);
-			tvShippingFeeLbl.setTypeface(Helper.getSharedHelper().normalFont);
-			tvDeliveryDateLbl.setTypeface(Helper.getSharedHelper().normalFont);
-			tvAddressLbl.setTypeface(Helper.getSharedHelper().normalFont);
-			tvInstructionLbl.setTypeface(Helper.getSharedHelper().normalFont);
-
-			tvOrderNumberValue.setTypeface(Helper.getSharedHelper().normalFont);
-			tvOrderStausValue.setTypeface(Helper.getSharedHelper().normalFont);
-			tvOrderdateValue.setTypeface(Helper.getSharedHelper().normalFont);
-			tvOrderTotalValue.setTypeface(Helper.getSharedHelper().normalFont);
-			tvRewardRedeemedValue
-					.setTypeface(Helper.getSharedHelper().normalFont);
-			tvRewardsEarnedValue
-					.setTypeface(Helper.getSharedHelper().normalFont);
-			tvDiscountValue.setTypeface(Helper.getSharedHelper().normalFont);
-			tvshippingFeeValue.setTypeface(Helper.getSharedHelper().normalFont);
-			tvDeliveryDateValue
-					.setTypeface(Helper.getSharedHelper().normalFont);
-			tvAddressValue.setTypeface(Helper.getSharedHelper().normalFont);
-			tvInstructionValue.setTypeface(Helper.getSharedHelper().normalFont);
+			tvOrderId.setTypeface(Helper.getSharedHelper().normalFont);
+			tvOrderStatus.setTypeface(Helper.getSharedHelper().normalFont);
+			tvOrderDiscount.setTypeface(Helper.getSharedHelper().normalFont);
+			tvOrderInstruction.setTypeface(Helper.getSharedHelper().normalFont);
+			tvOrderExpiry.setTypeface(Helper.getSharedHelper().normalFont);
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		
+		String orderTex="<u>Order #"+orderObj.orderId+"</u>";
+		tvOrderId.setText(Html.fromHtml(orderTex));
+		tvOrderStatus.setText("Order Status: "+orderObj.shippingStatus);
+		tvOrderDiscount.setText("Discount: "+orderObj.discountAmt+"%");
+		String comp[] = orderObj.orderDate.split(" ");
 
+		String date = "";
+		if (comp.length > 0) {
+			date = comp[0];
+		}
+		
+		if(orderObj.shippingStatus.equals("Expired"))
+		{
+			tvOrderExpiry.setText("Expired On: "+date);
+		}else if(orderObj.shippingStatus.equals("Redeemed"))
+		{
+			tvOrderExpiry.setText("Redeemed On: "+date);
+		}else
+		{
+			tvOrderExpiry.setText("Expiry: "+date);
+		}
+		
+		if (orderObj.orderInstr != null) {
+			tvOrderInstruction.setText("Instruction: "+orderObj.orderInstr);
+			tvOrderInstruction.setVisibility(View.VISIBLE);
+		} else {
+			tvOrderInstruction.setVisibility(View.GONE);
+		}
+		
 	}
 }

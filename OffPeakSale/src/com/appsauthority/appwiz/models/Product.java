@@ -37,6 +37,7 @@ public class Product implements Serializable {
 	String howItWorks;
 
 	@SerializedName("old_price")
+	public
 	String oldPrice;
 
 	@SerializedName("new_price")
