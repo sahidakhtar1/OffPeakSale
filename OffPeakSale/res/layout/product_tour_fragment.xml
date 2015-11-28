@@ -13,36 +13,44 @@
 
     <ImageView
         android:id="@+id/Logo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:scaleType="fitXY"
-        android:src="@drawable/logo" />
+        android:src="@drawable/ic_launcher" />
 
-    <TextView
-        android:id="@+id/howItWorks"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Logo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"
-        android:text="How it Works? "
-        android:textColor="#ffffff"
-        android:textSize="25sp" />
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/howItWorks"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
-        android:gravity="center"
-        android:text="Filter a restaurant as per your desired location and cuisine with your matching time slots for morning, afternoon and night"
-        android:textColor="#ffffff"
-        android:textSize="18sp" >
-    </TextView>
+        <TextView
+            android:id="@+id/howItWorks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="How it Works? "
+            android:layout_gravity="center_horizontal"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/details"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/howItWorks"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:text="Filter a restaurant as per your desired location and cuisine with your matching time slots for morning, afternoon and night"
+            android:textColor="#ffffff"
+            android:textSize="18sp" >
+        </TextView>
+    </LinearLayout>
 
 </RelativeLayout>

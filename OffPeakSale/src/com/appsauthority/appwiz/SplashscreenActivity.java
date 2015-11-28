@@ -250,7 +250,7 @@ public class SplashscreenActivity extends BaseActivity {
 						boldFontPath);
 				Helper.getSharedHelper().boldFont = boldFont;
 
-				if(spref.getBoolean("ProductTour", false)==true)
+				if(false && spref.getBoolean("ProductTour", false)==true)
 				{
 					Intent intent = new Intent(getApplicationContext(),
 							SlidingMenuActivity.class);
