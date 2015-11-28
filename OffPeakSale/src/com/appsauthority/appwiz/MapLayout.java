@@ -83,9 +83,12 @@ public class MapLayout extends RelativeLayout implements
 			bld.include(new LatLng(Constants.LAT, Constants.LNG));
 			
 
-			addMarker(Double.parseDouble(latitude),
+			if(latitude!=null && longitude!=null)
+			{
+				addMarker(Double.parseDouble(latitude),
 					Double.parseDouble(longitude), merchantName, storeAddress,
 					storeContact, map, true);
+			}
 			for (int i = 0; i < stores.size(); i++) {
 				if (stores.get(i).getLatitude().equalsIgnoreCase("")
 						|| stores.get(i).getLongitude().equalsIgnoreCase("")) {
