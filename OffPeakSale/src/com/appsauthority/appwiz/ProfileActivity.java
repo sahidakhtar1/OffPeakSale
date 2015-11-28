@@ -129,9 +129,9 @@ public class ProfileActivity extends BaseActivity implements
 	private UiLifecycleHelper uiHelper;
 	private static final String TAG = "ProfileActivity";
 
-	private boolean isFacebookLogin=false;
-	private String facebookUsername="",facebookUserEmail="";
-	
+	private boolean isFacebookLogin = false;
+	private String facebookUsername = "", facebookUserEmail = "";
+
 	void initializeLoginRegisterView() {
 		llLogin = (LinearLayout) llLoginForm.findViewById(R.id.llLogin);
 		llForgotPwd = (LinearLayout) llLoginForm.findViewById(R.id.llForgotPwd);
@@ -324,21 +324,21 @@ public class ProfileActivity extends BaseActivity implements
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-//			if (!intent.getStringExtra("FROM").equalsIgnoreCase("ESHOP")) {
-//				finish();
-//			} else {
-				llForm.setVisibility(View.VISIBLE);
-				llLoginForm.setVisibility(View.GONE);
-				llBottonView.setVisibility(View.VISIBLE);
-				llPassword.setVisibility(View.GONE);
-				tvBackToLogin.setVisibility(View.GONE);
-				editTextEmail.setEnabled(false);
-				buttonSave.setText(getResources().getString(R.string.save));
-				veTermsOfUse.setVisibility(View.GONE);
+			// if (!intent.getStringExtra("FROM").equalsIgnoreCase("ESHOP")) {
+			// finish();
+			// } else {
+			llForm.setVisibility(View.VISIBLE);
+			llLoginForm.setVisibility(View.GONE);
+			llBottonView.setVisibility(View.VISIBLE);
+			llPassword.setVisibility(View.GONE);
+			tvBackToLogin.setVisibility(View.GONE);
+			editTextEmail.setEnabled(false);
+			buttonSave.setText(getResources().getString(R.string.save));
+			veTermsOfUse.setVisibility(View.GONE);
 
-				if (Utils.isProfileAvailable(context)) {
-					setUpFields();
-//				}
+			if (Utils.isProfileAvailable(context)) {
+				setUpFields();
+				// }
 			}
 		} else {
 			// llForm.setVisibility(View.GONE);
@@ -381,10 +381,15 @@ public class ProfileActivity extends BaseActivity implements
 						public void onCompleted(GraphUser user,
 								Response response) {
 							if (user != null) {
-								isFacebookLogin=true;
-								facebookUsername=user.getName();
-								facebookUserEmail=user.asMap().get("email")
+								isFacebookLogin = true;
+								facebookUsername = user.getName();
+								facebookUserEmail = user.asMap().get("email")
 										.toString();
+								editTextFirstName.setText(facebookUsername);
+								editTextEmail.setText(facebookUserEmail);
+								editTextMobileNumber.setText("");
+								buttonCountries.setText("");
+								
 								Log.e("User Name: ", user.getName());
 								Log.e("User Gender: ",
 										user.getProperty("gender").toString());
@@ -695,7 +700,7 @@ public class ProfileActivity extends BaseActivity implements
 	}
 
 	public void savePressed(View v) {
-		isFacebookLogin=false;
+		isFacebookLogin = false;
 		isProceedtoCheckout = false;
 		saveProfile();
 	}
@@ -791,35 +796,34 @@ public class ProfileActivity extends BaseActivity implements
 				try {
 
 					Calendar cal = Calendar.getInstance();
-					if(isFacebookLogin==false)
-					{
+					if (isFacebookLogin == false) {
 						// sqliteHelper.openDataBase();
-						String countryCode = getCountryCode(buttonCountries.getText().toString());
-
-						obj.put("retailerId", Constants.RETAILER_ID);
-						obj.put("fname", editTextFirstName.getText().toString());
-
-						obj.put("mobile_num", editTextMobileNumber.getText().toString());
-						obj.put("email", editTextEmail.getText().toString());
-						obj.put("country", countryCode);
-
-						obj.put("lat", Constants.LAT);
-						obj.put("long", Constants.LNG);
-						obj.put("device_token", Constants.REG_ID);
-						obj.put("device", 2);
-						obj.put("latestTime", cal.getTimeInMillis());
 						
+
 						Boolean isLoggedIn = spref.getBoolean(
 								Constants.KEY_IS_USER_LOGGED_IN, false);
 						if (!isLoggedIn) {
 							obj.put("password", edtPwd.getText().toString());
 						}
-					}else
-					{
+					} else {
 						obj.put("fname", facebookUsername);
 						obj.put("email", facebookUserEmail);
 					}
-					
+					String countryCode = getCountryCode(buttonCountries
+							.getText().toString());
+
+					obj.put("fname", editTextFirstName.getText().toString());
+
+					obj.put("mobile_num", editTextMobileNumber.getText()
+							.toString());
+					obj.put("email", editTextEmail.getText().toString());
+					obj.put("country", countryCode);
+					obj.put("retailerId", Constants.RETAILER_ID);
+					obj.put("lat", Constants.LAT);
+					obj.put("long", Constants.LNG);
+					obj.put("device_token", Constants.REG_ID);
+					obj.put("device", 2);
+					obj.put("latestTime", cal.getTimeInMillis());
 
 					JSONObject jsonObject = HTTPHandler.defaultHandler()
 							.doPost(Constants.URL_SAVE_CONSUMER_PROFILE, obj);
@@ -852,15 +856,22 @@ public class ProfileActivity extends BaseActivity implements
 
 				Profile profile = new Profile();
 				// profile.setAge(new Date().getYear() - dateOfBirth.getYear());
-				profile.setDeviceToken(Constants.REG_ID);
+//				profile.setDeviceToken(Constants.REG_ID);
 				profile.setEmail(editTextEmail.getText().toString());
 				profile.setFirstName(editTextFirstName.getText().toString());
-				profile.setCountry(buttonCountries.getText().toString());
-				profile.setLat(Constants.LAT);
-				profile.setLng(Constants.LNG);
-				profile.setMobileNo(Long.parseLong(editTextMobileNumber
-						.getText().toString()));
-				profile.setTime(new Date().getTime());
+
+//				profile.setLat(Constants.LAT);
+//				profile.setLng(Constants.LNG);
+				try {
+					profile.setCountry(buttonCountries.getText().toString());
+					profile.setMobileNo(editTextMobileNumber
+							.getText().toString());
+
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+
+//				profile.setTime(new Date().getTime());
 
 				Gson gson = new Gson();
 				String json = gson.toJson(profile);
@@ -881,43 +892,38 @@ public class ProfileActivity extends BaseActivity implements
 						.commit();
 				Utils.setProfile(context, true);
 
-				if (isProceedtoCheckout) {
-					new AsyncGetPayPalToken().execute();
+				if (buttonSave
+						.getText()
+						.toString()
+						.equalsIgnoreCase(
+								getResources().getString(R.string.register))) {
+					Toast.makeText(context, "Registered successfully",
+							Toast.LENGTH_LONG).show();
 				} else {
+					Toast.makeText(context, "Profile successfully saved",
+							Toast.LENGTH_LONG).show();
+				}
 
-					if (buttonSave
-							.getText()
-							.toString()
-							.equalsIgnoreCase(
-									getResources().getString(R.string.register))) {
-						Toast.makeText(context, "Registered successfully",
-								Toast.LENGTH_LONG).show();
+				loggedin(true);
+				setUpFields();
+				dismissLoadingDialog();
+
+				try {
+					if (!intent.getStringExtra("FROM")
+							.equalsIgnoreCase("ESHOP")) {
+
+						finish();
 					} else {
-						Toast.makeText(context, "Profile successfully saved",
-								Toast.LENGTH_LONG).show();
-					}
-
-					loggedin(true);
-					setUpFields();
-					dismissLoadingDialog();
-
-					try {
-						if (!intent.getStringExtra("FROM").equalsIgnoreCase(
-								"ESHOP")) {
-
-							finish();
-						} else {
-							String emailId = spref.getString(
-									Constants.KEY_EMAIL, "");
-							if (!emailId.equalsIgnoreCase("")) {
-								new UserProfileDataHandler(emailId,
-										ProfileActivity.this);
-							}
-
+						String emailId = spref.getString(Constants.KEY_EMAIL,
+								"");
+						if (!emailId.equalsIgnoreCase("")) {
+							new UserProfileDataHandler(emailId,
+									ProfileActivity.this);
 						}
-					} catch (Exception e) {
 
 					}
+				} catch (Exception e) {
+
 				}
 			} else {
 				dismissLoadingDialog();

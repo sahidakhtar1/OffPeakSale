@@ -202,40 +202,40 @@ public class PaypalActivity extends BaseActivity {
 		protected void onPostExecute(Boolean result) {
 
 			dismissLoadingDialog();
-			String amount = "";
-			if (Helper.getSharedHelper().enableShoppingCart.equals("1")) {
-				Float shipping = Helper.getSharedHelper().shippingCharge;
-				amount = Helper.getSharedHelper().getCartTotalAmount();
-				float total = Float.parseFloat(amount);
-				if (total >= Helper.getSharedHelper().freeAmount
-						|| Helper.getSharedHelper().deliveryOptionSelectedIndex == 1) {
-
-				} else {
-					total = total + shipping;
-				}
-				total = total
-						- Float.parseFloat(Helper.getSharedHelper().redeemPoints);
-				amount = Float.toString(total);
-				Helper.getSharedHelper().shoppintCartList.clear();
-			} else {
-				int qty = Integer.parseInt(product.getQty());
-				float unitPrice = Float.parseFloat(product.getNewPrice());
-				float total = qty * unitPrice;
-				float discount = total
-						* Float.parseFloat(Helper.getSharedHelper().discountPercent)
-						/ 100;
-				total = total - discount;
-				Float shipping = Helper.getSharedHelper().shippingCharge;
-				if (total >= Helper.getSharedHelper().freeAmount
-						&& Helper.getSharedHelper().deliveryOptionSelectedIndex == 0) {
-
-				} else {
-					total = total + shipping;
-				}
-				total = total
-						- Float.parseFloat(Helper.getSharedHelper().redeemPoints);
-				amount = Float.toString(total);
-			}
+			String amount = bundleArgs.getString("grandTotal");
+//			if (Helper.getSharedHelper().enableShoppingCart.equals("1")) {
+//				Float shipping = Helper.getSharedHelper().shippingCharge;
+//				amount = Helper.getSharedHelper().getCartTotalAmount();
+//				float total = Float.parseFloat(amount);
+//				if (total >= Helper.getSharedHelper().freeAmount
+//						|| Helper.getSharedHelper().deliveryOptionSelectedIndex == 1) {
+//
+//				} else {
+//					total = total + shipping;
+//				}
+//				total = total
+//						- Float.parseFloat(Helper.getSharedHelper().redeemPoints);
+//				amount = Float.toString(total);
+//				Helper.getSharedHelper().shoppintCartList.clear();
+//			} else {
+//				int qty = Integer.parseInt(product.getQty());
+//				float unitPrice = Float.parseFloat(product.getNewPrice());
+//				float total = qty * unitPrice;
+//				float discount = total
+//						* Float.parseFloat(Helper.getSharedHelper().discountPercent)
+//						/ 100;
+//				total = total - discount;
+//				Float shipping = Helper.getSharedHelper().shippingCharge;
+//				if (total >= Helper.getSharedHelper().freeAmount
+//						&& Helper.getSharedHelper().deliveryOptionSelectedIndex == 0) {
+//
+//				} else {
+//					total = total + shipping;
+//				}
+//				total = total
+//						- Float.parseFloat(Helper.getSharedHelper().redeemPoints);
+//				amount = Float.toString(total);
+//			}
 
 			String paymetTitle = "Payment success\nEmail confirmation sent\n\n";
 			String grandTotal = "Grand Total: "
@@ -257,19 +257,19 @@ public class PaypalActivity extends BaseActivity {
 			String orderNo = "";
 			if (id != null) {
 				if (Helper.getSharedHelper().reatiler.enableVerit.equals("1")) {
-					orderNo = "Veritrans Id: " + id;
+					orderNo = "\nVeritrans Id: " + id;
 				} else {
-					orderNo = "Paypal Id: " + paypal_transactionId;
+					orderNo = "\nPaypal Id: " + paypal_transactionId;
 				}
 
 			}
 			String transactionIdMSG = "";
 			if (transactionId != null) {
-				transactionIdMSG = "\nTransaction Id:" + transactionId;
+				transactionIdMSG = "Transaction Id:" + transactionId;
 			}
 			String msg = "Dear Customer,\nYour purchase is sucessful.\nYou will receive E-Mail confirmation shortly.";
 
-			String toasttext = paymetTitle + grandTotal + earnedRewards+transactionIdMSG
+			String toasttext = paymetTitle + grandTotal +transactionIdMSG
 					+ orderNo;// + msg;
 			Toast.makeText(context, toasttext, Toast.LENGTH_LONG).show();
 

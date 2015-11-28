@@ -317,26 +317,26 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	public void insertOrReplaceProfile(Profile profile) {
-		ContentValues contentValues = new ContentValues();
-		contentValues.put("retailerId", Constants.RETAILER_ID);
-		contentValues.put("fname", profile.getFirstName());
-		contentValues.put("lname", profile.getLastName());
-		contentValues.put("gender", profile.getGender() + "");
-//		contentValues.put("age", profile.getAge());
-		contentValues.put("dob", profile.getDob());
-		contentValues.put("mobile_num", profile.getMobileNo());
-		contentValues.put("email", profile.getEmail());
-		contentValues.put("address", profile.getAddress());
-		contentValues.put("city", profile.getCity());
-		contentValues.put("state", profile.getState());
-		contentValues.put("country", profile.getCountry());
-		contentValues.put("zip", profile.getZip());
-		contentValues.put("lat", profile.getLat());
-		contentValues.put("long", profile.getLng());
-		contentValues.put("device_token", profile.getDeviceToken());
-		contentValues.put("device", 2);
-		contentValues.put("latestTime", profile.getTime());
-		db.replace(profileTable, null, contentValues);
+//		ContentValues contentValues = new ContentValues();
+//		contentValues.put("retailerId", Constants.RETAILER_ID);
+//		contentValues.put("fname", profile.getFirstName());
+//		contentValues.put("lname", profile.getLastName());
+//		contentValues.put("gender", profile.getGender() + "");
+////		contentValues.put("age", profile.getAge());
+//		contentValues.put("dob", profile.getDob());
+//		contentValues.put("mobile_num", profile.getMobileNo());
+//		contentValues.put("email", profile.getEmail());
+//		contentValues.put("address", profile.getAddress());
+//		contentValues.put("city", profile.getCity());
+//		contentValues.put("state", profile.getState());
+//		contentValues.put("country", profile.getCountry());
+//		contentValues.put("zip", profile.getZip());
+//		contentValues.put("lat", profile.getLat());
+//		contentValues.put("long", profile.getLng());
+//		contentValues.put("device_token", profile.getDeviceToken());
+//		contentValues.put("device", 2);
+//		contentValues.put("latestTime", profile.getTime());
+//		db.replace(profileTable, null, contentValues);
 	}
 
 	public void insertOrReplaceVoucher(Voucher voucher) {

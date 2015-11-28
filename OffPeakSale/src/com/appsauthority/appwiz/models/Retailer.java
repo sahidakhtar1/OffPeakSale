@@ -182,6 +182,9 @@ public class Retailer implements Serializable {
 	@SerializedName("gift_price")
 	public String gift_price;
 	
+	@SerializedName("tutorialSlides")
+	public ArrayList<TourObject> tutorialSlides;
+	
 	
 	@SerializedName("menuList")
 	public List<MenuItem> menuList;

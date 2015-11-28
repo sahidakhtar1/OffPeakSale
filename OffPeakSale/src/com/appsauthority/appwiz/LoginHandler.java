@@ -70,8 +70,8 @@ public class LoginHandler {
 								UserDetailObject userDetail = gson.fromJson(
 										json.toString(), UserDetailObject.class);
 								Profile  userProfile = userDetail.userProfile;
-								Helper.getSharedHelper().rewardPoints = userProfile
-										.getRewardPoints();
+//								Helper.getSharedHelper().rewardPoints = userProfile
+//										.getRewardPoints();
 								caller.loggedIn(true,
 										"Sucessfully logged in",userProfile);
 							}

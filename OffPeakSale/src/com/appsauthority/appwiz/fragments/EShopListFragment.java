@@ -133,6 +133,8 @@ public class EShopListFragment extends Fragment {
 	private static final String API_KEY = "AIzaSyDAIb7josxX55yT-aam9XpCnbPgKWjwIjs";
 	JSONArray placePredsJsonArray;
 	String mLattitude, mLongitude;
+	
+	TextView tvTotalDeals;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -211,7 +213,7 @@ public class EShopListFragment extends Fragment {
 				.findViewById(R.id.rlFilter);
 		rlLocationOption = (RelativeLayout) view
 				.findViewById(R.id.rlLocationOption);
-		TextView tvTotalDeals = (TextView) view.findViewById(R.id.tvTotalDeals);
+		tvTotalDeals = (TextView) view.findViewById(R.id.tvTotalDeals);
 		tvTotalDeals.setTextColor(Color.parseColor("#"
 				+ retailer.getHeaderColor()));
 		rlFilter.setOnClickListener(new OnClickListener() {
@@ -937,6 +939,7 @@ public class EShopListFragment extends Fragment {
 				tvNoSearchFound.setVisibility(View.GONE);
 				listview.setVisibility(View.VISIBLE);
 			}
+			tvTotalDeals.setText("Off Peak Sale Nearby "+adapter.getCount());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

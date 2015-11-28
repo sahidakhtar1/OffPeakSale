@@ -692,14 +692,14 @@ public class ProfileFragment extends Fragment implements UserProfileCaller,
 
 				Profile profile = new Profile();
 				// profile.setAge(new Date().getYear() - dateOfBirth.getYear());
-				profile.setDeviceToken(Constants.REG_ID);
+//				profile.setDeviceToken(Constants.REG_ID);
 				profile.setEmail(editTextEmail.getText().toString());
 				profile.setFirstName(editTextFirstName.getText().toString());
-				profile.setLat(Constants.LAT);
-				profile.setLng(Constants.LNG);
-				profile.setMobileNo(Long.parseLong(editTextMobileNumber
-						.getText().toString()));
-				profile.setTime(new Date().getTime());
+//				profile.setLat(Constants.LAT);
+//				profile.setLng(Constants.LNG);
+				profile.setMobileNo(editTextMobileNumber
+						.getText().toString());
+//				profile.setTime(new Date().getTime());
 
 				Gson gson = new Gson();
 				String json = gson.toJson(profile);

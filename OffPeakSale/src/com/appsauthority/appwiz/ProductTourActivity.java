@@ -18,33 +18,35 @@ import com.offpeaksale.restaurants.R;
 import com.viewpagerindicator.CirclePageIndicator;
 import com.viewpagerindicator.PageIndicator;
 
-public class ProductTourActivity extends FragmentActivity{
+public class ProductTourActivity extends FragmentActivity {
 
 	ProductTourFragmentAdapter mAdapter;
-	    ViewPager mPager;
-	    PageIndicator mIndicator;
-	    
+	ViewPager mPager;
+	PageIndicator mIndicator;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.product_tour);
-		
-		SharedPreferences	spref = PreferenceManager.getDefaultSharedPreferences(this);
-		Editor edit=spref.edit();
+
+		SharedPreferences spref = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		Editor edit = spref.edit();
 		edit.putBoolean("ProductTour", true);
 		edit.commit();
-        mAdapter = new ProductTourFragmentAdapter(getSupportFragmentManager());
-        mPager = (ViewPager)findViewById(R.id.pager);
-        mPager.setAdapter(mAdapter);
-        mIndicator = (CirclePageIndicator)findViewById(R.id.indicator);
-        mIndicator.setViewPager(mPager);
-        
-        Button skip=(Button)findViewById(R.id.continueToHome);
-    	skip.setOnClickListener(new OnClickListener() {
+		mAdapter = new ProductTourFragmentAdapter(getSupportFragmentManager());
+		mPager = (ViewPager) findViewById(R.id.pager);
+		mPager.setAdapter(mAdapter);
+		mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
+		mIndicator.setViewPager(mPager);
+
+		Button skip = (Button) findViewById(R.id.continueToHome);
+		skip.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent in=new Intent(ProductTourActivity.this,SlidingMenuActivity.class);
+				Intent in = new Intent(ProductTourActivity.this,
+						SlidingMenuActivity.class);
 				startActivity(in);
 				finish();
 			}

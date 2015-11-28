@@ -66,11 +66,10 @@ public class UserProfileDataHandler {
 							UserDetailObject userDetail = gson.fromJson(
 									json.toString(), UserDetailObject.class);
 							Profile  userProfile = userDetail.userProfile;
-							Helper.getSharedHelper().rewardPoints = userProfile
-									.getRewardPoints();
+//							Helper.getSharedHelper().rewardPoints = userProfile
+//									.getRewardPoints();
 							if (caller != null) {
-								caller.userProfileFetched(userProfile
-										.getRewardPoints());
+								caller.userProfileFetched("0");
 							}
 
 						} else {
