@@ -344,7 +344,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 		navDrawerItems.add(tnc);
 
 		NavDrawerItem about_us = new NavDrawerItem("Contact"
-		/* + retailer.getRetailerName() */, R.drawable.about_us, 8, false);
+		/* + retailer.getRetailerName() */, R.drawable.ic_online_help, 8, false);
 		about_us.itemType = DrawerItemType.ABOUTUS;
 		navDrawerItems.add(about_us);
 
