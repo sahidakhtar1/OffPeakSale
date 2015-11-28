@@ -34,7 +34,7 @@ public class OrderObject implements Serializable {
 	@SerializedName("orderTotal")
 	public String orderTotal;
 
-	@SerializedName("shippingStatus")
+	@SerializedName("orderStatus")
 	public String shippingStatus;
 
 	@SerializedName("deliverydate")
@@ -51,6 +51,9 @@ public class OrderObject implements Serializable {
 
 	@SerializedName("consumerInfo")
 	public DeliveryInfoObject consumerInfo;
+	
+	@SerializedName("orderExpiry")
+	public String orderExpiryDate;
 	
 	@SerializedName("orderInstr")
 	public String orderInstr;

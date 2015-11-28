@@ -206,7 +206,23 @@ public class OrderHistoryFragment extends Fragment implements
 		}
 
 		horizontalScrollView.smoothScrollTo(width * selectedTabIndex, 0);
-
+		
+		try {
+			adapter.clear();
+			if (selectedTabIndex ==0) {
+				adapter.addAll(allOrders.active);	
+			}else{
+				adapter.addAll(allOrders.used);
+			}
+			adapter.notifyDataSetChanged();
+			if(adapter.getCount()==0)
+			{
+				Toast.makeText(getActivity(), "No Item Found", Toast.LENGTH_SHORT).show();
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
