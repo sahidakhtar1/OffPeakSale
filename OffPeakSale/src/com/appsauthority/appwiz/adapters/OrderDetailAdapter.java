@@ -49,20 +49,22 @@ public class OrderDetailAdapter extends ArrayAdapter<Product> {
 	int selectedOptionIndex = 0;
 	TextView selectedOptionValue;
 	Product currentProduct;
-
+	
+	float conversionValue=0.0f;
+	String selectedCurrencyCode;
+	
 	static class ViewHolderShoppingCart {
 		private View row;
 		private ImageView image = null;
 		private TextView shortDesc = null;
 		private TextView newPrice = null;
 		private TextView oldPrice = null;
-		private TextView tvRewardsPoints, tvOptions, tvGiftMessage,
-				tvPriceDetails;
+		TextView tvRewardsPoints, tvOptions, tvGiftMessage, tvOldPriceDetails,tvNewPriceDetails;
 
 		public ViewHolderShoppingCart(ImageView img, TextView sdesc,
 				TextView price, TextView oldPrice, TextView tvRewardsPoints,
 				TextView tvOptions, TextView tvGiftMessage,
-				TextView tvPriceDetails) {
+				TextView tvOldPriceDetails,TextView tvNewPriceDetails) {
 			this.image = img;
 			this.shortDesc = sdesc;
 			this.newPrice = price;
@@ -70,7 +72,8 @@ public class OrderDetailAdapter extends ArrayAdapter<Product> {
 			this.tvRewardsPoints = tvRewardsPoints;
 			this.tvOptions = tvOptions;
 			this.tvGiftMessage = tvGiftMessage;
-			this.tvPriceDetails = tvPriceDetails;
+			this.tvOldPriceDetails = tvOldPriceDetails;
+			this.tvNewPriceDetails = tvNewPriceDetails;
 
 		}
 	}
@@ -83,6 +86,12 @@ public class OrderDetailAdapter extends ArrayAdapter<Product> {
 		imageCacheLoader = new ImageCacheLoader(context);
 		retailer = Helper.getSharedHelper().reatiler;
 		this.quntities = new HashMap<String, String>();
+		selectedCurrencyCode = Helper.getSharedHelper().currency_symbol;
+		  if (conversionValue == 0) {
+		   conversionValue = 1.0f;
+		   selectedCurrencyCode = Helper.getSharedHelper().reatiler.defaultCurrency;
+		  }
+		  
 		setQuantities();
 	}
 
@@ -104,7 +113,7 @@ public class OrderDetailAdapter extends ArrayAdapter<Product> {
 		TextView shortDesc;
 		TextView newPrice, oldPrice;
 
-		TextView tvRewardsPoints, tvOptions, tvGiftMessage, tvPriceDetails;
+		TextView tvRewardsPoints, tvOptions, tvGiftMessage, tvOldPriceDetails,tvNewPriceDetails;
 		LinearLayout llFirstOption, llSecondOption;
 
 		if (null == convertView) {
@@ -120,21 +129,19 @@ public class OrderDetailAdapter extends ArrayAdapter<Product> {
 					.findViewById(R.id.llFirstOption);
 			llSecondOption = (LinearLayout) convertView
 					.findViewById(R.id.llSecondOption);
-			// vwFirstOptionRight1 = (View) llFirstOption
-			// .findViewById(R.id.list_right1);
-			// vwSecondOptionRight1 = (View) llSecondOption
-			// .findViewById(R.id.list_right1);
 
 			tvRewardsPoints = (TextView) convertView
 					.findViewById(R.id.tvRewardsPoints);
 			tvOptions = (TextView) convertView.findViewById(R.id.tvOptions);
 			tvGiftMessage = (TextView) convertView
 					.findViewById(R.id.tvGiftMessage);
-			tvPriceDetails = (TextView) convertView
-					.findViewById(R.id.tvPriceDetails);
+			tvOldPriceDetails = (TextView) convertView
+					.findViewById(R.id.tvOldPriceDetails);
+			tvNewPriceDetails = (TextView) convertView
+					.findViewById(R.id.tvNewPriceDetails);
 			convertView.setTag(new ViewHolderShoppingCart(imageView, shortDesc,
 					newPrice, oldPrice, tvRewardsPoints, tvOptions,
-					tvGiftMessage, tvPriceDetails));
+					tvGiftMessage, tvOldPriceDetails,tvNewPriceDetails));
 
 		}
 		holder = (ViewHolderShoppingCart) convertView.getTag();
@@ -147,33 +154,7 @@ public class OrderDetailAdapter extends ArrayAdapter<Product> {
 			Float price = Float.parseFloat(object.getNewPrice());
 
 			int qty = Integer.parseInt(object.quantity);
-			// if (object.getIsOptedGiftWrap()) {
-			// price += Float
-			// .parseFloat(Helper.getSharedHelper().reatiler.gift_price);
-			// holder.tvGiftMessage.setText(object.getGiftMsg());
-			// holder.tvGiftMessage.setVisibility(View.VISIBLE);
-			// } else {
-			// holder.tvGiftMessage.setVisibility(View.GONE);
-			// }
 			float itemTotal = qty * price;
-//			holder.newPrice.setText(Helper.getSharedHelper().getCurrencySymbol(
-//					Helper.getSharedHelper().reatiler.defaultCurrency)
-//					+ ""
-//					+ Helper.getSharedHelper().conertfloatToSTring(itemTotal));
-//			if (object.getOldPrice() != null) {
-//
-//				holder.oldPrice
-//						.setText(Helper
-//								.getSharedHelper()
-//								.getCurrencySymbol(
-//										Helper.getSharedHelper().reatiler.defaultCurrency)
-//								+ ""
-//								+ Helper.getSharedHelper().conertfloatToSTring(
-//										Float.parseFloat(object.getOldPrice())));
-//				holder.oldPrice.setVisibility(View.VISIBLE);
-//			} else {
-//				holder.oldPrice.setVisibility(View.GONE);
-//			}
 
 			imageView = holder.image;
 			imageCacheLoader.displayImage(object.getImage(),
@@ -181,7 +162,8 @@ public class OrderDetailAdapter extends ArrayAdapter<Product> {
 			holder.shortDesc.setTypeface(Helper.getSharedHelper().boldFont);
 			holder.newPrice.setTypeface(Helper.getSharedHelper().boldFont);
 			holder.oldPrice.setTypeface(Helper.getSharedHelper().normalFont);
-			holder.tvPriceDetails.setTypeface(Helper.getSharedHelper().normalFont);
+			holder.tvOldPriceDetails.setTypeface(Helper.getSharedHelper().normalFont);
+			holder.tvNewPriceDetails.setTypeface(Helper.getSharedHelper().normalFont);
 
 			holder.tvRewardsPoints
 					.setTypeface(Helper.getSharedHelper().normalFont);
@@ -234,7 +216,9 @@ public class OrderDetailAdapter extends ArrayAdapter<Product> {
 					+ Helper.getSharedHelper().getCurrencySymbol(
 							Helper.getSharedHelper().reatiler.defaultCurrency)
 					+ Helper.getSharedHelper().conertfloatToSTring(itemTotal);
-			holder.tvPriceDetails.setText(priceDetail);
+			holder.tvOldPriceDetails.setText(Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+object.oldPrice);
+			holder.tvOldPriceDetails.setPaintFlags(holder.tvOldPriceDetails.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+			holder.tvNewPriceDetails.setText(Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+object.newPrice);
 
 		} catch (Exception e) {
 			// TODO: handle exception

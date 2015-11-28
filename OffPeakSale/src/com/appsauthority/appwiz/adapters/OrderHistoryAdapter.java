@@ -89,7 +89,18 @@ public class OrderHistoryAdapter extends ArrayAdapter<OrderObject> {
 		//	holder.getTvTotalCount().setText(object.products.size()+" items");
 			holder.getTvOrderTotalValue().setText(Helper.getSharedHelper().reatiler.defaultCurrency
 					+ " " + object.orderTotal);
-			holder.getTvOrderDate().setText("Date of Purchase: "+object.orderDate);
+			if(object.shippingStatus.equals("Expired"))
+			{
+				holder.getTvOrderDate().setText("Expired On: "+object.orderDate);
+			}else if(object.shippingStatus.equals("Redeemed"))
+			{
+				holder.getTvOrderDate().setText("Redeemed On: "+object.orderDate);
+			}else
+			{
+				holder.getTvOrderDate().setText("Date of Purchase: "+object.orderDate);
+			}
+			
+			
 			holder.getTvOrderStatusValue().setText(object.shippingStatus);
 			holder.getTvExpiryDate().setText("Expiry Date: "+object.orderExpiryDate);
 			
