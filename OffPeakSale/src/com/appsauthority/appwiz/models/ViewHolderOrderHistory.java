@@ -9,7 +9,7 @@ public class ViewHolderOrderHistory {
 
 	private View row;
 	private TextView tvOrderId, tvOrderIdValue, tvOrderDate, tvOrderTotalValue,
-			tvOrderStatus, tvOrderStatusValue, tvTotalCount;
+			tvOrderStatus, tvOrderStatusValue, tvTotalCount,tvExpiryDate,tvProductPrice;
 
 	public ViewHolderOrderHistory(View row) {
 		this.row = row;
@@ -61,17 +61,30 @@ public class ViewHolderOrderHistory {
 		return tvOrderStatusValue;
 	}
 
-	public TextView getTvTotalCount() {
+	/*public TextView getTvTotalCount() {
 		if (null == tvTotalCount) {
 			tvTotalCount = (TextView) row
 					.findViewById(R.id.tvTotalCount);
 		}
 		return tvTotalCount;
-	}
+	}*/
 
 	public void setTvTotalCount(TextView tvTotalCount) {
 		this.tvTotalCount = tvTotalCount;
 	}
-	
+	public TextView getTvExpiryDate()
+	{
+		if (null == tvExpiryDate) {
+			tvExpiryDate = (TextView) row.findViewById(R.id.tvExpiryDate);
+		}
+		return tvExpiryDate;
+	}
+	public TextView getTvProductPrice()
+	{
+		if (null == tvProductPrice) {
+			tvProductPrice = (TextView) row.findViewById(R.id.tvProductPrice);
+		}
+		return tvProductPrice;
+	}
 
 }

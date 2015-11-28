@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.appsauthority.appwiz.models.OrderObject;
+import com.appsauthority.appwiz.models.Product;
 import com.appsauthority.appwiz.models.ViewHolderOrderHistory;
 import com.appsauthority.appwiz.utils.Helper;
 import com.offpeaksale.restaurants.R;
@@ -21,14 +22,22 @@ import com.offpeaksale.restaurants.R;
 public class OrderHistoryAdapter extends ArrayAdapter<OrderObject> {
 
 	private List<OrderObject> objects;
+	List<Product> product;
 	private Context context;
 	public int selectedIndex = -1;
+	float conversionValue=0.0f;
+	String selectedCurrencyCode;
 
 	public OrderHistoryAdapter(Context context, int resource,
 			List<OrderObject> objects) {
 		super(context, resource, objects);
 		this.objects = objects;
 		this.context = context;
+		selectedCurrencyCode = Helper.getSharedHelper().currency_symbol;
+		  if (conversionValue == 0) {
+		   conversionValue = 1.0f;
+		   selectedCurrencyCode = Helper.getSharedHelper().reatiler.defaultCurrency;
+		  }
 	}
 
 	@Override
@@ -57,27 +66,34 @@ public class OrderHistoryAdapter extends ArrayAdapter<OrderObject> {
 					Helper.getSharedHelper().normalFont);
 			holder.getTvOrderStatus().setTypeface(
 					Helper.getSharedHelper().normalFont);
-			holder.getTvTotalCount().setTypeface(
+			holder.getTvExpiryDate().setTypeface(
 					Helper.getSharedHelper().normalFont);
+			holder.getTvProductPrice().setTypeface(
+					Helper.getSharedHelper().normalFont);
+			/*holder.getTvTotalCount().setTypeface(
+					Helper.getSharedHelper().normalFont);*/
 		}
 		holder = (ViewHolderOrderHistory) convertView.getTag();
 		OrderObject object = getItem(position);
+		product=object.products;
 		try {
 			holder.getTvOrderIdValue().setText(object.orderId);
-			String comp[] = object.orderDate.split(" ");
+			/*String comp[] = object.orderDate.split(" ");
 
 			String text = "";
 			String date = "";
 			if (comp.length > 0) {
 				date = comp[0];
-			}
+			}*/
 			
-			holder.getTvTotalCount().setText(object.products.size()+" items");
-			 ;
+		//	holder.getTvTotalCount().setText(object.products.size()+" items");
 			holder.getTvOrderTotalValue().setText(Helper.getSharedHelper().reatiler.defaultCurrency
 					+ " " + object.orderTotal);
-			holder.getTvOrderDate().setText(date);
+			holder.getTvOrderDate().setText("Date of Purchase: "+object.orderDate);
 			holder.getTvOrderStatusValue().setText(object.shippingStatus);
+			holder.getTvExpiryDate().setText("Expiry Date: "+object.orderExpiryDate);
+			
+			holder.getTvProductPrice().setText("Price: "+Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+" "+product.get(0).newPrice);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

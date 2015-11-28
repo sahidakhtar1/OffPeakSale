@@ -40,7 +40,7 @@ public class Product implements Serializable {
 	String oldPrice;
 
 	@SerializedName("new_price")
-	String newPrice;
+	public	String newPrice;
 
 	@SerializedName("product_img")
 	String image;

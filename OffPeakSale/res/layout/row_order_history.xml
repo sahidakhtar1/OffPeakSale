@@ -30,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
-                    android:text="Order id:"
+                    android:text="Order # "
                     android:textSize="13sp" >
                 </TextView>
 
@@ -54,7 +54,7 @@
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal" >
 
-                <TextView
+               <!--  <TextView
                     android:id="@+id/tvTotalCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="3dp"
                     android:layout_marginRight="3dp"
-                    android:src="@drawable/ic_circle" />
+                    android:src="@drawable/ic_circle" /> -->
 
                 <TextView
                     android:id="@+id/tvOrderDate"
@@ -129,7 +129,27 @@
                     android:textSize="16sp" >
                 </TextView>
             </LinearLayout>
-
+ 			
+            <TextView
+          	        android:id="@+id/tvExpiryDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+            	    android:layout_marginTop="5dp"
+                    android:maxLines="1"
+                    android:text="Expiry Date:"
+                    android:textSize="12sp" >
+             </TextView>
+              <TextView
+                    android:id="@+id/tvProductPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+             		android:layout_marginTop="5dp"
+                    android:maxLines="1"
+                    android:text="Price: "
+                    android:textSize="12sp" >
+                </TextView>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
