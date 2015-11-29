@@ -230,7 +230,7 @@ public class SplashscreenActivity extends BaseActivity {
 				// Helper.getSharedHelper().getCurrencySymbol();
 				textViewOperator.setText(retailer.getPoweredBy());
 				imageCacheloader.displayImage(retailer.getSplashImage(),
-						R.drawable.splash_bg, imageViewSplashScreen);
+						R.drawable.image_placeholder, imageViewSplashScreen);
 
 				spref.edit()
 						.putString(Constants.SPLASH_IMG,
@@ -250,7 +250,7 @@ public class SplashscreenActivity extends BaseActivity {
 						boldFontPath);
 				Helper.getSharedHelper().boldFont = boldFont;
 
-				if(false && spref.getBoolean("ProductTour", false)==true)
+				if(spref.getBoolean("ProductTour", false)==true)
 				{
 					Intent intent = new Intent(getApplicationContext(),
 							SlidingMenuActivity.class);

@@ -36,7 +36,7 @@
             android:text="How it Works? "
             android:layout_gravity="center_horizontal"
             android:textColor="#ffffff"
-            android:textSize="25sp"
+            android:textSize="@dimen/header_textsize"
             android:textStyle="bold" />
 
         <TextView
@@ -49,7 +49,7 @@
             android:gravity="center"
             android:text="Filter a restaurant as per your desired location and cuisine with your matching time slots for morning, afternoon and night"
             android:textColor="#ffffff"
-            android:textSize="18sp" >
+            android:textSize="14sp" >
         </TextView>
     </LinearLayout>
 

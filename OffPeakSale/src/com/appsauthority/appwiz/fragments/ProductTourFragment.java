@@ -43,8 +43,7 @@ public final class ProductTourFragment extends Fragment {
 				container, false);
 
 		TextView howItWorks = (TextView) rootView.findViewById(R.id.howItWorks);
-		howItWorks.setTypeface(Helper.getSharedHelper().normalFont,
-				Typeface.BOLD);
+		
 		TextView detail = (TextView) rootView.findViewById(R.id.details);
 		ImageView bg = (ImageView) rootView.findViewById(R.id.tourBG);
 		ImageView logo = (ImageView) rootView.findViewById(R.id.Logo);
@@ -52,7 +51,9 @@ public final class ProductTourFragment extends Fragment {
 			howItWorks.setText(tourObj.headerTitle);
 			detail.setText(tourObj.description);
 			imageCacheloader.displayImage(tourObj.imageUrl,
-					R.drawable.splash_bg, bg);
+					R.drawable.image_placeholder, bg);
+			howItWorks.setTypeface(Helper.getSharedHelper().boldFont);
+			detail.setTypeface(Helper.getSharedHelper().normalFont);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

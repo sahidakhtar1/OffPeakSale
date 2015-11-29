@@ -695,8 +695,8 @@ public class EShopListFragment extends Fragment {
 				// adapter.addAll(productList);
 				// adapter.notifyDataSetChanged();
 				initializeTab();
-				tvNoSearchFound.setVisibility(View.GONE);
-				listview.setVisibility(View.VISIBLE);
+//				tvNoSearchFound.setVisibility(View.GONE);
+//				listview.setVisibility(View.VISIBLE);
 			}
 			// if (productList.size() == 0 && searchedKeyWord != null) {
 			// tvNoSearchFound.setVisibility(View.VISIBLE);
