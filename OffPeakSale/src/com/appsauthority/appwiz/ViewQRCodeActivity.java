@@ -3,8 +3,10 @@ package com.appsauthority.appwiz;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.appsauthority.appwiz.custom.BaseActivity;
+import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.ImageCacheLoader;
 import com.offpeaksale.consumer.R;
 
@@ -26,5 +28,9 @@ public class ViewQRCodeActivity extends BaseActivity {
 		String qrCodeImageUrl = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="+couponCode;
 		imageCacheLoader.displayImage(qrCodeImageUrl,
 				R.drawable.image_placeholder, imgView);
+		
+		TextView tvOrderCouponCode=(TextView)findViewById(R.id.tvOrderCouponCode);
+		tvOrderCouponCode.setTypeface(Helper.getSharedHelper().normalFont);
+		tvOrderCouponCode.setText("Coupon Code: "+couponCode);
 	}
 }
