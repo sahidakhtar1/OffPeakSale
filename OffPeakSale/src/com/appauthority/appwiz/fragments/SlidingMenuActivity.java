@@ -458,7 +458,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 							InputMethodManager.RESULT_UNCHANGED_SHOWN);
 				} else {
 					etSearch.setVisibility(View.VISIBLE);
-					imageScan.setVisibility(View.GONE);
+					imageScan.setVisibility(View.VISIBLE);
 					textViewHeader.setVisibility(View.GONE);
 					imageViewOverflow.setVisibility(View.INVISIBLE);
 					InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -716,6 +716,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 			// mDrawerList.setSelection(2);
 			textViewHeader.setText(Helper.getSharedHelper()
 					.toTitleCase(keyword));
+			imageViewOverflow.setVisibility(View.VISIBLE);
 			etSearch.setVisibility(View.GONE);
 			imageScan.setVisibility(View.GONE);
 			textViewHeader.setVisibility(View.VISIBLE);

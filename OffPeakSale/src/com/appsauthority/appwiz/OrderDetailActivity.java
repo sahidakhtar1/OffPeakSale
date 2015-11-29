@@ -183,10 +183,11 @@ public class OrderDetailActivity extends BaseActivity {
 	
 	private void setMapFooter()
 	{
-		List<Product> product=orderObj.products;
-		if(product!=null)
+		List<Product> products=orderObj.products;
+		if(products!=null)
 		{
-			mapLayout = new MapLayout(this, this, product.get(0).outlets);
+			Product product = products.get(0);
+			mapLayout = new MapLayout(this, this, product.outlets);
 			mapLayout.init();
 		}
 	}

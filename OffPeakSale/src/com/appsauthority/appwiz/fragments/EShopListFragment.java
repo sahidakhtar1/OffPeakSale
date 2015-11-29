@@ -644,13 +644,13 @@ public class EShopListFragment extends Fragment {
 					param.put(Constants.PARAM_RETAILER_ID,
 							Constants.RETAILER_ID);
 					if (selectedSearchOption == 0) {
-						param.put(Constants.PARAM_LAT, Constants.LAT);
-						param.put(Constants.PARAM_LONG, Constants.LNG);
+						param.put(Constants.PARAM_CONSUMER_LAT, Constants.LAT);
+						param.put(Constants.PARAM_CONSUMER_LONG, Constants.LNG);
 						Constants.TARGET_LAT = Constants.LAT;
 						Constants.TARGET_LNG = Constants.LNG;
 					} else {
-						param.put(Constants.PARAM_LAT, mLattitude);
-						param.put(Constants.PARAM_LONG, mLongitude);
+						param.put(Constants.PARAM_CONSUMER_LAT, mLattitude);
+						param.put(Constants.PARAM_CONSUMER_LONG, mLongitude);
 						Constants.TARGET_LAT = Double.parseDouble(mLattitude);
 						Constants.TARGET_LNG = Double.parseDouble(mLongitude);
 					}

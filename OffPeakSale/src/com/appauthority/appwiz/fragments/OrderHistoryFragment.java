@@ -35,10 +35,12 @@ import android.widget.Toast;
 
 import com.appauthority.appwiz.interfaces.OrderHistoryCaller;
 import com.appsauthority.appwiz.OrderDetailActivity;
+import com.appsauthority.appwiz.OrderDetailDataHandler;
 import com.appsauthority.appwiz.OrderHistoryDataHandler;
 import com.appsauthority.appwiz.ProfileActivity;
 import com.appsauthority.appwiz.adapters.OrderHistoryAdapter;
 import com.appsauthority.appwiz.models.AllOrdersResponseObject;
+import com.appsauthority.appwiz.models.OrderDetailResponseObject;
 import com.appsauthority.appwiz.models.OrderHistoryResponseObject;
 import com.appsauthority.appwiz.models.OrderObject;
 import com.appsauthority.appwiz.models.Retailer;
@@ -98,10 +100,7 @@ public class OrderHistoryFragment extends Fragment implements
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				OrderObject order = orderHistoryList.get(position);
-				Intent intent = new Intent(context, OrderDetailActivity.class);
-				intent.putExtra("orderObj", order);
-				startActivity(intent);
+				getOrderDetail(position);
 
 			}
 		});
@@ -132,6 +131,12 @@ public class OrderHistoryFragment extends Fragment implements
 		return view;
 	}
 
+	void getOrderDetail(int position){
+		OrderObject order = orderHistoryList.get(position);
+		
+		OrderDetailDataHandler orderDetailHandler = new OrderDetailDataHandler(this, this.getActivity(), order.merchantEmail, order.orderId);
+		orderDetailHandler.getOrderDetail();
+	}
 	public void refreshList() {
 		Boolean isloggedIn = spref.getBoolean(Constants.KEY_IS_USER_LOGGED_IN,
 				false);
@@ -277,6 +282,14 @@ public class OrderHistoryFragment extends Fragment implements
 			Toast.makeText(getActivity(), "No record found", Toast.LENGTH_LONG)
 					.show();
 		}
+	}
+
+	@Override
+	public void orderDetailDownloaded(OrderDetailResponseObject orderDetailObj) {
+		// TODO Auto-generated method stub
+		Intent intent = new Intent(context, OrderDetailActivity.class);
+		intent.putExtra("orderObj", orderDetailObj.data);
+		startActivity(intent);
 	}
 
 }

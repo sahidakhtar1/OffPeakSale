@@ -57,6 +57,9 @@ public class OrderObject implements Serializable {
 	
 	@SerializedName("orderInstr")
 	public String orderInstr;
+	
+	@SerializedName("merchantEmail")
+	public String merchantEmail;
 
 	@SerializedName("products")
 	public List<Product> products;
