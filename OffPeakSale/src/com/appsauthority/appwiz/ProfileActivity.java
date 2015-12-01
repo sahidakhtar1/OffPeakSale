@@ -89,8 +89,8 @@ public class ProfileActivity extends BaseActivity implements
 	private ArrayAdapter<String> adapter;
 	private ArrayList<String> countrySearchList = new ArrayList<String>();
 
-	private EditText editTextFirstName, editTextMobileNumber, editTextEmail;
-	private Button buttonSave, buttonCountries;
+	private EditText editTextFirstName, editTextMobileNumber, editTextEmail,buttonCountries;
+	private Button buttonSave;
 	private SimpleDateFormat sdf;
 
 	private Context context;
@@ -102,6 +102,7 @@ public class ProfileActivity extends BaseActivity implements
 	private SharedPreferences spref;
 	LinearLayout veTermsOfUse;
 	Switch pnSwitch;
+	TextView tvPNlbl;
 
 	// TextView tvRedeemlbl, tvRedeem, tvNoRewardsForCOD;
 
@@ -137,8 +138,7 @@ public class ProfileActivity extends BaseActivity implements
 		llForgotPwd = (LinearLayout) llLoginForm.findViewById(R.id.llForgotPwd);
 
 		tvCreatePwd = (TextView) llPassword.findViewById(R.id.tvCreatePwd);
-		edtPwd = (EditText) llPassword.findViewById(R.id.edtPwd);
-		edtCnfPwd = (EditText) llPassword.findViewById(R.id.edtCnfPwd);
+		
 
 		tvLogin = (TextView) llLoginForm.findViewById(R.id.tvLogin);
 		etLoginEmailId = (EditText) llLoginForm
@@ -220,7 +220,7 @@ public class ProfileActivity extends BaseActivity implements
 		etEmailForgotPwd.setBackgroundDrawable(Helper.getSharedHelper()
 				.getGradientDrawableEditText(retailer.getHeaderColor()));
 		buttonCountries
-				.setBackgroundDrawable(getGradientDrawableEditText(retailer
+				.setBackgroundDrawable(Helper.getSharedHelper().getGradientDrawableEditText(retailer
 						.getHeaderColor()));
 
 		btnLogin.setTextColor(Color.parseColor("#"
@@ -438,6 +438,7 @@ public class ProfileActivity extends BaseActivity implements
 		llLoginForm = (LinearLayout) findViewById(R.id.llLoginForm);
 		llForm = (LinearLayout) findViewById(R.id.llForm);
 		llPassword = (LinearLayout) findViewById(R.id.llPassword);
+		tvPNlbl = (TextView) findViewById(R.id.tvPNlbl);
 
 		spref = PreferenceManager.getDefaultSharedPreferences(activity);
 		// spref.edit().putBoolean(Constants.KEY_IS_USER_LOGGED_IN, false)
@@ -451,7 +452,9 @@ public class ProfileActivity extends BaseActivity implements
 		sdf = new SimpleDateFormat("dd MMM yyyy");
 		TextView hyperlink = (TextView) findViewById(R.id.hyperlink);
 		veTermsOfUse = (LinearLayout) findViewById(R.id.veTermsOfUse);
-		buttonCountries = (Button) findViewById(R.id.sp_country);
+		buttonCountries = (EditText) findViewById(R.id.sp_country);
+		edtPwd = (EditText) llPassword.findViewById(R.id.edtPwd);
+		edtCnfPwd = (EditText) llPassword.findViewById(R.id.edtCnfPwd);
 		buttonCountries.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -535,16 +538,22 @@ public class ProfileActivity extends BaseActivity implements
 			// .getGradientDrawable(retailer.getRetailerTextColor()))
 
 			editTextFirstName
-					.setBackgroundDrawable(getGradientDrawableEditText(retailer
+					.setBackgroundDrawable(Helper.getSharedHelper()
+							.getGradientDrawableEditText(retailer
 							.getHeaderColor()));
 
 			editTextMobileNumber
-					.setBackgroundDrawable(getGradientDrawableEditText(retailer
+					.setBackgroundDrawable(Helper.getSharedHelper()
+							.getGradientDrawableEditText(retailer
 							.getHeaderColor()));
 
 			editTextEmail
-					.setBackgroundDrawable(getGradientDrawableEditText(retailer
+					.setBackgroundDrawable(Helper.getSharedHelper()
+							.getGradientDrawableEditText(retailer
 							.getHeaderColor()));
+			buttonCountries
+			.setBackgroundDrawable(getGradientDrawableEditText(retailer
+					.getHeaderColor()));
 
 			int colorOn = Color.parseColor("#" + retailer.getHeaderColor());
 			int colorOff = 0xFF666666;
@@ -578,6 +587,23 @@ public class ProfileActivity extends BaseActivity implements
 					+ retailer.getRetailerTextColor()));
 			buttonSave.setBackgroundDrawable(getGradientDrawable(retailer
 					.getHeaderColor()));
+			tvBackToLogin.setTextColor(Color.parseColor("#" +retailer
+					.getRetailerTextColor()));
+			editTextFirstName.setTextColor(Color.parseColor("#" +retailer
+					.getRetailerTextColor()));
+			editTextMobileNumber.setTextColor(Color.parseColor("#" +retailer
+					.getRetailerTextColor()));
+			editTextEmail.setTextColor(Color.parseColor("#" +retailer
+					.getRetailerTextColor()));
+			tvPNlbl.setTextColor(Color.parseColor("#" +retailer
+					.getRetailerTextColor()));
+			buttonCountries.setTextColor(Color.parseColor("#" +retailer
+					.getRetailerTextColor()));
+			edtPwd.setTextColor(Color.parseColor("#" +retailer
+					.getRetailerTextColor()));
+			edtCnfPwd.setTextColor(Color.parseColor("#" +retailer
+					.getRetailerTextColor()));
+			
 
 		} catch (Exception e) {
 		}
@@ -657,7 +683,7 @@ public class ProfileActivity extends BaseActivity implements
 					.setTypeface(Helper.getSharedHelper().normalFont);
 
 			buttonCountries.setTypeface(Helper.getSharedHelper().normalFont);
-
+			tvPNlbl.setTypeface(Helper.getSharedHelper().normalFont);
 			// tvRedeemlbl.setTypeface(Helper.getSharedHelper().normalFont);
 			// tvRedeem.setTypeface(Helper.getSharedHelper().normalFont);
 			// tvNoRewardsForCOD.setTypeface(Helper.getSharedHelper().normalFont);

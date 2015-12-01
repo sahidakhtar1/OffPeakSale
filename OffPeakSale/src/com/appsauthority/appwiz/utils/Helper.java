@@ -460,7 +460,7 @@ public class Helper {
 		// gdDefault.setAlpha(40);
 		gdDefault.setCornerRadius(7);
 		gdDefault.setStroke(2, Color.parseColor("#" + headerColor));
-		gdDefault.setColor(Color.WHITE);
+		gdDefault.setColor(Color.TRANSPARENT);
 		// Drawable gdDefault = context.getResources().getDrawable(
 		// R.drawable.apptheme_edit_text_holo_light);
 		return gdDefault;
