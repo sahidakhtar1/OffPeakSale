@@ -578,7 +578,7 @@ public class ProfileActivity extends BaseActivity implements
 		} catch (Exception e) {
 		}
 
-		textViewHeader.setText("Profile");
+		textViewHeader.setText(Helper.getSharedHelper().profileTitle);
 		imageViewOverflow.setVisibility(View.INVISIBLE);
 		try {
 			setHeaderTheme(activity, retailer.getRetailerTextColor(),

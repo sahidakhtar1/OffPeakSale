@@ -57,6 +57,7 @@ public class Helper {
 	public Boolean isScanAdminPWD = false;
 	public int deliveryOptionSelectedIndex = 0;
 	public Date earliestDate = null;
+	public String profileTitle = "Profile";
 
 	public static Helper getSharedHelper() {
 		if (sharedHelper == null) {

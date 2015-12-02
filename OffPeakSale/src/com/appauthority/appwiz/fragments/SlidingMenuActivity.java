@@ -302,6 +302,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 							R.drawable.my_profile, 7, false);
 					my_profile.itemType = DrawerItemType.PROFILE;
 					navDrawerItems.add(my_profile);
+					Helper.getSharedHelper().profileTitle = menuItem.displayName;
 				} else if (menuItem.origName.equalsIgnoreCase("terms")) {
 					NavDrawerItem tnc = new NavDrawerItem(menuItem.displayName
 							/* + retailer.getRetailerName() */, R.drawable.termsofuse, 8, false);
@@ -620,7 +621,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 				displayView(item.itemType, null);
 				if (position == 0) {
 					textViewHeader.setText(retailer.getRetailerName());
-				} else  {
+				} else  if (item.itemType == DrawerItemType.PROFILE){
 					textViewHeader.setText(item.getTitle());
 				}
 			}
