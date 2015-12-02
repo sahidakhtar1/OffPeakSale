@@ -31,13 +31,15 @@ public class PayPalDataHandler {
 	String resturantId;
 	String emailId;
 	String qty;
+	String selectedOutlet;
 
 	public PayPalDataHandler(PayPalCaller caller, String resturantId,
-			String emailId, String qty) {
+			String emailId, String qty,String selectedOutlet) {
 		this.caller = caller;
 		this.resturantId = resturantId;
 		this.emailId = emailId;
 		this.qty = qty;
+		this.selectedOutlet =selectedOutlet;
 	}
 
 	public void getpayPalData() {
@@ -69,9 +71,11 @@ public class PayPalDataHandler {
 				JSONObject productJson = new JSONObject();
 				productJson.put(Constants.PARAM_PRODUCTID_FOR_TOKEN,
 						resturantId);
+				productJson.put("selectedOutlet", selectedOutlet);
 				productJson.put(Constants.PARAM_QUANTITY, qty);
 				jObj.put(productJson);
 				json.put("products", jObj);
+				
 				
 				json.put("discount",
 						Helper.getSharedHelper().discountPercent);

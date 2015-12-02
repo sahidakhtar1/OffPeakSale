@@ -198,7 +198,7 @@ public class EShopDetailActivity extends BaseActivity implements
 	TextView tvOldPrice, tvNewPrice, tvDistance, tvAddress, tvQtyIndicator,
 			tvDiscountValue, tvDiscountlbl, tvSaleIndicator;
 	ToggleButton favToggle;
-	LinearLayout llDiscountInfo,llLocattion;
+	LinearLayout llDiscountInfo, llLocattion;
 
 	int selectedTabIndex = 1;
 
@@ -347,13 +347,13 @@ public class EShopDetailActivity extends BaseActivity implements
 			}
 		});
 		llLocattion.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if (selectedTabIndex == 3) {
-					
-				}else{
+
+				} else {
 					selectedTabIndex = 3;
 					initializeTab();
 				}
@@ -976,10 +976,10 @@ public class EShopDetailActivity extends BaseActivity implements
 			}
 			tvDistance.setText(product.distance + "KM");
 			tvDistance.setVisibility(View.VISIBLE);
-		}else{
+		} else {
 			tvDistance.setVisibility(View.GONE);
 		}
-		
+
 		tvAddress.setText(product.outletName);
 	}
 
@@ -2447,7 +2447,8 @@ public class EShopDetailActivity extends BaseActivity implements
 
 		String emailId = spref.getString(Constants.KEY_EMAIL, "");
 		PayPalDataHandler payPalDataHandler = new PayPalDataHandler(this,
-				product.getId(), emailId, editTextQty.getText().toString());
+				product.getId(), emailId, editTextQty.getText().toString(),
+				product.storeAddress);
 		payPalDataHandler.getpayPalData();
 		showLoadingDialog();
 	}

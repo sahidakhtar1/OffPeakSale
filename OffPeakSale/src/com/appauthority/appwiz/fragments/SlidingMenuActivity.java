@@ -282,7 +282,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 			for (MenuItem menuItem : retailer.menuList) {
 				if (menuItem.origName.equalsIgnoreCase("eshop")) {
 					NavDrawerItem eshop = new NavDrawerItem(
-							menuItem.displayName, R.drawable.eshop, 1, false);
+							menuItem.displayName, R.drawable.home, 1, false);
 					eshop.itemType = DrawerItemType.ESHOP;
 					navDrawerItems.add(eshop);
 
