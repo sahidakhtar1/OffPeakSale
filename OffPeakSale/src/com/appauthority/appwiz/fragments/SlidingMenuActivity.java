@@ -38,6 +38,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -405,9 +406,11 @@ public class SlidingMenuActivity extends BaseActivity implements
 		// getActionBar().setDisplayShowCustomEnabled(true);
 		// getActionBar().setCustomView(v);
 		//
-		LayoutInflater inflator = (LayoutInflater) this
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View v = inflator.inflate(R.layout.header, null);
+		getActionBar().hide();
+//		LayoutInflater inflator = (LayoutInflater) this
+//				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//		View v = inflator.inflate(R.layout.header, null);
+		RelativeLayout v = (RelativeLayout) findViewById(R.id.healderView);
 
 		textViewHeader = (TextView) v.findViewById(R.id.textViewHeader);
 
@@ -510,31 +513,37 @@ public class SlidingMenuActivity extends BaseActivity implements
 		});
 		// v.setBackgroundDrawable(Helper.getSharedHelper().getGradientDrawable(
 		// retailer.getHeaderColor()));
-		v.setBackgroundColor(android.R.color.transparent);
-
-		getActionBar().setHomeButtonEnabled(true);
-
-		// getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-		getActionBar().setDisplayShowTitleEnabled(false);
-
-		getActionBar().setDisplayUseLogoEnabled(false);
-
-		getActionBar().setDisplayShowCustomEnabled(false);
-
 		try {
-			getActionBar().setBackgroundDrawable(
-					new ColorDrawable(Color.parseColor("#"
-							+ retailer.getHeaderColor())));
+			v.setBackgroundColor(Color.parseColor("#"
+					+ retailer.getHeaderColor()));
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		
+
+//		getActionBar().setHomeButtonEnabled(true);
+//
+//		// getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//
+//		getActionBar().setDisplayShowTitleEnabled(false);
+//
+//		getActionBar().setDisplayUseLogoEnabled(false);
+//
+//		getActionBar().setDisplayShowCustomEnabled(false);
+//
+//		try {
+//			getActionBar().setBackgroundDrawable(
+//					new ColorDrawable(Color.parseColor("#"
+//							+ retailer.getHeaderColor())));
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
 
 		// getActionBar().setIcon(
 		// new ColorDrawable(getResources().getColor(
 		// android.R.color.transparent)));
-		getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-		getActionBar().setCustomView(v);
+//		getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+//		getActionBar().setCustomView(v);
 		// LayoutParams lp = v.getLayoutParams();
 		// lp.width = LayoutParams.MATCH_PARENT;
 		// v.setLayoutParams(lp);

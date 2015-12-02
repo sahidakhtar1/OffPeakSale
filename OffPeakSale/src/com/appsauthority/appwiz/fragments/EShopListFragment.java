@@ -215,6 +215,8 @@ public class EShopListFragment extends Fragment {
 				.findViewById(R.id.rlLocationOption);
 		tvTotalDeals = (TextView) view.findViewById(R.id.tvTotalDeals);
 		tvTotalDeals.setTextColor(Color.parseColor("#"
+				+ retailer.getRetailerTextColor()));
+		rlLocationOption.setBackgroundColor(Color.parseColor("#"
 				+ retailer.getHeaderColor()));
 		rlFilter.setOnClickListener(new OnClickListener() {
 

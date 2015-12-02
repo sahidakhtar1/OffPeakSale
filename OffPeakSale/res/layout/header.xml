@@ -8,10 +8,13 @@
     android:background="@android:color/holo_orange_light"
     android:paddingRight="@dimen/left_right_margin" >
 
+    
+
     <ImageView
         android:id="@+id/imageViewOverflow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/left_right_margin"
@@ -24,8 +27,8 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/left_right_margin"
-        android:background="@drawable/ic_barcode" 
-        android:visibility="gone"/>
+        android:background="@drawable/ic_barcode"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/textViewHeader"
