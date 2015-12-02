@@ -60,14 +60,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edt_height"
                         android:background="@drawable/background_round_corner"
+                        android:drawableLeft="@drawable/name_white"
                         android:ems="10"
                         android:hint="@string/first_name"
                         android:imeOptions="actionNext"
                         android:inputType="textCapWords"
-                        android:paddingLeft="8dp"
+                        android:paddingLeft="@dimen/edit_text_padding"
                         android:singleLine="true"
                         android:textColor="@color/black"
-                        android:textColorHint="@android:color/darker_gray" />
+                        android:textColorHint="@android:color/darker_gray"
+                        android:textSize="@dimen/edit_text_font_size" />
 
                     <EditText
                         android:id="@+id/edt_email"
@@ -75,14 +77,16 @@
                         android:layout_height="@dimen/edt_height"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/background_round_corner"
+                        android:drawableLeft="@drawable/email_white"
                         android:ems="10"
                         android:hint="@string/email_address"
                         android:imeOptions="actionNext"
                         android:inputType="textEmailAddress"
-                        android:paddingLeft="8dp"
+                        android:paddingLeft="@dimen/edit_text_padding"
                         android:singleLine="true"
                         android:textColor="@color/black"
-                        android:textColorHint="@android:color/darker_gray" />
+                        android:textColorHint="@android:color/darker_gray"
+                        android:textSize="@dimen/edit_text_font_size" />
 
                     <EditText
                         android:id="@+id/edt_state"
@@ -94,8 +98,9 @@
                         android:hint="@string/state"
                         android:imeOptions="actionNext"
                         android:inputType="text"
-                        android:paddingLeft="8dp"
+                        android:paddingLeft="@dimen/edit_text_padding"
                         android:singleLine="true"
+                        android:text="@dimen/edit_text_font_size"
                         android:textColor="@color/black"
                         android:visibility="gone" />
 
@@ -106,14 +111,16 @@
                         android:layout_marginBottom="0dp"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/background_round_corner"
+                        android:drawableLeft="@drawable/phone_white"
                         android:ems="10"
                         android:hint="@string/mobile_number"
                         android:imeOptions="actionNext"
                         android:inputType="phone"
-                        android:paddingLeft="8dp"
+                        android:paddingLeft="@dimen/edit_text_padding"
                         android:singleLine="true"
                         android:textColor="@color/black"
-                        android:textColorHint="@android:color/darker_gray" />
+                        android:textColorHint="@android:color/darker_gray"
+                        android:textSize="@dimen/edit_text_font_size" />
 
                     <EditText
                         android:id="@+id/sp_country"
@@ -121,15 +128,17 @@
                         android:layout_height="@dimen/edt_height"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/background_round_corner"
+                        android:drawableLeft="@drawable/country_white"
+                        android:editable="false"
                         android:ems="10"
+                        android:focusable="false"
                         android:hint="@string/country"
                         android:onClick="countryPressed"
-                        android:paddingLeft="8dp"
+                        android:paddingLeft="@dimen/edit_text_padding"
                         android:singleLine="true"
-                        android:editable="false"
-                        android:focusable="false"
                         android:textColor="@android:color/black"
-                        android:textSize="18sp" />
+                        android:textColorHint="@android:color/darker_gray"
+                        android:textSize="@dimen/edit_text_font_size" />
 
                     <LinearLayout
                         android:id="@+id/llPassword"
@@ -145,9 +154,9 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
-                            android:paddingLeft="8dp"
+                            android:paddingLeft="@dimen/edit_text_padding"
                             android:text="Create Password"
-                            android:textSize="18sp"
+                            android:textSize="@dimen/edit_text_font_size"
                             android:visibility="gone" />
 
                         <EditText
@@ -156,14 +165,16 @@
                             android:layout_height="@dimen/edt_height"
                             android:layout_marginTop="8dp"
                             android:background="@drawable/background_round_corner"
+                            android:drawableLeft="@drawable/password_white"
                             android:ems="10"
                             android:hint="@string/password_star"
                             android:imeOptions="actionNext"
                             android:inputType="textPassword"
-                            android:paddingLeft="8dp"
+                            android:paddingLeft="@dimen/edit_text_padding"
                             android:singleLine="true"
                             android:textColor="@color/black"
-                            android:textColorHint="@android:color/darker_gray" />
+                            android:textColorHint="@android:color/darker_gray"
+                            android:textSize="@dimen/edit_text_font_size" />
 
                         <EditText
                             android:id="@+id/edtCnfPwd"
@@ -171,14 +182,16 @@
                             android:layout_height="@dimen/edt_height"
                             android:layout_marginTop="8dp"
                             android:background="@drawable/background_round_corner"
+                            android:drawableLeft="@drawable/password_white"
                             android:ems="10"
                             android:hint="@string/cnf_password_star"
                             android:imeOptions="actionNext"
                             android:inputType="textPassword"
-                            android:paddingLeft="8dp"
+                            android:paddingLeft="@dimen/edit_text_padding"
                             android:singleLine="true"
                             android:textColor="@color/black"
-                            android:textColorHint="@android:color/darker_gray" />
+                            android:textColorHint="@android:color/darker_gray"
+                            android:textSize="@dimen/edit_text_font_size" />
                     </LinearLayout>
 
                     <RelativeLayout

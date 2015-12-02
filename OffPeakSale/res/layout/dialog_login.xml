@@ -67,11 +67,13 @@
                         android:layout_height="@dimen/button_height"
                         android:layout_marginTop="10dp"
                         android:background="@android:color/darker_gray"
-                        android:gravity="left"
+                        android:drawableLeft="@drawable/email_black"
+                        android:gravity="left|center_vertical"
                         android:hint="@string/email_address"
                         android:inputType="textEmailAddress"
-                        android:padding="10dp"
-                        android:singleLine="true" />
+                        android:padding="@dimen/edit_text_padding"
+                        android:singleLine="true"
+                        android:textSize="@dimen/edit_text_font_size" />
 
                     <EditText
                         android:id="@+id/etLoginPWD"
@@ -79,11 +81,13 @@
                         android:layout_height="@dimen/button_height"
                         android:layout_marginTop="10dp"
                         android:background="@android:color/darker_gray"
-                        android:gravity="left"
+                        android:drawableLeft="@drawable/password_black"
+                        android:gravity="left|center_vertical"
                         android:hint="@string/password_star"
                         android:inputType="textPassword"
-                        android:padding="10dp"
-                        android:singleLine="true" />
+                        android:padding="@dimen/edit_text_padding"
+                        android:singleLine="true"
+                        android:textSize="@dimen/edit_text_font_size" />
 
                     <Button
                         android:id="@+id/btnLogin"
@@ -122,11 +126,13 @@
                     android:layout_height="@dimen/button_height"
                     android:layout_marginTop="10dp"
                     android:background="@android:color/darker_gray"
-                    android:gravity="left"
+                    android:drawableLeft="@drawable/email_black"
+                    android:gravity="left|center_vertical"
                     android:hint="@string/email_address"
                     android:inputType="textEmailAddress"
-                    android:padding="10dp"
-                    android:singleLine="true" />
+                    android:padding="@dimen/edit_text_padding"
+                    android:singleLine="true"
+                    android:textSize="@dimen/edit_text_font_size" />
 
                 <Button
                     android:id="@+id/btnForgotPwd"
