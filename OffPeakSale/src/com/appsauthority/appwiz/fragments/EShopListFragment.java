@@ -945,7 +945,7 @@ public class EShopListFragment extends Fragment {
 				tvNoSearchFound.setVisibility(View.GONE);
 				listview.setVisibility(View.VISIBLE);
 			}
-			tvTotalDeals.setText("Off Peak Sale Nearby " + adapter.getCount());
+			tvTotalDeals.setText("Nearby " + adapter.getCount());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

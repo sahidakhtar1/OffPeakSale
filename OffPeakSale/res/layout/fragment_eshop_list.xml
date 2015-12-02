@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:lines="1"
-            android:text="Off Peak Sale Nearby"
+            android:text="Nearby"
             android:textSize="@dimen/textsize" />
     </RelativeLayout>
 
