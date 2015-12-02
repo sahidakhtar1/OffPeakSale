@@ -37,7 +37,8 @@
     <RelativeLayout
         android:id="@+id/rlLocationOption"
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/secondary_header_height" >
+        android:layout_height="@dimen/secondary_header_height"
+         >
 
         <ImageView
             android:layout_width="16dp"
@@ -62,7 +63,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/header"
-        android:background="@android:color/white" >
+        android:background="@color/footer_bg" >
 
         <HorizontalScrollView
             android:id="@+id/horizontalScrollView"

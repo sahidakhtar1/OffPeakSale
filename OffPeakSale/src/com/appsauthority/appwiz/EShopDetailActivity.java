@@ -195,7 +195,7 @@ public class EShopDetailActivity extends BaseActivity implements
 	private SharedPreferences spref;
 
 	TextView tvOldPrice, tvNewPrice, tvDistance, tvAddress, tvQtyIndicator,
-			tvDiscountValue, tvDiscountlbl;
+			tvDiscountValue, tvDiscountlbl,tvSaleIndicator;
 	ToggleButton favToggle;
 	LinearLayout llDiscountInfo;
 
@@ -216,6 +216,7 @@ public class EShopDetailActivity extends BaseActivity implements
 		tvDiscountValue = (TextView) findViewById(R.id.tvDiscountValue);
 		tvDiscountlbl = (TextView) findViewById(R.id.tvDiscountLbl);
 		llDiscountInfo = (LinearLayout) findViewById(R.id.llDiscountInfo);
+		tvSaleIndicator = (TextView) findViewById(R.id.tvSaleIndicator);
 
 		tvDiscountValue.setTypeface(Helper.getSharedHelper().normalFont);
 		tvDiscountlbl.setTypeface(Helper.getSharedHelper().normalFont);
@@ -874,10 +875,11 @@ public class EShopDetailActivity extends BaseActivity implements
 		tvQtyIndicator.bringToFront();
 		favToggle.bringToFront();
 		llDiscountInfo.bringToFront();
+		tvSaleIndicator.bringToFront();
 		RelativeLayout rlCircularView = (RelativeLayout) findViewById(R.id.rlCircularView);
 		GradientDrawable bgShape = (GradientDrawable) rlCircularView
 				.getBackground();
-		bgShape.setColor(Color.parseColor("#" + retailer.getHeaderColor()));
+		bgShape.setColor(R.color.black_translucent);
 
 		if (product.availQty != null) {
 			tvQtyIndicator.setText(product.availQty + " sold");
@@ -902,6 +904,11 @@ public class EShopDetailActivity extends BaseActivity implements
 			btnLeftShare.setBackgroundResource(R.drawable.share);
 		}
 		updateItemPrice();
+		if (product.onSale != null && product.onSale.equalsIgnoreCase("1")) {
+			tvSaleIndicator.setVisibility(View.GONE);
+		} else {
+			tvSaleIndicator.setVisibility(View.GONE);
+		}
 
 	}
 

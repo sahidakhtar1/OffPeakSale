@@ -157,8 +157,7 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 			RelativeLayout rlCircularView = holder.getRlCircularView();
 			GradientDrawable bgShape = (GradientDrawable) rlCircularView
 					.getBackground();
-			bgShape.setColor(Color.parseColor("#"
-					+ Helper.getSharedHelper().reatiler.getHeaderColor()));
+			bgShape.setColor(R.color.black_translucent);
 		} catch (Exception e) {
 
 		}
