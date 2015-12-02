@@ -177,6 +177,7 @@
                         android:textStyle="bold" />
 
                     <LinearLayout
+                        android:id="@+id/llLocattion"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -272,13 +273,6 @@
                     android:visibility="gone" >
 
                     <include layout="@layout/menu_layout" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llMapView"
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    android:visibility="visible" >
                 </LinearLayout>
 
                 <LinearLayout

@@ -133,7 +133,7 @@ public class EShopListFragment extends Fragment {
 	private static final String API_KEY = "AIzaSyDAIb7josxX55yT-aam9XpCnbPgKWjwIjs";
 	JSONArray placePredsJsonArray;
 	String mLattitude, mLongitude;
-	
+
 	TextView tvTotalDeals;
 
 	@Override
@@ -697,8 +697,8 @@ public class EShopListFragment extends Fragment {
 				// adapter.addAll(productList);
 				// adapter.notifyDataSetChanged();
 				initializeTab();
-//				tvNoSearchFound.setVisibility(View.GONE);
-//				listview.setVisibility(View.VISIBLE);
+				// tvNoSearchFound.setVisibility(View.GONE);
+				// listview.setVisibility(View.VISIBLE);
 			}
 			// if (productList.size() == 0 && searchedKeyWord != null) {
 			// tvNoSearchFound.setVisibility(View.VISIBLE);
@@ -889,8 +889,12 @@ public class EShopListFragment extends Fragment {
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					int tag = (Integer) v.getTag();
-					selectedTabIndex = tag;
-					initializeTab();
+					if (selectedTabIndex == tag) {
+
+					} else {
+						selectedTabIndex = tag;
+						initializeTab();
+					}
 				}
 			});
 		}
@@ -941,7 +945,7 @@ public class EShopListFragment extends Fragment {
 				tvNoSearchFound.setVisibility(View.GONE);
 				listview.setVisibility(View.VISIBLE);
 			}
-			tvTotalDeals.setText("Off Peak Sale Nearby "+adapter.getCount());
+			tvTotalDeals.setText("Off Peak Sale Nearby " + adapter.getCount());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
