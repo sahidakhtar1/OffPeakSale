@@ -5,47 +5,60 @@
     android:layout_height="40dp"
     android:background="@drawable/circular_drawable" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:orientation="horizontal" >
 
         <TextView
             android:id="@+id/tvDiscountValue"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="24"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
+            android:layout_alignTop="@+id/tvDiscountValue"
+            android:layout_alignBottom="@+id/tvDiscountValue"
+            android:layout_toRightOf="@+id/tvDiscountValue"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/tvPercentageSymbol"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center|left"
-                android:maxHeight="25dp"
-                android:text="%"
-                android:textColor="@android:color/white"
-                android:textSize="10sp" />
+                android:layout_gravity="center_vertical" 
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp">
 
-            <TextView
-                android:id="@+id/tvDiscountLbl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center|left"
-                android:maxHeight="25dp"
-                android:text="Off"
-                android:textColor="@android:color/white"
-                android:textSize="10sp" />
+                <TextView
+                    android:id="@+id/tvPercentageSymbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:maxHeight="25dp"
+                    android:text="%"
+                    android:textColor="@android:color/white"
+                    android:textSize="8sp" />
+
+                <TextView
+                    android:id="@+id/tvDiscountLbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvPercentageSymbol"
+                    android:gravity="center|left"
+                    android:maxHeight="25dp"
+                    android:text="Off"
+                    android:textColor="@android:color/white"
+                    android:textSize="10sp" />
+            </RelativeLayout>
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -66,13 +66,6 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 		holder.getShortDesc().setText(object.getShortDescription().trim());
 		// String oldPrice = object.getOldPrice();
 		float conversionValue = 0.0f;
-		// try {
-		// conversionValue = Float
-		// .parseFloat(Helper.getSharedHelper().currency_conversion_map
-		// .get(Helper.getSharedHelper().currency_code));
-		// } catch (Exception e) {
-		// // TODO: handle exception
-		// }
 
 		float newPrice = Float.parseFloat(object.getNewPrice());
 		String selectedCurrencyCode = Helper.getSharedHelper().currency_symbol;
@@ -100,32 +93,10 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 						.getCurrencySymbol(selectedCurrencyCode)
 						+ Helper.getSharedHelper()
 								.conertfloatToSTring(newPrice));
-		// if (Helper.getSharedHelper().enableRating.equals("1")) {
-		// holder.getProductRatingBar().setRating(
-		// Float.parseFloat(object.getProductRating()));
-		// holder.getProductRatingBar().setVisibility(View.VISIBLE);
-		// } else {
-		// holder.getProductRatingBar().setVisibility(View.GONE);
-		// }
 
 		holder.getOldPrice().setPaintFlags(
 				holder.getOldPrice().getPaintFlags()
 						| Paint.STRIKE_THRU_TEXT_FLAG);
-		// ivStroke = holder.getStroke();
-		//
-		// // ImageView ivStrike = (ImageView)findViewById(R.id.ivStrike);
-		//
-		// float textSize = holder.getOldPrice().getTextSize() / 2;
-		// int textLength = holder.getOldPrice().getText().length();
-		// int totalLengthApprox = (int) (textLength * textSize) - textLength;
-		// int height = 2; // YOUR_REQUIRED_HEIGHT
-		//
-		// RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(
-		// totalLengthApprox, height);
-		// param.addRule(RelativeLayout.CENTER_VERTICAL
-		// | RelativeLayout.ALIGN_PARENT_LEFT);
-		// param.setMargins(4, 0, 0, 0);
-		// ivStroke.setLayoutParams(param);
 
 		imageView = holder.getImage();
 
@@ -162,9 +133,6 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 
 		}
 
-		int width = imageView.getWidth();
-		int height = imageView.getHeight();
-
 		if (object.availQty != null) {
 			holder.getTvQtyIndicator().setText(object.availQty + " sold");
 			holder.getTvQtyIndicator().setVisibility(View.VISIBLE);
@@ -183,18 +151,27 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 		} else {
 			holder.getTvSaleIndicator().setVisibility(View.GONE);
 		}
-		try {
-			if (object.distance == null) {
-				RetailerStores store = object.outlets.get(0);
-				object.distance = Helper.getSharedHelper().getDistanceBetween(
-						Constants.TARGET_LAT, Constants.TARGET_LAT,
-						Double.parseDouble(store.getLatitude()),
-						Double.parseDouble(store.getLongitude()));
+		holder.getTvAddress().setText(object.outletName);
+
+		if (Helper.getSharedHelper().reatiler.enableDiscovery
+				.equalsIgnoreCase("1")) {
+			holder.getTvDistance().setVisibility(View.VISIBLE);
+			try {
+				if (object.distance == null) {
+					RetailerStores store = object.outlets.get(0);
+					object.distance = Helper.getSharedHelper()
+							.getDistanceBetween(Constants.TARGET_LAT,
+									Constants.TARGET_LAT,
+									Double.parseDouble(store.getLatitude()),
+									Double.parseDouble(store.getLongitude()));
+				}
+				holder.getTvDistance().setText(object.distance + "KM");
+
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-			holder.getTvDistance().setText(object.distance + "KM");
-			holder.getTvAddress().setText(object.outletName);
-		} catch (Exception e) {
-			// TODO: handle exception
+		}else{
+			holder.getTvDistance().setVisibility(View.GONE);
 		}
 
 		return convertView;

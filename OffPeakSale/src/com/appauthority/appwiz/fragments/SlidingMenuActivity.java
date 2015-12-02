@@ -62,6 +62,7 @@ import com.appsauthority.appwiz.fragments.EShopListFragment;
 import com.appsauthority.appwiz.models.CategoryObject;
 import com.appsauthority.appwiz.models.CategoryResponseObject;
 import com.appsauthority.appwiz.models.FeaturedStore;
+import com.appsauthority.appwiz.models.MenuItem;
 import com.appsauthority.appwiz.models.NavDrawerItem;
 import com.appsauthority.appwiz.models.Product;
 import com.appsauthority.appwiz.models.ProductResponse;
@@ -277,77 +278,58 @@ public class SlidingMenuActivity extends BaseActivity implements
 			isFeaturedStore = false;
 		}
 
-		/*
-		 * if (retailer.menuList != null) { for (MenuItem menuItem :
-		 * retailer.menuList) { if (menuItem.origName.equalsIgnoreCase("index"))
-		 * { NavDrawerItem home = new NavDrawerItem( menuItem.displayName,
-		 * R.drawable.home, 0, false); home.itemType = DrawerItemType.HOME;
-		 * navDrawerItems.add(home); } else if
-		 * (menuItem.origName.equalsIgnoreCase("eshop")) { NavDrawerItem eshop =
-		 * new NavDrawerItem( menuItem.displayName, R.drawable.eshop, 1, true);
-		 * eshop.itemType = DrawerItemType.ESHOP; navDrawerItems.add(eshop); if
-		 * (isFeaturedStore) { NavDrawerItem featuredStore = new NavDrawerItem(
-		 * "Featured Store", R.drawable.featured_store, 2, true);
-		 * featuredStore.itemType = DrawerItemType.FEATUREDSTORE;
-		 * navDrawerItems.add(featuredStore); } } else if
-		 * (menuItem.origName.equalsIgnoreCase("loyalty")) { NavDrawerItem
-		 * loyalty = new NavDrawerItem( menuItem.displayName,
-		 * R.drawable.loyalty, 3, false); loyalty.itemType =
-		 * DrawerItemType.LAYALITY; navDrawerItems.add(loyalty);
-		 * 
-		 * } else if (menuItem.origName.equalsIgnoreCase("feedback")) {
-		 * NavDrawerItem feedback = new NavDrawerItem( menuItem.displayName,
-		 * R.drawable.feedback, 4, false); feedback.itemType =
-		 * DrawerItemType.FEEDBACK; navDrawerItems.add(feedback); } else if
-		 * (menuItem.origName.equalsIgnoreCase("lookbook")) { NavDrawerItem
-		 * voucher = new NavDrawerItem( menuItem.displayName,
-		 * R.drawable.ic_lookbook, 5, false); voucher.itemType =
-		 * DrawerItemType.LOOKBOOK; navDrawerItems.add(voucher); } else if
-		 * (menuItem.origName.equalsIgnoreCase("contact")) { NavDrawerItem
-		 * locate_us = new NavDrawerItem( menuItem.displayName,
-		 * R.drawable.locate_us, 6, false); locate_us.itemType =
-		 * DrawerItemType.CONTACTUS; navDrawerItems.add(locate_us);
-		 * 
-		 * } else if (menuItem.origName.equalsIgnoreCase("calendar")) {
-		 * NavDrawerItem voucher = new NavDrawerItem( menuItem.displayName,
-		 * R.drawable.ic_calendar, 5, false); voucher.itemType =
-		 * DrawerItemType.CALENDER; navDrawerItems.add(voucher); } } }
-		 */
+		if (retailer.menuList != null) {
+			for (MenuItem menuItem : retailer.menuList) {
+				if (menuItem.origName.equalsIgnoreCase("eshop")) {
+					NavDrawerItem eshop = new NavDrawerItem(
+							menuItem.displayName, R.drawable.eshop, 1, false);
+					eshop.itemType = DrawerItemType.ESHOP;
+					navDrawerItems.add(eshop);
+
+				} else if (menuItem.origName.equalsIgnoreCase("voucher")) {
+					NavDrawerItem voucher = new NavDrawerItem(menuItem.displayName,
+							R.drawable.voucher, 5, false);
+					voucher.itemType = DrawerItemType.VOUCHER;
+					navDrawerItems.add(voucher);
+
+				} else if (menuItem.origName.equalsIgnoreCase("myorders")) {
+					NavDrawerItem history = new NavDrawerItem(menuItem.displayName,
+							R.drawable.shop_cart_black, 5, true);
+					history.itemType = DrawerItemType.ORDER_HISTORY;
+					navDrawerItems.add(history);
+				} else if (menuItem.origName.equalsIgnoreCase("myprofile")) {
+					NavDrawerItem my_profile = new NavDrawerItem(menuItem.displayName,
+							R.drawable.my_profile, 7, false);
+					my_profile.itemType = DrawerItemType.PROFILE;
+					navDrawerItems.add(my_profile);
+				} else if (menuItem.origName.equalsIgnoreCase("terms")) {
+					NavDrawerItem tnc = new NavDrawerItem(menuItem.displayName
+							/* + retailer.getRetailerName() */, R.drawable.termsofuse, 8, false);
+							tnc.itemType = DrawerItemType.TERMSNCONDITION;
+							navDrawerItems.add(tnc);
+
+				} else if (menuItem.origName.equalsIgnoreCase("contact")) {
+					NavDrawerItem about_us = new NavDrawerItem(menuItem.displayName
+							/* + retailer.getRetailerName() */, R.drawable.ic_online_help, 8, false);
+							about_us.itemType = DrawerItemType.ABOUTUS;
+							navDrawerItems.add(about_us);
+				}
+			}
+		}
 
 		// NavDrawerItem home = new NavDrawerItem("Resturants Nearby",
 		// R.drawable.home, 0, false);
 		// home.itemType = DrawerItemType.ESHOP;
 		// navDrawerItems.add(home);
 
-		NavDrawerItem eshop = new NavDrawerItem("Resturants Nearby",
-				R.drawable.locate_us, 1, false);
-		eshop.itemType = DrawerItemType.ESHOP;
-		navDrawerItems.add(eshop);
+		// NavDrawerItem eshop = new NavDrawerItem("Resturants Nearby",
+		// R.drawable.locate_us, 1, false);
+		// eshop.itemType = DrawerItemType.ESHOP;
+		// navDrawerItems.add(eshop);
 
-		NavDrawerItem voucher = new NavDrawerItem("Voucher",
-				R.drawable.voucher, 5, false);
-		voucher.itemType = DrawerItemType.VOUCHER;
-		navDrawerItems.add(voucher);
+		
 
-		NavDrawerItem history = new NavDrawerItem("My Order",
-				R.drawable.shop_cart_black, 5, false);
-		history.itemType = DrawerItemType.ORDER_HISTORY;
-		navDrawerItems.add(history);
-
-		NavDrawerItem my_profile = new NavDrawerItem("My Profile",
-				R.drawable.my_profile, 7, true);
-		my_profile.itemType = DrawerItemType.PROFILE;
-		navDrawerItems.add(my_profile);
-
-		NavDrawerItem tnc = new NavDrawerItem("Terms & Conditions"
-		/* + retailer.getRetailerName() */, R.drawable.termsofuse, 8, false);
-		tnc.itemType = DrawerItemType.TERMSNCONDITION;
-		navDrawerItems.add(tnc);
-
-		NavDrawerItem about_us = new NavDrawerItem("Contact"
-		/* + retailer.getRetailerName() */, R.drawable.ic_online_help, 8, false);
-		about_us.itemType = DrawerItemType.ABOUTUS;
-		navDrawerItems.add(about_us);
+		
 
 	}
 
@@ -407,9 +389,9 @@ public class SlidingMenuActivity extends BaseActivity implements
 		// getActionBar().setCustomView(v);
 		//
 		getActionBar().hide();
-//		LayoutInflater inflator = (LayoutInflater) this
-//				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//		View v = inflator.inflate(R.layout.header, null);
+		// LayoutInflater inflator = (LayoutInflater) this
+		// .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		// View v = inflator.inflate(R.layout.header, null);
 		RelativeLayout v = (RelativeLayout) findViewById(R.id.healderView);
 
 		textViewHeader = (TextView) v.findViewById(R.id.textViewHeader);
@@ -519,31 +501,30 @@ public class SlidingMenuActivity extends BaseActivity implements
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
 
-//		getActionBar().setHomeButtonEnabled(true);
-//
-//		// getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//
-//		getActionBar().setDisplayShowTitleEnabled(false);
-//
-//		getActionBar().setDisplayUseLogoEnabled(false);
-//
-//		getActionBar().setDisplayShowCustomEnabled(false);
-//
-//		try {
-//			getActionBar().setBackgroundDrawable(
-//					new ColorDrawable(Color.parseColor("#"
-//							+ retailer.getHeaderColor())));
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		}
+		// getActionBar().setHomeButtonEnabled(true);
+		//
+		// // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		//
+		// getActionBar().setDisplayShowTitleEnabled(false);
+		//
+		// getActionBar().setDisplayUseLogoEnabled(false);
+		//
+		// getActionBar().setDisplayShowCustomEnabled(false);
+		//
+		// try {
+		// getActionBar().setBackgroundDrawable(
+		// new ColorDrawable(Color.parseColor("#"
+		// + retailer.getHeaderColor())));
+		// } catch (Exception e) {
+		// // TODO: handle exception
+		// }
 
 		// getActionBar().setIcon(
 		// new ColorDrawable(getResources().getColor(
 		// android.R.color.transparent)));
-//		getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-//		getActionBar().setCustomView(v);
+		// getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		// getActionBar().setCustomView(v);
 		// LayoutParams lp = v.getLayoutParams();
 		// lp.width = LayoutParams.MATCH_PARENT;
 		// v.setLayoutParams(lp);
@@ -639,7 +620,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 				displayView(item.itemType, null);
 				if (position == 0) {
 					textViewHeader.setText(retailer.getRetailerName());
-				} else if (item.itemType != DrawerItemType.PROFILE) {
+				} else  {
 					textViewHeader.setText(item.getTitle());
 				}
 			}

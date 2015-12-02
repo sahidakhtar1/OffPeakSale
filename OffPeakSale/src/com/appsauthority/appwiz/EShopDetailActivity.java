@@ -966,14 +966,20 @@ public class EShopDetailActivity extends BaseActivity implements
 
 		tvOldPrice.setPaintFlags(tvOldPrice.getPaintFlags()
 				| Paint.STRIKE_THRU_TEXT_FLAG);
-		if (product.distance == null) {
-			RetailerStores store = product.outlets.get(0);
-			product.distance = Helper.getSharedHelper().getDistanceBetween(
-					Constants.TARGET_LAT, Constants.TARGET_LNG,
-					Double.parseDouble(store.getLatitude()),
-					Double.parseDouble(store.getLongitude()));
+		if (retailer.enableDiscovery.equalsIgnoreCase("1")) {
+			if (product.distance == null) {
+				RetailerStores store = product.outlets.get(0);
+				product.distance = Helper.getSharedHelper().getDistanceBetween(
+						Constants.TARGET_LAT, Constants.TARGET_LNG,
+						Double.parseDouble(store.getLatitude()),
+						Double.parseDouble(store.getLongitude()));
+			}
+			tvDistance.setText(product.distance + "KM");
+			tvDistance.setVisibility(View.VISIBLE);
+		}else{
+			tvDistance.setVisibility(View.GONE);
 		}
-		tvDistance.setText(product.distance + "KM");
+		
 		tvAddress.setText(product.outletName);
 	}
 

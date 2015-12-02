@@ -188,6 +188,9 @@ public class Retailer implements Serializable {
 	
 	@SerializedName("menuList")
 	public List<MenuItem> menuList;
+	
+	@SerializedName("enableDiscovery")
+	public String enableDiscovery;
 
 	public Retailer() {
 		super();

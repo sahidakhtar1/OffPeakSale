@@ -163,8 +163,11 @@ public class EShopListFragment extends Fragment {
 			initailizeView(view);
 		}
 		myLocation = new MyLocation();
-		checkforLocation();
-		getAddressFromCoordinate(12.01, 77.0);
+		if (retailer.enableDiscovery.equalsIgnoreCase("1")) {
+			checkforLocation();
+		}
+
+		// getAddressFromCoordinate(12.01, 77.0);
 		return view;
 	}
 
@@ -235,6 +238,11 @@ public class EShopListFragment extends Fragment {
 				showLoctionDialog();
 			}
 		});
+		if (retailer.enableDiscovery.equalsIgnoreCase("1")) {
+			rlLocationOption.setVisibility(View.VISIBLE);
+		} else {
+			rlLocationOption.setVisibility(View.GONE);
+		}
 
 		filterOptions = new ArrayList<String>();
 
@@ -645,16 +653,23 @@ public class EShopListFragment extends Fragment {
 				try {
 					param.put(Constants.PARAM_RETAILER_ID,
 							Constants.RETAILER_ID);
-					if (selectedSearchOption == 0) {
-						param.put(Constants.PARAM_CONSUMER_LAT, Constants.LAT);
-						param.put(Constants.PARAM_CONSUMER_LONG, Constants.LNG);
-						Constants.TARGET_LAT = Constants.LAT;
-						Constants.TARGET_LNG = Constants.LNG;
-					} else {
-						param.put(Constants.PARAM_CONSUMER_LAT, mLattitude);
-						param.put(Constants.PARAM_CONSUMER_LONG, mLongitude);
-						Constants.TARGET_LAT = Double.parseDouble(mLattitude);
-						Constants.TARGET_LNG = Double.parseDouble(mLongitude);
+					if (retailer.enableDiscovery.equalsIgnoreCase("1")) {
+
+						if (selectedSearchOption == 0) {
+							param.put(Constants.PARAM_CONSUMER_LAT,
+									Constants.LAT);
+							param.put(Constants.PARAM_CONSUMER_LONG,
+									Constants.LNG);
+							Constants.TARGET_LAT = Constants.LAT;
+							Constants.TARGET_LNG = Constants.LNG;
+						} else {
+							param.put(Constants.PARAM_CONSUMER_LAT, mLattitude);
+							param.put(Constants.PARAM_CONSUMER_LONG, mLongitude);
+							Constants.TARGET_LAT = Double
+									.parseDouble(mLattitude);
+							Constants.TARGET_LNG = Double
+									.parseDouble(mLongitude);
+						}
 					}
 
 					// if (category != null) {
