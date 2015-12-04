@@ -134,7 +134,10 @@ public class MyLocation {
 	public void cancelTimer() {
 		if (timer1 != null)
 			timer1.cancel();
-		lm.removeUpdates(locationListenerGps);
-		lm.removeUpdates(locationListenerNetwork);
+		if(lm!=null)
+		{
+			lm.removeUpdates(locationListenerGps);
+			lm.removeUpdates(locationListenerNetwork);
+		}
 	}
 }
