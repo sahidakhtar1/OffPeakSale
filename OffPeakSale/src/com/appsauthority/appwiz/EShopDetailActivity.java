@@ -532,7 +532,7 @@ public class EShopDetailActivity extends BaseActivity implements
 		editTextQty.setBackgroundDrawable(getGradientDrawableEditText(retailer
 				.getHeaderColor()));
 
-		textViewHeader.setText("E-Shop");
+		textViewHeader.setText(Helper.getSharedHelper().reatiler.getRetailerName());
 
 		textViewName.setText(product.getName());
 		textViewShortDesc.setText(product.getShortDescription());

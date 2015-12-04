@@ -53,6 +53,7 @@ public class OrderDetailActivity extends BaseActivity {
 		String qrCodeImageUrl = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="+orderObj.qrCode;
 		imageCacheLoader.displayImage(qrCodeImageUrl,
 				R.drawable.image_placeholder, imgView);
+		textViewHeader.setText(Helper.getSharedHelper().orderTitle);
 		//itemListView = (ListView) findViewById(R.id.lv_items);
 	//	adapter = new OrderDetailAdapter(this, R.layout.row_order_item,
 	//			orderObj.products);
@@ -98,6 +99,7 @@ public class OrderDetailActivity extends BaseActivity {
 				imageBack.setBackgroundResource(R.drawable.backbutton);
 
 			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

@@ -293,6 +293,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 					navDrawerItems.add(voucher);
 
 				} else if (menuItem.origName.equalsIgnoreCase("myorders")) {
+					Helper.getSharedHelper().orderTitle = menuItem.displayName;
 					NavDrawerItem history = new NavDrawerItem(menuItem.displayName,
 							R.drawable.shop_cart_black, 5, true);
 					history.itemType = DrawerItemType.ORDER_HISTORY;
@@ -621,7 +622,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 				displayView(item.itemType, null);
 				if (position == 0) {
 					textViewHeader.setText(retailer.getRetailerName());
-				} else  if (item.itemType == DrawerItemType.PROFILE){
+				} else  if (item.itemType != DrawerItemType.PROFILE){
 					textViewHeader.setText(item.getTitle());
 				}
 			}

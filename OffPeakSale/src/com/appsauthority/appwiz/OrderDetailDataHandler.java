@@ -37,23 +37,7 @@ public class OrderDetailDataHandler {
 
 		@Override
 		protected void onPreExecute() {
-			String lookBookData = spref.getString(
-					orderId, "");
-			if (!lookBookData.equalsIgnoreCase("")) {
-				try {
-					Gson gson = new Gson();
-					OrderDetailResponseObject res = gson.fromJson(lookBookData,
-							OrderDetailResponseObject.class);
-
-					if (caller != null && res != null) {
-						caller.orderDetailDownloaded(res);
-					}
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-
-					e.printStackTrace();
-				}
-			}
+			
 		}
 
 		@Override
@@ -113,8 +97,22 @@ public class OrderDetailDataHandler {
 					}
 				}
 			} else {
-				if (caller != null ) {
-					caller.orderHistoryDownloaded(null);
+				String lookBookData = spref.getString(
+						orderId, "");
+				if (!lookBookData.equalsIgnoreCase("")) {
+					try {
+						Gson gson = new Gson();
+						OrderDetailResponseObject res = gson.fromJson(lookBookData,
+								OrderDetailResponseObject.class);
+
+						if (caller != null && res != null) {
+							caller.orderDetailDownloaded(res);
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+
+						e.printStackTrace();
+					}
 				}
 			}
 		}

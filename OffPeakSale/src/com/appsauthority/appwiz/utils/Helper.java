@@ -58,6 +58,7 @@ public class Helper {
 	public int deliveryOptionSelectedIndex = 0;
 	public Date earliestDate = null;
 	public String profileTitle = "Profile";
+	public String orderTitle = "My Orders";
 
 	public static Helper getSharedHelper() {
 		if (sharedHelper == null) {
