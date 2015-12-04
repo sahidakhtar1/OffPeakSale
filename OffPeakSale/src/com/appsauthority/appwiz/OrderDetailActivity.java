@@ -47,7 +47,12 @@ public class OrderDetailActivity extends BaseActivity {
 		headerView = (RelativeLayout) findViewById(R.id.headerView);
 		imageBack = (ImageView) findViewById(R.id.imageBack);
 		textViewHeader = (TextView) findViewById(R.id.textViewHeader);
-		tvQRCode = (TextView) findViewById(R.id.tvQRCode);
+		tvQRCode = (TextView) findViewById(R.id.tvQrCode);
+		tvQRCode.setText(orderObj.qrCode);
+		ImageView imgView = (ImageView) findViewById(R.id.imgView);
+		String qrCodeImageUrl = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="+orderObj.qrCode;
+		imageCacheLoader.displayImage(qrCodeImageUrl,
+				R.drawable.image_placeholder, imgView);
 		//itemListView = (ListView) findViewById(R.id.lv_items);
 	//	adapter = new OrderDetailAdapter(this, R.layout.row_order_item,
 	//			orderObj.products);
@@ -62,7 +67,7 @@ public class OrderDetailActivity extends BaseActivity {
 			}
 		});
 
-		tvQRCode.setOnClickListener(new OnClickListener() {
+	/*	tvQRCode.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
@@ -71,7 +76,7 @@ public class OrderDetailActivity extends BaseActivity {
 				intent.putExtra("couponCode", orderObj.qrCode);
 				startActivity(intent);
 			}
-		});
+		});*/
 
 		try {
 			textViewHeader.setTypeface(Helper.getSharedHelper().boldFont);
@@ -80,8 +85,8 @@ public class OrderDetailActivity extends BaseActivity {
 					.setTextColor(Color.parseColor("#"
 							+ Helper.getSharedHelper().reatiler
 									.getRetailerTextColor()));
-			tvQRCode.setTextColor(Color.parseColor("#"
-					+ Helper.getSharedHelper().reatiler.getRetailerTextColor()));
+			//tvQRCode.setTextColor(Color.parseColor("#"
+				//	+ Helper.getSharedHelper().reatiler.getRetailerTextColor()));
 			headerView.setBackgroundColor(Color.parseColor("#"
 					+ Helper.getSharedHelper().reatiler.getHeaderColor()));
 			if (Helper.getSharedHelper().reatiler.appIconColor != null
@@ -96,48 +101,86 @@ public class OrderDetailActivity extends BaseActivity {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+	
 		initializeOrderInfo();
-		if (orderObj.shippingStatus.equalsIgnoreCase("Fulfilled")) {
+		/*if (orderObj.shippingStatus.equalsIgnoreCase("Fulfilled")) {
 			tvQRCode.setVisibility(View.GONE);
-		}
+		}*/
 	}
 
 	void initializeOrderInfo() {
 		
-		setMapFooter();
+	//	setMapFooter();
 
 		TextView tvOrderId = (TextView)findViewById(R.id.tvOrderId);
+		TextView tvOrderResturantName = (TextView) findViewById(R.id.tvOrderResturantName);
+		TextView tvOrderResturantAddress = (TextView) findViewById(R.id.tvOrderResturantAddress);
+		TextView tvOrderTelephone=(TextView) findViewById(R.id.tvOrderTelephone);
+		TextView tvOrderDistance=(TextView) findViewById(R.id.tvOrderDistance);
 		TextView	tvOrderStatus = (TextView) findViewById(R.id.tvOrderStatus);
-		TextView tvOrderDiscount = (TextView) findViewById(R.id.tvOrderDiscount);
-		TextView tvOrderInstruction = (TextView) findViewById(R.id.tvOrderInstruction);
 		TextView tvOrderExpiry = (TextView) findViewById(R.id.tvOrderExpiry);
-		TextView tvOrderTotal=(TextView) findViewById(R.id.tvOrderTotal);
+		
+		
+		
 		ImageView iv_eshop=(ImageView)findViewById(R.id.iv_eshop);
 		TextView tv_eshop_ResturantName=(TextView)findViewById(R.id.tv_eshop_ResturantName);
 		TextView tvOldPriceDetails=(TextView)findViewById(R.id.tvOldPriceDetails);
 		TextView tvNewPriceDetails=(TextView)findViewById(R.id.tvNewPriceDetails);
-		LinearLayout MapLinear=(LinearLayout)findViewById(R.id.MapLinear);
-		MapLinear.addView(mapLayout);
+		TextView tvOrderDiscount=(TextView)findViewById(R.id.tvOrderDiscount);
+		//LinearLayout MapLinear=(LinearLayout)findViewById(R.id.MapLinear);
+	//	MapLinear.addView(mapLayout);
 
 
 		try {
 			tvOrderId.setTypeface(Helper.getSharedHelper().normalFont);
+			tvOrderResturantName.setTypeface(Helper.getSharedHelper().normalFont);
+			tvOrderResturantAddress.setTypeface(Helper.getSharedHelper().normalFont);
+			tvOrderTelephone.setTypeface(Helper.getSharedHelper().normalFont);
+			tvOrderDistance.setTypeface(Helper.getSharedHelper().normalFont);
 			tvOrderStatus.setTypeface(Helper.getSharedHelper().normalFont);
-			tvOrderDiscount.setTypeface(Helper.getSharedHelper().normalFont);
-			tvOrderInstruction.setTypeface(Helper.getSharedHelper().normalFont);
 			tvOrderExpiry.setTypeface(Helper.getSharedHelper().normalFont);
-			tvOrderTotal.setTypeface(Helper.getSharedHelper().normalFont);
+			
 			tv_eshop_ResturantName.setTypeface(Helper.getSharedHelper().boldFont);
 			tvOldPriceDetails.setTypeface(Helper.getSharedHelper().normalFont);
 			tvNewPriceDetails.setTypeface(Helper.getSharedHelper().normalFont);
-			
+			tvOrderDiscount.setTypeface(Helper.getSharedHelper().normalFont);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		
-		String orderTex="<u>Order #"+orderObj.orderId+"</u>";
-		tvOrderId.setText(Html.fromHtml(orderTex));
-		tvOrderStatus.setText("Order Status: "+orderObj.shippingStatus);
+		String orderId="Order ID "+orderObj.orderId;
+		tvOrderId.setText(orderId);
+		String resturantName="<b>Restaurant Name</b> " + orderObj.products.get(0).getName().trim(); 
+		tvOrderResturantName.setText(Html.fromHtml(resturantName));
+		
+		if (orderObj.outletAddr != null) {
+			String resturantAddress="<b>Address</b> " +orderObj.outletAddr;
+			tvOrderResturantAddress.setText(Html.fromHtml(resturantAddress));
+		}else
+		{
+			tvOrderResturantAddress.setVisibility(View.GONE);
+		}
+		if (orderObj.outletTele != null) {
+			String resturantTelephone="<b>Telephone</b> " +orderObj.outletTele;
+			tvOrderTelephone.setText(Html.fromHtml(resturantTelephone));
+		}
+		else
+		{
+			tvOrderTelephone.setVisibility(View.GONE);
+		}
+		
+		if (orderObj.outletDistance != null) {
+			String resturantDistance="<b>Distance</b> " +orderObj.outletDistance;
+			tvOrderDistance.setText(Html.fromHtml(resturantDistance));
+		}else
+		{
+			tvOrderDistance.setVisibility(View.GONE);
+		}
+		
+		String status="<b>Status </b> " +orderObj.shippingStatus;
+		tvOrderStatus.setText(Html.fromHtml(status));
+		
+		
 		float conversionValue=0.0f;
 		String selectedCurrencyCode;
 		selectedCurrencyCode = Helper.getSharedHelper().currency_symbol;
@@ -145,8 +188,8 @@ public class OrderDetailActivity extends BaseActivity {
 		   conversionValue = 1.0f;
 		   selectedCurrencyCode = Helper.getSharedHelper().reatiler.defaultCurrency;
 		  }
-		tvOrderDiscount.setText("Discount: "+Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+orderObj.discountAmt);
-		tvOrderTotal.setText("Total: "+Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+orderObj.orderTotal);
+	
+		//tvOrderTotal.setText("Total "+Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+orderObj.orderTotal);
 		String comp[] = orderObj.orderDate.split(" ");
 
 		String date = "";
@@ -156,29 +199,32 @@ public class OrderDetailActivity extends BaseActivity {
 		
 		if(orderObj.shippingStatus.equals("Expired"))
 		{
-			tvOrderExpiry.setText("Expired On: "+date);
+			String expiry="<b>Expired On   </b> " +date;
+			tvOrderExpiry.setText(Html.fromHtml(expiry));
 		}else if(orderObj.shippingStatus.equals("Redeemed"))
 		{
-			tvOrderExpiry.setText("Redeemed On: "+date);
+			String expiry="<b>Redeemed On </b> " +date;
+			tvOrderExpiry.setText(Html.fromHtml(expiry));
 		}else
 		{
-			tvOrderExpiry.setText("Expiry: "+date);
+			String expiry="<b>Expiry  </b> " +date;
+			tvOrderExpiry.setText(Html.fromHtml(expiry));
 		}
 		
-		if (orderObj.orderInstr != null) {
-			tvOrderInstruction.setText("Instruction: "+orderObj.orderInstr);
-			tvOrderInstruction.setVisibility(View.VISIBLE);
+		/*if (orderObj.orderInstr != null) {
+			tvOrderInstruction.setText("Instruction "+orderObj.orderInstr);
+		//	tvOrderInstruction.setVisibility(View.VISIBLE);
 		} else {
 			tvOrderInstruction.setVisibility(View.GONE);
-		}
+		}*/
 		
-		imageCacheLoader.displayImage(orderObj.products.get(0).getImage(),
-				R.drawable.image_placeholder, iv_eshop);
+		imageCacheLoader.displayImage(orderObj.products.get(0).getImage(),R.drawable.image_placeholder, iv_eshop);
 		tv_eshop_ResturantName.setText(orderObj.products.get(0).getName().trim());
 		tvOldPriceDetails.setText(Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+orderObj.products.get(0).oldPrice);
 		tvOldPriceDetails.setPaintFlags(tvOldPriceDetails.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
 		tvNewPriceDetails.setText(Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+orderObj.products.get(0).newPrice);
-		
+		String discount="<b>Discount </b> " +Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+orderObj.discountAmt;
+		tvOrderDiscount.setText(Html.fromHtml(discount));
 	}
 	
 	private void setMapFooter()

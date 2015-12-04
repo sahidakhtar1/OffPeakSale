@@ -91,7 +91,7 @@
 
                     <Button
                         android:id="@+id/btnLogin"
-                        android:layout_width="150dp"
+                        android:layout_width="230dp"
                         android:layout_height="@dimen/button_height"
                         android:layout_marginTop="10dp"
                         android:gravity="center"
@@ -102,8 +102,8 @@
 
                     <com.facebook.widget.LoginButton
                         android:id="@+id/facebookauthButton"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/button_height"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="20dp"
                         android:layout_marginTop="15dp" />
