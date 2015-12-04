@@ -26,7 +26,7 @@ import com.appsauthority.appwiz.utils.ImageCacheLoader;
 import com.offpeaksale.consumer.R;
 
 public class OrderDetailActivity extends BaseActivity {
-	OrderObject orderObj;
+	public static OrderObject orderObj;
 	RelativeLayout headerView;
 	ImageView imageBack;
 	TextView textViewHeader, tvQRCode;
@@ -114,6 +114,16 @@ public class OrderDetailActivity extends BaseActivity {
 
 		TextView tvOrderId = (TextView)findViewById(R.id.tvOrderId);
 		TextView tvOrderResturantName = (TextView) findViewById(R.id.tvOrderResturantName);
+		tvOrderResturantName.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(context, OutletMapActivity.class);
+				intent.putExtra("resturant_address", orderObj.products.get(0).getName().trim());
+				startActivity(intent);
+				
+			}
+		});
 		TextView tvOrderResturantAddress = (TextView) findViewById(R.id.tvOrderResturantAddress);
 		TextView tvOrderTelephone=(TextView) findViewById(R.id.tvOrderTelephone);
 		TextView tvOrderDistance=(TextView) findViewById(R.id.tvOrderDistance);
@@ -223,8 +233,14 @@ public class OrderDetailActivity extends BaseActivity {
 		tvOldPriceDetails.setText(Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+orderObj.products.get(0).oldPrice);
 		tvOldPriceDetails.setPaintFlags(tvOldPriceDetails.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
 		tvNewPriceDetails.setText(Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+orderObj.products.get(0).newPrice);
-		String discount="<b>Discount </b> " +Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+orderObj.discountAmt;
-		tvOrderDiscount.setText(Html.fromHtml(discount));
+		if(!orderObj.discountAmt.startsWith("0"))
+		{
+			String discount="<b>Discount </b> " +Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+orderObj.discountAmt;
+			tvOrderDiscount.setText(Html.fromHtml(discount));
+		}else
+		{
+			tvOrderDiscount.setVisibility(View.GONE);
+		}
 	}
 	
 	private void setMapFooter()
