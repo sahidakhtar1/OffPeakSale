@@ -173,7 +173,7 @@
 
                     <TextView
                         android:id="@+id/tv_eshop_ResturantName"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxLines="2"
                         android:text="@string/lorem_ipsum"
