@@ -51,7 +51,7 @@ public class MapLayout extends RelativeLayout implements
 
 	public String longitude;
 	public String merchantName;
-	
+
 	Marker nearestStoreMarker;
 
 	public MapLayout(Context context, Activity activity,
@@ -60,7 +60,7 @@ public class MapLayout extends RelativeLayout implements
 		this.context = context;
 		this.activity = activity;
 		this.stores = stores;
-//		init();
+		// init();
 	}
 
 	public void init() {
@@ -81,13 +81,11 @@ public class MapLayout extends RelativeLayout implements
 					.icon(BitmapDescriptorFactory
 							.fromResource(R.drawable.user_pin)));
 			bld.include(new LatLng(Constants.LAT, Constants.LNG));
-			
 
-			if(latitude!=null && longitude!=null)
-			{
+			if (latitude != null && longitude != null) {
 				addMarker(Double.parseDouble(latitude),
-					Double.parseDouble(longitude), merchantName, storeAddress,
-					storeContact, map, true);
+						Double.parseDouble(longitude), merchantName,
+						storeAddress, storeContact, map, true);
 			}
 			for (int i = 0; i < stores.size(); i++) {
 				if (stores.get(i).getLatitude().equalsIgnoreCase("")
@@ -213,8 +211,7 @@ public class MapLayout extends RelativeLayout implements
 			String branchName, String contact, GoogleMap map, Boolean selected) {
 		MarkerOptions markerOption = new MarkerOptions()
 				.position(new LatLng(lat, lng))
-				.title(resturantName + "\r\n\n" + branchName + "\r\n\r\n"
-						+ "Contact")
+				.title(resturantName + "\r\n\n" + branchName + "\r\n\r\n")
 				.snippet(contact)
 				.icon(BitmapDescriptorFactory
 						.fromResource(R.drawable.shoplocation));
