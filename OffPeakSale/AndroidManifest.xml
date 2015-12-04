@@ -88,6 +88,7 @@
         <activity android:name="com.appsauthority.appwiz.LoyaltyActivity" />
         <activity android:name="com.appsauthority.appwiz.OrderDetailActivity" />
         <activity android:name="com.appsauthority.appwiz.ViewQRCodeActivity" />
+        <activity android:name="com.appsauthority.appwiz.OutletMapActivity" />
         <activity
             android:name="com.appsauthority.appwiz.ImageZoomActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
