@@ -91,13 +91,13 @@ public class OrderHistoryAdapter extends ArrayAdapter<OrderObject> {
 					+ " " + object.orderTotal);
 			if(object.shippingStatus.equals("Expired"))
 			{
-				holder.getTvOrderDate().setText("Expired On: "+date);
+				holder.getTvOrderDate().setText("Expired On "+date);
 			}else if(object.shippingStatus.equals("Redeemed"))
 			{
-				holder.getTvOrderDate().setText("Redeemed On: "+date);
+				holder.getTvOrderDate().setText("Redeemed On "+date);
 			}else
 			{
-				holder.getTvOrderDate().setText("Date of Purchase: "+date);
+				holder.getTvOrderDate().setText("Date of Purchase "+date);
 			}
 			
 			
@@ -108,9 +108,9 @@ public class OrderHistoryAdapter extends ArrayAdapter<OrderObject> {
 				expDate = exp[0];
 			}
 			
-			holder.getTvExpiryDate().setText("Expiry Date: "+expDate);
+			holder.getTvExpiryDate().setText("Expiry Date "+expDate);
 			
-			holder.getTvProductPrice().setText("Price: "+Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+" "+product.get(0).newPrice);
+			holder.getTvProductPrice().setText("Price "+Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+" "+product.get(0).newPrice);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
