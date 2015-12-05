@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -175,6 +176,7 @@ public class OrderDetailActivity extends BaseActivity {
 		if (orderObj.outletTele != null) {
 			String resturantTelephone="<b>Telephone</b> " +orderObj.outletTele;
 			tvOrderTelephone.setText(Html.fromHtml(resturantTelephone));
+			Linkify.addLinks((tvOrderTelephone),Linkify.ALL);
 		}
 		else
 		{
