@@ -35,7 +35,8 @@ public class OrderDetailActivity extends BaseActivity {
 	OrderDetailAdapter adapter;
 	MapLayout mapLayout;
 	private ImageCacheLoader imageCacheLoader;
-
+	ImageView imgView ;
+	String qrCodeImageUrl;
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -49,11 +50,10 @@ public class OrderDetailActivity extends BaseActivity {
 		imageBack = (ImageView) findViewById(R.id.imageBack);
 		textViewHeader = (TextView) findViewById(R.id.textViewHeader);
 		tvQRCode = (TextView) findViewById(R.id.tvQrCode);
-		tvQRCode.setText(orderObj.qrCode);
-		ImageView imgView = (ImageView) findViewById(R.id.imgView);
-		String qrCodeImageUrl = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="+orderObj.qrCode;
-		imageCacheLoader.displayImage(qrCodeImageUrl,
-				R.drawable.image_placeholder, imgView);
+		//tvQRCode.setText(orderObj.qrCode);
+		 imgView = (ImageView) findViewById(R.id.imgView);
+		qrCodeImageUrl = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="+orderObj.qrCode;
+		
 		textViewHeader.setText(Helper.getSharedHelper().orderTitle);
 		//itemListView = (ListView) findViewById(R.id.lv_items);
 	//	adapter = new OrderDetailAdapter(this, R.layout.row_order_item,
@@ -161,7 +161,7 @@ public class OrderDetailActivity extends BaseActivity {
 			// TODO: handle exception
 		}
 		
-		String orderId="Order ID "+orderObj.orderId;
+		String orderId="Order # "+orderObj.qrCode;
 		tvOrderId.setText(orderId);
 		String resturantName="<b>Restaurant Name</b> " + orderObj.products.get(0).getName().trim(); 
 		tvOrderResturantName.setText(Html.fromHtml(resturantName));
@@ -173,8 +173,8 @@ public class OrderDetailActivity extends BaseActivity {
 		{
 			tvOrderResturantAddress.setVisibility(View.GONE);
 		}
-		if (orderObj.outletTele != null) {
-			String resturantTelephone="<b>Telephone</b> " +orderObj.outletTele;
+		if (orderObj.outletContact != null) {
+			String resturantTelephone="<b>Telephone</b> " +orderObj.outletContact;
 			tvOrderTelephone.setText(Html.fromHtml(resturantTelephone));
 			Linkify.addLinks((tvOrderTelephone),Linkify.ALL);
 		}
@@ -215,15 +215,19 @@ public class OrderDetailActivity extends BaseActivity {
 		{
 			String expiry="<b>Expired On   </b> " +date;
 			tvOrderExpiry.setText(Html.fromHtml(expiry));
+			imgView.setBackgroundResource(R.drawable.expired_icon);
 		}else if(orderObj.shippingStatus.equals("Redeemed"))
 		{
 			String expiry="<b>Redeemed On </b> " +date;
 			tvOrderExpiry.setText(Html.fromHtml(expiry));
+			imgView.setBackgroundResource(R.drawable.redeemed_icon);
 		}else
 		{
 			String expiry="<b>Expiry  </b> " +date;
 			tvOrderExpiry.setText(Html.fromHtml(expiry));
+			imageCacheLoader.displayImage(qrCodeImageUrl,R.drawable.image_placeholder, imgView);
 		}
+		
 		
 		/*if (orderObj.orderInstr != null) {
 			tvOrderInstruction.setText("Instruction "+orderObj.orderInstr);

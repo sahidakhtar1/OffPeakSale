@@ -64,9 +64,9 @@ public class OrderObject implements Serializable {
 	@SerializedName("outletAddr")
 	public String outletAddr;
 	
-	@SerializedName("outletTele")
-	public String outletTele;
-	
+	@SerializedName("outletContact")
+	public String outletContact;
+		
 	@SerializedName("outletDistance")
 	public String outletDistance;
 
