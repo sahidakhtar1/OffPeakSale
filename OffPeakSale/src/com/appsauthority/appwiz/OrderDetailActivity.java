@@ -22,6 +22,7 @@ import com.appsauthority.appwiz.adapters.OrderDetailAdapter;
 import com.appsauthority.appwiz.custom.BaseActivity;
 import com.appsauthority.appwiz.models.OrderObject;
 import com.appsauthority.appwiz.models.Product;
+import com.appsauthority.appwiz.utils.Constants;
 import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.ImageCacheLoader;
 import com.offpeaksale.consumer.R;
@@ -183,8 +184,12 @@ public class OrderDetailActivity extends BaseActivity {
 			tvOrderTelephone.setVisibility(View.GONE);
 		}
 		
-		if (orderObj.outletDistance != null) {
-			String resturantDistance="<b>Distance</b> " +orderObj.outletDistance;
+		if (orderObj.outletLat != null && orderObj.outletLong != null) {
+			String resturantDistance="<b>Distance</b> " +
+		Helper.getSharedHelper().getDistanceBetween(Constants.TARGET_LAT,
+					Constants.TARGET_LAT,
+					Double.parseDouble(orderObj.outletLat),
+					Double.parseDouble(orderObj.outletLong));
 			tvOrderDistance.setText(Html.fromHtml(resturantDistance));
 		}else
 		{

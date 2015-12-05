@@ -80,6 +80,11 @@ public class OutletMapActivity extends BaseActivity{
 			Product product = products.get(0);
 			mapLayout = new MapLayout(this, this, product.outlets);
 			mapLayout.merchantName=product.getName();
+			mapLayout.latitude = orderObj.outletLat;
+			mapLayout.longitude = orderObj.outletLong;
+			mapLayout.outletName = mapLayout.merchantName;
+			mapLayout.storeAddress = orderObj.outletAddr;
+			mapLayout.storeContact = orderObj.outletContact;
 			mapLayout.init();
 		}
 	}

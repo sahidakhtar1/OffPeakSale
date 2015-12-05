@@ -178,6 +178,13 @@ public class EShopListFragment extends Fragment {
 		listview = (ListView) view.findViewById(R.id.lv_eshop);
 		tvNoSearchFound = (TextView) view.findViewById(R.id.tvNoSearchFound);
 		tvNoSearchFound.setVisibility(View.GONE);
+		ImageView imgLocationFilter = (ImageView) view.findViewById(R.id.imgLocationFilter);
+		if (retailer.appIconColor != null
+				&& retailer.appIconColor.equalsIgnoreCase("black")) {
+			imgLocationFilter.setBackgroundResource(R.drawable.ic_location_filter_black);
+		}else{
+			imgLocationFilter.setBackgroundResource(R.drawable.ic_location_filter_white);
+		}
 		try {
 			Bundle bundle = getArguments();
 			if (bundle.containsKey("ID")) {
