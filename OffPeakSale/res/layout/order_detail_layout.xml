@@ -111,6 +111,7 @@
                     android:layout_marginLeft="@dimen/left_right_margin"
                     android:gravity="left|bottom"
                     android:lines="1"
+                    android:textIsSelectable="true"
                     android:textSize="@dimen/cart_bottom_textsize" />
 
                 <TextView
