@@ -244,6 +244,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
+                android:visibility="gone"
                 android:textSize="20sp" />
         </LinearLayout>
     </com.appsauthority.appwiz.utils.ResponsiveScrollView>
