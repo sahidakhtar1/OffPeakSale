@@ -54,7 +54,7 @@ public class OrderHistoryAdapter extends ArrayAdapter<OrderObject> {
 			holder = new ViewHolderOrderHistory(convertView);
 			convertView.setTag(holder);
 			holder.getTvOrderIdValue().setTypeface(
-					Helper.getSharedHelper().boldFont);
+					Helper.getSharedHelper().normalFont);
 			holder.getTvOrderTotalValue().setTypeface(
 					Helper.getSharedHelper().boldFont);
 			holder.getTvOrderStatusValue().setTypeface(
@@ -115,7 +115,7 @@ public class OrderHistoryAdapter extends ArrayAdapter<OrderObject> {
 			holder.getTvOrderStatusValue().setText(object.shippingStatus);
 			
 			
-			holder.getTvProductPrice().setText("Price "+Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+" "+product.get(0).newPrice);
+			holder.getTvProductPrice().setText("Price "+Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+" "+object.orderTotal);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

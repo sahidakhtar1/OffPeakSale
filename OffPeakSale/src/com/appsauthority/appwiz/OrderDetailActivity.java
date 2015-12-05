@@ -161,7 +161,7 @@ public class OrderDetailActivity extends BaseActivity {
 			// TODO: handle exception
 		}
 		
-		String orderId="Order # "+orderObj.qrCode;
+		String orderId="Order "+orderObj.qrCode;
 		tvOrderId.setText(orderId);
 		String resturantName="<b>Restaurant Name</b> " + orderObj.products.get(0).getName().trim(); 
 		tvOrderResturantName.setText(Html.fromHtml(resturantName));
