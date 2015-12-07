@@ -158,8 +158,8 @@
 
                 <ImageView
                     android:id="@+id/iv_eshop"
-                    android:layout_width="95dp"
-                    android:layout_height="80dp"
+                    android:layout_width="115dp"
+                    android:layout_height="70dp"
                     android:background="@drawable/boarder_around"
                     android:contentDescription="@string/image_shop"
                     android:scaleType="fitXY"
@@ -168,7 +168,6 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:orientation="vertical" >
 
