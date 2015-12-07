@@ -143,11 +143,11 @@
                     android:textSize="@dimen/cart_bottom_textsize" />
             </LinearLayout>
 
-            <View
+           <!--  <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="7dp"
-                android:background="@color/triangle_underline_color" />
+                android:background="@color/triangle_underline_color" /> -->
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -158,8 +158,8 @@
 
                 <ImageView
                     android:id="@+id/iv_eshop"
-                    android:layout_width="75dp"
-                    android:layout_height="60dp"
+                    android:layout_width="95dp"
+                    android:layout_height="80dp"
                     android:background="@drawable/boarder_around"
                     android:contentDescription="@string/image_shop"
                     android:scaleType="fitXY"
@@ -182,7 +182,7 @@
 
                     <LinearLayout
                         android:id="@+id/llPrice"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal" >
 
@@ -213,11 +213,11 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <View
+          <!--   <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="7dp"
-                android:background="@color/triangle_underline_color" />
+                android:background="@color/triangle_underline_color" /> -->
 
             <!--
             <LinearLayout
@@ -230,8 +230,8 @@
 
             <ImageView
                 android:id="@+id/imgView"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:scaleType="center" >

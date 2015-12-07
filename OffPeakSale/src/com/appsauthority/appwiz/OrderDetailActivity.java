@@ -53,7 +53,7 @@ public class OrderDetailActivity extends BaseActivity {
 		tvQRCode = (TextView) findViewById(R.id.tvQrCode);
 		//tvQRCode.setText(orderObj.qrCode);
 		 imgView = (ImageView) findViewById(R.id.imgView);
-		qrCodeImageUrl = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="+orderObj.qrCode;
+		qrCodeImageUrl = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="+orderObj.qrCode;
 		
 		textViewHeader.setText(Helper.getSharedHelper().orderTitle);
 		//itemListView = (ListView) findViewById(R.id.lv_items);
@@ -155,6 +155,8 @@ public class OrderDetailActivity extends BaseActivity {
 			tvOrderExpiry.setTypeface(Helper.getSharedHelper().normalFont);
 			
 			tv_eshop_ResturantName.setTypeface(Helper.getSharedHelper().boldFont);
+			tv_eshop_ResturantName.setTextColor(Color.parseColor("#"
+					+ Helper.getSharedHelper().reatiler.getHeaderColor()));
 			tvOldPriceDetails.setTypeface(Helper.getSharedHelper().normalFont);
 			tvNewPriceDetails.setTypeface(Helper.getSharedHelper().normalFont);
 			tvOrderDiscount.setTypeface(Helper.getSharedHelper().normalFont);
@@ -164,18 +166,18 @@ public class OrderDetailActivity extends BaseActivity {
 		
 		String orderId="Order "+orderObj.qrCode;
 		tvOrderId.setText(orderId);
-		String resturantName="<b>Restaurant Name</b> " + orderObj.products.get(0).getName().trim(); 
+		String resturantName="<b>Restaurant Name</b>&nbsp;&nbsp;" + orderObj.products.get(0).getName().trim(); 
 		tvOrderResturantName.setText(Html.fromHtml(resturantName));
 		
 		if (orderObj.outletAddr != null) {
-			String resturantAddress="<b>Address</b> " +orderObj.outletAddr;
+			String resturantAddress="<b>Address</b>&nbsp;&nbsp;" +orderObj.outletAddr;
 			tvOrderResturantAddress.setText(Html.fromHtml(resturantAddress));
 		}else
 		{
 			tvOrderResturantAddress.setVisibility(View.GONE);
 		}
 		if (orderObj.outletContact != null) {
-			String resturantTelephone="<b>Telephone</b> " +orderObj.outletContact;
+			String resturantTelephone="<b>Telephone</b>&nbsp;&nbsp;" +orderObj.outletContact;
 			tvOrderTelephone.setText(Html.fromHtml(resturantTelephone));
 			Linkify.addLinks((tvOrderTelephone),Linkify.ALL);
 		}
@@ -185,7 +187,7 @@ public class OrderDetailActivity extends BaseActivity {
 		}
 		
 		if (orderObj.outletLat != null && orderObj.outletLong != null) {
-			String resturantDistance="<b>Distance</b> " +
+			String resturantDistance="<b>Distance</b>&nbsp;&nbsp;" +
 		Helper.getSharedHelper().getDistanceBetween(Constants.TARGET_LAT,
 					Constants.TARGET_LAT,
 					Double.parseDouble(orderObj.outletLat),
@@ -196,7 +198,7 @@ public class OrderDetailActivity extends BaseActivity {
 			tvOrderDistance.setVisibility(View.GONE);
 		}
 		
-		String status="<b>Status </b> " +orderObj.shippingStatus;
+		String status="<b>Status</b>&nbsp;&nbsp;" +orderObj.shippingStatus;
 		tvOrderStatus.setText(Html.fromHtml(status));
 		
 		
@@ -218,17 +220,17 @@ public class OrderDetailActivity extends BaseActivity {
 		
 		if(orderObj.shippingStatus.equals("Expired"))
 		{
-			String expiry="<b>Expired On   </b> " +date;
+			String expiry="<b>Expired On</b>&nbsp;&nbsp;" +date;
 			tvOrderExpiry.setText(Html.fromHtml(expiry));
 			imgView.setBackgroundResource(R.drawable.expired_icon);
 		}else if(orderObj.shippingStatus.equals("Redeemed"))
 		{
-			String expiry="<b>Redeemed On </b> " +date;
+			String expiry="<b>Redeemed On</b>&nbsp;&nbsp;" +date;
 			tvOrderExpiry.setText(Html.fromHtml(expiry));
 			imgView.setBackgroundResource(R.drawable.redeemed_icon);
 		}else
 		{
-			String expiry="<b>Expiry  </b> " +date;
+			String expiry="<b>Expiry</b>&nbsp;&nbsp;" +date;
 			tvOrderExpiry.setText(Html.fromHtml(expiry));
 			imageCacheLoader.displayImage(qrCodeImageUrl,R.drawable.image_placeholder, imgView);
 		}
