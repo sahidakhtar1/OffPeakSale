@@ -43,7 +43,7 @@
                     android:paddingTop="2dp"
                     android:text="Sold Out"
                     android:textColor="@android:color/white"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/item_indicator_textsize" />
 
                 <ToggleButton
                     android:id="@+id/favToggle"
@@ -71,7 +71,7 @@
                     android:paddingTop="2dp"
                     android:text="Sale"
                     android:textColor="@android:color/white"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/item_indicator_textsize" />
 
                 <LinearLayout
                     android:id="@+id/llDiscountInfo"
@@ -123,7 +123,7 @@
                         android:paddingBottom="0dp"
                         android:paddingTop="10dp"
                         android:text="@string/lorem_ipsum"
-                        android:textSize="@dimen/textsize" />
+                        android:textSize="@dimen/item_title_textsize" />
 
                     <TextView
                         android:id="@+id/tvDistance"
@@ -135,7 +135,7 @@
                         android:maxLines="1"
                         android:text="2.1KM"
                         android:textColor="@android:color/black"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/item_indicator_textsize" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -156,7 +156,7 @@
                             android:layout_marginRight="4dp"
                             android:text="@string/placeholder_price"
                             android:textColor="@android:color/black"
-                            android:textSize="13sp"
+                            android:textSize="@dimen/old_price_textsize"
                             android:textStyle="bold" />
 
                         <ImageView
@@ -173,7 +173,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/placeholder_price"
                         android:textColor="@android:color/black"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/new_price_textsize"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -198,7 +198,7 @@
                             android:layout_marginLeft="5dp"
                             android:text="3 Temasek Avenue"
                             android:textColor="@android:color/black"
-                            android:textSize="13sp" />
+                            android:textSize="@dimen/location_textsize" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -310,7 +310,7 @@
                             android:layout_alignParentBottom="true"
                             android:layout_marginBottom="8dp"
                             android:text="@string/product_details"
-                            android:textSize="@dimen/textsize"
+                            android:textSize="@dimen/detail_section_header_textsize"
                             android:textStyle="bold" />
                     </RelativeLayout>
 
@@ -320,7 +320,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="@string/lorem_ipsum"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/detail_section_header_textsize" />
                 </LinearLayout>
             </LinearLayout>
 

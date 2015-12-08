@@ -13,7 +13,7 @@
         android:gravity="center"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:textSize="@dimen/textsize" />
+        android:textSize="@dimen/category_tab_textsize" />
     <TextView
         android:id="@+id/tvPlaceHolder"
         android:layout_width="wrap_content"
@@ -21,7 +21,7 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:visibility="invisible"
-        android:textSize="@dimen/textsize" />
+        android:textSize="@dimen/category_tab_textsize" />
 
     <View
         android:id="@+id/vwTabUnderline"

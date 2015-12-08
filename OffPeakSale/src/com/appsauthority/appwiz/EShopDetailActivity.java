@@ -497,7 +497,7 @@ public class EShopDetailActivity extends BaseActivity implements
 
 		if (Helper.getSharedHelper().enableShoppingCart.equals("1")) {
 			cartView.setVisibility(View.GONE);
-			buttonBuy.setText("Buy");
+			buttonBuy.setText("Buy Now");
 			// if (product.availQty != null) {
 			// if (Integer.parseInt(product.availQty) <= 0) {
 			// buttonBuy.setText(getResources().getString(
@@ -513,13 +513,13 @@ public class EShopDetailActivity extends BaseActivity implements
 		} else if (Helper.getSharedHelper().enableCreditCode.equals("1")) {
 
 			cartView.setVisibility(View.GONE);
-			buttonBuy.setText("Buy");
+			buttonBuy.setText("Buy Now");
 			btnLeftShare.setVisibility(View.VISIBLE);
 			btnShare.setVisibility(View.GONE);
 			btnEnquiry.setText(R.string.single_enquiry);
 		} else {
 			cartView.setVisibility(View.GONE);
-			buttonBuy.setText("Buy");
+			buttonBuy.setText("Buy Now");
 			btnShare.setVisibility(View.VISIBLE);
 			btnLeftShare.setVisibility(View.GONE);
 			btnEnquiry.setText(R.string.single_enquiry);

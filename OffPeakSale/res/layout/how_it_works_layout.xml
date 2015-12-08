@@ -41,7 +41,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="8dp"
                     android:text="@string/how_it_works"
-                    android:textSize="@dimen/textsize"
+                    android:textSize="@dimen/detail_section_header_textsize"
                     android:textStyle="bold" />
             </RelativeLayout>
 
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/lorem_ipsum"
-                android:textSize="16sp" />
+                android:textSize="@dimen/detail_section_header_textsize" />
 
             <View
                 android:layout_width="fill_parent"

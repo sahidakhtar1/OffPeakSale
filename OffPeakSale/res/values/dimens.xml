@@ -2,7 +2,7 @@
 
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="header_height">52dp</dimen>
-    <dimen name="header_textsize">22sp</dimen>
+    <dimen name="header_textsize">18sp</dimen>
     <dimen name="footer_height">52dp</dimen>
     <dimen name="footer_textsize">11sp</dimen>
     <dimen name="footer_selected">4dp</dimen>
@@ -27,8 +27,22 @@
     <dimen name="triangle_size">12dp</dimen>
     <dimen name="secondary_header_height">40dp</dimen>
     <dimen name="edit_text_padding">5dp</dimen>
-    <dimen name="edit_text_font_size">14sp</dimen>
+    <dimen name="edit_text_font_size">12sp</dimen>
     
     <dimen name="cart_botton_items_height">25dp</dimen>
+    
+    <dimen name="category_tab_textsize">12sp</dimen>
+    <dimen name="location_filter_heading_textsize">12sp</dimen>
+    <dimen name="item_indicator_textsize">15sp</dimen>
+    <dimen name="item_title_textsize">15sp</dimen>
+    <dimen name="old_price_textsize">12sp</dimen>
+    <dimen name="new_price_textsize">15sp</dimen>
+    <dimen name="location_textsize">12sp</dimen>
+    <dimen name="button_textsize">12sp</dimen>
+    <dimen name="button_textsize">12sp</dimen>
+    <dimen name="detail_section_header_textsize">12sp</dimen>
+    <dimen name="item_total_textsize">15sp</dimen>
+    
+    
 
 </resources>

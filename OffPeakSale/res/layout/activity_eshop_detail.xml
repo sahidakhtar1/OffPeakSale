@@ -137,7 +137,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
                         android:text="@string/placeholder_price"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/item_total_textsize"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -165,7 +165,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/qty"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/item_total_textsize"
                         android:textStyle="bold"
                         android:visibility="visible" />
 
@@ -178,7 +178,7 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:maxLength="1"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/item_total_textsize" />
                 </LinearLayout>
 
                 <View
@@ -214,7 +214,7 @@
                             android:minWidth="83dp"
                             android:onClick="buyPressed"
                             android:text="@string/add_to_cart"
-                            android:textSize="16sp"
+                            android:textSize="@dimen/button_textsize"
                             android:textStyle="bold" />
                     </RelativeLayout>
                 </LinearLayout>

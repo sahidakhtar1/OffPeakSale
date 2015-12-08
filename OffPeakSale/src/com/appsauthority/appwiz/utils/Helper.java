@@ -163,10 +163,12 @@ public class Helper {
 		meMap.put("TRY", "Tr");
 		meMap.put("USD", "$");
 		meMap.put("INR", "₹");
-		if (meMap.containsKey(code)) {
-			return (String) meMap.get(code);
-		}
-		return code;
+		meMap.put("IDR", "Rp");
+		meMap.put("VND", "₫");
+//		if (meMap.containsKey(code)) {
+//			return (String) meMap.get(code);
+//		}
+		return "$";
 
 	}
 
