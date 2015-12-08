@@ -18,15 +18,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxWidth="200dp"
+            android:text="Title"
             android:textIsSelectable="true"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/snippet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="dvdfvd"
             android:textColor="#0721EF"
-            android:textIsSelectable="true" />
+            android:textIsSelectable="true"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <ImageView
