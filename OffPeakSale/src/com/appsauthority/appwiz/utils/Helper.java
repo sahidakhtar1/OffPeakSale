@@ -204,6 +204,7 @@ public class Helper {
 	}
 
 	public String getRegularFontPath(String fontname) {
+		fontname = "MYRIADPRO";
 		String fontPath = "fonts/OpenSans.ttf";
 		HashMap<String, String> normalFontMap = new HashMap<String, String>();
 		// normalFontMap.put("American", "american_typewriter_medium_bt.ttf");
@@ -219,6 +220,7 @@ public class Helper {
 
 		normalFontMap.put("Times", "Times New Roman.ttf");
 		normalFontMap.put("Trebuchet", "Trebuchet MS.ttf");
+		normalFontMap.put("MYRIADPRO", "MYRIADPRO-REGULAR.OTF");
 		if (normalFontMap.containsKey(fontname)) {
 			String normaFontName = normalFontMap.get(fontname);
 
@@ -229,6 +231,7 @@ public class Helper {
 	}
 
 	public String getBoldFontPath(String fontname) {
+		fontname = "MYRIADPRO";
 		String fontPath = "fonts/OpenSans-Bold.ttf";
 		HashMap<String, String> normalFontMap = new HashMap<String, String>();
 		// normalFontMap.put("American", "american_typewriter_bold.ttf");
@@ -246,6 +249,7 @@ public class Helper {
 
 		normalFontMap.put("Times", "Times New Roman-Bold.ttf");
 		normalFontMap.put("Trebuchet", "Trebuchet MS-Bold.ttf");
+		normalFontMap.put("MYRIADPRO", "MYRIADPRO-SEMIBOLD.OTF");
 		if (normalFontMap.containsKey(fontname)) {
 			String normaFontName = normalFontMap.get(fontname);
 

@@ -71,10 +71,11 @@ public class PayPalDataHandler {
 				JSONObject productJson = new JSONObject();
 				productJson.put(Constants.PARAM_PRODUCTID_FOR_TOKEN,
 						resturantId);
-				productJson.put("selectedOutlet", selectedOutlet);
+				
 				productJson.put(Constants.PARAM_QUANTITY, qty);
 				jObj.put(productJson);
 				json.put("products", jObj);
+				json.put("outletId", selectedOutlet);
 				
 				
 				json.put("discount",

@@ -2448,7 +2448,7 @@ public class EShopDetailActivity extends BaseActivity implements
 		String emailId = spref.getString(Constants.KEY_EMAIL, "");
 		PayPalDataHandler payPalDataHandler = new PayPalDataHandler(this,
 				product.getId(), emailId, editTextQty.getText().toString(),
-				product.storeAddress);
+				product.outletId);
 		payPalDataHandler.getpayPalData();
 		showLoadingDialog();
 	}

@@ -172,12 +172,13 @@ public class PaypalActivity extends BaseActivity {
 
 						message = obj.getString("errorMessage");
 						try {
-							if (obj.get("transactionId") != null) {
-								transactionId = obj.getString("transactionId");
-							}
+							
 							if (obj.get("paypal_transactionId") != null) {
 								paypal_transactionId = obj
 										.getString("paypal_transactionId");
+							}
+							if (obj.get("transactionId") != null) {
+								transactionId = obj.getString("transactionId");
 							}
 						} catch (Exception e) {
 							// TODO: handle exception
@@ -249,7 +250,7 @@ public class PaypalActivity extends BaseActivity {
 			} else {
 
 			}
-			String id = transactionId;
+			String id = paypal_transactionId;
 			if (id == null && token != null) {
 				id = token;
 			}

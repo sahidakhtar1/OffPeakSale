@@ -93,6 +93,9 @@ public class Product implements Serializable {
 
 	@SerializedName("outletLong")
 	public String longitude;
+	
+	@SerializedName("outletId")
+	public String outletId;
 
 	Boolean isOptedGiftWrap;
 	String qty;
