@@ -7,8 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical" >
 
         <LinearLayout
             android:id="@+id/llLocation"
@@ -33,15 +32,17 @@
                     android:layout_weight="1"
                     android:background="@android:color/darker_gray"
                     android:enabled="false"
-                    android:gravity="left"
-                    android:padding="10dp"
+                    android:gravity="left|center_vertical"
                     android:hint="Current Location"
-                    android:singleLine="true" />
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/edit_text_font_size" />
 
                 <RadioButton
                     android:id="@+id/rdCurrentLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:button="@drawable/black_btn_radio_holo_light"
                     android:checked="true"
                     android:text=""
@@ -65,9 +66,11 @@
                     android:layout_weight="1"
                     android:background="@android:color/darker_gray"
                     android:gravity="left"
-                    android:padding="10dp"
+                    android:gravity="left|center_vertical"
                     android:hint="Target Location"
-                    android:singleLine="true" />
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/edit_text_font_size" />
 
                 <RadioButton
                     android:id="@+id/rdTargetLocation"
@@ -75,6 +78,7 @@
                     android:layout_height="wrap_content"
                     android:button="@drawable/black_btn_radio_holo_light"
                     android:checked="false"
+                    android:gravity="center_vertical"
                     android:text=""
                     android:textSize="@dimen/textsize" />
             </LinearLayout>
@@ -97,7 +101,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="Search"
-                android:textSize="16sp"
+                android:textSize="@dimen/button_textsize"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>

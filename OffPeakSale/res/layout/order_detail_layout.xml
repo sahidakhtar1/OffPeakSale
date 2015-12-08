@@ -83,7 +83,7 @@
                     android:layout_marginLeft="@dimen/left_right_margin"
                     android:layout_marginTop="10dp"
                     android:lines="1"
-                    android:textSize="@dimen/cart_bottom_textsize" />
+                    android:textSize="@dimen/history_id_textsize" />
 
                 <TextView
                     android:id="@+id/tvOrderResturantName"
@@ -93,7 +93,7 @@
                     android:layout_marginTop="10dp"
                     android:gravity="left|bottom"
                     android:lines="1"
-                    android:textSize="@dimen/cart_bottom_textsize" />
+                    android:textSize="@dimen/history_item_textsize" />
 
                 <TextView
                     android:id="@+id/tvOrderResturantAddress"
@@ -102,7 +102,7 @@
                     android:layout_marginLeft="@dimen/left_right_margin"
                     android:gravity="left|bottom"
                     android:lines="1"
-                    android:textSize="@dimen/cart_bottom_textsize" />
+                    android:textSize="@dimen/history_item_textsize" />
 
                 <TextView
                     android:id="@+id/tvOrderTelephone"
@@ -112,7 +112,7 @@
                     android:gravity="left|bottom"
                     android:lines="1"
                     android:textIsSelectable="true"
-                    android:textSize="@dimen/cart_bottom_textsize" />
+                    android:textSize="@dimen/history_item_textsize" />
 
                 <TextView
                     android:id="@+id/tvOrderDistance"
@@ -121,7 +121,7 @@
                     android:layout_marginLeft="@dimen/left_right_margin"
                     android:gravity="left|bottom"
                     android:lines="1"
-                    android:textSize="@dimen/cart_bottom_textsize" />
+                    android:textSize="@dimen/history_item_textsize" />
 
                 <TextView
                     android:id="@+id/tvOrderStatus"
@@ -130,7 +130,7 @@
                     android:layout_marginLeft="@dimen/left_right_margin"
                     android:gravity="left|bottom"
                     android:lines="1"
-                    android:textSize="@dimen/cart_bottom_textsize" />
+                    android:textSize="@dimen/history_item_textsize" />
 
                 <TextView
                     android:id="@+id/tvOrderExpiry"
@@ -140,7 +140,7 @@
                     android:layout_marginLeft="@dimen/left_right_margin"
                     android:gravity="center"
                     android:lines="1"
-                    android:textSize="@dimen/cart_bottom_textsize" />
+                    android:textSize="@dimen/history_item_textsize" />
             </LinearLayout>
 
            <!--  <View
@@ -177,7 +177,7 @@
                         android:layout_height="wrap_content"
                         android:maxLines="2"
                         android:text="@string/lorem_ipsum"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/item_title_textsize" />
 
                     <LinearLayout
                         android:id="@+id/llPrice"
@@ -191,7 +191,7 @@
                             android:layout_height="wrap_content"
                             android:text="price"
                             android:textAlignment="center"
-                            android:textSize="13sp" />
+                            android:textSize="@dimen/old_price_textsize" />
 
                         <TextView
                             android:id="@+id/tvNewPriceDetails"
@@ -200,7 +200,7 @@
                             android:layout_marginLeft="3dp"
                             android:text="price"
                             android:textAlignment="center"
-                            android:textSize="15sp" />
+                            android:textSize="@dimen/new_price_textsize" />
                     </LinearLayout>
 
                     <TextView
@@ -208,7 +208,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:lines="1"
-                        android:textSize="@dimen/cart_bottom_textsize" />
+                        android:textSize="@dimen/new_price_textsize" />
                 </LinearLayout>
             </LinearLayout>
 

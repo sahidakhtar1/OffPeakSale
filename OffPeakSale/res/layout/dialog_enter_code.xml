@@ -26,6 +26,7 @@
             android:imeOptions="actionNext"
             android:padding="8dp"
             android:singleLine="true"
+            android:textSize="@dimen/edit_text_font_size"
             android:textColor="@color/black"
             android:textColorHint="@android:color/darker_gray" />
 
@@ -34,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:text="Apply"
-            android:textSize="16sp" />
+            android:textSize="@dimen/button_textsize" />
     </LinearLayout>
 
     <View
@@ -85,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:text="@string/close"
-            android:textSize="16sp" />
+            android:textSize="@dimen/button_textsize" />
     </RelativeLayout>
 
 </RelativeLayout>

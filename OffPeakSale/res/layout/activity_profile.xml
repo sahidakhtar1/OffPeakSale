@@ -36,7 +36,7 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="Back to login"
-            android:textSize="@dimen/textsize" />
+            android:textSize="@dimen/button_textsize" />
 
         <LinearLayout
             android:id="@+id/llForm"
@@ -217,7 +217,7 @@
                             android:layout_marginRight="2dp"
                             android:layout_toLeftOf="@id/pnSwitch"
                             android:text="@string/tunr_off_pn"
-                            android:textSize="18sp" />
+                            android:textSize="@dimen/edit_text_font_size" />
                     </RelativeLayout>
 
                     <LinearLayout
@@ -258,7 +258,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="fill_parent"
                             android:text="@string/save"
-                            android:textSize="@dimen/textsize"
+                            android:textSize="@dimen/button_textsize"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>

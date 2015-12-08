@@ -39,9 +39,11 @@
     <dimen name="new_price_textsize">15sp</dimen>
     <dimen name="location_textsize">12sp</dimen>
     <dimen name="button_textsize">12sp</dimen>
-    <dimen name="button_textsize">12sp</dimen>
     <dimen name="detail_section_header_textsize">12sp</dimen>
     <dimen name="item_total_textsize">15sp</dimen>
+    <dimen name="menu_item_textsize">15sp</dimen>
+    <dimen name="history_id_textsize">13sp</dimen>
+    <dimen name="history_item_textsize">12sp</dimen>
     
     
 

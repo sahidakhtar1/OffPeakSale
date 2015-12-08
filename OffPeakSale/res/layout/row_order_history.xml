@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:text="Order "
-                    android:textSize="13sp" >
+                    android:textSize="@dimen/history_id_textsize" >
                 </TextView>
 
                 <TextView
@@ -43,7 +43,7 @@
                     android:gravity="left"
                     android:maxLines="1"
                     android:text="df"
-                    android:textSize="13sp" >
+                    android:textSize="@dimen/history_id_textsize" >
                 </TextView>
             </LinearLayout>
 
@@ -95,7 +95,7 @@
                     android:maxLines="1"
                     android:text="Order date"
                     android:textColor="@android:color/secondary_text_light"
-                    android:textSize="12sp" >
+                    android:textSize="@dimen/history_item_textsize" >
                 </TextView>
             </LinearLayout>
 
@@ -136,7 +136,7 @@
                      android:layout_marginTop="2dp"
                     android:maxLines="1"
                     android:text="Expiry Date:"
-                    android:textSize="12sp" >
+                    android:textSize="@dimen/history_item_textsize" >
              </TextView>
               <TextView
                     android:id="@+id/tvProductPrice"
@@ -145,7 +145,7 @@
                     android:layout_marginTop="2dp"
                     android:maxLines="1"
                     android:text="Price: "
-                    android:textSize="12sp" >
+                    android:textSize="@dimen/history_item_textsize" >
                 </TextView>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -158,20 +158,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
-                    android:text="Order status"
-                    android:textSize="12sp" >
+                    android:text="Order status  "
+                    android:textSize="@dimen/history_item_textsize" >
                 </TextView>
 
                 <TextView
                     android:id="@+id/tvOrderStatusValue"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
+                    android:layout_marginLeft="0dp"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:maxLines="1"
                     android:text="df"
-                    android:textSize="12sp" >
+                    android:textSize="@dimen/history_item_textsize" >
                 </TextView>
             </LinearLayout>
         </LinearLayout>
