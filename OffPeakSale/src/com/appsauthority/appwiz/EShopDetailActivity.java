@@ -900,8 +900,8 @@ public class EShopDetailActivity extends BaseActivity implements
 				.getBackground();
 		bgShape.setColor(R.color.black_translucent);
 
-		if (product.availQty != null) {
-			tvQtyIndicator.setText(product.availQty + " sold");
+		if (product.totalSold != null) {
+			tvQtyIndicator.setText(product.totalSold + " sold");
 			tvQtyIndicator.setVisibility(View.VISIBLE);
 
 		}

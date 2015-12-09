@@ -15,7 +15,7 @@
     <dimen name="product_detail_height">215dp</dimen>
     <dimen name="preview">66dp</dimen>
     <dimen name="margin_progressBar">12dp</dimen>
-    <dimen name="button_height">45dp</dimen>
+    <dimen name="button_height">35dp</dimen>
     <dimen name="pager_radius">8dp</dimen>
     <dimen name="item_gap">9dp</dimen>
     <dimen name="menu_item_height">50dp</dimen>
@@ -31,19 +31,19 @@
     
     <dimen name="cart_botton_items_height">25dp</dimen>
     
-    <dimen name="category_tab_textsize">12sp</dimen>
-    <dimen name="location_filter_heading_textsize">12sp</dimen>
+    <dimen name="category_tab_textsize">13sp</dimen>
+    <dimen name="location_filter_heading_textsize">13sp</dimen>
     <dimen name="item_indicator_textsize">15sp</dimen>
     <dimen name="item_title_textsize">15sp</dimen>
-    <dimen name="old_price_textsize">12sp</dimen>
+    <dimen name="old_price_textsize">13sp</dimen>
     <dimen name="new_price_textsize">15sp</dimen>
-    <dimen name="location_textsize">12sp</dimen>
-    <dimen name="button_textsize">12sp</dimen>
-    <dimen name="detail_section_header_textsize">12sp</dimen>
+    <dimen name="location_textsize">13sp</dimen>
+    <dimen name="button_textsize">13sp</dimen>
+    <dimen name="detail_section_header_textsize">13sp</dimen>
     <dimen name="item_total_textsize">15sp</dimen>
     <dimen name="menu_item_textsize">15sp</dimen>
     <dimen name="history_id_textsize">13sp</dimen>
-    <dimen name="history_item_textsize">12sp</dimen>
+    <dimen name="history_item_textsize">13sp</dimen>
     <dimen name="tour_title_textsize">18sp</dimen>
     <dimen name="tour_detail_textsize">15sp</dimen>
     

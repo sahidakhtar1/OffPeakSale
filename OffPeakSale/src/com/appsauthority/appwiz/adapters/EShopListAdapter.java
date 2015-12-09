@@ -133,8 +133,8 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 
 		}
 
-		if (object.availQty != null) {
-			holder.getTvQtyIndicator().setText(object.availQty + " sold");
+		if (object.totalSold != null) {
+			holder.getTvQtyIndicator().setText(object.totalSold + " sold");
 			holder.getTvQtyIndicator().setVisibility(View.VISIBLE);
 			// if (Integer.parseInt(object.availQty)<0) {
 			// holder.getTvQtyIndicator().setText("Sold Out");

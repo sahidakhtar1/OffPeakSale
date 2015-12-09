@@ -58,8 +58,8 @@ public class Product implements Serializable {
 	@SerializedName("reward_points")
 	public String reward_points;
 
-	@SerializedName("availQty")
-	public String availQty;
+	@SerializedName("totalSold")
+	public String totalSold;
 
 	@SerializedName("onSale")
 	public String onSale;
