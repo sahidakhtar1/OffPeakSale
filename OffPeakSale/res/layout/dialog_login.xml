@@ -38,7 +38,10 @@
                 android:id="@+id/llLogin"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/left_right_margin"
+                android:layout_marginBottom="@dimen/left_right_margin"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="@dimen/left_right_margin"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingBottom="5dp"
@@ -91,19 +94,19 @@
 
                     <Button
                         android:id="@+id/btnLogin"
-                        android:layout_width="230dp"
-                        android:layout_height="@dimen/button_height"
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
                         android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:padding="10dp"
+                        android:padding="0dp"
                         android:text="Login"
-                        android:textSize="@dimen/new_price_textsize"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <com.facebook.widget.LoginButton
                         android:id="@+id/facebookauthButton"
-                        android:layout_width="230dp"
-                        android:layout_height="@dimen/button_height"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="20dp"
                         android:layout_marginTop="15dp"
@@ -116,7 +119,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rlLoginTop"
-                android:layout_margin="@dimen/left_right_margin"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical" >
@@ -137,14 +141,13 @@
 
                 <Button
                     android:id="@+id/btnForgotPwd"
-                    android:layout_width="150dp"
+                    android:layout_width="match_parent"
                     android:layout_height="@dimen/button_height"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:padding="10dp"
                     android:text="Send Email"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/button_textsize"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
@@ -154,7 +157,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/left_right_margin" >
+        android:layout_marginBottom="@dimen/left_right_margin"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="@dimen/left_right_margin" >
 
         <TextView
             android:id="@+id/tvForgotPwd"

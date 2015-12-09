@@ -39,7 +39,9 @@ import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 import com.google.gson.Gson;
 import com.offpeaksale.consumer.R;
+import com.offpeaksale.consumer.R.drawable;
 
+import android.R.dimen;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -431,6 +433,8 @@ public class ProfileActivity extends BaseActivity implements
 		LoginButton facebookLoginButton = (LoginButton) findViewById(R.id.facebookauthButton);
 		facebookLoginButton.setReadPermissions(Arrays
 				.asList("public_profile, email, user_birthday, user_friends"));
+		facebookLoginButton.setTypeface(Helper.getSharedHelper().boldFont);
+//		facebookLoginButton.setTextSize(getResources().getDimension(com.offpeaksale.consumer.R.dimen.new_price_textsize));;
 
 		retailer = Helper.getSharedHelper().reatiler;
 
