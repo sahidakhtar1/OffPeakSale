@@ -61,6 +61,8 @@
     <string name="friend_name">Customer\'s Name</string>
     <string name="comment_hint">Comments (200 characters)</string>
     <string name="name_hint">Name</string>
+    <string name="subject_hint">Subject</string>
+     <string name="message_hint">Message</string>
     <string name="email_hint">Email Address</string>
     <string name="friend_email">Customer\'s Email</string>
     <string name="friend_mobile">Customer\'s Mobile Number</string>

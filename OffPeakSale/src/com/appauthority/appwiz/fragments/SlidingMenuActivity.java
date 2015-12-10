@@ -58,6 +58,7 @@ import com.appsauthority.appwiz.adapters.EShopCategoryListAdapter;
 import com.appsauthority.appwiz.adapters.FeaturedStoreListAdapter;
 import com.appsauthority.appwiz.adapters.NavDrawerListAdapter;
 import com.appsauthority.appwiz.custom.BaseActivity;
+import com.appsauthority.appwiz.fragments.ContactFragment;
 import com.appsauthority.appwiz.fragments.EShopListFragment;
 import com.appsauthority.appwiz.models.CategoryObject;
 import com.appsauthority.appwiz.models.CategoryResponseObject;
@@ -137,6 +138,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 	Constants.DrawerItemType selectedMenuIndex = DrawerItemType.NONE;
 	Boolean isCurrencyExpanded = false;
 	WebFragment webFragment;
+	ContactFragment contactFragment;
 
 	enum SelectedList {
 		ESHOP, FEATUREDSTORE, CURRENCY, PROFILE, ABOUTUS,
@@ -763,6 +765,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 	private void displayView(Constants.DrawerItemType itemType,
 			String featuredStoreUrl) {
 		// update the main content by replacing fragments
+		Log.e("Drawere Type: ", "Type :"+itemType);
 		if (itemType != DrawerItemType.FEATUREDSTORE
 				&& itemType == selectedMenuIndex) {
 			mDrawerLayout.closeDrawer(viewFlipper);
@@ -805,9 +808,10 @@ public class SlidingMenuActivity extends BaseActivity implements
 			mDrawerLayout.closeDrawer(viewFlipper);
 			return;
 		case ABOUTUS:
-			webFragment = new WebFragment();
-			webFragment.url = retailer.aboutUrl;
-			fragment = webFragment;
+			//webFragment = new WebFragment();
+			//webFragment.url = retailer.aboutUrl;
+			contactFragment=new ContactFragment();
+			fragment = contactFragment;
 			break;
 		case TERMSNCONDITION:
 			webFragment = new WebFragment();
