@@ -204,7 +204,7 @@ public class Helper {
 	}
 
 	public String getRegularFontPath(String fontname) {
-		fontname = "MYRIADPRO";
+//		fontname = "MYRIADPRO";
 		String fontPath = "fonts/OpenSans.ttf";
 		HashMap<String, String> normalFontMap = new HashMap<String, String>();
 		// normalFontMap.put("American", "american_typewriter_medium_bt.ttf");
@@ -231,7 +231,7 @@ public class Helper {
 	}
 
 	public String getBoldFontPath(String fontname) {
-		fontname = "MYRIADPRO";
+//		fontname = "MYRIADPRO";
 		String fontPath = "fonts/OpenSans-Bold.ttf";
 		HashMap<String, String> normalFontMap = new HashMap<String, String>();
 		// normalFontMap.put("American", "american_typewriter_bold.ttf");
