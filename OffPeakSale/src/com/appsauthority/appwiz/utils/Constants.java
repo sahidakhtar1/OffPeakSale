@@ -90,6 +90,11 @@ public class Constants {
 	public static String KEY_GET_LOOK_BOOK_INFO = "getLookBookInfo";
 	public static String KEY_GET_ALL_ORDERS = "getAllOrders";
 
+	public static String PARAM_NAME = "name";
+	public static String PARAM_COMMENTS = "comments";
+	public static String PARAM_SUBJECTS = "subjects";
+	
+
 	// --- URL --- //
 
 	// public static String HOST = "http://appwizlive.com";
@@ -142,6 +147,7 @@ public class Constants {
 
 	public static String URL_ORDER_HISTORY = HOST + "/getAllOrders.php";
 	public static String URL_ORDER_DETAIL = HOST + "/getOrderDetails.php";
+	public static String URL_RETAILER_CONTACT = HOST + "/contactMail.php";
 
 	// public static String getHost(){
 	// Retailer retailer = Helper.getSharedHelper().reatiler;

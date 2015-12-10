@@ -191,6 +191,12 @@ public class Retailer implements Serializable {
 	
 	@SerializedName("enableDiscovery")
 	public String enableDiscovery;
+	
+	@SerializedName("contactAddr")
+	public	String contactAddr;
+	
+	@SerializedName("contactPhone")
+	public String contactPhone;
 
 	public Retailer() {
 		super();
