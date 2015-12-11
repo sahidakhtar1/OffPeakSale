@@ -16,9 +16,11 @@ import com.offpeaksale.consumer.R;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,7 +35,7 @@ public class ContactFragment extends Fragment implements OnClickListener {
 	public String TAG = getClass().getSimpleName();
 	private View root;
 	Retailer objRetailer;
-	private TextView tvRetailerAddress, tvContact;
+	private TextView tvRetailerAddress, tvContact, tvRetailerConatct;
 	private EditText edt_Name, edt_Email, edt_Subject, edt_Message;
 	private Button btn_submit;
 
@@ -46,7 +48,8 @@ public class ContactFragment extends Fragment implements OnClickListener {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
 		root = inflater.inflate(R.layout.contact_fragment, null);
 		objRetailer = Helper.getSharedHelper().reatiler;
 		initializeAllView();
@@ -55,7 +58,10 @@ public class ContactFragment extends Fragment implements OnClickListener {
 
 	private void initializeAllView() {
 		tvContact = (TextView) root.findViewById(R.id.tvContact);
-		tvRetailerAddress = (TextView) root.findViewById(R.id.tvRetailerAddress);
+		tvRetailerAddress = (TextView) root
+				.findViewById(R.id.tvRetailerAddress);
+		tvRetailerConatct = (TextView) root
+				.findViewById(R.id.tvRetailerConatct);
 		edt_Name = (EditText) root.findViewById(R.id.edt_Name);
 		edt_Email = (EditText) root.findViewById(R.id.edt_Email);
 		edt_Subject = (EditText) root.findViewById(R.id.edt_Subject);
@@ -66,15 +72,61 @@ public class ContactFragment extends Fragment implements OnClickListener {
 		try {
 			tvContact.setTypeface(Helper.getSharedHelper().boldFont);
 			tvRetailerAddress.setTypeface(Helper.getSharedHelper().normalFont);
+			tvRetailerConatct.setTypeface(Helper.getSharedHelper().normalFont);
 			edt_Name.setTypeface(Helper.getSharedHelper().normalFont);
 			edt_Email.setTypeface(Helper.getSharedHelper().normalFont);
 			edt_Subject.setTypeface(Helper.getSharedHelper().normalFont);
 			edt_Message.setTypeface(Helper.getSharedHelper().normalFont);
+			edt_Name.setBackground(Helper.getSharedHelper()
+					.getGradientDrawableEditText(
+							Helper.getSharedHelper().reatiler.getHeaderColor()));
+			edt_Email
+					.setBackground(Helper.getSharedHelper()
+							.getGradientDrawableEditText(
+									Helper.getSharedHelper().reatiler
+											.getHeaderColor()));
+			edt_Subject
+					.setBackground(Helper.getSharedHelper()
+							.getGradientDrawableEditText(
+									Helper.getSharedHelper().reatiler
+											.getHeaderColor()));
+			edt_Message
+					.setBackground(Helper.getSharedHelper()
+							.getGradientDrawableEditText(
+									Helper.getSharedHelper().reatiler
+											.getHeaderColor()));
+			btn_submit
+					.setBackground(Helper.getSharedHelper()
+							.getGradientDrawable(
+									Helper.getSharedHelper().reatiler
+											.getHeaderColor()));
+			btn_submit
+					.setTextColor(Color.parseColor("#"
+							+ Helper.getSharedHelper().reatiler
+									.getRetailerTextColor()));
+			;
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 
-		tvRetailerAddress.setText(objRetailer.contactAddr + "\n \n" + objRetailer.contactPhone);
+		tvRetailerAddress.setText(objRetailer.contactAddr);
+		tvRetailerConatct.setText("Phone  " + objRetailer.contactPhone);
+
+		tvRetailerConatct.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				try {
+					Intent intent = new Intent(Intent.ACTION_CALL);
+					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					intent.setData(Uri.parse("tel:" + objRetailer.contactPhone));
+					startActivity(intent);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			}
+		});
 	}
 
 	@Override
@@ -103,7 +155,8 @@ public class ContactFragment extends Fragment implements OnClickListener {
 			}
 
 			if (errorMsg != null) {
-				Toast.makeText(getActivity(), errorMsg, Toast.LENGTH_LONG).show();
+				Toast.makeText(getActivity(), errorMsg, Toast.LENGTH_LONG)
+						.show();
 			} else {
 
 				// loggedin(true);
@@ -114,13 +167,14 @@ public class ContactFragment extends Fragment implements OnClickListener {
 			}
 		}
 	}
-private void clearAllField()
-{
-	edt_Email.setText("");
-	edt_Name.setText("");
-	edt_Subject.setText("");
-	edt_Message.setText("");
-}
+
+	private void clearAllField() {
+		edt_Email.setText("");
+		edt_Name.setText("");
+		edt_Subject.setText("");
+		edt_Message.setText("");
+	}
+
 	private final class AsyncContact extends AsyncTask<Void, Void, JSONObject> {
 
 		@Override
@@ -130,16 +184,19 @@ private void clearAllField()
 
 		@Override
 		protected JSONObject doInBackground(Void... params) {
-			
+
 			JSONObject param = new JSONObject();
 
 			try {
 				param.put(Constants.PARAM_RETAILER_ID, Constants.RETAILER_ID);
-				param.put(Constants.PARAM_NAME,  edt_Name.getText().toString());
+				param.put(Constants.PARAM_NAME, edt_Name.getText().toString());
 				param.put(Constants.PARAM_EMAIL, edt_Email.getText().toString());
-				param.put(Constants.PARAM_COMMENTS, edt_Message.getText().toString());
-				param.put(Constants.PARAM_SUBJECTS, edt_Subject.getText().toString());
-				JSONObject jsonObject = HTTPHandler.defaultHandler().doPost(Constants.URL_RETAILER_CONTACT, param);
+				param.put(Constants.PARAM_COMMENTS, edt_Message.getText()
+						.toString());
+				param.put(Constants.PARAM_SUBJECTS, edt_Subject.getText()
+						.toString());
+				JSONObject jsonObject = HTTPHandler.defaultHandler().doPost(
+						Constants.URL_RETAILER_CONTACT, param);
 
 				return jsonObject;
 
@@ -158,21 +215,27 @@ private void clearAllField()
 					try {
 						String errorCode = json.getString("errorCode");
 						if (errorCode != null && errorCode.equals("1")) {
-							Toast.makeText(getActivity(), ""+json.getString("errorMessage"), Toast.LENGTH_SHORT).show();
+							Toast.makeText(getActivity(),
+									"" + json.getString("errorMessage"),
+									Toast.LENGTH_SHORT).show();
 							clearAllField();
-							}
-						 else {
-							 Toast.makeText(getActivity(), "Contact Email Sent Failed", Toast.LENGTH_SHORT).show();
+						} else {
+							Toast.makeText(getActivity(),
+									"Contact Email Sent Failed",
+									Toast.LENGTH_SHORT).show();
 						}
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
 
 						e.printStackTrace();
-						Toast.makeText(getActivity(), "Contact Email Sent Failed", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getActivity(),
+								"Contact Email Sent Failed", Toast.LENGTH_SHORT)
+								.show();
 					}
 				}
 			} else {
-				Toast.makeText(getActivity(), "Contact Email Sent Failed", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(), "Contact Email Sent Failed",
+						Toast.LENGTH_SHORT).show();
 			}
 		}
 	}
