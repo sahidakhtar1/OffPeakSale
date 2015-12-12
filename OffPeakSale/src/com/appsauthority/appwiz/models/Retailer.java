@@ -197,6 +197,9 @@ public class Retailer implements Serializable {
 	
 	@SerializedName("contactPhone")
 	public String contactPhone;
+	
+	@SerializedName("button_color")
+	public String button_color;
 
 	public Retailer() {
 		super();
@@ -313,5 +316,14 @@ public class Retailer implements Serializable {
 	public void setSiteFont(String siteFont) {
 		this.siteFont = siteFont;
 	}
+
+	public String getButton_color() {
+		return button_color;
+	}
+
+	public void setButton_color(String button_color) {
+		this.button_color = button_color;
+	}
+	
 
 }

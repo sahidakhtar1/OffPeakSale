@@ -17,7 +17,7 @@
         <EditText
             android:id="@+id/edtCoupon"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/edt_height"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="@drawable/background_round_corner"
@@ -33,7 +33,7 @@
         <Button
             android:id="@+id/buttonApply"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/edt_height"
             android:text="Apply"
             android:textSize="@dimen/button_textsize" />
     </LinearLayout>
@@ -84,7 +84,7 @@
         <Button
             android:id="@+id/buttonClose"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/edt_height"
             android:text="@string/close"
             android:textSize="@dimen/button_textsize" />
     </RelativeLayout>

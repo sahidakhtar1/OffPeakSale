@@ -99,7 +99,7 @@ public class ContactFragment extends Fragment implements OnClickListener {
 					.setBackground(Helper.getSharedHelper()
 							.getGradientDrawable(
 									Helper.getSharedHelper().reatiler
-											.getHeaderColor()));
+											.getButton_color()));
 			btn_submit
 					.setTextColor(Color.parseColor("#"
 							+ Helper.getSharedHelper().reatiler

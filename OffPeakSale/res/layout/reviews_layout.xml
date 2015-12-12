@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textSize="16sp"
+                android:textSize="@dimen/detail_section_header_textsize"
                 android:visibility="visible" />
 
             <View

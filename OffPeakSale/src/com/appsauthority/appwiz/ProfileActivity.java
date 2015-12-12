@@ -228,12 +228,12 @@ public class ProfileActivity extends BaseActivity implements
 		btnLogin.setTextColor(Color.parseColor("#"
 				+ retailer.getRetailerTextColor()));
 		btnLogin.setBackgroundDrawable(Helper.getSharedHelper()
-				.getGradientDrawable(retailer.getHeaderColor()));
+				.getGradientDrawable(retailer.getButton_color()));
 
 		btnForgotPwd.setTextColor(Color.parseColor("#"
 				+ retailer.getRetailerTextColor()));
 		btnForgotPwd.setBackgroundDrawable(Helper.getSharedHelper()
-				.getGradientDrawable(retailer.getHeaderColor()));
+				.getGradientDrawable(retailer.getButton_color()));
 
 		tvCreatePwd.setTypeface(Helper.getSharedHelper().normalFont);
 		tvLogin.setTypeface(Helper.getSharedHelper().normalFont);

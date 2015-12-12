@@ -394,7 +394,7 @@ public class EShopListFragment extends Fragment {
 			Button btnFilter = (Button) dialog.findViewById(R.id.btnFilter);
 
 			btnFilter.setBackgroundDrawable(Helper.getSharedHelper()
-					.getGradientDrawable(retailer.getHeaderColor()));
+					.getGradientDrawable(retailer.getButton_color()));
 
 			btnFilter.setOnClickListener(new OnClickListener() {
 

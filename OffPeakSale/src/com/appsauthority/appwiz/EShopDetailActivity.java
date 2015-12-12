@@ -579,9 +579,9 @@ public class EShopDetailActivity extends BaseActivity implements
 		btnEnquiry.setTextColor(Color.parseColor("#"
 				+ retailer.getRetailerTextColor()));
 		buttonBuy.setBackgroundDrawable(getGradientDrawable(retailer
-				.getHeaderColor()));
+				.getButton_color()));
 		btnEnquiry.setBackgroundDrawable(getGradientDrawable(retailer
-				.getHeaderColor()));
+				.getButton_color()));
 		// tvEnterCode.setTextColor(Color.parseColor("#"
 		// + retailer.getRetailerTextColor()));
 
@@ -593,14 +593,14 @@ public class EShopDetailActivity extends BaseActivity implements
 				.getGradientDrawableEditText(retailer.getHeaderColor()));
 
 		btn_submitReview.setBackgroundDrawable(getGradientDrawable(retailer
-				.getHeaderColor()));
+				.getButton_color()));
 
 		btn_submitReview.setTextColor(Color.parseColor("#"
 				+ retailer.getRetailerTextColor()));
 		btnSubmit
 				.setTextColor(Color.parseColor("#" + retailer.getHeaderColor()));
 		btnSubmit.setBackgroundDrawable(getGradientDrawableEditText(retailer
-				.getHeaderColor()));
+				.getButton_color()));
 
 		if (product.getDescription().length() == 0) {
 			relProductDet.setVisibility(View.GONE);
@@ -1859,9 +1859,9 @@ public class EShopDetailActivity extends BaseActivity implements
 					.setBackgroundDrawable(getGradientDrawableEditText(retailer
 							.getHeaderColor()));
 			buttonApply.setBackgroundDrawable(getGradientDrawable(retailer
-					.getHeaderColor()));
+					.getButton_color()));
 			buttonClose.setBackgroundDrawable(getGradientDrawable(retailer
-					.getHeaderColor()));
+					.getButton_color()));
 			lineTop.setBackgroundDrawable(getGradientDrawable(retailer
 					.getHeaderColor()));
 
