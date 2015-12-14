@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.util.Linkify;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -211,25 +212,39 @@ public class OrderDetailActivity extends BaseActivity {
 		  }
 	
 		//tvOrderTotal.setText("Total "+Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+orderObj.orderTotal);
-		String comp[] = orderObj.orderDate.split(" ");
-
-		String date = "";
-		if (comp.length > 0) {
-			date = comp[0];
-		}
+		
 		
 		if(orderObj.shippingStatus.equals("Expired"))
 		{
+			String comp[] = orderObj.orderUsedOn.split(" ");
+
+			String date = "";
+			if (comp.length > 0) {
+				date = comp[0];
+			}
+			
 			String expiry="<b>Expired On</b>&nbsp;&nbsp;" +date;
 			tvOrderExpiry.setText(Html.fromHtml(expiry));
 			imgView.setBackgroundResource(R.drawable.expired_icon);
 		}else if(orderObj.shippingStatus.equals("Redeemed"))
 		{
+			String comp[] = orderObj.orderUsedOn.split(" ");
+
+			String date = "";
+			if (comp.length > 0) {
+				date = comp[0];
+			}
 			String expiry="<b>Redeemed On</b>&nbsp;&nbsp;" +date;
 			tvOrderExpiry.setText(Html.fromHtml(expiry));
 			imgView.setBackgroundResource(R.drawable.redeemed_icon);
 		}else
 		{
+			String comp[] = orderObj.orderExpiryDate.split(" ");
+
+			String date = "";
+			if (comp.length > 0) {
+				date = comp[0];
+			}
 			String expiry="<b>Expiry</b>&nbsp;&nbsp;" +date;
 			tvOrderExpiry.setText(Html.fromHtml(expiry));
 			imageCacheLoader.displayImage(qrCodeImageUrl,R.drawable.image_placeholder, imgView);
@@ -248,14 +263,15 @@ public class OrderDetailActivity extends BaseActivity {
 		tvOldPriceDetails.setText(Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+orderObj.products.get(0).oldPrice);
 		tvOldPriceDetails.setPaintFlags(tvOldPriceDetails.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
 		tvNewPriceDetails.setText(Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+orderObj.products.get(0).newPrice);
-		if(!orderObj.discountAmt.startsWith("0"))
-		{
-			String discount="<b>Discount </b> " +Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+orderObj.discountAmt;
+	//	if(!orderObj.discountAmt.startsWith("0"))
+		//{
+//			String discount="<b>Discount </b> " +Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+orderObj.products.get(0).offpeakDiscount;
+		String discount="<b>Discount </b> "+orderObj.products.get(0).offpeakDiscount+"%";
 			tvOrderDiscount.setText(Html.fromHtml(discount));
-		}else
-		{
-			tvOrderDiscount.setVisibility(View.GONE);
-		}
+		//}else
+	//	{
+		//	tvOrderDiscount.setVisibility(View.GONE);
+	//	}
 	}
 	
 	private void setMapFooter()
