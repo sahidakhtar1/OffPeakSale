@@ -55,6 +55,9 @@ public class OrderObject implements Serializable {
 	@SerializedName("orderExpiry")
 	public String orderExpiryDate;
 	
+	@SerializedName("orderUsedOn")
+	public String orderUsedOn;
+	
 	@SerializedName("orderInstr")
 	public String orderInstr;
 	
