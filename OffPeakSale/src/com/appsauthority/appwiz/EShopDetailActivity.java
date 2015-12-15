@@ -924,7 +924,7 @@ public class EShopDetailActivity extends BaseActivity implements
 		}
 		updateItemPrice();
 		if (product.onSale != null && product.onSale.equalsIgnoreCase("1")) {
-			tvSaleIndicator.setVisibility(View.GONE);
+			tvSaleIndicator.setVisibility(View.VISIBLE);
 		} else {
 			tvSaleIndicator.setVisibility(View.GONE);
 		}

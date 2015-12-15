@@ -59,6 +59,7 @@ public class Helper {
 	public Date earliestDate = null;
 	public String profileTitle = "Profile";
 	public String orderTitle = "My Orders";
+	public Boolean isLocationAlertShown  =false;
 
 	public static Helper getSharedHelper() {
 		if (sharedHelper == null) {
@@ -94,6 +95,7 @@ public class Helper {
 			sharedHelper.currency_conversion_map = new HashMap<String, String>();
 			sharedHelper.discountType = Constants.KEY_DEFAULT_DISCOUNT_TYPE;
 			sharedHelper.earliestDate = null;
+			sharedHelper.isLocationAlertShown  =false;
 		}
 		return sharedHelper;
 	}

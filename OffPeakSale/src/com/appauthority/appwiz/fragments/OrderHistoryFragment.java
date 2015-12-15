@@ -118,7 +118,8 @@ public class OrderHistoryFragment extends Fragment implements
 		btnLogin.setTextColor(Color.parseColor("#"
 				+ retailer.getRetailerTextColor()));
 		btnLogin.setBackgroundDrawable(Helper.getSharedHelper()
-				.getGradientDrawable(retailer.getHeaderColor()));
+				.getGradientDrawable(retailer.getButton_color()));
+		btnLogin.setTypeface(Helper.getSharedHelper().boldFont);;
 		initializeTab();
 		btnLogin.setOnClickListener(new OnClickListener() {
 

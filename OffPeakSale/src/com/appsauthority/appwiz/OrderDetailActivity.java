@@ -192,7 +192,7 @@ public class OrderDetailActivity extends BaseActivity {
 		Helper.getSharedHelper().getDistanceBetween(Constants.TARGET_LAT,
 					Constants.TARGET_LAT,
 					Double.parseDouble(orderObj.outletLat),
-					Double.parseDouble(orderObj.outletLong));
+					Double.parseDouble(orderObj.outletLong))+"KM";
 			tvOrderDistance.setText(Html.fromHtml(resturantDistance));
 		}else
 		{

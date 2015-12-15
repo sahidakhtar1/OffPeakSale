@@ -53,6 +53,8 @@ public class MapLayout extends RelativeLayout implements
 	public String merchantName;
 
 	Marker nearestStoreMarker;
+	
+	Marker currentStoreMarker;
 
 	public MapLayout(Context context, Activity activity,
 			ArrayList<RetailerStores> stores) {
@@ -71,6 +73,7 @@ public class MapLayout extends RelativeLayout implements
 
 		map = ((MapFragment) activity.getFragmentManager().findFragmentById(
 				R.id.map_info)).getMap();
+		map.setPadding(30, 20, 30, 20);
 		if (bld == null) {
 			bld = new LatLngBounds.Builder();
 		}
@@ -118,7 +121,10 @@ public class MapLayout extends RelativeLayout implements
 				bld.include(item);
 			}
 			map.animateCamera(CameraUpdateFactory.newLatLngBounds(bld.build(),
-					70));
+					180));
+//			if (currentStoreMarker != null) {
+//				currentStoreMarker.showInfoWindow();
+//			}
 
 		} catch (Exception e) {
 			// e.printStackTrace();
@@ -141,7 +147,7 @@ public class MapLayout extends RelativeLayout implements
 				public void onMapLoaded() {
 					if (stores != null) {
 						map.moveCamera(CameraUpdateFactory.newLatLngBounds(
-								bld.build(), 70));
+								bld.build(), 180));
 					}
 
 				}
@@ -218,6 +224,7 @@ public class MapLayout extends RelativeLayout implements
 		//
 		Marker marker = map.addMarker(markerOption);
 		if (selected) {
+//			currentStoreMarker = marker;
 			marker.showInfoWindow();
 		}
 

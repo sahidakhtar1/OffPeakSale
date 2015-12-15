@@ -658,6 +658,7 @@ public class EShopListFragment extends Fragment {
 			if (Utils.hasNetworkConnection(getActivity()
 					.getApplicationContext())) {
 				try {
+					
 					param.put(Constants.PARAM_RETAILER_ID,
 							Constants.RETAILER_ID);
 					if (retailer.enableDiscovery.equalsIgnoreCase("1")) {
@@ -677,6 +678,9 @@ public class EShopListFragment extends Fragment {
 							Constants.TARGET_LNG = Double
 									.parseDouble(mLongitude);
 						}
+					}
+					if (Constants.TARGET_LAT == 0 && Constants.TARGET_LNG == 0) {
+						return false;
 					}
 
 					// if (category != null) {
@@ -1013,7 +1017,7 @@ public class EShopListFragment extends Fragment {
 		if (myLocation.getLocation(getActivity().getApplicationContext(),
 				locationResult)) {
 
-		} else {
+		} else if(!Helper.getSharedHelper().isLocationAlertShown){
 			AlertDialog.Builder builder = new AlertDialog.Builder(context);
 			builder.setTitle("Information")
 					.setMessage("Enable location services")
@@ -1041,6 +1045,7 @@ public class EShopListFragment extends Fragment {
 								}
 							});
 			builder.show();
+			Helper.getSharedHelper().isLocationAlertShown = true;
 		}
 
 	}

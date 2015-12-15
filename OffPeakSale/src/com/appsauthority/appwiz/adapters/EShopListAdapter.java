@@ -147,7 +147,7 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 			// }
 		}
 		if (object.onSale != null && object.onSale.equalsIgnoreCase("1")) {
-			holder.getTvSaleIndicator().setVisibility(View.GONE);
+			holder.getTvSaleIndicator().setVisibility(View.VISIBLE);
 		} else {
 			holder.getTvSaleIndicator().setVisibility(View.GONE);
 		}
