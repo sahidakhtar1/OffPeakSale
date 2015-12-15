@@ -52,7 +52,7 @@ public final class ProductTourFragment extends Fragment {
 			detail.setText(tourObj.description);
 			imageCacheloader.displayImage(tourObj.imageUrl,
 					R.drawable.image_placeholder, bg);
-			howItWorks.setTypeface(Helper.getSharedHelper().boldFont);
+			howItWorks.setTypeface(Helper.getSharedHelper().normalFont);
 			detail.setTypeface(Helper.getSharedHelper().normalFont);
 		} catch (Exception e) {
 			// TODO: handle exception

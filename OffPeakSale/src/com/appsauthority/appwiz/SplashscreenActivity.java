@@ -39,13 +39,14 @@ public class SplashscreenActivity extends BaseActivity {
 
 	private Retailer retailer;
 	String pid;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getActionBar().hide();
 		Intent intent = getIntent();
 		pid = intent.getStringExtra("pid");
-		
+
 		setContentView(R.layout.activity_splashscreen);
 
 		textViewOperator = (TextView) findViewById(R.id.textViewOperator);
@@ -53,7 +54,7 @@ public class SplashscreenActivity extends BaseActivity {
 		imageViewSplashScreen = (ImageView) findViewById(R.id.imageViewSplashScreen);
 
 		spref = PreferenceManager.getDefaultSharedPreferences(this);
-		
+
 		Helper.getSharedHelper().currency_code = spref.getString(
 				Constants.KEY_USER_CURRECY, "");
 		Helper.getSharedHelper().setCurrencySymbol();
@@ -249,23 +250,25 @@ public class SplashscreenActivity extends BaseActivity {
 				Typeface boldFont = Typeface.createFromAsset(getAssets(),
 						boldFontPath);
 				Helper.getSharedHelper().boldFont = boldFont;
+				new Handler().postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						if (spref.getBoolean("ProductTour", false) == true) {
+							Intent intent = new Intent(getApplicationContext(),
+									SlidingMenuActivity.class);
+							if (pid != null) {
+								intent.putExtra("pid", pid);
+							}
+							startActivity(intent);
+						} else {
+							Intent intent = new Intent(getApplicationContext(),
+									ProductTourActivity.class);
+							startActivity(intent);
+						}
 
-				if(spref.getBoolean("ProductTour", false)==true)
-				{
-					Intent intent = new Intent(getApplicationContext(),
-							SlidingMenuActivity.class);
-					if (pid != null) {
-						intent.putExtra("pid", pid);
+						finish();
 					}
-					startActivity(intent);
-				}else
-				{
-					Intent intent = new Intent(getApplicationContext(),
-							ProductTourActivity.class);
-					startActivity(intent);
-				}
-				
-				finish();
+				}, 5000);
 				Log.i("TIMMINGS", "SPLASH FINISHED");
 
 				// new Handler().postDelayed(new Runnable() {

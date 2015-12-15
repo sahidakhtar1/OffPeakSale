@@ -73,7 +73,6 @@ public class MapLayout extends RelativeLayout implements
 
 		map = ((MapFragment) activity.getFragmentManager().findFragmentById(
 				R.id.map_info)).getMap();
-		map.setPadding(30, 20, 30, 20);
 		if (bld == null) {
 			bld = new LatLngBounds.Builder();
 		}

@@ -46,8 +46,8 @@
     <dimen name="menu_item_textsize">15sp</dimen>
     <dimen name="history_id_textsize">13sp</dimen>
     <dimen name="history_item_textsize">13sp</dimen>
-    <dimen name="tour_title_textsize">18sp</dimen>
-    <dimen name="tour_detail_textsize">15sp</dimen>
+    <dimen name="tour_title_textsize">20sp</dimen>
+    <dimen name="tour_detail_textsize">16sp</dimen>
     
     
 

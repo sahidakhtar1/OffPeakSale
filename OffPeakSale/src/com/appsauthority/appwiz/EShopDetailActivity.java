@@ -901,7 +901,7 @@ public class EShopDetailActivity extends BaseActivity implements
 		bgShape.setColor(R.color.black_translucent);
 
 		if (product.totalSold != null) {
-			tvQtyIndicator.setText(product.totalSold + " sold");
+			tvQtyIndicator.setText(product.totalSold + " Sold");
 			tvQtyIndicator.setVisibility(View.VISIBLE);
 
 		}
