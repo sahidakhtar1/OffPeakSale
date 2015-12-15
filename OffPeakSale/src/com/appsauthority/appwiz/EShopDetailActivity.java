@@ -974,7 +974,7 @@ public class EShopDetailActivity extends BaseActivity implements
 						Double.parseDouble(store.getLatitude()),
 						Double.parseDouble(store.getLongitude()));
 			}
-			tvDistance.setText(product.distance + "KM");
+			tvDistance.setText(product.distance + " KM");
 			tvDistance.setVisibility(View.VISIBLE);
 		} else {
 			tvDistance.setVisibility(View.GONE);

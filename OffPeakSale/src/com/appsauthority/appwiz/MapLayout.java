@@ -163,19 +163,22 @@ public class MapLayout extends RelativeLayout implements
 
 					TextView tv = (TextView) popup.findViewById(R.id.title);
 					tv.setText(marker.getTitle());
+					tv.setTypeface(Helper.getSharedHelper().boldFont);
 					try {
-						tv = (TextView) popup.findViewById(R.id.snippet);
+						TextView snippet = (TextView) popup.findViewById(R.id.snippet);
 
-						SpannableString content = new SpannableString(marker
-								.getSnippet());
-						content.setSpan(new UnderlineSpan(), 0,
-								content.length(), 0);
+						snippet.setTypeface(Helper.getSharedHelper().normalFont);
+//						SpannableString content = new SpannableString(marker
+//								.getSnippet());
+//					
+//						content.setSpan(new UnderlineSpan(), 0,
+//								content.length(), 0);
 
-						tv.setText(content);
+						snippet.setText(marker.getSnippet());
 
-						Linkify.addLinks(
-								((TextView) popup.findViewById(R.id.snippet)),
-								Linkify.ALL);
+//						Linkify.addLinks(
+//								((TextView) popup.findViewById(R.id.snippet)),
+//								Linkify.ALL);
 					} catch (Exception e) {
 
 					}
@@ -216,8 +219,8 @@ public class MapLayout extends RelativeLayout implements
 			String branchName, String contact, GoogleMap map, Boolean selected) {
 		MarkerOptions markerOption = new MarkerOptions()
 				.position(new LatLng(lat, lng))
-				.title(resturantName + "\r\n\n" + branchName + "\r\n\r\n")
-				.snippet(contact)
+				.title(resturantName )
+				.snippet(branchName + "\r\n\n"+contact)
 				.icon(BitmapDescriptorFactory
 						.fromResource(R.drawable.shoplocation));
 		//

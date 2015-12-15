@@ -165,7 +165,7 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 									Double.parseDouble(store.getLatitude()),
 									Double.parseDouble(store.getLongitude()));
 				}
-				holder.getTvDistance().setText(object.distance + "KM");
+				holder.getTvDistance().setText(object.distance + " KM");
 
 			} catch (Exception e) {
 				// TODO: handle exception
