@@ -41,6 +41,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="8dp"
                     android:text="Add Reviews"
+                    android:textColor="@color/product_title_color"
                     android:textSize="@dimen/detail_section_header_textsize"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -57,6 +58,7 @@
                     android:id="@+id/vwReadReaviewUnderline"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:background="@color/divider_color"
                     android:layout_alignParentBottom="true" />
 
                 <TextView
@@ -66,6 +68,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="8dp"
                     android:text="Read Reviews"
+                    android:textColor="@color/product_title_color"
                     android:textSize="@dimen/detail_section_header_textsize"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -75,6 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:textColor="@color/old_price_color"
                 android:textSize="@dimen/detail_section_header_textsize"
                 android:visibility="visible" />
 

@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white" >
+    android:background="@color/dialog_bg_color"
+   >
 
     <LinearLayout
         android:id="@+id/llConpunEntery"
@@ -17,10 +18,10 @@
         <EditText
             android:id="@+id/edtCoupon"
             android:layout_width="0dp"
-            android:layout_height="@dimen/edt_height"
+            android:layout_height="@dimen/button_height"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@drawable/background_round_corner"
+            android:background="@android:color/white"
             android:ems="10"
             android:hint="Enter Code"
             android:imeOptions="actionNext"
@@ -33,7 +34,7 @@
         <Button
             android:id="@+id/buttonApply"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/edt_height"
+            android:layout_height="@dimen/button_height"
             android:text="Apply"
             android:textSize="@dimen/button_textsize" />
     </LinearLayout>
@@ -41,9 +42,10 @@
     <View
         android:id="@+id/lineTop"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
+        android:background="@color/divider_color"
         android:layout_below="@+id/llConpunEntery"
-        android:background="@android:color/darker_gray" />
+        />
 
     <LinearLayout
         android:id="@+id/imageContainer"
@@ -84,7 +86,7 @@
         <Button
             android:id="@+id/buttonClose"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/edt_height"
+            android:layout_height="@dimen/button_height"
             android:text="@string/close"
             android:textSize="@dimen/button_textsize" />
     </RelativeLayout>

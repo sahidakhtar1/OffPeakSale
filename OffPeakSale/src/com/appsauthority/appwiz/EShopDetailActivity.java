@@ -117,7 +117,8 @@ public class EShopDetailActivity extends BaseActivity implements
 	private Activity activity;
 	private TextView textViewName, textViewShortDesc, textViewDetail,
 			textViewHowItWorks, textViewNewPrice, textView_testimonial,
-			tv_testimonial_txt, tvReadReviews, tvRewardsPoints;
+			tv_testimonial_txt, tvReadReviews, tvRewardsPoints,tvProductDetailTitle,
+			tvHowItWorkTitle;;
 	private ImageView imageView;
 	private Button buttonBuy, btnSubmit, btnEnquiry;
 	private RelativeLayout relProductDet, relProductHowItWorks, relTestimonial;
@@ -438,7 +439,10 @@ public class EShopDetailActivity extends BaseActivity implements
 		textViewName = (TextView) findViewById(R.id.tv_eshop_detail_name);
 		tvRewardsPoints = (TextView) findViewById(R.id.tvRewardsPoints);
 		textViewShortDesc = (TextView) findViewById(R.id.tv_eshop_detail_short_desc);
+		tvProductDetailTitle = (TextView) findViewById(R.id.eshop_product_detail);
+		tvHowItWorkTitle = (TextView) findViewById(R.id.textView_eshop_product_detail);
 		textViewHowItWorks = (TextView) findViewById(R.id.tv_how_it_works_txt);
+		textView_testimonial = (TextView) findViewById(R.id.textView_testimonial);
 		tv_testimonial_txt = (TextView) findViewById(R.id.tv_testimonial_txt);
 		tvReadReviews = (TextView) findViewById(R.id.tvReadReviews);
 		editTextQty = (EditText) findViewById(R.id.edt_qty);
@@ -528,11 +532,11 @@ public class EShopDetailActivity extends BaseActivity implements
 		btnSearch.setVisibility(View.GONE);
 
 		tvQty = (TextView) findViewById(R.id.tvQty);
-		tvQty.setTextColor(Color.parseColor("#" + retailer.getHeaderColor()));
-		editTextQty.setBackgroundDrawable(getGradientDrawableEditText(retailer
-				.getHeaderColor()));
+//		tvQty.setTextColor(Color.parseColor("#" + retailer.getHeaderColor()));
+		editTextQty.setBackgroundDrawable(getGradientDrawableEditText("757575"));
 
-		textViewHeader.setText(Helper.getSharedHelper().reatiler.getRetailerName());
+		textViewHeader.setText(Helper.getSharedHelper().reatiler
+				.getRetailerName());
 
 		textViewName.setText(product.getName());
 		textViewShortDesc.setText(product.getShortDescription());
@@ -564,12 +568,12 @@ public class EShopDetailActivity extends BaseActivity implements
 		// textViewOldPrice.setPaintFlags(textViewOldPrice.getPaintFlags()
 		// | Paint.STRIKE_THRU_TEXT_FLAG);
 
-		lineTop.setBackgroundColor(Color.parseColor("#"
-				+ retailer.getHeaderColor()));
+//		lineTop.setBackgroundColor(Color.parseColor("#"
+//				+ retailer.getHeaderColor()));
 		lineBot.setBackgroundColor(Color.parseColor("#"
 				+ retailer.getHeaderColor()));
-		textViewNewPrice.setTextColor(Color.parseColor("#"
-				+ retailer.getHeaderColor()));
+//		textViewNewPrice.setTextColor(Color.parseColor("#"
+//				+ retailer.getHeaderColor()));
 
 		// editTextQty.setTextColor(Color.parseColor("#"
 		// + retailer.getHeaderColor()));
@@ -585,12 +589,13 @@ public class EShopDetailActivity extends BaseActivity implements
 		// tvEnterCode.setTextColor(Color.parseColor("#"
 		// + retailer.getRetailerTextColor()));
 
+		String boraderColor = "757575";
 		edt_comments.setBackgroundDrawable(Helper.getSharedHelper()
-				.getGradientDrawableEditText(retailer.getHeaderColor()));
+				.getGradientDrawableEditText(boraderColor));
 		edt_Name.setBackgroundDrawable(Helper.getSharedHelper()
-				.getGradientDrawableEditText(retailer.getHeaderColor()));
+				.getGradientDrawableEditText(boraderColor));
 		edt_email.setBackgroundDrawable(Helper.getSharedHelper()
-				.getGradientDrawableEditText(retailer.getHeaderColor()));
+				.getGradientDrawableEditText(boraderColor));
 
 		btn_submitReview.setBackgroundDrawable(getGradientDrawable(retailer
 				.getButton_color()));
@@ -625,21 +630,21 @@ public class EShopDetailActivity extends BaseActivity implements
 
 		setHeaderTheme(activity, retailer.getRetailerTextColor(),
 				retailer.getHeaderColor());
-		list_bot1.setBackgroundColor(Color.parseColor("#"
-				+ retailer.getHeaderColor()));
-		list_bot2.setBackgroundColor(Color.parseColor("#"
-				+ retailer.getHeaderColor()));
-		list_bot3.setBackgroundColor(Color.parseColor("#"
-				+ retailer.getHeaderColor()));
-
-		list_left1.setBackgroundColor(Color.parseColor("#"
-				+ retailer.getHeaderColor()));
-		list_left2.setBackgroundColor(Color.parseColor("#"
-				+ retailer.getHeaderColor()));
-		list_left3.setBackgroundColor(Color.parseColor("#"
-				+ retailer.getHeaderColor()));
-		vwReadReaviewUnderline.setBackgroundColor(Color.parseColor("#"
-				+ retailer.getHeaderColor()));
+//		list_bot1.setBackgroundColor(Color.parseColor("#"
+//				+ retailer.getHeaderColor()));
+//		list_bot2.setBackgroundColor(Color.parseColor("#"
+//				+ retailer.getHeaderColor()));
+//		list_bot3.setBackgroundColor(Color.parseColor("#"
+//				+ retailer.getHeaderColor()));
+//
+//		list_left1.setBackgroundColor(Color.parseColor("#"
+//				+ retailer.getHeaderColor()));
+//		list_left2.setBackgroundColor(Color.parseColor("#"
+//				+ retailer.getHeaderColor()));
+//		list_left3.setBackgroundColor(Color.parseColor("#"
+//				+ retailer.getHeaderColor()));
+//		vwReadReaviewUnderline.setBackgroundColor(Color.parseColor("#"
+//				+ retailer.getHeaderColor()));
 
 		// vwFirstOptionRight1.setBackgroundColor(Color.parseColor("#"
 		// + retailer.getHeaderColor()));
@@ -1469,8 +1474,12 @@ public class EShopDetailActivity extends BaseActivity implements
 			textViewDetail.setTypeface(Helper.getSharedHelper().normalFont);
 			textViewHowItWorks.setTypeface(Helper.getSharedHelper().normalFont);
 			tv_testimonial_txt.setTypeface(Helper.getSharedHelper().normalFont);
-			tvReadReviews.setTypeface(Helper.getSharedHelper().boldFont);
+			tvReadReviews.setTypeface(Helper.getSharedHelper().normalFont);
+			textView_testimonial.setTypeface(Helper.getSharedHelper().normalFont);
 			textViewNewPrice.setTypeface(Helper.getSharedHelper().boldFont);
+			tvHowItWorkTitle.setTypeface(Helper.getSharedHelper().normalFont);
+			tvProductDetailTitle.setTypeface(Helper.getSharedHelper().normalFont);
+			
 			tvQty.setTypeface(Helper.getSharedHelper().boldFont);
 			editTextQty.setTypeface(Helper.getSharedHelper().boldFont);
 			edt_comments.setTypeface(Helper.getSharedHelper().normalFont);
@@ -1855,15 +1864,14 @@ public class EShopDetailActivity extends BaseActivity implements
 			edtCoupon = (EditText) dialog.findViewById(R.id.edtCoupon);
 			lineTop = (View) dialog.findViewById(R.id.lineTop);
 
-			edtCoupon
-					.setBackgroundDrawable(getGradientDrawableEditText(retailer
-							.getHeaderColor()));
+//			edtCoupon
+//					.setBackgroundDrawable(getGradientDrawableEditText("757575"));
 			buttonApply.setBackgroundDrawable(getGradientDrawable(retailer
 					.getButton_color()));
 			buttonClose.setBackgroundDrawable(getGradientDrawable(retailer
 					.getButton_color()));
-			lineTop.setBackgroundDrawable(getGradientDrawable(retailer
-					.getHeaderColor()));
+//			lineTop.setBackgroundDrawable(getGradientDrawable(retailer
+//					.getHeaderColor()));
 
 			buttonApply.setOnClickListener(new OnClickListener() {
 

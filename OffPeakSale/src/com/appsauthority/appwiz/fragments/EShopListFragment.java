@@ -476,10 +476,10 @@ public class EShopListFragment extends Fragment {
 				etTargetLocation.setEnabled(true);
 			}
 
-			etCurrentLocation.setBackgroundDrawable(Helper.getSharedHelper()
-					.getGradientDrawableEditText(retailer.getHeaderColor()));
-			etTargetLocation.setBackgroundDrawable(Helper.getSharedHelper()
-					.getGradientDrawableEditText(retailer.getHeaderColor()));
+//			etCurrentLocation.setBackgroundDrawable(Helper.getSharedHelper()
+//					.getGradientDrawableEditText(retailer.getHeaderColor()));
+//			etTargetLocation.setBackgroundDrawable(Helper.getSharedHelper()
+//					.getGradientDrawableEditText(retailer.getHeaderColor()));
 
 			Helper.getSharedHelper().filterIndex = filterIndex;
 			btnFilter.setTextColor(Color.parseColor("#"

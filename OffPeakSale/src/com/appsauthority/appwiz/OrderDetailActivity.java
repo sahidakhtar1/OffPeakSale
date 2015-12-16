@@ -198,8 +198,14 @@ public class OrderDetailActivity extends BaseActivity {
 		{
 			tvOrderDistance.setVisibility(View.GONE);
 		}
+		String statusValue;
+		if (orderObj.shippingStatus.equalsIgnoreCase("Pending")) {
+			statusValue = "Active";
+		}else{
+			statusValue = orderObj.shippingStatus;
+		}
 		
-		String status="<b>Status</b>&nbsp;&nbsp;" +orderObj.shippingStatus;
+		String status="<b>Status</b>&nbsp;&nbsp;" +statusValue;
 		tvOrderStatus.setText(Html.fromHtml(status));
 		
 		
@@ -266,7 +272,7 @@ public class OrderDetailActivity extends BaseActivity {
 	//	if(!orderObj.discountAmt.startsWith("0"))
 		//{
 //			String discount="<b>Discount </b> " +Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+orderObj.products.get(0).offpeakDiscount;
-		String discount="<b>Discount </b> "+orderObj.products.get(0).offpeakDiscount+"%";
+		String discount="<b>Discount </b>&nbsp; "+orderObj.products.get(0).offpeakDiscount+"%";
 			tvOrderDiscount.setText(Html.fromHtml(discount));
 		//}else
 	//	{

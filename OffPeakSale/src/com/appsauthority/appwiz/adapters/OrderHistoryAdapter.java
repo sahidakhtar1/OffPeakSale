@@ -111,8 +111,12 @@ public class OrderHistoryAdapter extends ArrayAdapter<OrderObject> {
 				holder.getTvExpiryDate().setText("Expiry Date  "+date);
 			}
 			
+			if (object.shippingStatus.equalsIgnoreCase("Pending")) {
+				holder.getTvOrderStatusValue().setText("Active");
+			}else{
+				holder.getTvOrderStatusValue().setText(object.shippingStatus);
+			}
 			
-			holder.getTvOrderStatusValue().setText(object.shippingStatus);
 			
 			
 			holder.getTvProductPrice().setText("Price  "+Helper.getSharedHelper() .getCurrencySymbol(selectedCurrencyCode)+" "+object.orderTotal);

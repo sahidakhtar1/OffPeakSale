@@ -16,7 +16,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="50dp"
         android:layout_above="@+id/howItWorks"
         android:scaleType="fitXY"
         android:src="@drawable/app_logo" />
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/howItWorks"
         android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
+        android:layout_margin="50dp"
         android:gravity="center"
         android:text="Filter a restaurant as per your desired location and cuisine with your matching time slots for morning, afternoon and night"
         android:textColor="#ffffff"

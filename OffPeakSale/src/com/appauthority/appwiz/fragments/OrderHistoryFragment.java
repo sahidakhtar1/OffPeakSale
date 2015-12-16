@@ -162,7 +162,7 @@ public class OrderHistoryFragment extends Fragment implements
 
 		List<String> tabs = new ArrayList<String>();
 		tabs.add("Active");
-		tabs.add("Inactive");
+		tabs.add("Used");
 
 		llTabContainer.removeAllViews();
 		DisplayMetrics displaymetrics = new DisplayMetrics();
