@@ -91,7 +91,7 @@ public class ProfileActivity extends BaseActivity implements
 	private ArrayAdapter<String> adapter;
 	private ArrayList<String> countrySearchList = new ArrayList<String>();
 
-	private EditText editTextFirstName, editTextMobileNumber, editTextEmail,buttonCountries;
+	private EditText editTextFirstName, editTextMobileNumber, editTextEmail,editConfirmTextEmail,buttonCountries;
 	private Button buttonSave;
 	private SimpleDateFormat sdf;
 
@@ -453,6 +453,7 @@ public class ProfileActivity extends BaseActivity implements
 		editTextFirstName = (EditText) findViewById(R.id.edt_fname);
 		editTextMobileNumber = (EditText) findViewById(R.id.edt_mobile_number);
 		editTextEmail = (EditText) findViewById(R.id.edt_email);
+		editConfirmTextEmail=(EditText)findViewById(R.id.edt_confirm_email);
 		sdf = new SimpleDateFormat("dd MMM yyyy");
 		TextView hyperlink = (TextView) findViewById(R.id.hyperlink);
 		veTermsOfUse = (LinearLayout) findViewById(R.id.veTermsOfUse);
@@ -555,6 +556,9 @@ public class ProfileActivity extends BaseActivity implements
 					.setBackgroundDrawable(Helper.getSharedHelper()
 							.getGradientDrawableEditText(retailer
 							.getHeaderColor()));
+			editConfirmTextEmail.setBackgroundDrawable(Helper.getSharedHelper()
+					.getGradientDrawableEditText(retailer
+					.getHeaderColor()));
 			buttonCountries
 			.setBackgroundDrawable(getGradientDrawableEditText(retailer
 					.getHeaderColor()));
@@ -598,6 +602,8 @@ public class ProfileActivity extends BaseActivity implements
 			editTextMobileNumber.setTextColor(Color.parseColor("#" +retailer
 					.getRetailerTextColor()));
 			editTextEmail.setTextColor(Color.parseColor("#" +retailer
+					.getRetailerTextColor()));
+			editConfirmTextEmail.setTextColor(Color.parseColor("#" +retailer
 					.getRetailerTextColor()));
 			tvPNlbl.setTextColor(Color.parseColor("#" +retailer
 					.getRetailerTextColor()));
@@ -683,6 +689,7 @@ public class ProfileActivity extends BaseActivity implements
 
 			editTextFirstName.setTypeface(Helper.getSharedHelper().normalFont);
 			editTextEmail.setTypeface(Helper.getSharedHelper().normalFont);
+			editConfirmTextEmail.setTypeface(Helper.getSharedHelper().normalFont);
 			editTextMobileNumber
 					.setTypeface(Helper.getSharedHelper().normalFont);
 
@@ -772,11 +779,6 @@ public class ProfileActivity extends BaseActivity implements
 					.show();
 			status = false;
 			tv = editTextFirstName;
-		} else if (editTextMobileNumber.getText().toString().trim().length() == 0) {
-			Toast.makeText(context, "Enter your mobile number",
-					Toast.LENGTH_SHORT).show();
-			status = false;
-			tv = editTextMobileNumber;
 		} else if (editTextEmail.getText().toString().trim().length() == 0
 				|| !Helper.getSharedHelper().isEmailValid(
 						editTextEmail.getText().toString().trim())) {
@@ -784,7 +786,17 @@ public class ProfileActivity extends BaseActivity implements
 					.show();
 			status = false;
 			tv = editTextEmail;
-		} else {
+		}else if (editTextEmail.getText().toString()
+				.compareTo(editConfirmTextEmail.getText().toString()) != 0) {
+			Toast.makeText(context, "Confirm email doesn't match", Toast.LENGTH_SHORT).show();
+			status = false;
+			tv = editConfirmTextEmail;
+		}else if (editTextMobileNumber.getText().toString().trim().length() == 0) {
+			Toast.makeText(context, "Enter your mobile number",
+					Toast.LENGTH_SHORT).show();
+			status = false;
+			tv = editTextMobileNumber;
+		}  else {
 			Boolean isLoggedIn = spref.getBoolean(
 					Constants.KEY_IS_USER_LOGGED_IN, false);
 			if (!isLoggedIn) {
