@@ -91,7 +91,8 @@ public class ProfileActivity extends BaseActivity implements
 	private ArrayAdapter<String> adapter;
 	private ArrayList<String> countrySearchList = new ArrayList<String>();
 
-	private EditText editTextFirstName, editTextMobileNumber, editTextEmail,editConfirmTextEmail,buttonCountries;
+	private EditText editTextFirstName, editTextMobileNumber, editTextEmail,
+			editConfirmTextEmail, buttonCountries;
 	private Button buttonSave;
 	private SimpleDateFormat sdf;
 
@@ -140,7 +141,6 @@ public class ProfileActivity extends BaseActivity implements
 		llForgotPwd = (LinearLayout) llLoginForm.findViewById(R.id.llForgotPwd);
 
 		tvCreatePwd = (TextView) llPassword.findViewById(R.id.tvCreatePwd);
-		
 
 		tvLogin = (TextView) llLoginForm.findViewById(R.id.tvLogin);
 		etLoginEmailId = (EditText) llLoginForm
@@ -197,6 +197,7 @@ public class ProfileActivity extends BaseActivity implements
 				llPassword.setVisibility(View.VISIBLE);
 				llBottonView.setVisibility(View.VISIBLE);
 				tvBackToLogin.setVisibility(View.VISIBLE);
+				editConfirmTextEmail.setVisibility(View.VISIBLE);
 				buttonSave.setText(getResources().getString(R.string.register));
 			}
 		});
@@ -211,7 +212,7 @@ public class ProfileActivity extends BaseActivity implements
 		});
 
 		String tvBoraderColor = "757575";
-		
+
 		edtPwd.setBackgroundDrawable(Helper.getSharedHelper()
 				.getGradientDrawableEditText(retailer.getHeaderColor()));
 		edtCnfPwd.setBackgroundDrawable(Helper.getSharedHelper()
@@ -223,9 +224,8 @@ public class ProfileActivity extends BaseActivity implements
 				.getGradientDrawableEditText(tvBoraderColor));
 		etEmailForgotPwd.setBackgroundDrawable(Helper.getSharedHelper()
 				.getGradientDrawableEditText(tvBoraderColor));
-		buttonCountries
-				.setBackgroundDrawable(Helper.getSharedHelper().getGradientDrawableEditText(retailer
-						.getHeaderColor()));
+		buttonCountries.setBackgroundDrawable(Helper.getSharedHelper()
+				.getGradientDrawableEditText(retailer.getHeaderColor()));
 
 		btnLogin.setTextColor(Color.parseColor("#"
 				+ retailer.getRetailerTextColor()));
@@ -315,6 +315,7 @@ public class ProfileActivity extends BaseActivity implements
 		veTermsOfUse.setVisibility(View.GONE);
 		tvForgotPwd.setVisibility(View.VISIBLE);
 		tvShowLogin.setVisibility(View.GONE);
+		editConfirmTextEmail.setVisibility(View.GONE);
 
 	}
 
@@ -339,6 +340,7 @@ public class ProfileActivity extends BaseActivity implements
 			editTextEmail.setEnabled(false);
 			buttonSave.setText(getResources().getString(R.string.save));
 			veTermsOfUse.setVisibility(View.GONE);
+			editConfirmTextEmail.setVisibility(View.GONE);
 
 			if (Utils.isProfileAvailable(context)) {
 				setUpFields();
@@ -393,7 +395,7 @@ public class ProfileActivity extends BaseActivity implements
 								editTextEmail.setText(facebookUserEmail);
 								editTextMobileNumber.setText("");
 								buttonCountries.setText("");
-								
+
 								Log.e("User Name: ", user.getName());
 								Log.e("User Gender: ",
 										user.getProperty("gender").toString());
@@ -436,7 +438,7 @@ public class ProfileActivity extends BaseActivity implements
 		facebookLoginButton.setReadPermissions(Arrays
 				.asList("public_profile, email, user_birthday, user_friends"));
 		facebookLoginButton.setTypeface(Helper.getSharedHelper().boldFont);
-//		facebookLoginButton.setTextSize(getResources().getDimension(com.offpeaksale.consumer.R.dimen.new_price_textsize));;
+		// facebookLoginButton.setTextSize(getResources().getDimension(com.offpeaksale.consumer.R.dimen.new_price_textsize));;
 
 		retailer = Helper.getSharedHelper().reatiler;
 
@@ -455,7 +457,7 @@ public class ProfileActivity extends BaseActivity implements
 		editTextFirstName = (EditText) findViewById(R.id.edt_fname);
 		editTextMobileNumber = (EditText) findViewById(R.id.edt_mobile_number);
 		editTextEmail = (EditText) findViewById(R.id.edt_email);
-		editConfirmTextEmail=(EditText)findViewById(R.id.edt_confirm_email);
+		editConfirmTextEmail = (EditText) findViewById(R.id.edt_confirm_email);
 		sdf = new SimpleDateFormat("dd MMM yyyy");
 		TextView hyperlink = (TextView) findViewById(R.id.hyperlink);
 		veTermsOfUse = (LinearLayout) findViewById(R.id.veTermsOfUse);
@@ -544,26 +546,19 @@ public class ProfileActivity extends BaseActivity implements
 			// llDevider.setBackgroundDrawable(Helper.getSharedHelper()
 			// .getGradientDrawable(retailer.getRetailerTextColor()))
 
-			editTextFirstName
-					.setBackgroundDrawable(Helper.getSharedHelper()
-							.getGradientDrawableEditText(retailer
-							.getHeaderColor()));
+			editTextFirstName.setBackgroundDrawable(Helper.getSharedHelper()
+					.getGradientDrawableEditText(retailer.getHeaderColor()));
 
-			editTextMobileNumber
-					.setBackgroundDrawable(Helper.getSharedHelper()
-							.getGradientDrawableEditText(retailer
-							.getHeaderColor()));
+			editTextMobileNumber.setBackgroundDrawable(Helper.getSharedHelper()
+					.getGradientDrawableEditText(retailer.getHeaderColor()));
 
-			editTextEmail
-					.setBackgroundDrawable(Helper.getSharedHelper()
-							.getGradientDrawableEditText(retailer
-							.getHeaderColor()));
+			editTextEmail.setBackgroundDrawable(Helper.getSharedHelper()
+					.getGradientDrawableEditText(retailer.getHeaderColor()));
 			editConfirmTextEmail.setBackgroundDrawable(Helper.getSharedHelper()
-					.getGradientDrawableEditText(retailer
-					.getHeaderColor()));
+					.getGradientDrawableEditText(retailer.getHeaderColor()));
 			buttonCountries
-			.setBackgroundDrawable(getGradientDrawableEditText(retailer
-					.getHeaderColor()));
+					.setBackgroundDrawable(getGradientDrawableEditText(retailer
+							.getHeaderColor()));
 
 			int colorOn = Color.parseColor("#" + retailer.getHeaderColor());
 			int colorOff = 0xFF666666;
@@ -597,25 +592,24 @@ public class ProfileActivity extends BaseActivity implements
 					+ retailer.getRetailerTextColor()));
 			buttonSave.setBackgroundDrawable(getGradientDrawable(retailer
 					.getHeaderColor()));
-			tvBackToLogin.setTextColor(Color.parseColor("#" +retailer
-					.getRetailerTextColor()));
-			editTextFirstName.setTextColor(Color.parseColor("#" +retailer
-					.getRetailerTextColor()));
-			editTextMobileNumber.setTextColor(Color.parseColor("#" +retailer
-					.getRetailerTextColor()));
-			editTextEmail.setTextColor(Color.parseColor("#" +retailer
-					.getRetailerTextColor()));
-			editConfirmTextEmail.setTextColor(Color.parseColor("#" +retailer
-					.getRetailerTextColor()));
-			tvPNlbl.setTextColor(Color.parseColor("#" +retailer
-					.getRetailerTextColor()));
-			buttonCountries.setTextColor(Color.parseColor("#" +retailer
-					.getRetailerTextColor()));
-			edtPwd.setTextColor(Color.parseColor("#" +retailer
-					.getRetailerTextColor()));
-			edtCnfPwd.setTextColor(Color.parseColor("#" +retailer
-					.getRetailerTextColor()));
-			
+			tvBackToLogin.setTextColor(Color.parseColor("#"
+					+ retailer.getRetailerTextColor()));
+			editTextFirstName.setTextColor(Color.parseColor("#"
+					+ retailer.getRetailerTextColor()));
+			editTextMobileNumber.setTextColor(Color.parseColor("#"
+					+ retailer.getRetailerTextColor()));
+			editTextEmail.setTextColor(Color.parseColor("#"
+					+ retailer.getRetailerTextColor()));
+			editConfirmTextEmail.setTextColor(Color.parseColor("#"
+					+ retailer.getRetailerTextColor()));
+			tvPNlbl.setTextColor(Color.parseColor("#"
+					+ retailer.getRetailerTextColor()));
+			buttonCountries.setTextColor(Color.parseColor("#"
+					+ retailer.getRetailerTextColor()));
+			edtPwd.setTextColor(Color.parseColor("#"
+					+ retailer.getRetailerTextColor()));
+			edtCnfPwd.setTextColor(Color.parseColor("#"
+					+ retailer.getRetailerTextColor()));
 
 		} catch (Exception e) {
 		}
@@ -691,7 +685,8 @@ public class ProfileActivity extends BaseActivity implements
 
 			editTextFirstName.setTypeface(Helper.getSharedHelper().normalFont);
 			editTextEmail.setTypeface(Helper.getSharedHelper().normalFont);
-			editConfirmTextEmail.setTypeface(Helper.getSharedHelper().normalFont);
+			editConfirmTextEmail
+					.setTypeface(Helper.getSharedHelper().normalFont);
 			editTextMobileNumber
 					.setTypeface(Helper.getSharedHelper().normalFont);
 
@@ -788,21 +783,22 @@ public class ProfileActivity extends BaseActivity implements
 					.show();
 			status = false;
 			tv = editTextEmail;
-		}else if (editTextEmail.getText().toString()
-				.compareTo(editConfirmTextEmail.getText().toString()) != 0) {
-			Toast.makeText(context, "Confirm email doesn't match", Toast.LENGTH_SHORT).show();
-			status = false;
-			tv = editConfirmTextEmail;
-		}else if (editTextMobileNumber.getText().toString().trim().length() == 0) {
+		} else if (editTextMobileNumber.getText().toString().trim().length() == 0) {
 			Toast.makeText(context, "Enter your mobile number",
 					Toast.LENGTH_SHORT).show();
 			status = false;
 			tv = editTextMobileNumber;
-		}  else {
+		} else {
 			Boolean isLoggedIn = spref.getBoolean(
 					Constants.KEY_IS_USER_LOGGED_IN, false);
 			if (!isLoggedIn) {
-				if (edtPwd.getText().toString().length() == 0) {
+				if (editTextEmail.getText().toString()
+						.compareTo(editConfirmTextEmail.getText().toString()) != 0) {
+					Toast.makeText(context, "Confirm email doesn't match",
+							Toast.LENGTH_SHORT).show();
+					status = false;
+					tv = editConfirmTextEmail;
+				} else if (edtPwd.getText().toString().length() == 0) {
 					Toast.makeText(context, "Enter password",
 							Toast.LENGTH_SHORT).show();
 					status = false;
@@ -842,7 +838,6 @@ public class ProfileActivity extends BaseActivity implements
 					Calendar cal = Calendar.getInstance();
 					if (isFacebookLogin == false) {
 						// sqliteHelper.openDataBase();
-						
 
 						Boolean isLoggedIn = spref.getBoolean(
 								Constants.KEY_IS_USER_LOGGED_IN, false);
@@ -900,22 +895,22 @@ public class ProfileActivity extends BaseActivity implements
 
 				Profile profile = new Profile();
 				// profile.setAge(new Date().getYear() - dateOfBirth.getYear());
-//				profile.setDeviceToken(Constants.REG_ID);
+				// profile.setDeviceToken(Constants.REG_ID);
 				profile.setEmail(editTextEmail.getText().toString());
 				profile.setFirstName(editTextFirstName.getText().toString());
 
-//				profile.setLat(Constants.LAT);
-//				profile.setLng(Constants.LNG);
+				// profile.setLat(Constants.LAT);
+				// profile.setLng(Constants.LNG);
 				try {
 					profile.setCountry(buttonCountries.getText().toString());
-					profile.setMobileNo(editTextMobileNumber
-							.getText().toString());
+					profile.setMobileNo(editTextMobileNumber.getText()
+							.toString());
 
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
 
-//				profile.setTime(new Date().getTime());
+				// profile.setTime(new Date().getTime());
 
 				Gson gson = new Gson();
 				String json = gson.toJson(profile);
