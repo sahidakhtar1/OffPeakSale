@@ -77,24 +77,20 @@ public class ContactFragment extends Fragment implements OnClickListener {
 			edt_Email.setTypeface(Helper.getSharedHelper().normalFont);
 			edt_Subject.setTypeface(Helper.getSharedHelper().normalFont);
 			edt_Message.setTypeface(Helper.getSharedHelper().normalFont);
+			
+			String tvBoraderColor = "757575";
 			edt_Name.setBackground(Helper.getSharedHelper()
-					.getGradientDrawableEditText(
-							Helper.getSharedHelper().reatiler.getHeaderColor()));
+					.getGradientDrawableEditText(tvBoraderColor));
+			
 			edt_Email
 					.setBackground(Helper.getSharedHelper()
-							.getGradientDrawableEditText(
-									Helper.getSharedHelper().reatiler
-											.getHeaderColor()));
+							.getGradientDrawableEditText(tvBoraderColor));
 			edt_Subject
 					.setBackground(Helper.getSharedHelper()
-							.getGradientDrawableEditText(
-									Helper.getSharedHelper().reatiler
-											.getHeaderColor()));
+							.getGradientDrawableEditText(tvBoraderColor));
 			edt_Message
 					.setBackground(Helper.getSharedHelper()
-							.getGradientDrawableEditText(
-									Helper.getSharedHelper().reatiler
-											.getHeaderColor()));
+							.getGradientDrawableEditText(tvBoraderColor));
 			btn_submit
 					.setBackground(Helper.getSharedHelper()
 							.getGradientDrawable(

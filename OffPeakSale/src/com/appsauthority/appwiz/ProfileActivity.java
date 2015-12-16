@@ -210,17 +210,19 @@ public class ProfileActivity extends BaseActivity implements
 			}
 		});
 
+		String tvBoraderColor = "757575";
+		
 		edtPwd.setBackgroundDrawable(Helper.getSharedHelper()
 				.getGradientDrawableEditText(retailer.getHeaderColor()));
 		edtCnfPwd.setBackgroundDrawable(Helper.getSharedHelper()
 				.getGradientDrawableEditText(retailer.getHeaderColor()));
 
 		etLoginEmailId.setBackgroundDrawable(Helper.getSharedHelper()
-				.getGradientDrawableEditText(retailer.getHeaderColor()));
+				.getGradientDrawableEditText(tvBoraderColor));
 		etLoginPWD.setBackgroundDrawable(Helper.getSharedHelper()
-				.getGradientDrawableEditText(retailer.getHeaderColor()));
+				.getGradientDrawableEditText(tvBoraderColor));
 		etEmailForgotPwd.setBackgroundDrawable(Helper.getSharedHelper()
-				.getGradientDrawableEditText(retailer.getHeaderColor()));
+				.getGradientDrawableEditText(tvBoraderColor));
 		buttonCountries
 				.setBackgroundDrawable(Helper.getSharedHelper().getGradientDrawableEditText(retailer
 						.getHeaderColor()));
