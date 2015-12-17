@@ -148,6 +148,7 @@ public class EShopListFragment extends Fragment {
 		listFilterKey.add("low");
 		listFilterKey.add("high");
 		listFilterKey.add("none");
+		
 
 		context = getActivity();
 		retailer = Helper.getSharedHelper().reatiler;
@@ -163,9 +164,21 @@ public class EShopListFragment extends Fragment {
 			initailizeView(view);
 		}
 		myLocation = new MyLocation();
-		if (retailer.enableDiscovery.equalsIgnoreCase("1")) {
-			checkforLocation();
+		selectedSearchOption = Helper.getSharedHelper().filterIndex;
+		if (selectedSearchOption == 1) {
+			mLattitude = Double.toString(Constants.TARGET_LAT);
+			mLongitude = Double.toString(Constants.TARGET_LNG);
+		}else{
+			Constants.LAT = Constants.TARGET_LAT;
+			Constants.LNG = Constants.TARGET_LNG;
+			
 		}
+		if (searchedKeyWord == null) {
+			if (retailer.enableDiscovery.equalsIgnoreCase("1")) {
+				checkforLocation();
+			}
+		}
+		
 
 		// getAddressFromCoordinate(12.01, 77.0);
 		return view;
@@ -335,6 +348,7 @@ public class EShopListFragment extends Fragment {
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
 					filterIndex = selectedIndex;
+					Helper.getSharedHelper().filterIndex = selectedIndex;
 					new AsyncAllProducts().execute();
 					dialog.dismiss();
 				}
@@ -348,7 +362,7 @@ public class EShopListFragment extends Fragment {
 					dialog.dismiss();
 				}
 			});
-			Helper.getSharedHelper().filterIndex = filterIndex;
+//			Helper.getSharedHelper().filterIndex = filterIndex;
 			btnFilter.setTextColor(Color.parseColor("#"
 					+ retailer.getRetailerTextColor()));
 
@@ -401,7 +415,6 @@ public class EShopListFragment extends Fragment {
 				@Override
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
-					filterIndex = selectedIndex;
 					new AsyncAllProducts().execute();
 					dialog.dismiss();
 				}
@@ -678,10 +691,12 @@ public class EShopListFragment extends Fragment {
 							Constants.TARGET_LNG = Double
 									.parseDouble(mLongitude);
 						}
+						Helper.getSharedHelper().filterIndex = selectedSearchOption;
+						if (Constants.TARGET_LAT == 0 && Constants.TARGET_LNG == 0) {
+							return false;
+						}
 					}
-					if (Constants.TARGET_LAT == 0 && Constants.TARGET_LNG == 0) {
-						return false;
-					}
+					
 
 					// if (category != null) {
 					// param.put(Constants.PARAM_CATEGORY_ID, category.id);
@@ -872,7 +887,7 @@ public class EShopListFragment extends Fragment {
 		if (categoryList.size() == 0) {
 			return;
 		}
-		if (categoryList.size() <= selectedIndex) {
+		if (categoryList.size() <= selectedTabIndex) {
 			selectedTabIndex = 0;
 		}
 		DisplayMetrics displaymetrics = new DisplayMetrics();
@@ -953,7 +968,7 @@ public class EShopListFragment extends Fragment {
 			horizontalScrollView.smoothScrollTo(width * selectedTabIndex, 0);
 		}
 
-		if (categoryList.size() < selectedIndex) {
+		if (categoryList.size() < selectedTabIndex) {
 			selectedTabIndex = 0;
 		}
 		try {
