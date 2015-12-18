@@ -1,23 +1,12 @@
 package com.appsauthority.appwiz;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.os.Handler;
-import android.preference.PreferenceManager;
-import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.appauthority.appwiz.fragments.SlidingMenuActivity;
 import com.appsauthority.appwiz.custom.BaseActivity;
@@ -30,6 +19,23 @@ import com.appsauthority.appwiz.utils.Helper;
 import com.appsauthority.appwiz.utils.Utils;
 import com.google.gson.Gson;
 import com.offpeaksale.consumer.R;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.Signature;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Handler;
+import android.preference.PreferenceManager;
+import android.util.Base64;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class SplashscreenActivity extends BaseActivity {
 
@@ -49,6 +55,9 @@ public class SplashscreenActivity extends BaseActivity {
 
 		setContentView(R.layout.activity_splashscreen);
 
+		//Get Android Hashkey
+		getHashkey();
+		
 		textViewOperator = (TextView) findViewById(R.id.textViewOperator);
 
 		imageViewSplashScreen = (ImageView) findViewById(R.id.imageViewSplashScreen);
@@ -376,4 +385,20 @@ public class SplashscreenActivity extends BaseActivity {
 		return status;
 	}
 
+	private void getHashkey()
+	{
+		try {
+	        PackageInfo info = getPackageManager().getPackageInfo("com.offpeaksale.consumer",PackageManager.GET_SIGNATURES);
+	        for (Signature signature : info.signatures) {
+	            MessageDigest md = MessageDigest.getInstance("SHA");
+	            md.update(signature.toByteArray());
+	            Log.d("Android HashKey", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+	            }
+	    } catch (NameNotFoundException e) {
+
+	    } catch (NoSuchAlgorithmException e) {
+
+	    }
+
+	}
 }

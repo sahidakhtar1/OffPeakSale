@@ -78,7 +78,8 @@
              android:noHistory="true" />
         <activity android:name="com.appauthority.appwiz.fragments.SlidingMenuActivity" />
         <activity android:name="com.appsauthority.appwiz.BranchLocationActivity" />
-        <activity android:name="com.appsauthority.appwiz.ProfileActivity" />
+        <activity android:name="com.appsauthority.appwiz.ProfileActivity" 
+             android:windowSoftInputMode="adjustPan"/>
         <activity android:name="com.appsauthority.appwiz.VoucherActivity" />
         <activity android:name="com.appsauthority.appwiz.EShopFragmentActivity" />
         <activity android:name="com.appsauthority.appwiz.EShopDetailActivity" />
