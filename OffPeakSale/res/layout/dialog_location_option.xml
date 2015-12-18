@@ -97,9 +97,10 @@
             <Button
                 android:id="@+id/btnFilter"
                 android:layout_width="100dp"
-                android:layout_height="@dimen/button_height"
+                android:layout_height="40dp"
                 android:gravity="center"
-                android:padding="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:text="Search"
                 android:textSize="@dimen/button_textsize"
                 android:textStyle="bold" />

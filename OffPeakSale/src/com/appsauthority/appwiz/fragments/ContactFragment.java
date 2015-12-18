@@ -35,7 +35,8 @@ public class ContactFragment extends Fragment implements OnClickListener {
 	public String TAG = getClass().getSimpleName();
 	private View root;
 	Retailer objRetailer;
-	private TextView tvRetailerAddress, tvContact, tvRetailerConatct;
+	private TextView tvRetailerAddress, tvContact, tvRetailerConatct,
+			tvRetailerinstruction;
 	private EditText edt_Name, edt_Email, edt_Subject, edt_Message;
 	private Button btn_submit;
 
@@ -62,6 +63,8 @@ public class ContactFragment extends Fragment implements OnClickListener {
 				.findViewById(R.id.tvRetailerAddress);
 		tvRetailerConatct = (TextView) root
 				.findViewById(R.id.tvRetailerConatct);
+		tvRetailerinstruction = (TextView) root
+				.findViewById(R.id.tvRetailerinstruction);
 		edt_Name = (EditText) root.findViewById(R.id.edt_Name);
 		edt_Email = (EditText) root.findViewById(R.id.edt_Email);
 		edt_Subject = (EditText) root.findViewById(R.id.edt_Subject);
@@ -77,20 +80,19 @@ public class ContactFragment extends Fragment implements OnClickListener {
 			edt_Email.setTypeface(Helper.getSharedHelper().normalFont);
 			edt_Subject.setTypeface(Helper.getSharedHelper().normalFont);
 			edt_Message.setTypeface(Helper.getSharedHelper().normalFont);
-			
+			tvRetailerinstruction
+					.setTypeface(Helper.getSharedHelper().normalFont);
+
 			String tvBoraderColor = "757575";
 			edt_Name.setBackground(Helper.getSharedHelper()
 					.getGradientDrawableEditText(tvBoraderColor));
-			
-			edt_Email
-					.setBackground(Helper.getSharedHelper()
-							.getGradientDrawableEditText(tvBoraderColor));
-			edt_Subject
-					.setBackground(Helper.getSharedHelper()
-							.getGradientDrawableEditText(tvBoraderColor));
-			edt_Message
-					.setBackground(Helper.getSharedHelper()
-							.getGradientDrawableEditText(tvBoraderColor));
+
+			edt_Email.setBackground(Helper.getSharedHelper()
+					.getGradientDrawableEditText(tvBoraderColor));
+			edt_Subject.setBackground(Helper.getSharedHelper()
+					.getGradientDrawableEditText(tvBoraderColor));
+			edt_Message.setBackground(Helper.getSharedHelper()
+					.getGradientDrawableEditText(tvBoraderColor));
 			btn_submit
 					.setBackground(Helper.getSharedHelper()
 							.getGradientDrawable(
@@ -104,9 +106,10 @@ public class ContactFragment extends Fragment implements OnClickListener {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-
+		tvContact.setText(objRetailer.contactName);
 		tvRetailerAddress.setText(objRetailer.contactAddr);
 		tvRetailerConatct.setText("Phone  " + objRetailer.contactPhone);
+		tvRetailerinstruction.setText(objRetailer.contactInstr);
 
 		tvRetailerConatct.setOnClickListener(new OnClickListener() {
 
@@ -144,8 +147,6 @@ public class ContactFragment extends Fragment implements OnClickListener {
 				errorMsg = "Enter name";
 			} else if (!Helper.getSharedHelper().isEmailValid(emailid)) {
 				errorMsg = "Invalid email id";
-			} else if (subject == null || subject.length() == 0) {
-				errorMsg = "Enter subject";
 			} else if (message == null || message.length() == 0) {
 				errorMsg = "Enter message";
 			}

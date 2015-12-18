@@ -45,6 +45,17 @@
             android:gravity="left"
             android:textColor="@android:color/black"
             android:textSize="14sp" />
+        
+        <TextView
+            android:id="@+id/tvRetailerinstruction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/left_right_margin"
+            android:layout_marginRight="@dimen/left_right_margin"
+            android:layout_marginTop="@dimen/left_right_margin"
+            android:gravity="left"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/edt_Name"
@@ -52,7 +63,7 @@
             android:layout_height="@dimen/edt_height"
             android:layout_marginLeft="@dimen/left_right_margin"
             android:layout_marginRight="@dimen/left_right_margin"
-            android:layout_marginTop="@dimen/left_right_margin"
+            android:layout_marginTop="5dp"
             android:background="#D4E9E8"
             android:ems="10"
             android:hint="@string/name_hint"
@@ -96,6 +107,7 @@
             android:inputType="textEmailAddress"
             android:paddingLeft="@dimen/edit_text_padding"
             android:singleLine="true"
+            android:visibility="gone"
             android:textColor="@color/black"
             android:textColorHint="@android:color/darker_gray"
             android:textSize="@dimen/edit_text_font_size" />

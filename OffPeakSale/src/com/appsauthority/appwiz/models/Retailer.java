@@ -69,7 +69,6 @@ public class Retailer implements Serializable {
 	@SerializedName("enableShoppingCart")
 	public String enableShoppingCart;
 
-
 	@SerializedName("enableDelivery")
 	public String enableDelivery;
 
@@ -92,11 +91,11 @@ public class Retailer implements Serializable {
 	public String deliveryTimeSlots;
 
 	@SerializedName("appIconColor")
-	public String appIconColor ;
+	public String appIconColor;
 
 	@SerializedName("enablePay")
 	public String enablePay;
-	
+
 	@SerializedName("enableVerit")
 	public String enableVerit;
 
@@ -114,90 +113,96 @@ public class Retailer implements Serializable {
 
 	@SerializedName("home_imgArray")
 	public List<MediaObject> home_imgArray = new ArrayList<MediaObject>();
-	
+
 	@SerializedName("aboutUrl")
 	public String aboutUrl;
-	
+
 	@SerializedName("enableRewards")
 	public String enableRewards;
-	
+
 	@SerializedName("androidVersion")
 	public String androidVersion;
-	
+
 	@SerializedName("googlePlayUrl")
 	public String googlePlayUrl;
-	
+
 	@SerializedName("instagramUrl")
 	public String instagramUrl;
-	
+
 	@SerializedName("instagramDisplay")
 	public String instagramDisplay;
-	
+
 	@SerializedName("fbUrl")
 	public String fbUrl;
-	
+
 	@SerializedName("fbIconDisplay")
 	public String fbIconDisplay;
-	
+
 	@SerializedName("enableCollection")
 	public String enableCollection;
-	
+
 	@SerializedName("collectionDays")
 	public String collectionDays;
-	
+
 	@SerializedName("collectionTimeSlots")
 	public String collectionTimeSlots;
-	
+
 	@SerializedName("collectionAddress")
 	public String collectionAddress;
-	
+
 	@SerializedName("collectionHours")
 	public String collectionHours;
-	
+
 	@SerializedName("deliveryHours")
 	public String deliveryHours;
-	
+
 	@SerializedName("deliveryType")
 	public String deliveryType;
-	
+
 	@SerializedName("deliveryStandard")
 	public String deliveryStandard;
-	
+
 	@SerializedName("collectionType")
 	public String collectionType;
-	
+
 	@SerializedName("collectionStandard")
 	public String collectionStandard;
-	
-	
+
 	@SerializedName("enableFeatured")
 	public String enableFeatured;
-	
+
 	@SerializedName("calendarUrl")
 	public String calendarUrl;
-	
+
 	@SerializedName("enableGiftWrap")
 	public String enableGiftWrap;
-	
+
 	@SerializedName("gift_price")
 	public String gift_price;
-	
+
 	@SerializedName("tutorialSlides")
 	public ArrayList<TourObject> tutorialSlides;
-	
-	
+
 	@SerializedName("menuList")
 	public List<MenuItem> menuList;
-	
+
 	@SerializedName("enableDiscovery")
 	public String enableDiscovery;
-	
+
 	@SerializedName("contactAddr")
-	public	String contactAddr;
-	
+	public String contactAddr;
+
+	@SerializedName("contactName")
+	public String contactName;
+
 	@SerializedName("contactPhone")
 	public String contactPhone;
 	
+	@SerializedName("contactInstr")
+	public String contactInstr;
+	
+	
+
 	@SerializedName("button_color")
 	public String button_color;
 
@@ -324,6 +329,5 @@ public class Retailer implements Serializable {
 	public void setButton_color(String button_color) {
 		this.button_color = button_color;
 	}
-	
 
 }
