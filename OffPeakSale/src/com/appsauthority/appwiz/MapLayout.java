@@ -121,7 +121,7 @@ public class MapLayout extends RelativeLayout implements
 				bld.include(item);
 			}
 			map.animateCamera(CameraUpdateFactory.newLatLngBounds(bld.build(),
-					180));
+					200));
 //			if (currentStoreMarker != null) {
 //				currentStoreMarker.showInfoWindow();
 //			}
@@ -148,7 +148,7 @@ public class MapLayout extends RelativeLayout implements
 				public void onMapLoaded() {
 					if (stores != null) {
 						map.moveCamera(CameraUpdateFactory.newLatLngBounds(
-								bld.build(), 180));
+								bld.build(), 200));
 					}
 
 				}
