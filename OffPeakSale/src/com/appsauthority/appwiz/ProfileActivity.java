@@ -259,7 +259,9 @@ public class ProfileActivity extends BaseActivity implements
 				String emailid = etLoginEmailId.getText().toString();
 				String password = etLoginPWD.getText().toString();
 				String errorMsg = null;
-				if (!Helper.getSharedHelper().isEmailValid(emailid)) {
+				if (emailid.length() == 0) {
+					errorMsg = "Please enter your email id";
+				} else if (!Helper.getSharedHelper().isEmailValid(emailid)) {
 					errorMsg = "Invalid email id";
 				} else if (password == null || password.length() == 0) {
 					errorMsg = "Enter password";
@@ -283,7 +285,9 @@ public class ProfileActivity extends BaseActivity implements
 				// TODO Auto-generated method stub
 				String emailid = etEmailForgotPwd.getText().toString();
 				String errorMsg = null;
-				if (!Helper.getSharedHelper().isEmailValid(emailid)) {
+				if (emailid.length() == 0) {
+					errorMsg = "Please enter your email id";
+				} else if (!Helper.getSharedHelper().isEmailValid(emailid)) {
 					errorMsg = "Invalid email id";
 				}
 				if (errorMsg != null) {

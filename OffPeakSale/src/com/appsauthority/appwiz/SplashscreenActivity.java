@@ -56,7 +56,7 @@ public class SplashscreenActivity extends BaseActivity {
 		setContentView(R.layout.activity_splashscreen);
 
 		//Get Android Hashkey
-		getHashkey();
+//		getHashkey();
 		
 		textViewOperator = (TextView) findViewById(R.id.textViewOperator);
 

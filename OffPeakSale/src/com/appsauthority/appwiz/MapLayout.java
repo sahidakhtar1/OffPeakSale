@@ -125,6 +125,7 @@ public class MapLayout extends RelativeLayout implements
 //			if (currentStoreMarker != null) {
 //				currentStoreMarker.showInfoWindow();
 //			}
+			map.getUiSettings().setZoomControlsEnabled(false);
 
 		} catch (Exception e) {
 			// e.printStackTrace();

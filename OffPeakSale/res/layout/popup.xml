@@ -17,20 +17,21 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxWidth="200dp"
+            android:layout_marginBottom="8dp"
+            android:maxWidth="180dp"
             android:text="Title"
             android:textIsSelectable="true"
             android:textSize="18sp"
-            android:layout_marginBottom="8dp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/snippet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:maxWidth="180dp"
             android:text="dvdfvd"
             android:textIsSelectable="true"
-            android:layout_marginBottom="3dp"
             android:textSize="14sp" />
     </LinearLayout>
 
