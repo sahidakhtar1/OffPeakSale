@@ -135,6 +135,7 @@ public class EShopListFragment extends Fragment {
 	String mLattitude, mLongitude;
 
 	TextView tvTotalDeals;
+	Boolean isFirsttime = true;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -148,7 +149,6 @@ public class EShopListFragment extends Fragment {
 		listFilterKey.add("low");
 		listFilterKey.add("high");
 		listFilterKey.add("none");
-		
 
 		context = getActivity();
 		retailer = Helper.getSharedHelper().reatiler;
@@ -168,17 +168,16 @@ public class EShopListFragment extends Fragment {
 		if (selectedSearchOption == 1) {
 			mLattitude = Double.toString(Constants.TARGET_LAT);
 			mLongitude = Double.toString(Constants.TARGET_LNG);
-		}else{
+		} else {
 			Constants.LAT = Constants.TARGET_LAT;
 			Constants.LNG = Constants.TARGET_LNG;
-			
+
 		}
 		if (searchedKeyWord == null) {
 			if (retailer.enableDiscovery.equalsIgnoreCase("1")) {
 				checkforLocation();
 			}
 		}
-		
 
 		// getAddressFromCoordinate(12.01, 77.0);
 		return view;
@@ -191,12 +190,15 @@ public class EShopListFragment extends Fragment {
 		listview = (ListView) view.findViewById(R.id.lv_eshop);
 		tvNoSearchFound = (TextView) view.findViewById(R.id.tvNoSearchFound);
 		tvNoSearchFound.setVisibility(View.GONE);
-		ImageView imgLocationFilter = (ImageView) view.findViewById(R.id.imgLocationFilter);
+		ImageView imgLocationFilter = (ImageView) view
+				.findViewById(R.id.imgLocationFilter);
 		if (retailer.appIconColor != null
 				&& retailer.appIconColor.equalsIgnoreCase("black")) {
-			imgLocationFilter.setBackgroundResource(R.drawable.ic_location_filter_black);
-		}else{
-			imgLocationFilter.setBackgroundResource(R.drawable.ic_location_filter_white);
+			imgLocationFilter
+					.setBackgroundResource(R.drawable.ic_location_filter_black);
+		} else {
+			imgLocationFilter
+					.setBackgroundResource(R.drawable.ic_location_filter_white);
 		}
 		try {
 			Bundle bundle = getArguments();
@@ -300,7 +302,13 @@ public class EShopListFragment extends Fragment {
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		new AsyncAllProducts().execute();
+		if (isFirsttime) {
+			
+		}else{
+			new AsyncAllProducts().execute();
+		}
+		isFirsttime = false;
+		
 	}
 
 	public void loadListView(int id) {
@@ -362,7 +370,7 @@ public class EShopListFragment extends Fragment {
 					dialog.dismiss();
 				}
 			});
-//			Helper.getSharedHelper().filterIndex = filterIndex;
+			// Helper.getSharedHelper().filterIndex = filterIndex;
 			btnFilter.setTextColor(Color.parseColor("#"
 					+ retailer.getRetailerTextColor()));
 
@@ -415,7 +423,11 @@ public class EShopListFragment extends Fragment {
 				@Override
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
-					new AsyncAllProducts().execute();
+					if (selectedSearchOption == 0) {
+						checkforLocation();
+					} else {
+						new AsyncAllProducts().execute();
+					}
 					dialog.dismiss();
 				}
 			});
@@ -462,7 +474,7 @@ public class EShopListFragment extends Fragment {
 					rdTargetLocation.setChecked(false);
 					selectedSearchOption = 0;
 					etTargetLocation.setEnabled(false);
-					checkforLocation();
+
 				}
 			});
 
@@ -489,10 +501,10 @@ public class EShopListFragment extends Fragment {
 				etTargetLocation.setEnabled(true);
 			}
 
-//			etCurrentLocation.setBackgroundDrawable(Helper.getSharedHelper()
-//					.getGradientDrawableEditText(retailer.getHeaderColor()));
-//			etTargetLocation.setBackgroundDrawable(Helper.getSharedHelper()
-//					.getGradientDrawableEditText(retailer.getHeaderColor()));
+			// etCurrentLocation.setBackgroundDrawable(Helper.getSharedHelper()
+			// .getGradientDrawableEditText(retailer.getHeaderColor()));
+			// etTargetLocation.setBackgroundDrawable(Helper.getSharedHelper()
+			// .getGradientDrawableEditText(retailer.getHeaderColor()));
 
 			Helper.getSharedHelper().filterIndex = filterIndex;
 			btnFilter.setTextColor(Color.parseColor("#"
@@ -642,7 +654,7 @@ public class EShopListFragment extends Fragment {
 				eshopConatent = spref.getString(category.id, "");
 			}
 
-			if (searchedKeyWord == null && filterIndex == 0
+			if (searchedKeyWord == null && selectedSearchOption == 0
 					&& eshopConatent != null
 					&& !eshopConatent.equalsIgnoreCase("")) {
 				try {
@@ -671,7 +683,7 @@ public class EShopListFragment extends Fragment {
 			if (Utils.hasNetworkConnection(getActivity()
 					.getApplicationContext())) {
 				try {
-					
+
 					param.put(Constants.PARAM_RETAILER_ID,
 							Constants.RETAILER_ID);
 					if (retailer.enableDiscovery.equalsIgnoreCase("1")) {
@@ -692,11 +704,11 @@ public class EShopListFragment extends Fragment {
 									.parseDouble(mLongitude);
 						}
 						Helper.getSharedHelper().filterIndex = selectedSearchOption;
-						if (Constants.TARGET_LAT == 0 && Constants.TARGET_LNG == 0) {
+						if (Constants.TARGET_LAT == 0
+								&& Constants.TARGET_LNG == 0) {
 							return false;
 						}
 					}
-					
 
 					// if (category != null) {
 					// param.put(Constants.PARAM_CATEGORY_ID, category.id);
@@ -998,6 +1010,7 @@ public class EShopListFragment extends Fragment {
 			@Override
 			public void gotLocation(Location location) {
 
+				dismissLoadingDialog();
 				if (location != null) {
 
 					lat = location.getLatitude();
@@ -1007,6 +1020,7 @@ public class EShopListFragment extends Fragment {
 					Constants.LNG = lng;
 					getAddressFromCoordinate(lat, lng);
 					myLocation.cancelTimer();
+					new AsyncAllProducts().execute();
 				} else {
 
 					Criteria criteria = new Criteria();
@@ -1023,6 +1037,7 @@ public class EShopListFragment extends Fragment {
 						Constants.LNG = lng;
 						getAddressFromCoordinate(lat, lng);
 						myLocation.cancelTimer();
+						new AsyncAllProducts().execute();
 
 					}
 
@@ -1031,8 +1046,10 @@ public class EShopListFragment extends Fragment {
 		};
 		if (myLocation.getLocation(getActivity().getApplicationContext(),
 				locationResult)) {
+			showLoadingDialog();
 
-		} else if(!Helper.getSharedHelper().isLocationAlertShown){
+		} else if (!Helper.getSharedHelper().isLocationAlertShown) {
+			
 			AlertDialog.Builder builder = new AlertDialog.Builder(context);
 			builder.setTitle("Information")
 					.setMessage("Enable location services")

@@ -64,7 +64,7 @@
                         android:ems="10"
                         android:hint="@string/first_name"
                         android:imeOptions="actionNext"
-                        android:inputType="textCapWords"
+                        android:inputType="textPersonName"
                         android:paddingLeft="@dimen/edit_text_padding"
                         android:singleLine="true"
                         android:textColor="@color/black"
