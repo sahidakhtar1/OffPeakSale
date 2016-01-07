@@ -1472,7 +1472,7 @@ public class EShopDetailActivity extends BaseActivity implements
 			tvEnterCode.setTypeface(Helper.getSharedHelper().normalFont);
 
 			textViewName.setTypeface(Helper.getSharedHelper().normalFont);
-			textViewShortDesc.setTypeface(Helper.getSharedHelper().normalFont);
+			textViewShortDesc.setTypeface(Helper.getSharedHelper().boldFont);
 			tvRewardsPoints.setTypeface(Helper.getSharedHelper().normalFont);
 			textViewDetail.setTypeface(Helper.getSharedHelper().normalFont);
 			textViewHowItWorks.setTypeface(Helper.getSharedHelper().normalFont);

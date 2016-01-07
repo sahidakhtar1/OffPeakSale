@@ -104,7 +104,7 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 				R.drawable.image_placeholder, imageView);
 		try {
 			holder.getShortDesc().setTypeface(
-					Helper.getSharedHelper().normalFont);
+					Helper.getSharedHelper().boldFont);
 			holder.getOldPrice().setTypeface(
 					Helper.getSharedHelper().normalFont);
 			holder.getNewPrice().setTypeface(Helper.getSharedHelper().boldFont);

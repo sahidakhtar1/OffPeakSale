@@ -17,7 +17,7 @@
     <dimen name="margin_progressBar">12dp</dimen>
     <dimen name="button_height">35dp</dimen>
     <dimen name="pager_radius">8dp</dimen>
-    <dimen name="item_gap">9dp</dimen>
+    <dimen name="item_gap">30dp</dimen>
     <dimen name="menu_item_height">50dp</dimen>
     <dimen name="menu_text_size">17sp</dimen>
     <dimen name="cart_menu_textsize">14sp</dimen>
@@ -27,16 +27,16 @@
     <dimen name="edittext_top_margin">12dp</dimen>
     <dimen name="submit_left_right_margin">75dp</dimen>
     <dimen name="triangle_size">12dp</dimen>
-    <dimen name="secondary_header_height">35dp</dimen>
+    <dimen name="secondary_header_height">40dp</dimen>
     <dimen name="edit_text_padding">5dp</dimen>
     <dimen name="edit_text_font_size">14sp</dimen>
     
     <dimen name="cart_botton_items_height">25dp</dimen>
     
-    <dimen name="category_tab_textsize">14sp</dimen>
+    <dimen name="category_tab_textsize">16sp</dimen>
     <dimen name="location_filter_heading_textsize">16sp</dimen>
-    <dimen name="item_indicator_textsize">14sp</dimen>
-    <dimen name="item_title_textsize">14sp</dimen>
+    <dimen name="item_indicator_textsize">15sp</dimen>
+    <dimen name="item_title_textsize">16sp</dimen>
     <dimen name="old_price_textsize">14sp</dimen>
     <dimen name="new_price_textsize">14sp</dimen>
     <dimen name="location_textsize">14sp</dimen>
