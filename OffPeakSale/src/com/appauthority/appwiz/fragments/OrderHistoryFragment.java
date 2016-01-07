@@ -194,8 +194,11 @@ public class OrderHistoryFragment extends Fragment implements
 			if (i == selectedTabIndex) {
 				underLineView.setBackgroundColor(Color.parseColor("#F2"
 						+ Helper.getSharedHelper().reatiler.getHeaderColor()));
+				tvTabName.setTextColor(Color.parseColor("#F2"
+						+ Helper.getSharedHelper().reatiler.getHeaderColor()));
 			} else {
 				underLineView.setBackgroundColor(Color.TRANSPARENT);
+				tvTabName.setTextColor(Color.BLACK);
 			}
 			llTabContainer.addView(tabView);
 			tabView.setTag(i);
