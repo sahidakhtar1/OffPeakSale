@@ -1,32 +1,36 @@
 package com.appsauthority.appwiz;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import com.appsauthority.appwiz.custom.MyLocation;
+import com.appsauthority.appwiz.custom.MyLocation.LocationResult;
 import com.appsauthority.appwiz.models.RetailerStores;
 import com.appsauthority.appwiz.utils.Constants;
 import com.appsauthority.appwiz.utils.Helper;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.gson.annotations.SerializedName;
 import com.offpeaksale.consumer.R;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
-import android.text.util.Linkify;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -55,7 +59,12 @@ public class MapLayout extends RelativeLayout implements
 	Marker nearestStoreMarker;
 	
 	Marker currentStoreMarker;
-
+	 Timer timer;
+     TimerTask timerTask;
+     MyLocation   myLocation = new MyLocation();
+ 	final Handler handlerlocation = new Handler();
+ 	Marker currentLocation;
+	
 	public MapLayout(Context context, Activity activity,
 			ArrayList<RetailerStores> stores) {
 		super(context);
@@ -73,11 +82,13 @@ public class MapLayout extends RelativeLayout implements
 
 		map = ((MapFragment) activity.getFragmentManager().findFragmentById(
 				R.id.map_info)).getMap();
+//		 map.setMyLocationEnabled(true);
+//		 map.getUiSettings().setMyLocationButtonEnabled(false);
 		if (bld == null) {
 			bld = new LatLngBounds.Builder();
 		}
 		try {
-			map.addMarker(new MarkerOptions()
+			currentLocation = map.addMarker(new MarkerOptions()
 					.position(new LatLng(Constants.LAT, Constants.LNG))
 					.title("Current Location")
 					.icon(BitmapDescriptorFactory
@@ -233,4 +244,60 @@ public class MapLayout extends RelativeLayout implements
 		}
 
 	}
+	
+	  public void startLocationUpdate() {
+	 		//set a new Timer
+//	 		timer = new Timer();
+//	 		//initialize the TimerTask's job
+//	 		
+//	 		//schedule the timer, after the first 5000ms the TimerTask will run every 10000ms
+//	 		timer.schedule(timerTask, 5000, 10000); //
+		  if (myLocation.getLocation(context.getApplicationContext(),
+					locationResult)) {
+
+			}
+	 	}
+	     public void stopLocationUpdate() {
+	 		//stop the timer, if it's not already null
+	 		if (myLocation != null) {
+	 			myLocation.cancelTimer();
+	 		}
+	 	}
+//	     public void initializeTimerTask() {
+//	 		
+//	 		timerTask = new TimerTask() {
+//	 			public void run() {
+//	 				handlerlocation.post(new Runnable() {
+//	 					public void run() {
+//	 						
+//	 					}
+//	 				});
+//	 			}
+//	 		};
+//	 	}
+	     LocationResult locationResult = new LocationResult() {
+				@Override
+				public void gotLocation(Location location) {
+					if (location != null) {
+						Constants.LAT = location.getLatitude();
+						Constants.LNG = location.getLongitude();
+						currentLocation.setPosition(new LatLng(Constants.LAT, Constants.LNG));
+
+					} else {
+
+						Criteria criteria = new Criteria();
+						LocationManager locMan = (LocationManager) context
+								.getSystemService(Context.LOCATION_SERVICE);
+						String curLoc = locMan.getBestProvider(criteria, true);
+						location = locMan.getLastKnownLocation(curLoc);
+						if (location != null) {
+							Constants.LAT = location.getLatitude();
+							Constants.LNG = location.getLongitude();
+							
+							currentLocation.setPosition(new LatLng(Constants.LAT, Constants.LNG));
+						}
+
+					}
+			}
+	     };
 }
