@@ -35,6 +35,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MapLayout extends RelativeLayout implements
 		OnInfoWindowClickListener {
@@ -282,6 +283,7 @@ public class MapLayout extends RelativeLayout implements
 						Constants.LAT = location.getLatitude();
 						Constants.LNG = location.getLongitude();
 						currentLocation.setPosition(new LatLng(Constants.LAT, Constants.LNG));
+						Toast.makeText(context, " fresh Location fetched "+Constants.LAT+" "+Constants.LNG, Toast.LENGTH_LONG).show();
 
 					} else {
 
@@ -295,6 +297,7 @@ public class MapLayout extends RelativeLayout implements
 							Constants.LNG = location.getLongitude();
 							
 							currentLocation.setPosition(new LatLng(Constants.LAT, Constants.LNG));
+							Toast.makeText(context, "Old Location fetched"+Constants.LAT+" "+Constants.LNG, Toast.LENGTH_LONG).show();
 						}
 
 					}
