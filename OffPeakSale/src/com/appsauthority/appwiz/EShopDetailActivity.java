@@ -202,6 +202,7 @@ public class EShopDetailActivity extends BaseActivity implements
 	LinearLayout llDiscountInfo, llLocattion;
 
 	int selectedTabIndex = 1;
+	MapLayout mapLayout;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -249,7 +250,7 @@ public class EShopDetailActivity extends BaseActivity implements
 		vwChildHowItWorks.setTag(2);
 		llMapView.setTag(3);
 
-		MapLayout mapLayout = new MapLayout(activity, activity, product.outlets);
+		mapLayout = new MapLayout(activity, activity, product.outlets);
 		mapLayout.merchantName = product.getShortDescription();
 		mapLayout.outletName = product.outletName;
 		mapLayout.storeAddress = product.storeAddress;
@@ -1109,6 +1110,15 @@ public class EShopDetailActivity extends BaseActivity implements
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		if (selectedTabIndex == 3) {
+			if (mapLayout != null) {
+				mapLayout.startLocationUpdate();
+			}
+		}else{
+			if (mapLayout != null) {
+				mapLayout.stopLocationUpdate();
+			}
+		}
 
 	}
 
@@ -1818,6 +1828,11 @@ public class EShopDetailActivity extends BaseActivity implements
 				imageBanner.startTimer();
 			}
 		}
+		if (selectedTabIndex == 3) {
+			if (mapLayout != null) {
+				mapLayout.startLocationUpdate();
+			}
+		}
 	}
 
 	@Override
@@ -1827,6 +1842,11 @@ public class EShopDetailActivity extends BaseActivity implements
 		if (imageBanner != null) {
 			imageBanner.stopTimer();
 		}
+		if (selectedTabIndex == 3) {
+			if (mapLayout != null) {
+				mapLayout.stopLocationUpdate();
+			}
+		}
 	}
 
 	@Override
@@ -1835,6 +1855,11 @@ public class EShopDetailActivity extends BaseActivity implements
 		super.onStop();
 		if (imageBanner != null) {
 			imageBanner.stopTimer();
+		}
+		if (selectedTabIndex == 3) {
+			if (mapLayout != null) {
+				mapLayout.stopLocationUpdate();
+			}
 		}
 	}
 
