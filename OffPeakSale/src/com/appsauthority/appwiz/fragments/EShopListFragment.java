@@ -305,8 +305,9 @@ public class EShopListFragment extends Fragment {
 		if (isFirsttime) {
 			
 		}else{
-			new AsyncAllProducts().execute();
+			
 		}
+		new AsyncAllProducts().execute();
 		isFirsttime = false;
 		
 	}
@@ -1049,7 +1050,7 @@ public class EShopListFragment extends Fragment {
 		};
 		if (myLocation.getLocation(getActivity().getApplicationContext(),
 				locationResult)) {
-			showLoadingDialog();
+//			showLoadingDialog();
 
 		} else if (!Helper.getSharedHelper().isLocationAlertShown) {
 			

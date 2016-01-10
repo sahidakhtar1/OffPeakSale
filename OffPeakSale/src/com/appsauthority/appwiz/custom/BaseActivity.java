@@ -71,8 +71,9 @@ public class BaseActivity extends YouTubeBaseActivity {
 	private double lat, lng;
 	private ProgressDialog progressDialog;
 
-	private static Boolean isLocationFetched = false;
+	public static Boolean isLocationFetched = false;
 	private SharedPreferences spref;
+	public Boolean isLocationOn = true;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -126,7 +127,7 @@ public class BaseActivity extends YouTubeBaseActivity {
 			};
 
 			myLocation = new MyLocation();
-			myLocation.getLocation(getApplicationContext(), locationResult);
+			isLocationOn = myLocation.getLocation(getApplicationContext(), locationResult);
 		} else {
 
 		}

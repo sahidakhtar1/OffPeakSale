@@ -55,9 +55,9 @@ public class SplashscreenActivity extends BaseActivity {
 
 		setContentView(R.layout.activity_splashscreen);
 
-		//Get Android Hashkey
-//		getHashkey();
-		
+		// Get Android Hashkey
+		// getHashkey();
+
 		textViewOperator = (TextView) findViewById(R.id.textViewOperator);
 
 		imageViewSplashScreen = (ImageView) findViewById(R.id.imageViewSplashScreen);
@@ -259,25 +259,26 @@ public class SplashscreenActivity extends BaseActivity {
 				Typeface boldFont = Typeface.createFromAsset(getAssets(),
 						boldFontPath);
 				Helper.getSharedHelper().boldFont = boldFont;
-				new Handler().postDelayed(new Runnable() {
-					@Override
-					public void run() {
-						if (spref.getBoolean("ProductTour", false) == true) {
-							Intent intent = new Intent(getApplicationContext(),
-									SlidingMenuActivity.class);
-							if (pid != null) {
-								intent.putExtra("pid", pid);
-							}
-							startActivity(intent);
-						} else {
-							Intent intent = new Intent(getApplicationContext(),
-									ProductTourActivity.class);
-							startActivity(intent);
-						}
-
-						finish();
-					}
-				}, 5000);
+				// new Handler().postDelayed(new Runnable() {
+				// @Override
+				// public void run() {
+				// if (spref.getBoolean("ProductTour", false) == true) {
+				// Intent intent = new Intent(getApplicationContext(),
+				// SlidingMenuActivity.class);
+				// if (pid != null) {
+				// intent.putExtra("pid", pid);
+				// }
+				// startActivity(intent);
+				// } else {
+				// Intent intent = new Intent(getApplicationContext(),
+				// ProductTourActivity.class);
+				// startActivity(intent);
+				// }
+				//
+				// finish();
+				// }
+				// }, 5000);
+				moveNext();
 				Log.i("TIMMINGS", "SPLASH FINISHED");
 
 				// new Handler().postDelayed(new Runnable() {
@@ -326,15 +327,16 @@ public class SplashscreenActivity extends BaseActivity {
 								getAssets(), boldFontPath);
 						Helper.getSharedHelper().boldFont = boldFont;
 
-						Intent intent = new Intent(getApplicationContext(),
-								SlidingMenuActivity.class);
-						if (pid != null) {
-							intent.putExtra("pid", pid);
-						}
-						startActivity(intent);
-						finish();
+						// Intent intent = new Intent(getApplicationContext(),
+						// SlidingMenuActivity.class);
+						// if (pid != null) {
+						// intent.putExtra("pid", pid);
+						// }
+						// startActivity(intent);
+						// finish();
+						moveNext();
 					}
-				}, 5000);
+				}, 100);
 			}
 		}
 
@@ -346,6 +348,71 @@ public class SplashscreenActivity extends BaseActivity {
 		@Override
 		protected void onProgressUpdate(Void... values) {
 		}
+	}
+
+	void moveNext() {
+		// new Handler().postDelayed(new Runnable() {
+		// @Override
+		// public void run() {
+		// String siteFont = "";
+		// try {
+		// siteFont = retailer.getSiteFont();
+		// } catch (Exception e) {
+		// // TODO: handle exception
+		// }
+		//
+		// String normlFontPath = Helper.getSharedHelper()
+		// .getRegularFontPath(siteFont);
+		// Typeface nonmarFont = Typeface.createFromAsset(
+		// getAssets(), normlFontPath);
+		// Helper.getSharedHelper().normalFont = nonmarFont;
+		//
+		// String boldFontPath = Helper.getSharedHelper()
+		// .getBoldFontPath(siteFont);
+		// Typeface boldFont = Typeface.createFromAsset(
+		// getAssets(), boldFontPath);
+		// Helper.getSharedHelper().boldFont = boldFont;
+		//
+		// Intent intent = new Intent(getApplicationContext(),
+		// SlidingMenuActivity.class);
+		// if (pid != null) {
+		// intent.putExtra("pid", pid);
+		// }
+		// startActivity(intent);
+		// finish();
+		// }
+		// }, 5000);
+
+		if (!isLocationOn || isLocationFetched) {
+			new Handler().postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					if (spref.getBoolean("ProductTour", false) == true) {
+						Intent intent = new Intent(getApplicationContext(),
+								SlidingMenuActivity.class);
+						if (pid != null) {
+							intent.putExtra("pid", pid);
+						}
+						startActivity(intent);
+					} else {
+						Intent intent = new Intent(getApplicationContext(),
+								ProductTourActivity.class);
+						startActivity(intent);
+					}
+
+					finish();
+				}
+			}, 100);
+		} else {
+			new Handler().postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					moveNext();
+				}
+			}, 1000);
+
+		}
+
 	}
 
 	Boolean processOfflineData() {
@@ -385,20 +452,21 @@ public class SplashscreenActivity extends BaseActivity {
 		return status;
 	}
 
-	private void getHashkey()
-	{
+	private void getHashkey() {
 		try {
-	        PackageInfo info = getPackageManager().getPackageInfo("com.offpeaksale.consumer",PackageManager.GET_SIGNATURES);
-	        for (Signature signature : info.signatures) {
-	            MessageDigest md = MessageDigest.getInstance("SHA");
-	            md.update(signature.toByteArray());
-	            Log.d("Android HashKey", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-	            }
-	    } catch (NameNotFoundException e) {
+			PackageInfo info = getPackageManager().getPackageInfo(
+					"com.offpeaksale.consumer", PackageManager.GET_SIGNATURES);
+			for (Signature signature : info.signatures) {
+				MessageDigest md = MessageDigest.getInstance("SHA");
+				md.update(signature.toByteArray());
+				Log.d("Android HashKey",
+						Base64.encodeToString(md.digest(), Base64.DEFAULT));
+			}
+		} catch (NameNotFoundException e) {
 
-	    } catch (NoSuchAlgorithmException e) {
+		} catch (NoSuchAlgorithmException e) {
 
-	    }
+		}
 
 	}
 }
