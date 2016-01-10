@@ -44,14 +44,14 @@ public class MyLocation {
 			return false;
 
 		if (gps_enabled)
-			lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0,
+			lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10,10,
 					locationListenerGps);
 		if (network_enabled)
 			lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0,
 					locationListenerNetwork);
 
 		timer1 = new Timer();
-		timer1.schedule(new GetLastLocation(), 20000);
+	//	timer1.schedule(new GetLastLocation(), 20000);
 
 		return true;
 	}
@@ -61,8 +61,8 @@ public class MyLocation {
 			// Log.d(TAG, "Retrieved location : GPS Provider");
 			timer1.cancel();
 			locationResult.gotLocation(location);
-			lm.removeUpdates(this);
-			lm.removeUpdates(locationListenerNetwork);
+//			lm.removeUpdates(this);
+//			lm.removeUpdates(locationListenerNetwork);
 		}
 
 		public void onProviderDisabled(String provider) {
@@ -80,8 +80,8 @@ public class MyLocation {
 			// Log.d(TAG, "Retrieved location : Network Provider");
 			timer1.cancel();
 			locationResult.gotLocation(location);
-			lm.removeUpdates(this);
-			lm.removeUpdates(locationListenerGps);
+//			lm.removeUpdates(this);
+//			lm.removeUpdates(locationListenerGps);
 		}
 
 		public void onProviderDisabled(String provider) {

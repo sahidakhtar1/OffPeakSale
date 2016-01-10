@@ -283,7 +283,8 @@ public class MapLayout extends RelativeLayout implements
 						Constants.LAT = location.getLatitude();
 						Constants.LNG = location.getLongitude();
 						currentLocation.setPosition(new LatLng(Constants.LAT, Constants.LNG));
-						Toast.makeText(context, " fresh Location fetched "+Constants.LAT+" "+Constants.LNG, Toast.LENGTH_LONG).show();
+						currentLocation.hideInfoWindow();
+//						Toast.makeText(context, " fresh Location fetched "+Constants.LAT+" "+Constants.LNG, Toast.LENGTH_LONG).show();
 
 					} else {
 
@@ -292,12 +293,16 @@ public class MapLayout extends RelativeLayout implements
 								.getSystemService(Context.LOCATION_SERVICE);
 						String curLoc = locMan.getBestProvider(criteria, true);
 						location = locMan.getLastKnownLocation(curLoc);
-						if (location != null) {
+						if (location != null) { 
 							Constants.LAT = location.getLatitude();
 							Constants.LNG = location.getLongitude();
 							
 							currentLocation.setPosition(new LatLng(Constants.LAT, Constants.LNG));
-							Toast.makeText(context, "Old Location fetched"+Constants.LAT+" "+Constants.LNG, Toast.LENGTH_LONG).show();
+							currentLocation.hideInfoWindow();
+//							Toast.makeText(context, "Old Location fetched"+Constants.LAT+" "+Constants.LNG, Toast.LENGTH_LONG).show();
+						}else{
+//							Toast.makeText(context, "Location not fetched", Toast.LENGTH_LONG).show();
+
 						}
 
 					}
