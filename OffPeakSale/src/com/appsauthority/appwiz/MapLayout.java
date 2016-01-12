@@ -102,6 +102,7 @@ public class MapLayout extends RelativeLayout implements
 					.title("Target Location")
 					.icon(BitmapDescriptorFactory
 							.fromResource(R.drawable.user_pin)));
+					bld.include(new LatLng(Constants.TARGET_LAT, Constants.TARGET_LAT));
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
