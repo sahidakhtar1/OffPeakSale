@@ -214,6 +214,7 @@ public class EShopDetailActivity extends BaseActivity implements
 		product = (Product) intent.getSerializableExtra("product");
 		activity = this;
 
+		MapLayout.isFromEshopDetail=true;
 		retailer = Helper.getSharedHelper().reatiler;
 		spref = PreferenceManager.getDefaultSharedPreferences(activity);
 		tvQtyIndicator = (TextView) findViewById(R.id.tvQtyIndicator);

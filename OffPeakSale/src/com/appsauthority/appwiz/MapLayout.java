@@ -65,6 +65,7 @@ public class MapLayout extends RelativeLayout implements
      MyLocation   myLocation = new MyLocation();
  	final Handler handlerlocation = new Handler();
  	Marker currentLocation;
+ 	public static boolean isFromEshopDetail=false;
 	
 	public MapLayout(Context context, Activity activity,
 			ArrayList<RetailerStores> stores) {
@@ -96,7 +97,7 @@ public class MapLayout extends RelativeLayout implements
 							.fromResource(R.drawable.user_pin)));
 			bld.include(new LatLng(Constants.LAT, Constants.LNG));
 			try {
-				if (Helper.getSharedHelper().filterIndex == 1) {
+				if (Helper.getSharedHelper().filterIndex == 1 && isFromEshopDetail==true) {
 					map.addMarker(new MarkerOptions()
 					.position(new LatLng(Constants.TARGET_LAT, Constants.TARGET_LNG))
 					.title("Target Location")

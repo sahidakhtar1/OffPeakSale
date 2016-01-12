@@ -32,6 +32,7 @@ public class OutletMapActivity extends BaseActivity{
 		Intent intent = getIntent();
 		getActionBar().hide();
 		setContentView(R.layout.outletmap);
+		MapLayout.isFromEshopDetail=false;
 		headerView = (RelativeLayout) findViewById(R.id.headerView);
 		imageBack = (ImageView) findViewById(R.id.imageBack);
 		textViewHeader = (TextView) findViewById(R.id.textViewHeader);
