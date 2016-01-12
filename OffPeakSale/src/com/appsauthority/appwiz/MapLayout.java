@@ -95,6 +95,18 @@ public class MapLayout extends RelativeLayout implements
 					.icon(BitmapDescriptorFactory
 							.fromResource(R.drawable.user_pin)));
 			bld.include(new LatLng(Constants.LAT, Constants.LNG));
+			try {
+				if (Helper.getSharedHelper().filterIndex == 1) {
+					map.addMarker(new MarkerOptions()
+					.position(new LatLng(Constants.TARGET_LAT, Constants.TARGET_LNG))
+					.title("Target Location")
+					.icon(BitmapDescriptorFactory
+							.fromResource(R.drawable.user_pin)));
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
 
 			if (latitude != null && longitude != null) {
 				addMarker(Double.parseDouble(latitude),

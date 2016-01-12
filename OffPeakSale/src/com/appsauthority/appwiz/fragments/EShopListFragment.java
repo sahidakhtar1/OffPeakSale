@@ -241,6 +241,7 @@ public class EShopListFragment extends Fragment {
 		tvTotalDeals = (TextView) view.findViewById(R.id.tvTotalDeals);
 		tvTotalDeals.setTextColor(Color.parseColor("#"
 				+ retailer.getRetailerTextColor()));
+		tvTotalDeals.setTypeface(Helper.getSharedHelper().boldFont);
 		rlLocationOption.setBackgroundColor(Color.parseColor("#"
 				+ retailer.getHeaderColor()));
 		rlFilter.setOnClickListener(new OnClickListener() {
@@ -309,7 +310,16 @@ public class EShopListFragment extends Fragment {
 		}
 		new AsyncAllProducts().execute();
 		isFirsttime = false;
+		if (selectedSearchOption==0) {
+			checkforLocation();
+		}
 		
+	}
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		myLocation.cancelTimer();
 	}
 
 	public void loadListView(int id) {
@@ -376,6 +386,7 @@ public class EShopListFragment extends Fragment {
 					+ retailer.getRetailerTextColor()));
 
 			tvFilterTitle.setTypeface(Helper.getSharedHelper().boldFont);
+			
 
 			filterAdapter = new FilterListAdapter(getActivity(),
 					R.layout.filter_list_item, filterOptions);
@@ -512,7 +523,7 @@ public class EShopListFragment extends Fragment {
 					+ retailer.getRetailerTextColor()));
 
 			dialog.show();
-			myLocation.cancelTimer();
+//			myLocation.cancelTimer();
 		} catch (Exception e) {
 		}
 
@@ -1023,7 +1034,7 @@ public class EShopListFragment extends Fragment {
 					Constants.LAT = lat;
 					Constants.LNG = lng;
 					getAddressFromCoordinate(lat, lng);
-					myLocation.cancelTimer();
+//					myLocation.cancelTimer();
 					new AsyncAllProducts().execute();
 				} else {
 
@@ -1040,7 +1051,7 @@ public class EShopListFragment extends Fragment {
 						Constants.LAT = lat;
 						Constants.LNG = lng;
 						getAddressFromCoordinate(lat, lng);
-						myLocation.cancelTimer();
+//						myLocation.cancelTimer();
 						new AsyncAllProducts().execute();
 
 					}

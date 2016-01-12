@@ -90,7 +90,7 @@
                 android:id="@+id/tv_eshop_short_desc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
+                android:layout_marginBottom="3dp"
                 android:layout_marginTop="7dp"
                 android:layout_weight="1"
                 android:maxLines="2"
@@ -108,7 +108,7 @@
                 android:maxLines="1"
                 android:text="2.1KM"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/item_title_textsize" />
+                android:textSize="@dimen/old_price_textsize" />
         </LinearLayout>
 
         <LinearLayout

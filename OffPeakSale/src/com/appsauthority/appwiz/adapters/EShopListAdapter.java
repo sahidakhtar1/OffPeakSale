@@ -109,9 +109,9 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 					Helper.getSharedHelper().normalFont);
 			holder.getNewPrice().setTypeface(Helper.getSharedHelper().boldFont);
 			holder.getTvQtyIndicator().setTypeface(
-					Helper.getSharedHelper().normalFont);
+					Helper.getSharedHelper().boldFont);
 			holder.getTvSaleIndicator().setTypeface(
-					Helper.getSharedHelper().normalFont);
+					Helper.getSharedHelper().boldFont);
 			holder.getTvDistance().setTypeface(
 					Helper.getSharedHelper().boldFont);
 			holder.getTvAddress().setTypeface(

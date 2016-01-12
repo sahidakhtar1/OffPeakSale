@@ -1504,6 +1504,8 @@ public class EShopDetailActivity extends BaseActivity implements
 			tvFirstOptionValue.setTypeface(Helper.getSharedHelper().normalFont);
 			tvSecondOptionValue
 					.setTypeface(Helper.getSharedHelper().normalFont);
+			tvSaleIndicator.setTypeface(Helper.getSharedHelper().boldFont);
+			tvQtyIndicator.setTypeface(Helper.getSharedHelper().boldFont);
 		} catch (Exception e) {
 
 		}
