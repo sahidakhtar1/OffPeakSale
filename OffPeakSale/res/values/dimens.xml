@@ -48,6 +48,7 @@
     <dimen name="history_item_textsize">14sp</dimen>
     <dimen name="tour_title_textsize">20sp</dimen>
     <dimen name="tour_detail_textsize">16sp</dimen>
+    <dimen name="order_detail_item_gap">5dp</dimen>
     
     
 

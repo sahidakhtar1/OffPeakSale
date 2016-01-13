@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/left_right_margin"
                     android:gravity="left|bottom"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="@dimen/order_detail_item_gap"
                     android:textSize="@dimen/history_item_textsize" />
 
                 <TextView
@@ -110,7 +110,7 @@
                     android:layout_marginLeft="@dimen/left_right_margin"
                     android:gravity="left|bottom"
                     android:lines="1"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="@dimen/order_detail_item_gap"
                     android:textIsSelectable="true"
                     android:textSize="@dimen/history_item_textsize" />
 
@@ -121,7 +121,7 @@
                     android:layout_marginLeft="@dimen/left_right_margin"
                     android:gravity="left|bottom"
                     android:lines="1"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="@dimen/order_detail_item_gap"
                     android:textSize="@dimen/history_item_textsize" />
 
                 <TextView
@@ -131,7 +131,7 @@
                     android:layout_marginLeft="@dimen/left_right_margin"
                     android:gravity="left|bottom"
                     android:lines="1"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="@dimen/order_detail_item_gap"
                     android:textSize="@dimen/history_item_textsize" />
 
                 <TextView
@@ -142,7 +142,7 @@
                     android:layout_marginLeft="@dimen/left_right_margin"
                     android:gravity="center"
                     android:lines="1"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="@dimen/order_detail_item_gap"
                     android:textSize="@dimen/history_item_textsize" />
             </LinearLayout>
 
