@@ -402,14 +402,14 @@ public class SplashscreenActivity extends BaseActivity {
 
 					finish();
 				}
-			}, 100);
+			}, 1000);
 		} else {
 			new Handler().postDelayed(new Runnable() {
 				@Override
 				public void run() {
 					moveNext();
 				}
-			}, 1000);
+			}, 3000);
 
 		}
 

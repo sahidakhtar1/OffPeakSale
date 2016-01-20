@@ -38,11 +38,11 @@
     <dimen name="item_indicator_textsize">15sp</dimen>
     <dimen name="item_title_textsize">18sp</dimen>
     <dimen name="old_price_textsize">13sp</dimen>
-    <dimen name="new_price_textsize">13sp</dimen>
+    <dimen name="new_price_textsize">14sp</dimen>
     <dimen name="location_textsize">13sp</dimen>
     <dimen name="button_textsize">14sp</dimen>
     <dimen name="detail_section_header_textsize">14sp</dimen>
-    <dimen name="item_total_textsize">14sp</dimen>
+    <dimen name="item_total_textsize">15sp</dimen>
     <dimen name="menu_item_textsize">16sp</dimen>
     <dimen name="history_id_textsize">14sp</dimen>
     <dimen name="history_item_textsize">14sp</dimen>

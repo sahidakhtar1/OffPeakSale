@@ -3,11 +3,14 @@ package com.appsauthority.appwiz.custom;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.appsauthority.appwiz.utils.Constants;
+
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 
 //From http://stackoverflow.com/questions/3145089/what-is-the-simplest-and-most-robust-way-to-get-the-users-current-location-in-a/
 
@@ -51,8 +54,13 @@ public class MyLocation {
 					locationListenerNetwork);
 
 		timer1 = new Timer();
-	//	timer1.schedule(new GetLastLocation(), 20000);
-
+//		timer1.schedule(new GetLastLocation(), 5000);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				locationResult.gotLocation(null);
+			}
+		}, 5000);
 		return true;
 	}
 
@@ -97,8 +105,10 @@ public class MyLocation {
 	class GetLastLocation extends TimerTask {
 		@Override
 		public void run() {
-			lm.removeUpdates(locationListenerGps);
-			lm.removeUpdates(locationListenerNetwork);
+//			lm.removeUpdates(locationListenerGps);
+//			lm.removeUpdates(locationListenerNetwork);
+			if (timer1 != null)
+				timer1.cancel();
 
 			Location net_loc = null, gps_loc = null;
 			if (gps_enabled)

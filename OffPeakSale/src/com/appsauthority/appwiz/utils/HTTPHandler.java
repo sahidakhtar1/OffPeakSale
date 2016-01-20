@@ -140,6 +140,9 @@ public class HTTPHandler {
 
 	public JSONObject doPost(String URL, JSONObject jsonObjSend) {
 
+		System.out.printf("Url = ",URL);
+		System.out.printf("input = ",jsonObjSend);
+		
 		URL = checkSLL(URL);
 		try {
 			URL object = new URL(URL);

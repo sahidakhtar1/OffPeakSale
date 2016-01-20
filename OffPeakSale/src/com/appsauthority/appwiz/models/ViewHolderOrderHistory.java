@@ -18,6 +18,7 @@ public class ViewHolderOrderHistory {
 	public TextView getTvOrderId() {
 		if (null == tvOrderId) {
 			tvOrderId = (TextView) row.findViewById(R.id.tvOrderId);
+//			tvOrderId.setText("Order # ");
 		}
 		return tvOrderId;
 	}
