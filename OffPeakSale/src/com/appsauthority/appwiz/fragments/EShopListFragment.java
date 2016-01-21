@@ -21,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Fragment;
@@ -119,6 +120,7 @@ public class EShopListFragment extends Fragment {
 	int width;
 	int selectedTabIndex = 1;
 
+	LocationManager locMan;
 	MyLocation myLocation;
 	LocationResult result;
 	private double lat, lng;
@@ -676,6 +678,7 @@ public class EShopListFragment extends Fragment {
 						// adapter.clear();
 						// adapter.addAll(productList);
 						// adapter.notifyDataSetChanged();
+						
 						initializeTab();
 						dismissLoadingDialog();
 					}
@@ -1035,12 +1038,13 @@ public class EShopListFragment extends Fragment {
 					Constants.LNG = lng;
 					getAddressFromCoordinate(lat, lng);
 //					myLocation.cancelTimer();
+					if(getActivity()!=null)
+					{
 					new AsyncAllProducts().execute();
+					}
 				} else {
 
 					Criteria criteria = new Criteria();
-					LocationManager locMan = (LocationManager) getActivity()
-							.getSystemService(Context.LOCATION_SERVICE);
 					String curLoc = locMan.getBestProvider(criteria, true);
 					location = locMan.getLastKnownLocation(curLoc);
 					if (location != null) {
@@ -1052,7 +1056,10 @@ public class EShopListFragment extends Fragment {
 						Constants.LNG = lng;
 						getAddressFromCoordinate(lat, lng);
 //						myLocation.cancelTimer();
+						if(getActivity()!=null)
+						{
 						new AsyncAllProducts().execute();
+						}
 
 					}
 
@@ -1096,7 +1103,12 @@ public class EShopListFragment extends Fragment {
 		}
 
 	}
+	@Override
+	public void onAttach(Activity activity) {
+	    super.onAttach(activity);
+	    locMan =(LocationManager)activity.getSystemService(Context.LOCATION_SERVICE);
 
+	}
 	void getAddressFromCoordinate(double latitude, double longitude) {
 		Geocoder geocoder = new Geocoder(context, Locale.getDefault());
 
