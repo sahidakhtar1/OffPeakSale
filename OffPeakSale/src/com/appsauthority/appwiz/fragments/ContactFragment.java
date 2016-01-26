@@ -108,7 +108,12 @@ public class ContactFragment extends Fragment implements OnClickListener {
 		}
 		tvContact.setText(objRetailer.contactName);
 		tvRetailerAddress.setText(objRetailer.contactAddr);
-		tvRetailerConatct.setText("Phone  " + objRetailer.contactPhone);
+		if (objRetailer.contactPhone != null && objRetailer.contactPhone.length()>0) {
+			tvRetailerConatct.setText("Phone  " + objRetailer.contactPhone);
+		}else{
+			tvRetailerConatct.setVisibility(View.GONE);
+		}
+		
 		tvRetailerinstruction.setText(objRetailer.contactInstr);
 
 		tvRetailerConatct.setOnClickListener(new OnClickListener() {

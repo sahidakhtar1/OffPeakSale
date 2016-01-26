@@ -2,7 +2,7 @@
 <resources>
 
     <string name="map_key">AIzaSyC9IK5RL3bvl8TzQBwyJ8ZRbWIEiCmAZbE</string>
-    <string name="app_name">Off Peak Sale</string>
+    <string name="app_name">OffPeakSale</string>
     <string name="action_settings">Settings</string>
     <string name="lorem_ipsum">Lorem Ipsum</string>
     <string name="grand_total">Total</string>
