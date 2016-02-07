@@ -973,7 +973,7 @@ public class EShopDetailActivity extends BaseActivity implements
 
 		tvOldPrice.setPaintFlags(tvOldPrice.getPaintFlags()
 				| Paint.STRIKE_THRU_TEXT_FLAG);
-		if (retailer.enableDiscovery.equalsIgnoreCase("1")) {
+		if (retailer.enableDiscovery.equalsIgnoreCase("1") && product.outlets.size()>0) {
 			if (product.distance == null) {
 				RetailerStores store = product.outlets.get(0);
 				product.distance = Helper.getSharedHelper().getDistanceBetween(
