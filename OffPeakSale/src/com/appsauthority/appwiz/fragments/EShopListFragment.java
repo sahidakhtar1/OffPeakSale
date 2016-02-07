@@ -719,10 +719,10 @@ public class EShopListFragment extends Fragment {
 									.parseDouble(mLongitude);
 						}
 						Helper.getSharedHelper().filterIndex = selectedSearchOption;
-						if (Constants.TARGET_LAT == 0
-								&& Constants.TARGET_LNG == 0) {
-							return false;
-						}
+//						if (Constants.TARGET_LAT == 0
+//								&& Constants.TARGET_LNG == 0) {
+//							return false;
+//						}
 					}
 
 					// if (category != null) {
@@ -1074,14 +1074,14 @@ public class EShopListFragment extends Fragment {
 			
 			AlertDialog.Builder builder = new AlertDialog.Builder(context);
 			builder.setTitle("Information")
-					.setMessage("Enable location services")
+					.setMessage("Enable location services for more accurate search result")
 					.setCancelable(true)
 					.setNegativeButton("Cancel",
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int id) {
 									dialog.cancel();
-									showLoctionDialog();
+//									showLoctionDialog();
 								}
 							})
 					.setPositiveButton("Enable",

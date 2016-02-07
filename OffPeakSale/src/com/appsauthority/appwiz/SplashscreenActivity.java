@@ -383,7 +383,7 @@ public class SplashscreenActivity extends BaseActivity {
 		// }
 		// }, 5000);
 
-		if (!isLocationOn || isLocationFetched) {
+		if (true || !isLocationOn || isLocationFetched) {
 			new Handler().postDelayed(new Runnable() {
 				@Override
 				public void run() {
@@ -402,7 +402,7 @@ public class SplashscreenActivity extends BaseActivity {
 
 					finish();
 				}
-			}, 1000);
+			}, 5000);
 		} else {
 			new Handler().postDelayed(new Runnable() {
 				@Override
