@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="12dp"
@@ -18,12 +18,14 @@
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_toRightOf="@id/icon"
+        android:paddingTop="3dp"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         android:textColor="@color/black"
         android:gravity="center_vertical"
+        android:maxLines="1"
         android:textSize="@dimen/menu_item_textsize"
         android:textStyle="normal"
         android:paddingRight="20dp"/>

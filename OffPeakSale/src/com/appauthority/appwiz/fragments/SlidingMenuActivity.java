@@ -297,7 +297,7 @@ public class SlidingMenuActivity extends BaseActivity implements
 				} else if (menuItem.origName.equalsIgnoreCase("myorders")) {
 					Helper.getSharedHelper().orderTitle = menuItem.displayName;
 					NavDrawerItem history = new NavDrawerItem(menuItem.displayName,
-							R.drawable.shop_cart_black, 5, true);
+							R.drawable.shop_cart_black, 5, false);
 					history.itemType = DrawerItemType.ORDER_HISTORY;
 					navDrawerItems.add(history);
 				} else if (menuItem.origName.equalsIgnoreCase("myprofile")) {

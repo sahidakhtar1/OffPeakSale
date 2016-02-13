@@ -154,17 +154,17 @@ public class EShopListAdapter extends ArrayAdapter<Product> {
 		holder.getTvAddress().setText(object.outletName);
 
 		if (Helper.getSharedHelper().reatiler.enableDiscovery
-				.equalsIgnoreCase("1")) {
+				.equalsIgnoreCase("1") && object.distance != null) {
 			holder.getTvDistance().setVisibility(View.VISIBLE);
 			try {
-				if (object.distance == null) {
-					RetailerStores store = object.outlets.get(0);
-					object.distance = Helper.getSharedHelper()
-							.getDistanceBetween(Constants.TARGET_LAT,
-									Constants.TARGET_LAT,
-									Double.parseDouble(store.getLatitude()),
-									Double.parseDouble(store.getLongitude()));
-				}
+//				if (object.distance == null ) {
+//					RetailerStores store = object.outlets.get(0);
+//					object.distance = Helper.getSharedHelper()
+//							.getDistanceBetween(Constants.TARGET_LAT,
+//									Constants.TARGET_LAT,
+//									Double.parseDouble(store.getLatitude()),
+//									Double.parseDouble(store.getLongitude()));
+//				}
 				holder.getTvDistance().setText(object.distance + " KM");
 
 			} catch (Exception e) {
