@@ -2,7 +2,7 @@
 <resources>
 
     <color name="light_gray">#ffcccccc</color>
-    <color name="list_devider_light_gray">#F6F6F6</color>
+    <color name="list_devider_light_gray">#F0F0F0</color>
     <color name="black">#000000</color>
     <color name="black_translucent">#55000000</color>
     <color name="footer_bg">#E8E9E8</color>

@@ -66,6 +66,7 @@ public class OrderHistoryFragment extends Fragment implements
 	LinearLayout llTabContainer;
 	Button btnLogin;
 	RelativeLayout vwLogin;
+	TextView tvLginInfo;
 	AllOrdersResponseObject allOrders;
 
 	@Override
@@ -92,6 +93,7 @@ public class OrderHistoryFragment extends Fragment implements
 		}
 		vwLogin = (RelativeLayout) view.findViewById(R.id.vwLogin);
 		btnLogin = (Button) view.findViewById(R.id.btnLogin);
+		tvLginInfo = (TextView) view.findViewById(R.id.tvLginInfo);
 		llTabContainer = (LinearLayout) view.findViewById(R.id.llTabContainer);
 		horizontalScrollView = (HorizontalScrollView) view
 				.findViewById(R.id.horizontalScrollView);
@@ -119,7 +121,8 @@ public class OrderHistoryFragment extends Fragment implements
 				+ retailer.getRetailerTextColor()));
 		btnLogin.setBackgroundDrawable(Helper.getSharedHelper()
 				.getGradientDrawable(retailer.getButton_color()));
-		btnLogin.setTypeface(Helper.getSharedHelper().boldFont);;
+		btnLogin.setTypeface(Helper.getSharedHelper().boldFont);
+		tvLginInfo.setTypeface(Helper.getSharedHelper().normalFont);;
 		initializeTab();
 		btnLogin.setOnClickListener(new OnClickListener() {
 
